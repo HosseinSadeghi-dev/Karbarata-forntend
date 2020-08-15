@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  pureUrl: "https://endpoint.karbarata.com",
+  serverUrl: "https://endpoint.karbarata.com/api"
 };

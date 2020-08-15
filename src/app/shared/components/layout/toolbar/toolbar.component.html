@@ -1,0 +1,50 @@
+<mat-toolbar class="example-toolbar">
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-icon-button fxHide.gt-sm="true" (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+    <div *ngIf="!loggedIn">
+      <button mat-raised-button color="warn" [routerLink]="'/auth/register'">ثبت نام</button>
+      <button mat-button color="warn" class="mr-2" [routerLink]="'/auth/login'">ورود</button>
+    </div>
+    <button *ngIf="loggedIn &&  userProfile" [matMenuTriggerFor]="appUserMenu" mat-button>
+      <img [src]="!userProfile.image ? 'assets/image/morche.png': 'https://endpoint.karbarata.com/api/image/user/'+userProfile.image" class="img-fluid mr-2 rounded-circle" width="35px">
+      <span *ngIf="!mobileQuery.matches" class="mr-3">{{userProfile?.name}} {{userProfile?.lastName}}</span>
+    </button>
+    <button mat-button class="px-0" [routerLink]="'/'">
+      <img src="assets/image/logo-light.png" alt="karbarata logo" class="img-fluid w-75">
+    </button>
+    <button mat-button color="warn" class="mr-2">
+      جست و جو
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-toolbar-row>
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="center center" *ngIf="!isScroll && !mobileQuery.matches" @fadeIn @fadeOut>
+    <a routerLink="/" mat-button>صفحه اصلی</a>
+    <button [matMenuTriggerFor]="WorkmanMenu" mat-button>درخواست نیرو</button>
+    <a routerLink="/construct" routerLinkActive="active-list-item" mat-button>طراحی ، ساخت و ساز</a>
+    <a [routerLink]="['/municipality']" routerLinkActive="active-list-item" mat-button>خدمات شهرداری</a>
+    <a routerLink="/comingSoon" routerLinkActive="active-list-item" mat-button>خدمات ویژه</a>
+    <a routerLink="/comingSoon" mat-button>فروشگاه</a>
+    <a [routerLink]="['/blog']" routerLinkActive="active-list-item" mat-button>بلاگ</a>
+    <a [routerLink]="['/about']" routerLinkActive="active-list-item" mat-button>درباره ما</a>
+    <button [matMenuTriggerFor]="contactMenu" mat-button>تماس با ما</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-menu #contactMenu="matMenu">
+  <button [routerLink]="['/about/cooperate']" mat-menu-item>                            همکاری با ما
+  </button>
+  <button mat-menu-item>                            ارسال شکایت
+  </button>
+</mat-menu>
+<mat-menu #WorkmanMenu="matMenu">
+  <button mat-menu-item [routerLink]="'/workman/worker'">نیرو ساده</button>
+  <button mat-menu-item [routerLink]="'/workman/master'">نیرو متخصص</button>
+</mat-menu>
+<mat-menu #appUserMenu="matMenu">
+  <mat-list>
+  </mat-list>
+  <button [routerLink]="['/user']" mat-menu-item>
+    <mat-icon>account_circle</mat-icon>
+    پروفایل</button>
+  <button (click)="logout($event)" mat-menu-item><mat-icon>exit_to_app</mat-icon>
+    خروج</button>
+</mat-menu>

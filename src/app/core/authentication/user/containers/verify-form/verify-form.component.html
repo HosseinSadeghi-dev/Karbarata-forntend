@@ -1,0 +1,18 @@
+<div fxLayout="column" fxLayoutGap="15px">
+  <h1 class="mat-h2">
+    اهراز هویت
+  </h1>
+  <form #confirmForm=ngForm (ngSubmit)="onSubmit()">
+    <div fxLayout="column" fxLayoutGap="15px">
+      <mat-form-field appearance="fill">
+        <mat-label>کد اهراز هویت</mat-label>
+        <input matInput [(ngModel)]="form.password" name="password" (input)="onSubmit()" required maxlength="4">
+        <mat-icon matPrefix>lock</mat-icon>
+      </mat-form-field>
+      <mat-hint>
+        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+      </mat-hint>
+    </div>
+  </form>
+  <button mat-button (click)="onResendCode()">ارسال مجدد کد!</button>
+</div>

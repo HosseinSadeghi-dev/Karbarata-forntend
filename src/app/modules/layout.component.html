@@ -1,0 +1,38 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <app-toolbar
+    class="w-100"
+    [sidenav]="snav"
+    [mobileQuery]="mobileQuery"
+  ></app-toolbar>
+  <mat-sidenav-container
+    class="example-sidenav-container"
+    [style.marginTop.px]="mobileQuery.matches ? 50 : 0"
+  >
+    <mat-sidenav
+        #snav
+        [mode]="mobileQuery.matches ? 'over' : 'side'"
+        [fixedInViewport]="mobileQuery.matches"
+        fixedTopGap="56"
+    >
+      <mat-nav-list>
+        <ng-container *ngFor="let item of menuList;let first = first">
+          <a mat-list-item [routerLink]="[item.link]" [routerLinkActive]="!first ? 'active-list-item' : ''">{{item.title}}</a>
+        </ng-container>
+        <mat-divider></mat-divider>
+        <a mat-list-item [routerLink]="['/auth/login']">ورود</a>
+        <a mat-list-item [routerLink]="['/auth/register']">ثبت نام</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content
+      dir="ltr"
+      fxLayout="column">
+      <app-preloader></app-preloader>
+      <!--      <app-loader-progress-bar></app-loader-progress-bar>-->
+      <!--      <app-breadcrumb fxHide.xs="true"></app-breadcrumb>-->
+      <router-outlet></router-outlet>
+      <!--      <app-footer class="mt-auto"></app-footer>-->
+      <app-footer></app-footer>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

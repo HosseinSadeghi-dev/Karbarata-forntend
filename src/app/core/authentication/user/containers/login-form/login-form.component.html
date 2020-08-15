@@ -1,0 +1,20 @@
+<div fxLayout="column" fxLayoutGap="15px">
+  <h1 class="mat-h2">
+    ورود به کارباراتا
+  </h1>
+  <form #loginForm=ngForm (ngSubmit)="onSubmit()">
+    <div fxLayout="column" fxLayoutGap="25px">
+      <mat-form-field appearance="fill">
+        <mat-label>شماره تلفن</mat-label>
+        <span matSuffix>98+ &nbsp;</span>
+        <input matInput [(ngModel)]="form.phoneNumber" name="phoneNumber" required type="number">
+        <mat-icon matPrefix>phone</mat-icon>
+      </mat-form-field>
+      <mat-hint>
+        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+      </mat-hint>
+      <button mat-raised-button color="primary" [disabled]="!loginForm.valid">ورود</button>
+    </div>
+  </form>
+  <button mat-button [routerLink]="['/user/auth/register']">حساب کاربری ندارم!</button>
+</div>
