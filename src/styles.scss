@@ -289,3 +289,79 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent-dark, $theme-warn);
     background-position:0px -3000px;
   }
 }
+
+// Define a custom mixin that takes in the current theme
+@mixin theme-color-grabber($theme) {
+  // Parse the theme and create variables for each color in the pallete
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  // Create theme specfic styles
+  .primaryColorBG {
+    background-color: mat-color($primary);
+  }
+  .accentColorBG {
+    background-color: mat-color($accent);
+  }
+  .warnColorBG {
+    background-color: mat-color($warn);
+  }
+}
+
+@mixin landing-theme($theme){
+  $primary: map-get($theme, primary);
+  $accent : map-get($theme, accent);
+  $background: map-get($mat-dark-theme-background, background);
+  .landing-section{
+    .primary-bg {
+      background-color: mat-color($primary)
+    }
+    .accent-bg{
+      background-color: mat-color($accent)
+    }
+    color: white;
+    @media (min-width: 1920px) and (max-width: 5000px){
+      height: 45rem;
+    }
+    @media (min-width: 1280px) and (max-width: 1919px) {
+      height: 42rem;
+    }
+    @media (min-width: 1280px) and (max-width: 1919px) {
+      height: 38rem;
+    }
+    @media (min-width: 960px) and (max-width: 1279px) {
+      height: 35rem;
+    }
+    @media (min-width: 600px) and (max-width: 959px) {
+      height: 35rem;
+    }
+    @media (max-width: 599px) {
+      height: 30rem;
+    }
+    .border{
+      border: 1.5px solid mat-color($primary);
+      border-radius: 4px;
+    }
+    .border-vertical{
+      border-left: 1.5px solid mat-color($primary);
+      height: 50px;
+      border-radius: 4px;
+    }
+    .mat-body{
+      line-height: 3;
+    }
+  }
+  .landing-section div:nth-child(3){
+    z-index: 1;
+  }
+  .landing-section div:nth-child(4){
+    z-index: 0;
+    opacity: 15%;
+  }
+  @media (max-width: 599px) {
+    .landing-section.accent-landing{
+      height: 40rem !important;
+    }
+  }
+
+}
