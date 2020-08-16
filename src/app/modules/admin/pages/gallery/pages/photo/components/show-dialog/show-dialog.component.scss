@@ -1,0 +1,9 @@
+.mat-dialog-content{
+  //max-height: unset !important;
+  //flex: 1 0 0;
+  @media (min-width: 1024px) {
+    img{
+      max-height: 60vh
+    }
+  }
+}

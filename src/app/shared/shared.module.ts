@@ -8,11 +8,19 @@ import {MatPaginatorIntl} from '@angular/material/paginator';
 import {getPersianPaginatorIntl} from './persian-paginator-intl';
 import {MaterialModule} from './material/material.module';
 import {CustomLayoutGapStyleBuilder} from "./helpers";
+import {CancelDirective, FavoriteDialogDirective, PhotoChooseDirective, TagDialogDirective} from '@app/shared/directives';
 
-
+const directives = [
+  CancelDirective,
+  PhotoChooseDirective,
+  TagDialogDirective,
+  FavoriteDialogDirective
+];
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    directives
+  ],
   imports: [
     CommonModule,
     FlexLayoutModule,
@@ -23,6 +31,7 @@ import {CustomLayoutGapStyleBuilder} from "./helpers";
     FlexLayoutModule,
     LazyLoadImageModule,
     MaterialModule,
+    directives
   ],
   providers: [
     {provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE]},

@@ -1,0 +1,78 @@
+<h1 mat-dialog-title>انتخاب تصویر</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>انتخاب آلبوم</mat-label>
+      <mat-select formControlName="album">
+        <mat-option *ngFor="let row of albums" [value]="row.slug">
+          {{row.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <ng-container *ngIf="selectedAlbum">
+      <app-table [photos]="{multiple: data.multiple, selected: [], data: selectedAlbum.photos}" (selectedUpdated)="updateSelected($event)"></app-table>
+    </ng-container>
+
+<!--    <mat-tab-group [dynamicHeight]="true">-->
+<!--      <mat-tab *ngFor="let album of albums" [label]="album.name">-->
+<!--        <div class="container-fluid my-4">-->
+<!--          <div fxLayout="row wrap" fxLayout.xs="column" dir="rtl" fxLayoutGap="15px grid">-->
+<!--            <div fxFlex.gt-md="33%" fxFlex.sm="25%">-->
+<!--              <app-photo-upload-form [album]="album.slug" (photoUpdated)="getList()"></app-photo-upload-form>-->
+<!--            </div>-->
+<!--            <div fxFlex.gt-md="67%" fxFlex.sm="75%">-->
+<!--              <app-table [photos]="{multiple: true, selected: [], data: album.photos}" (selectedUpdated)="updateSelected($event)"></app-table>-->
+<!--&lt;!&ndash;              <button mat-flat-button color="primary" [disabled]="selection.selected.length === 0" [mat-dialog-close]="selection.selected">{{selection.selected.length}}&ndash;&gt;-->
+<!--&lt;!&ndash;                <span>کاربر انتخاب شده</span>&ndash;&gt;-->
+<!--&lt;!&ndash;              </button>&ndash;&gt;-->
+<!--&lt;!&ndash;              <mat-selection-list fxLayout="row wrap" fxLayout.xs="column" dir="rtl" fxLayoutGap="15px grid" [multiple]="true">&ndash;&gt;-->
+<!--&lt;!&ndash;                <mat-list-option fxFlex.gt-xs="33%" *ngFor="let photo of album.photos">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <img class="img-fluid"&ndash;&gt;-->
+<!--&lt;!&ndash;                       [defaultImage]="'assets/image/image-loader.svg'"&ndash;&gt;-->
+<!--&lt;!&ndash;                       [lazyLoad]="'https://end.ratabit.com/api/upload/gallery/'+photo.name" height="48px"&ndash;&gt;-->
+<!--&lt;!&ndash;                       [alt]="photo.name">&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                  {{photo.name}}&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                </mat-list-option>&ndash;&gt;-->
+<!--&lt;!&ndash;              </mat-selection-list>&ndash;&gt;-->
+<!--              &lt;!&ndash;            <div fxLayout="row wrap" fxLayout.xs="column" dir="rtl" fxLayoutGap="15px grid">&ndash;&gt;-->
+<!--              &lt;!&ndash;              <div fxFlex.lg="0 1 33%" fxFlex.md="0 1 33%" fxFlex.sm="40%" *ngFor="let photo of album.photos">&ndash;&gt;-->
+<!--              &lt;!&ndash;                <div class="view mat-elevation-z1 rounded">&ndash;&gt;-->
+<!--              &lt;!&ndash;                  <img class="img-fluid"&ndash;&gt;-->
+<!--              &lt;!&ndash;                       [defaultImage]="'assets/image/image-loader.svg'"&ndash;&gt;-->
+<!--              &lt;!&ndash;                       [lazyLoad]="'https://end.ratabit.com/api/upload/gallery/'+photo.name"&ndash;&gt;-->
+<!--              &lt;!&ndash;                       [alt]="photo.name">&ndash;&gt;-->
+<!--              &lt;!&ndash;                  <div class="mask" fxLayout="row" fxLayoutAlign=" end">&ndash;&gt;-->
+<!--              &lt;!&ndash;                    <div class="mr-2 mb-2">&ndash;&gt;-->
+<!--              &lt;!&ndash;                      <button color="primary" (click)="onSelect(photo)" mat-mini-fab matTooltip="انتخاب">&ndash;&gt;-->
+<!--              &lt;!&ndash;                        <mat-icon>done</mat-icon>&ndash;&gt;-->
+<!--              &lt;!&ndash;                      </button>&ndash;&gt;-->
+<!--              &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--              &lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--              &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--              &lt;!&ndash;              </div>&ndash;&gt;-->
+<!--              &lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;              <div fxLayout="row wrap" fxLayout.xs="column" dir="rtl" fxLayoutGap="15px grid">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex.gt-xs="33%" *ngFor="let photo of album.photos">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <mat-checkbox color="primary" [value]="photo" (change)="onCheckboxChange($event)">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <img class="img-fluid"&ndash;&gt;-->
+<!--&lt;!&ndash;                         [defaultImage]="'assets/image/image-loader.svg'"&ndash;&gt;-->
+<!--&lt;!&ndash;                         [lazyLoad]="'https://end.ratabit.com/api/upload/gallery/'+photo.name"&ndash;&gt;-->
+<!--&lt;!&ndash;                         [alt]="photo.name">&ndash;&gt;-->
+<!--&lt;!&ndash;                  </mat-checkbox>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </mat-tab>-->
+<!--    </mat-tab-group>-->
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">بستن</button>
+    <button mat-flat-button color="primary" [disabled]="!form.valid && !selectedPhoto">
+      <span>تصویر انتخاب شده</span>
+    </button>
+  </div>
+</form>
+

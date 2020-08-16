@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>تغییر اطلاعات تصویر</h1>
+<form #editForm=ngForm (ngSubmit)="onSubmit()">
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>آلبوم</mat-label>
+      <mat-select [(ngModel)]="form.album" name="album" required>
+        <mat-option *ngFor="let element of albums" [value]="element.slug">
+          {{element.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <input hidden #fileInput type="file" name="image" (change)="fileProgress($event)" />
+    <div class="text-center">
+      <button (click)="$event.preventDefault();fileInput.click();" color="primary" mat-raised-button>تغییر تصویر</button>
+    </div>
+    <div class="text-center mt-3" *ngIf="previewUrl">
+      <img [src]="previewUrl" class="rounded mat-elevation-z4" width="250px"/>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="$event.preventDefault();onNoClick()">بستن</button>
+    <button mat-button type="submit" [disabled]="!editForm.valid">ذخیره</button>
+  </div>
+</form>
+

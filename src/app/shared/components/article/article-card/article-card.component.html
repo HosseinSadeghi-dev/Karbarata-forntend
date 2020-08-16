@@ -1,0 +1,33 @@
+<mat-card>
+  <img mat-card-image
+       [defaultImage]="'assets/image/image-loader.svg'"
+       [lazyLoad]="'https://end.ratabit.com/api/upload/gallery/'+data?.image.name"
+       [alt]="data?.title">
+  <mat-card-header>
+    <img mat-card-avatar class="mat-card-avatar" [src]="!data?.author.image ? 'assets/image/user.svg' : 'https://end.ratabit.com/api/upload/user/'+data?.author.image">
+    <mat-card-title>{{data?.title}}</mat-card-title>
+    <mat-card-subtitle>{{data?.author.fullName}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    {{data?.description}}
+  </mat-card-content>
+  <mat-card-actions>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <button mat-button [routerLink]="['/blog',data?.slug]">
+        <mat-icon>chrome_reader_mode</mat-icon>
+        ادامه مطلب
+      </button>
+      <div>
+        <button mat-button color="primary">
+          <mat-icon color="accent">mode_comment</mat-icon>
+          {{data?.comments.length}}
+        </button>
+        <app-article-favorite-button [favoriteCount]="data?.favoriteCount"
+                                     [favoriteClients]="data?.favoriteClients"
+                                     [slug]="data?.slug"
+                                     (favoriteUpdated)="updateArticle($event)"></app-article-favorite-button>
+      </div>
+    </div>
+
+  </mat-card-actions>
+</mat-card>

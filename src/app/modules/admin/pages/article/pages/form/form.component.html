@@ -1,0 +1,80 @@
+<div class="container my-4">
+  <div fxLayout="row" fxLayoutGap="15px">
+    <div fxFlex="100%">
+      <form [formGroup]="stFormGroup" (ngSubmit)="onSubmit()">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+              {{isEdit ? 'فرم تغییر مقاله' : 'فرم ایجاد مقاله'}}
+            </mat-card-title>
+            <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.preventDefault()" class="mr-auto">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button type="submit" (click)="onSubmit()" mat-menu-item [disabled]="!stFormGroup.valid">
+                <mat-icon>save_alt</mat-icon>
+                <span>ذخیره</span>
+              </button>
+              <button [routerLink]="['/admin/article']" mat-menu-item>
+                <mat-icon>cancel_presentation</mat-icon>
+                <span>لغو</span>
+              </button>
+            </mat-menu>
+          </mat-card-header>
+          <mat-card-content>
+            <div fxLayout="row wrap" dir="rtl" fxLayoutGap="15px grid" fxLayout.xs="column">
+              <mat-form-field appearance="fill" fxFlex.gt-xs="40%">
+                <mat-label>عنوان</mat-label>
+                <input matInput formControlName="title" name="title" required>
+              </mat-form-field>
+              <mat-form-field color="primary" appearance="fill" fxFlex.gt-xs="40%">
+                <mat-label>دسته بندی</mat-label>
+                <mat-select formControlName="categories" multiple required>
+                  <mat-option *ngFor="let cat of cats" [value]="cat.slug">
+                    {{cat.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div fxFlex.lg="20%" fxFlex.md="20%">
+                <mat-slide-toggle class="mt-3" formControlName="status" color="primary">انتشار</mat-slide-toggle>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+            <span matSubheader>SEO</span>
+            <div fxLayout="row wrap" dir="rtl" class="mb-4" fxLayoutGap="15px grid" fxLayout.xs="column">
+              <mat-form-field appearance="fill" fxFlex.gt-xs="50%">
+                <mat-label>توضیحات</mat-label>
+                <input matInput formControlName="description" name="description" required>
+              </mat-form-field>
+              <tag-input fxFlex.gt-xs="50%" [data]="{formControl: stFormGroup.controls['tagList']}"></tag-input>
+            </div>
+            <mat-divider></mat-divider>
+            <span matSubheader>رسانه ها</span>
+            <div fxLayout="row wrap" dir="rtl" class="mb-4" fxLayoutGap="15px grid" fxLayout.xs="column" fxLayoutAlign="none center">
+              <div fxFlex.gt-xs="50%">
+                <div fxLayout="row" dir="rtl" fxLayoutGap="15px" fxLayout.xs="column" fxLayoutAlign="none center">
+                  <div fxFlex.gt-xs="50%">
+                    <photo-choose-button [data]="{formControl: stFormGroup.controls['image']}" (click)="$event.preventDefault()"></photo-choose-button>
+                  </div>
+                  <div fxFlex="50%" fxHide.lt-md="true">
+                    <mat-hint class="mb-3">سایز تصویر 540×1920 پیکسل می باشد.</mat-hint>
+                    <mat-hint>حجم تصویر کمتر از 300Kb می باشد.</mat-hint>
+                  </div>
+                </div>
+              </div>
+              <div fxFlex.gt-xs="50%">
+                <button mat-stroked-button class="p-5" color="primary">
+                  <mat-icon>movie</mat-icon>
+                  انتخاب ویدیو
+                </button>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+            <span matSubheader>محتوا</span>
+            <app-accessor-editor formControlName="body"></app-accessor-editor>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>

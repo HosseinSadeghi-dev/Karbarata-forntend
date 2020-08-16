@@ -1,0 +1,20 @@
+<nav mat-tab-nav-bar color="primary" dir="rtl">
+  <a mat-tab-link
+     [routerLink]="['/admin/gallery/photo']"
+     routerLinkActive #rla="routerLinkActive"
+     [routerLinkActiveOptions]="{exact:true}"
+     [active]="rla.isActive">
+    همه
+  </a>
+  <a mat-tab-link
+     *ngFor="let element of albums;let i = index"
+     [routerLink]="['/admin/gallery/photo',element.slug,'album']"
+     routerLinkActive #rla="routerLinkActive"
+     [routerLinkActiveOptions]="{exact:true}"
+     [active]="rla.isActive">
+    {{element.name}}
+  </a>
+</nav>
+
+
+<router-outlet></router-outlet>

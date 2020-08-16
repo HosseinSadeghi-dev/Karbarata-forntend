@@ -1,0 +1,4 @@
+<a mat-list-item [routerLink]="[url ? url : '']">
+  <img matListAvatar [src]="!user?.image ? 'assets/image/user.svg' : 'https://end.ratabit.com/api/upload/user/'+!user?.image" [alt]="user?.fullName">
+  <h3 matLine> {{user?.fullName}} </h3>
+</a>

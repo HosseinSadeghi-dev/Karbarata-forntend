@@ -1,0 +1,56 @@
+<div class="container my-4">
+  <div fxLayout="row" fxLayoutAlign="center none">
+    <div>
+      <mat-card>
+        <mat-card-header>
+          <img mat-card-avatar class="mat-card-avatar"
+               [src]="userProfile?.image | srcImage:'user'">
+          <mat-card-title>اطلاعات کاربر</mat-card-title>
+          <mat-card-subtitle>
+            <app-user-role-chip [roles]="userProfile?.roles"></app-user-role-chip>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="15px grid" dir="rtl" class="mt-2">
+            <mat-form-field fxFlex.gt-sm="50%" appearance="fill">
+              <mat-label>نام</mat-label>
+              <input matInput [value]="userProfile?.name" readonly>
+            </mat-form-field>
+            <mat-form-field fxFlex.gt-sm="50%" appearance="fill">
+              <mat-label>نام خانوادگی</mat-label>
+              <input matInput [value]="userProfile?.lastName" readonly>
+            </mat-form-field>
+          </div>
+          <div fxLayout="column">
+            <mat-form-field appearance="fill">
+              <mat-label>ایمیل</mat-label>
+              <input matInput [value]="userProfile?.email ? userProfile?.email : 'وارد نشده!'" readonly>
+            </mat-form-field>
+            <mat-form-field  appearance="fill">
+              <mat-label>شماره تماس</mat-label>
+              <input matInput [value]="userProfile?.phoneNumber" readonly>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>کدملی</mat-label>
+              <input matInput [value]="userProfile?.pid ? userProfile?.pid : 'وارد نشده!'" readonly>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="none center">
+            <mat-label>وضعیت حساب</mat-label>
+            <mat-chip-list class="mr-auto">
+              <mat-chip *ngIf="userProfile?.status === UserStatus.ACTIVATE" color="accent" selected>فعال</mat-chip>
+              <mat-chip *ngIf="userProfile?.status === UserStatus.DEACTIVATE">غیر فعال</mat-chip>
+            </mat-chip-list>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <!--          <button mat-button color="warn">-->
+          <!--            <mat-icon>create</mat-icon>-->
+          <!--            تغییر اطلاعات-->
+          <!--          </button>-->
+
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

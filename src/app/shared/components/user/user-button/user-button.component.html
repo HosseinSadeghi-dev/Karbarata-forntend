@@ -1,0 +1,4 @@
+<button mat-button [routerLink]="[url ? url : '']">
+  <img matListAvatar [src]="!user.image ? 'assets/image/user.svg' : 'https://end.ratabit.com/api/upload/user/'+!user.image" alt="{{user.name}} {{user.lastName}}" class="rounded-circle ml-3" width="35px" height="35px">
+  <span>{{user.fullName}}</span>
+</button>

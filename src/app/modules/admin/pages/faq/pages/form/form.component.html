@@ -1,0 +1,50 @@
+<div class="container my-4">
+  <div fxLayout="row" fxLayoutGap="15px">
+    <div fxFlex="100%">
+      <form [formGroup]="stFormGroup" (submit)="onSubmit()">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+              {{isEdit ? 'فرم تغییر سوال' : 'فرم ایجاد سوال'}}
+            </mat-card-title>
+            <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.preventDefault()" class="mr-auto">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button type="submit" (click)="onSubmit()" mat-menu-item [disabled]="!stFormGroup.valid">
+                <mat-icon>save_alt</mat-icon>
+                <span>ذخیره</span>
+              </button>
+              <button appCancel mat-menu-item>
+                <mat-icon>cancel_presentation</mat-icon>
+                <span>لغو</span>
+              </button>
+            </mat-menu>
+          </mat-card-header>
+          <mat-card-content>
+            <div fxLayout="row wrap" dir="rtl" fxLayoutGap="15px grid" fxLayout.xs="column">
+              <div fxFlex>
+                <mat-form-field hintLabel="حداکثر 191 کاراکتر" appearance="fill" fxFlex>
+                  <mat-label>سوال</mat-label>
+                  <input matInput formControlName="question" #question maxlength="191" required>
+                  <mat-hint align="end">{{question.value?.length || 0}}/191</mat-hint>
+                </mat-form-field>
+              </div>
+              <mat-form-field fxFlex.gt-xs="30%" color="accent" appearance="fill">
+                <mat-label>دسته بندی</mat-label>
+                <mat-select formControlName="categories" multiple required>
+                  <mat-option *ngFor="let cat of cats" [value]="cat.slug">
+                    {{cat.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <span matSubheader>جواب</span>
+            <app-accessor-editor formControlName="answer"></app-accessor-editor>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>
+

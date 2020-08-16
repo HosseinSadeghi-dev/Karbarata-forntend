@@ -6,8 +6,8 @@
       <button mat-button color="warn" class="mr-2" [routerLink]="'/auth/login'">ورود</button>
     </div>
     <button *ngIf="loggedIn &&  userProfile" [matMenuTriggerFor]="appUserMenu" mat-button>
-      <img [src]="!userProfile.image ? 'assets/image/morche.png': 'https://endpoint.karbarata.com/api/image/user/'+userProfile.image" class="img-fluid mr-2 rounded-circle" width="35px">
-      <span *ngIf="!mobileQuery.matches" class="mr-3">{{userProfile?.name}} {{userProfile?.lastName}}</span>
+      <img [src]="userProfile?.image | srcImage:'user'" class="img-fluid mr-2 rounded-circle" width="35px">
+      <span *ngIf="!mobileQuery.matches" class="mr-3">{{userProfile?.fullName}}</span>
     </button>
     <button mat-button class="px-0" [routerLink]="'/'">
       <img src="assets/image/logo-light.png" alt="karbarata logo" class="img-fluid w-75">

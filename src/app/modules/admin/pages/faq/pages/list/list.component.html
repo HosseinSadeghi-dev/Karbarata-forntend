@@ -1,0 +1,72 @@
+<div class="container-fluid my-4">
+  <div fxLayout="row">
+    <div fxFlex>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>لیست سئوالات</mat-card-title>
+          <button mat-icon-button (click)="getList()" class="mr-auto">
+            <mat-icon>refresh</mat-icon>
+          </button>
+        </mat-card-header>
+        <mat-card-content>
+          <div fxLayout="column" fxLayoutGap="15px" >
+            <mat-form-field appearance="fill">
+            <mat-label>جست و جو</mat-label>
+            <input matInput (keyup)="applyFilter($event.target.value)">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+            <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="count">
+              <th mat-header-cell *matHeaderCellDef> ردیف </th>
+              <td mat-cell *matCellDef="let element;let i = index" class="has_label_on_mobile" data-label="ردیف"> {{i+1}} </td>
+            </ng-container>
+            <ng-container matColumnDef="question">
+              <th mat-header-cell *matHeaderCellDef> سوال </th>
+              <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="سوال">
+                <span class="mat-subheading-2">{{element.question}}</span>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="categories">
+              <th mat-header-cell *matHeaderCellDef> دسته بندی </th>
+              <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="دسته بندی">
+                <mat-chip-list>
+                  <ng-container *ngFor="let category of element.categories">
+                    <mat-chip color="accent" [routerLink]="['/faq',category.id,'category']" selected>{{ category.name }}</mat-chip>
+                  </ng-container>
+                </mat-chip-list>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="created">
+              <th mat-header-cell *matHeaderCellDef> تاریخ </th>
+              <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="تاریخ">
+                {{element.created | persianDate}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> کنترل </th>
+              <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="کنترل">
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button [routerLink]="[element.slug]" mat-menu-item>
+                    <mat-icon>edit</mat-icon>
+                    <span>تغییر اطلاعات</span>
+                  </button>
+                  <button (click)="onDelete(element.slug)" mat-menu-item>
+                    <mat-icon>delete</mat-icon>
+                    <span>حذف</span>
+                  </button>
+                </mat-menu>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

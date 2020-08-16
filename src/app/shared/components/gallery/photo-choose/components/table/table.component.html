@@ -1,0 +1,50 @@
+<div fxLayout="column" fxLayoutGap="15px">
+  <mat-form-field appearance="fill">
+    <mat-label>جست و جو</mat-label>
+    <input matInput (keyup)="applyFilter($event.target.value)">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()"
+                      [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox color="primary" (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)"
+                      [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef> تصویر </th>
+      <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="تصویر">
+        <img [defaultImage]="'assets/image/image-loader.svg'"
+             [lazyLoad]="'https://end.ratabit.com/api/upload/gallery/'+element.name"
+             class="img-fluid rounded my-2"
+             ngClass.lt-md="ml-4"
+             width="90px"
+             alt="{{element.name}}">
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> نام تصویر </th>
+      <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="نام تصویر">
+        {{element.name}}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        (click)="selection.toggle(row)">
+    </tr>
+  </table>
+</div>
+

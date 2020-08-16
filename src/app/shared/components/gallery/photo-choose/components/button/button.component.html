@@ -1,0 +1,32 @@
+<ng-container *ngIf="!data.multiple else arrayTemplate">
+  <button (click)="$event.preventDefault()" appPhotoChoose (photoUpdated)="onChangeImage($event)"  mat-stroked-button [ngClass]="(!previewUrl)?'p-5':'px-0'"
+          color="primary">
+    <ng-container *ngIf="!previewUrl">
+      <mat-icon>insert_photo</mat-icon>
+      <span>انتخاب تصویر</span>
+    </ng-container>
+    <img *ngIf="previewUrl" class="img-fluid rounded"
+         [src]="[previewUrl]">
+  </button>
+</ng-container>
+<ng-template #arrayTemplate>
+  <button class="py-3" (click)="$event.preventDefault()"
+          appPhotoChoose
+          [multiple]="true"
+          (photoUpdated)="onChangeImage($event)"
+          mat-stroked-button color="primary">
+    <mat-icon>insert_photo</mat-icon>
+    <span>انتخاب تصویر</span>
+  </button>
+  <div fxLayout="row wrap" class="mt-2" fxLayoutAlign="space-around center" fxLayoutGap="15px grid">
+    <div fxFlex.gt-xs="20%" *ngFor="let row of data.formControl.value">
+      <img class="img-fluid rounded"
+           [src]="'https://end.ratabit.com/api/upload/gallery/'+ row.name">
+    </div>
+  </div>
+<!--  <div *ngFor="let row of data.formControl.value">-->
+<!--    <img class="img-fluid rounded"-->
+<!--         [src]="'https://end.ratabit.com/api/upload/gallery/'+ row.name">-->
+<!--  </div>-->
+</ng-template>
+

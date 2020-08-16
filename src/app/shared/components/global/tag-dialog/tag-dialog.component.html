@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>برچسب ها</h1>
+<div mat-dialog-content>
+  <mat-chip-list class="mat-chip-list-stacked">
+    <ng-container *ngFor="let tag of tags">
+      <mat-chip color="accent" [routerLink]="['/blog',tag,'tag']" (click)="onNoClick()" selected>{{ tag }}</mat-chip>
+    </ng-container>
+  </mat-chip-list>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">بستن</button>
+</div>
