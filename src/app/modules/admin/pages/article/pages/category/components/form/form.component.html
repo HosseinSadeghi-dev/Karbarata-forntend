@@ -1,0 +1,28 @@
+<form [formGroup]="stFormGroup" (ngSubmit)="onSubmit()">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        {{isEdit ? 'ویرایش دسته بندی' : 'ایجاد دسته بندی'}}
+      </mat-card-title>
+      <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.preventDefault()" class="mr-auto">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button type="submit" mat-menu-item (click)="onSubmit()" [disabled]="!stFormGroup.valid">
+          <mat-icon>save_alt</mat-icon>
+          <span>ذخیره</span>
+        </button>
+        <button (click)="$event.preventDefault();onReset()" mat-menu-item>
+          <mat-icon>cancel_presentation</mat-icon>
+          <span>لغو</span>
+        </button>
+      </mat-menu>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field fxFlex="100%" appearance="fill">
+        <mat-label>نام</mat-label>
+        <input formControlName="name" matInput required>
+      </mat-form-field>
+    </mat-card-content>
+  </mat-card>
+</form>

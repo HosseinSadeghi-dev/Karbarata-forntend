@@ -1,0 +1,75 @@
+<div class="container my-4">
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="15px">
+    <div fxFlex="50%"  >
+      <form [formGroup]="stFormGroup" (ngSubmit)="onSubmit()">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+              {{isEdit ? 'تغییر کاربر' : 'ایجاد کاربر'}}
+            </mat-card-title>
+            <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.preventDefault()" class="mr-auto">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button type="submit" (click)="onSubmit()" mat-menu-item [disabled]="!stFormGroup.valid">
+                <mat-icon>save_alt</mat-icon>
+                <span>ذخیره</span>
+              </button>
+              <button [routerLink]="['/admin/user']" mat-menu-item>
+                <mat-icon>cancel_presentation</mat-icon>
+                <span>لغو</span>
+              </button>
+            </mat-menu>
+          </mat-card-header>
+          <mat-card-content>
+            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="15px grid" dir="rtl" class="mt-2">
+              <mat-form-field fxFlex.gt-sm="50%" appearance="fill">
+                <mat-label>نام</mat-label>
+                <input matInput formControlName="name" name="name" required>
+              </mat-form-field>
+              <mat-form-field fxFlex.gt-sm="50%" appearance="fill">
+                <mat-label>نام خانوادگی</mat-label>
+                <input matInput formControlName="lastName" required>
+              </mat-form-field>
+            </div>
+            <div fxLayout="column">
+              <mat-form-field appearance="fill">
+                <mat-label>ایمیل</mat-label>
+                <input matInput formControlName="email" required>
+              </mat-form-field>
+              <mat-form-field  appearance="fill">
+                <mat-label>شماره تماس</mat-label>
+                <input matInput formControlName="phoneNumber" required>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>کدملی</mat-label>
+                <input matInput formControlName="pid" required>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>آدرس</mat-label>
+                <input matInput formControlName="address" required>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>پلاک</mat-label>
+                <input matInput formControlName="houseNumber" required>
+              </mat-form-field>
+                <mat-form-field fxFlex="50%" fxFlex.gt-md="50%" color="primary" appearance="fill">
+                  <mat-label>سطح دسترسی</mat-label>
+                  <mat-select formControlName="roles" multiple required>
+                    <mat-option *ngFor="let role of UserRole | enumToArray" [value]="role">
+                      <ng-container [ngSwitch]="role">
+                        <span *ngSwitchCase="UserRole.ADMIN">مدیر</span>
+                        <span *ngSwitchCase="UserRole.AUTHOR">نویسنده</span>
+                        <span *ngSwitchCase="UserRole.USER">کاربر</span>
+                      </ng-container>
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              <mat-slide-toggle formControlName="status" color="primary">وضعیت فعالیت</mat-slide-toggle>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>

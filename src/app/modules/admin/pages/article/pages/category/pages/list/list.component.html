@@ -1,0 +1,61 @@
+<div class="container-fluid my-4">
+  <div fxLayout="row wrap" fxLayout.xs="column" dir="rtl" fxLayoutGap="15px grid">
+    <div fxFlex.gt-sm="25%">
+      <app-form (categoryUpdated)="getList()"></app-form>
+    </div>
+    <div fxFlex.gt-sm="75%">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>لیست دسته بندی مطالب</mat-card-title>
+          <button mat-icon-button (click)="getList()" class="mr-auto">
+            <mat-icon>refresh</mat-icon>
+          </button>
+        </mat-card-header>
+        <mat-card-content>
+          <div fxLayout="column" fxLayoutGap="15px">
+            <mat-form-field appearance="fill">
+              <mat-label>جست و جو</mat-label>
+              <input matInput (keyup)="applyFilter($event.target.value)">
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+            <table mat-table [dataSource]="dataSource" dir="ltr">
+              <ng-container matColumnDef="count">
+                <th mat-header-cell *matHeaderCellDef> ردیف </th>
+                <td mat-cell *matCellDef="let element;let i = index" class="has_label_on_mobile" data-label="ردیف">
+                  {{i+1}} </td>
+              </ng-container>
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> نام </th>
+                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="نام : ">
+                  {{element.name}}</td>
+              </ng-container>
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> کنترل </th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-icon-button fxHide.lt-md="true" [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <button mat-stroked-button color="primary" class="mr-3" fxHide.gt-sm="true" [matMenuTriggerFor]="menu">کنترل</button>
+
+                  <mat-menu #menu="matMenu">
+                    <button [routerLink]="[element.slug]" mat-menu-item>
+                      <span>ویرایش</span>
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button (click)="delete(element.slug)" mat-menu-item>
+                      <span>حذف</span>
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </mat-menu>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+          </div>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

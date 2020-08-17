@@ -1,0 +1,90 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar class="example-toolbar primary-toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <button mat-button class="px-0" [routerLink]="'/'">
+      <img src="assets/image/logo-light.png" alt="logo" class="img-fluid logo">
+    </button>
+    <button *ngIf="loggedIn &&  userProfile" [matMenuTriggerFor]="appUserMenu" mat-button>
+      <img [src]="userProfile?.image | srcImage:'user'" class="img-fluid mr-2 rounded-circle" width="35px">
+      <span *ngIf="!mobileQuery.matches" class="mr-3">{{userProfile?.fullName}}</span>
+    </button>
+  </mat-toolbar>
+  <mat-menu #appUserMenu="matMenu">
+    <mat-list>
+    </mat-list>
+    <button [routerLink]="['/profile']" mat-menu-item>
+      <mat-icon>account_circle</mat-icon>
+      پروفایل</button>
+    <button (click)="logout($event)" mat-menu-item><mat-icon>exit_to_app</mat-icon>
+      خروج</button>
+  </mat-menu>
+
+  <mat-sidenav-container class="example-sidenav-container"
+                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-action-list>
+        <ng-container *ngFor="let row of menuItems;let i = index">
+          <button mat-list-item [matMenuTriggerFor]="menuLoop">
+            <span>{{row.title}}</span>
+          </button>
+          <mat-menu #menuLoop="matMenu">
+            <ng-container *ngFor="let row of row.items">
+              <button [routerLink]="row.link" mat-menu-item>
+                <span>{{row.title}}</span>
+              </button>
+            </ng-container>
+          </mat-menu>
+        </ng-container>
+<!--        <button mat-list-item [matMenuTriggerFor]="faqMenu">-->
+<!--          سوالات متداول</button>-->
+<!--        <button mat-list-item [matMenuTriggerFor]="userMenu">-->
+<!--          کاربران</button>-->
+<!--        <button mat-list-item [matMenuTriggerFor]="articleMenu">-->
+<!--          بلاگ</button>-->
+<!--        <button mat-list-item [matMenuTriggerFor]="galleryMenu">-->
+<!--          گالری</button>-->
+<!--        <button mat-list-item [matMenuTriggerFor]="productMenu">-->
+<!--          محصولات</button>-->
+<!--        <button mat-list-item [matMenuTriggerFor]="newsMenu"><span>اخبار</span></button>-->
+      </mat-action-list>
+<!--      <mat-menu #newsMenu="matMenu">-->
+<!--        <button [routerLink]="['/admin/news/category']" mat-menu-item>دسته بندی</button>-->
+<!--        <button [routerLink]="['/admin/news']" mat-menu-item>اخبار</button>-->
+<!--        <button [routerLink]="['/admin/news/create']" mat-menu-item>خبر جدید</button>-->
+
+<!--      </mat-menu>-->
+<!--      <mat-menu #productMenu="matMenu">-->
+<!--        <button [routerLink]="['/admin/product/category']" mat-menu-item>دسته بندی</button>-->
+<!--        <button [routerLink]="['/admin/product/brand']" mat-menu-item>برند</button>-->
+<!--        <button [routerLink]="['/admin/product/create']" mat-menu-item>محصول جدید</button>-->
+<!--        <button [routerLink]="['/admin/product']" mat-menu-item>محصولات</button>-->
+<!--      </mat-menu>-->
+<!--      <mat-menu #articleMenu="matMenu">-->
+<!--        <button [routerLink]="['/admin/article/category']" mat-menu-item>دسته بندی</button>-->
+<!--        <button [routerLink]="['/admin/article/create']" mat-menu-item>مقاله جدید</button>-->
+<!--        <button [routerLink]="['/admin/article']" mat-menu-item>مقالات</button>-->
+<!--        <button [routerLink]="['/admin/article/comment']" mat-menu-item>نظرات</button>-->
+<!--      </mat-menu>-->
+<!--      <mat-menu #galleryMenu="matMenu">-->
+<!--        <button [routerLink]="['/admin/gallery/album']" mat-menu-item>آلبوم</button>-->
+<!--        <button [routerLink]="['/admin/gallery/photo']" mat-menu-item>تصاویر</button>-->
+<!--      </mat-menu>-->
+<!--      <mat-menu #faqMenu="matMenu">-->
+<!--        <button [routerLink]="['/admin/faq/category']" mat-menu-item>دسته بندی</button>-->
+<!--        <button [routerLink]="['/admin/faq/create']" mat-menu-item>سوال جدید</button>-->
+<!--        <button [routerLink]="['/admin/faq']" mat-menu-item>لیست سوالات</button>-->
+<!--      </mat-menu>-->
+<!--    </mat-sidenav>-->
+<!--    <mat-menu #userMenu="matMenu">-->
+<!--      <button [routerLink]="['/admin/user']" mat-menu-item>لیست کاربران</button>-->
+<!--    </mat-menu>-->
+    </mat-sidenav>
+    <mat-sidenav-content dir="ltr"
+                         fxLayout="column">
+      <app-preloader></app-preloader>
+      <router-outlet></router-outlet>
+      <app-footer class="mt-auto"></app-footer>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

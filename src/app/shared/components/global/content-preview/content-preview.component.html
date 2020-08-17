@@ -1,0 +1,12 @@
+<a fxLayout="column" fxLayoutGap.gt-xs="30px" [routerLink]="[prefix,data?.slug]" fxLayoutGap.xs="15px">
+  <image-lazy [image]="data?.image.name"
+              [alt]="data?.title"
+              [classes]="'img-fluid rounded'"></image-lazy>
+  <h3 ngClass.gt-xs="mat-h2" ngClass.xs="mat-h2">{{data?.title}}</h3>
+  <span ngClass.lt-md="mat-small">{{data?.description}}</span>
+  <mat-chip-list>
+    <ng-container *ngFor="let category of data?.categories">
+      <mat-chip [routerLink]="[prefix,category.slug,'category']" selected>{{ category.name }}</mat-chip>
+    </ng-container>
+  </mat-chip-list>
+</a>

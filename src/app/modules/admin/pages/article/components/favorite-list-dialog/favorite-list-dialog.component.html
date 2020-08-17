@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>کاربرانی که پسندیده اند</h1>
+<div mat-dialog-content>
+  <span matSubheader *ngIf="favorites.length === 0">موردی یافت نشد!</span>
+  <mat-nav-list *ngIf="favorites.length !== 0">
+    <ng-container *ngFor="let favorite of favorites">
+      <app-user-list-item [user]="favorite"></app-user-list-item>
+    </ng-container>
+  </mat-nav-list>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">بستن</button>
+</div>

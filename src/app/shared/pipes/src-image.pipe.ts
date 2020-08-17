@@ -8,10 +8,10 @@ export class SrcImagePipe implements PipeTransform {
 
   transform(value: string,
             arg?: string): string {
-    const res = value.split(' ').join('%20');
+    const res = value && ( value.split(' ').join('%20') );
     switch(arg) {
       case 'user': {
-        return environment.serverUrl + '/upload/user/' + res;
+        return res ? environment.serverUrl + '/upload/user/' + res : 'assets/image/user.svg';
       }
       default: {
         return environment.serverUrl + '/upload/gallery/' + res;

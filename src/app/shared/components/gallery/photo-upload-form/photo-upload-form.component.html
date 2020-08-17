@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      بارگداری تصویر
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-actions class="text-center">
+    <button mat-stroked-button class="p-5" color="warn" (click)="onClick()">
+      <mat-icon>file_upload</mat-icon>
+      آپلود
+    </button>
+  </mat-card-actions>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let file of files">
+        <mat-icon mat-list-icon>insert_photo</mat-icon>
+        <h4 mat-line>{{file.data.name}}</h4>
+        <mat-progress-bar mat-line [value]="file.progress"></mat-progress-bar>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+
+</mat-card>
+<input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*" style="display:none;" />

@@ -1,0 +1,7 @@
+<form fxLayout="column" [formGroup]="replyFormGroup" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>اینجا بنویسید</mat-label>
+    <textarea matInput [rows]="3" formControlName="body" required></textarea>
+  </mat-form-field>
+  <button class="mb-3" mat-raised-button color="primary" [disabled]="!replyFormGroup.valid" type="submit">ثبت نظر</button>
+</form>

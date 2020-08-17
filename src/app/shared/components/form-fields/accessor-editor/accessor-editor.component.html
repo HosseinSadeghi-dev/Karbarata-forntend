@@ -1,0 +1,13 @@
+<editor
+  apiKey="f6vl07igrlglsf3yzgngll1szz20ttoztiocgzo5meflw2r4"
+  [init]="{ height: 500,
+              menubar: true,
+              plugins: plugins,
+              toolbar:toolbar,
+              language: 'fa_IR',
+              language_url : '/assets/js/fa_IR.js',
+              directionality : 'rtl' }"
+  [(ngModel)]="value"
+  [disabled]="disabled"
+  (onChange)="onChange(value)"
+  (onBlur)="onTouched()"></editor>

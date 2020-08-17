@@ -1,0 +1,15 @@
+<mat-card [ngStyle]="{'background-color': '#000037'}" class="mb-3">
+  <mat-card-header>
+    <img mat-card-avatar class="mat-card-avatar" [src]="!data?.user.image ? 'assets/image/user.svg' : 'https://end.ratabit.com/api/upload/user/'+data?.user.image">
+    <mat-card-title>{{data?.user.fullName}}</mat-card-title>
+    <mat-card-subtitle>{{helper.convertDateTime(data.created)}}</mat-card-subtitle>
+    <button (click)="$event.preventDefault();onDelete(data.id)" mat-icon-button color="warn" class="mr-auto">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      {{data?.body}}
+    </p>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,6 @@
+<button (click)="!loggedIn ? helper.handleLogin('شما حساب کاربری ندارید لطفا وارد شوید!') : !isLike ? saveFavorite() : unFavorite()"
+        [disabled]="isLoading"
+        mat-button color="primary">
+  <mat-icon [color]="!isLike ? 'accent': 'warn'">{{!isLike ? 'favorite_border' : 'favorite'}}</mat-icon>
+  {{favoriteCount}}
+</button>

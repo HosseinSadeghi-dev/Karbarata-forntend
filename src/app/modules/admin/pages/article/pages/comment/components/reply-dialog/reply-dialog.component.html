@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>پاسخ دادن به دیدگاه</h1>
+<div mat-dialog-content>
+  <app-reply-form [comment]="comment" (newReply)="dialogRef.close()"></app-reply-form>
+  <ng-container *ngIf="comment.reply.length !== 0">
+    <app-reply-card *ngFor="let element of comment.reply" [data]="element" (newReply)="dialogRef.close()"></app-reply-card>
+  </ng-container>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="$event.preventDefault();onNoClick()">بستن</button>
+</div>
