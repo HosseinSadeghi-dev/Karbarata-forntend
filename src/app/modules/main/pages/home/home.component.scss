@@ -1,29 +1,42 @@
-.dark-bg{
-  background-color: #303030;
-}
-.primary-bg{
+.primary-bg {
   background-color: #fe8c00;
 }
-.mr-n10{
+
+.mr-n10 {
   margin-right: -8rem;
 }
-.background{
+
+.background {
   position: absolute;
   transform: translateX(-50%) scale(.8);
   left: 0;
 }
-.text-white{
+
+.text-white {
   color: white;
 }
-.ourteam{
+
+.ourteam {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.blue-bg{
+
+.blue-bg {
   background-color: #0D47A1;
 }
-.border-left{
+
+.border-left {
   border-left: #fe8c00 solid 2px;
 }
 
+.backborder{
+  &::before{
+    display: inline-block;
+    content: "";
+    border-top: .3rem solid #FE8C00;
+    width: 30rem;
+    margin: 2rem 0 0;
+    transform: translateY(-1rem);
+  }
+}

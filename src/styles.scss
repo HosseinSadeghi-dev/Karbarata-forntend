@@ -116,7 +116,7 @@ $light-bg-alpha-12:   rgba(#fafafa, 0.12);
 
 // Background palette for dark themes.
 $mat-dark-theme-background: (
-  background:               $dark-background,
+  background:               #20242a,
   status-bar:               $dark-bg-lighter-20,
   app-bar:                  $dark-bg-lighter-5,
   hover:                    $light-bg-alpha-4,
@@ -227,6 +227,8 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent-dark, $theme-warn);
   @include angular-material-theme($altTheme);
 }
 
+
+
 // Specific component overrides, pieces that are not in line with the general theming
 
 // Handle buttons appropriately, with respect to line-height
@@ -308,16 +310,33 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent-dark, $theme-warn);
   }
 }
 
+@mixin mat-tabs-theme($theme){
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent );
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .mat-ripple {
+    color: mat-color($accent);
+  }
+};
+
+@include mat-tabs-theme($theme);
+
 @mixin landing-theme($theme){
   $primary: map-get($theme, primary);
   $accent : map-get($theme, accent);
   $background: map-get($mat-dark-theme-background, background);
   .landing-section{
-    .primary-bg {
-      background-color: mat-color($primary)
+    & .primary-bg {
+      background-color: mat-color($primary);
     }
-    .accent-bg{
-      background-color: mat-color($accent)
+    & .accent-bg{
+      background-color: mat-color($accent);
+    }
+    & .isDark{
+      background-color: $background;
     }
     color: white;
     @media (min-width: 1920px) and (max-width: 5000px){
@@ -351,13 +370,6 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent-dark, $theme-warn);
       line-height: 3;
     }
   }
-  .landing-section div:nth-child(3){
-    z-index: 1;
-  }
-  .landing-section div:nth-child(4){
-    z-index: 0;
-    opacity: 15%;
-  }
   @media (max-width: 599px) {
     .landing-section.accent-landing{
       height: 40rem !important;
@@ -368,6 +380,8 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent-dark, $theme-warn);
 mat-sidenav-content * {
   direction: rtl;
 }
+
+mat
 .en {
   font-family: Roboto,
   "Helvetica Neue", sans-serif !important;
@@ -500,3 +514,6 @@ td.mat-column-star {
   background-color: rgba(255,102,43,.5);
   outline: 1px solid slategrey;
 }
+
+
+@include landing-theme($theme);
