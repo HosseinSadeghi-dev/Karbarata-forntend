@@ -1,0 +1,23 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.preventDefault()" fxHide.gt-xs="true">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu" dir="rtl">
+  <button type="submit" (click)="onSubmit()" mat-menu-item [disabled]="!isValid">
+    <mat-icon>save_alt</mat-icon>
+    <span>ذخیره</span>
+  </button>
+  <button [routerLink]="[prevUrl]" (click)="onCancel()" mat-menu-item>
+    <mat-icon>cancel_presentation</mat-icon>
+    <span>لغو</span>
+  </button>
+</mat-menu>
+<div fxLayout="row" fxLayoutGap="15px" dir="rtl" fxHide.xs="true">
+  <button type="submit" (click)="onSubmit()" mat-button [disabled]="!isValid">
+    <mat-icon>save_alt</mat-icon>
+    <span class="mr-2">ذخیره</span>
+  </button>
+  <button [routerLink]="[prevUrl]" (click)="onCancel()" color="warn" mat-button>
+    <mat-icon>cancel_presentation</mat-icon>
+    <span class="mr-2">لغو</span>
+  </button>
+</div>

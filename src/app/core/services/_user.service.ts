@@ -66,5 +66,37 @@ export class UserService {
     );
   }
 
+  saveUserMaster(data){
+    return this.httpClient.post(`/user/workforce/master`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
 
+  findAllUserMaster(){
+    return this.httpClient.get(`/user/workforce/master`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+  findOneUserMaster(id){
+    return this.httpClient.get(`/user/workforce/master/${id}`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  updateUserMaster(id,data){
+    return this.httpClient.put(`/user/workforce/master/${id}`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  deleteUserMaster(id){
+    return this.httpClient.delete(`/user/workforce/master/${id}`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
 }

@@ -1,0 +1,16 @@
+<div fxLayout="column">
+  <mat-form-field appearance="fill">
+    <input #listInput placeholder="اینجا بنویسید" matInput>
+    <button mat-icon-button matSuffix (click)="$event.preventDefault();add(listInput.value);listInput.value = ''">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-list>
+    <mat-list-item *ngFor="let service of data.formControl.value">
+      <div mat-line>{{service}}</div>
+      <button (click)="$event.preventDefault();remove(service)" mat-icon-button color="warn">
+        <mat-icon>delete_forever</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
+</div>

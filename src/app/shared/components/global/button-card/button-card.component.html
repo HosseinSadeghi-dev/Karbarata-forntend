@@ -1,0 +1,23 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" fxHide.gt-xs="true">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button (click)="onReload()" mat-menu-item>
+    <mat-icon>refresh</mat-icon>
+    <span>بروزرسانی</span>
+  </button>
+  <button mat-menu-item *ngFor="let row of data" [routerLink]="[row?.url]">
+    <mat-icon>{{row?.icon}}</mat-icon>
+    <span>{{row?.label}}</span>
+  </button>
+</mat-menu>
+<div fxLayout="row" fxLayoutGap="15px" dir="rtl" fxHide.xs="true">
+  <button mat-button (click)="onReload()">
+    <mat-icon>refresh</mat-icon>
+    <span>بروزرسانی</span>
+  </button>
+  <button mat-button *ngFor="let row of data" [routerLink]="[row?.url]">
+    <mat-icon>{{row?.icon}}</mat-icon>
+    <span>{{row?.label}}</span>
+  </button>
+</div>

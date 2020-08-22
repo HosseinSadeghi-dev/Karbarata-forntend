@@ -12,16 +12,16 @@ const routes: Routes = [
     canActivate: [BeforeLoginService]
   },
   {
-    path: '',
-    loadChildren: () => import('./modules/layout.module').then(m => m.LayoutModule)
-  },
-  {
     path: 'admin',
     loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),
     canActivate: [RoutingGuard],
     data: {
       roles: [UserRole.ADMIN]
     }
+  },
+  {
+    path: '',
+    loadChildren: () => import('./modules/layout.module').then(m => m.LayoutModule)
   }
 ];
 

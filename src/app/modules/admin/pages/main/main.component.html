@@ -2,7 +2,7 @@
   <mat-toolbar class="example-toolbar primary-toolbar" fxLayout="row" fxLayoutAlign="space-between center">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
     <button mat-button class="px-0" [routerLink]="'/'">
-      <img src="assets/image/logo-light.png" alt="logo" class="img-fluid logo">
+      <img src="assets/image/logo-light.png" alt="logo" class="img-fluid logo w-75">
     </button>
     <button *ngIf="loggedIn &&  userProfile" [matMenuTriggerFor]="appUserMenu" mat-button>
       <img [src]="userProfile?.image | srcImage:'user'" class="img-fluid mr-2 rounded-circle" width="35px">
@@ -23,6 +23,25 @@
                          [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+<!--      <nav *ngFor="let row of menuItems; let last = last;let i = index">-->
+<!--        <button cdkAccordionItem #panel="cdkAccordionItem" (click)="panel.toggle()" expanded="true"-->
+<!--                class="docs-nav-content-btn"-->
+<!--                [attr.aria-label]="row.title + ', section toggle'"-->
+<!--                [attr.aria-controls]="'panel-' + i"-->
+<!--                [attr.aria-expanded]="panel.expanded">-->
+<!--          {{row.title}}-->
+<!--          <mat-icon>{{panel.expanded ? 'keyboard_arrow_up' :  'keyboard_arrow_down'}}</mat-icon>-->
+<!--        </button>-->
+<!--        <ul [@bodyExpansion]="panel.expanded ? 'expanded' : 'collapsed'" id="panel-{{i}}">-->
+<!--          <li *ngFor="let component of row.items">-->
+<!--            <a [routerLink]="row.link"-->
+<!--               routerLinkActive="docs-component-viewer-sidenav-item-selected">-->
+<!--              {{component.title}}-->
+<!--            </a>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--        <hr *ngIf="!last" />-->
+<!--      </nav>-->
       <mat-action-list>
         <ng-container *ngFor="let row of menuItems;let i = index">
           <button mat-list-item [matMenuTriggerFor]="menuLoop">

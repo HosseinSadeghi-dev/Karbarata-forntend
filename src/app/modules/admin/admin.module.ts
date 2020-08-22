@@ -9,6 +9,7 @@ import {
   MainComponent,
   HomeComponent
 } from './pages';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {
     SharedModule,
     PreloaderModule,
     FooterModule,
-    PipesModule
+    PipesModule,
+    CdkAccordionModule
   ]
 })
 export class AdminModule { }

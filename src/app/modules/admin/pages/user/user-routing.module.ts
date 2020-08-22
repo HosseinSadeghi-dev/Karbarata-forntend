@@ -13,6 +13,10 @@ const routes: Routes = [
     component: MainComponent,
     children:[
       {
+        path: 'workforce',
+        loadChildren: () => import('./pages/workforce/workforce.module').then(m => m.WorkforceModule)
+      },
+      {
         path: '',
         component: ListComponent
       },
@@ -32,10 +36,11 @@ const routes: Routes = [
       }
     ]
   }
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UsersRoutingModule { }
+export class UserRoutingModule { }
