@@ -1,0 +1,13 @@
+<button mat-stroked-button [matMenuTriggerFor]="menu" color="primary">
+  <span>بیشتر</span>
+</button>
+<mat-menu #menu="matMenu" dir="rtl">
+  <button *ngIf="isEdit" [routerLink]="[isEdit.url]" mat-menu-item>
+    <mat-icon>edit</mat-icon>
+    <span>ویرایش</span>
+  </button>
+  <button (click)="onDelete()" mat-menu-item>
+    <mat-icon>delete</mat-icon>
+    <span>حذف</span>
+  </button>
+</mat-menu>

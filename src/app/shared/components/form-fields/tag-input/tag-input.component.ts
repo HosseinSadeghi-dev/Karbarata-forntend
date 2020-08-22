@@ -12,6 +12,7 @@ export interface InputData {
 })
 export class TagInputComponent implements OnInit {
   @Input() data: InputData;
+  @Input() label: string;
 
   constructor() { }
 

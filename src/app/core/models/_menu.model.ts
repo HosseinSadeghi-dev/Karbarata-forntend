@@ -34,6 +34,20 @@ export const DashboardMenuList: MenuContext[] = [
     ]
   },
   {
+    title: 'نیرو اجرایی ساختمان',
+    link: '/admin/workforce',
+    items: [
+      {
+        title: 'دسته بندی متخصص',
+        link: '/admin/workforce/master/category',
+      },
+      {
+        title: 'مهارت ها',
+        link: '/admin/workforce/master/skill'
+      }
+    ]
+  },
+  {
     title: 'گالری',
     items: [
       {
@@ -47,15 +61,19 @@ export const DashboardMenuList: MenuContext[] = [
     ]
   },
   {
-    title: 'کاربران',
+    title: 'مدیریت کاربران',
     items: [
       {
-        title: 'لیست کاربران',
+        title: 'کاربران',
         link: '/admin/user'
       },
       {
-        title: 'کاربر جدید',
-        link: '/admin/user/create'
+        title: 'نیرو ساده',
+        link: '/admin/user/workforce/simple'
+      },
+      {
+        title: 'نیرو متخصص',
+        link: '/admin/user/workforce/master'
       }
     ]
   },

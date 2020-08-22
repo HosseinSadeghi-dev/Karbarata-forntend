@@ -27,7 +27,13 @@ export interface ProfileContext {
 export enum UserRole {
   ADMIN = 'admin',
   USER = 'user',
-  AUTHOR = 'author'
+  AUTHOR = 'author',
+  WORKER = 'worker',
+  MASTER = 'master',
+  EXPERT = 'expert',
+  ACCOUNTANT = 'accountant',
+  OPERATOR = 'operator',
+  CONTRACTOR = 'contractor'
 }
 
 export enum UserStatus {

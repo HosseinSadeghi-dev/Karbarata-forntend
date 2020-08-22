@@ -13,6 +13,9 @@ export class SrcImagePipe implements PipeTransform {
       case 'user': {
         return res ? environment.serverUrl + '/upload/user/' + res : 'assets/image/user.svg';
       }
+      case 'default': {
+        return 'assets/image/image-loader.svg';
+      }
       default: {
         return environment.serverUrl + '/upload/gallery/' + res;
       }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {PhotoUploadFormModule} from '@app/shared/components/gallery/photo-upload-form/photo-upload-form.module';
 import {SharedModule} from '../../../shared.module';
 import {ReactiveFormsModule} from '@angular/forms';
+import {PipesModule} from '../../../pipes/pipes.module';
 
 import {
   ButtonComponent,
@@ -23,7 +24,8 @@ import {
     CommonModule,
     SharedModule,
     PhotoUploadFormModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PipesModule
   ]
 })
 export class PhotoChooseModule { }

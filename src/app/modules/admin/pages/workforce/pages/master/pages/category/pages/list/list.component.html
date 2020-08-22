@@ -1,0 +1,64 @@
+<div class="container-fluid my-4">
+  <div fxLayout="row wrap" fxLayout.xs="column" dir="rtl" fxLayoutGap="15px grid">
+    <div fxFlex.gt-sm="25%">
+      <app-form (categoryUpdated)="getList()"></app-form>
+    </div>
+    <div fxFlex.gt-sm="75%">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>دسته بندی ها</mat-card-title>
+          <button-card class="mr-auto" (reloadEvent)="getList()"></button-card>
+        </mat-card-header>
+        <mat-card-content>
+          <div fxLayout="column" fxLayoutGap="15px">
+            <mat-form-field appearance="fill">
+              <mat-label>جست و جو</mat-label>
+              <input matInput (keyup)="applyFilter($event.target.value)">
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+            <table mat-table [dataSource]="dataSource">
+              <ng-container matColumnDef="count">
+                <th mat-header-cell *matHeaderCellDef> ردیف </th>
+                <td mat-cell *matCellDef="let element;let i = index" data-label="ردیف"> {{i+1}} </td>
+              </ng-container>
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> نام </th>
+                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="نام:">
+                  <button mat-button>{{element.name}}</button>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="image">
+                <th mat-header-cell *matHeaderCellDef> تصویر </th>
+                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="تصویر:">
+                  <image-lazy [image]="element.image.name | srcImage"
+                              classes="mx-auto rounded mat-elevation-z1 my-2"
+                              [alt]="element.image.name"
+                              [width]="90"></image-lazy>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="svg">
+                <th mat-header-cell *matHeaderCellDef> SVG </th>
+                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="SVG:">
+                  <image-lazy [image]="element.svg.name | srcImage"
+                              classes="mx-auto rounded my-2"
+                              [alt]="element.svg.name"
+                              [width]="90"></image-lazy>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> کنترل </th>
+                <td mat-cell *matCellDef="let element" data-label="کنترل">
+                  <button-table [isEdit]="{url: element.slug}"
+                                (deleteEvent)="onDelete(element.slug)"></button-table>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+          </div>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

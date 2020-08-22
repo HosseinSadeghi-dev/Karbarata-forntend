@@ -1,0 +1,49 @@
+<form [formGroup]="stFormGroup" (ngSubmit)="onSubmit()">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        {{isEdit ? 'ویرایش دسته بندی' : 'ایجاد دسته بندی'}}
+      </mat-card-title>
+<!--      <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.preventDefault()" class="mr-auto">-->
+<!--        <mat-icon>more_vert</mat-icon>-->
+<!--      </button>-->
+<!--      <mat-menu #menu="matMenu">-->
+<!--        <button type="submit" (click)="onSubmit()" mat-menu-item [disabled]="!stFormGroup.valid">-->
+<!--          <mat-icon>save_alt</mat-icon>-->
+<!--          <span>ذخیره</span>-->
+<!--        </button>-->
+<!--        <button (click)="$event.preventDefault();onReset()" mat-menu-item>-->
+<!--          <mat-icon>cancel_presentation</mat-icon>-->
+<!--          <span>لغو</span>-->
+<!--        </button>-->
+<!--      </mat-menu>-->
+      <button-form class="mr-auto"
+                   prevUrl="/admin/workforce/master/category"
+                   [isValid]="stFormGroup.valid"
+                   (submitEvent)="onSubmit()"
+                   (cancelEvent)="onReset()"></button-form>
+    </mat-card-header>
+    <mat-card-content>
+      <div fxLayout="column">
+        <mat-form-field appearance="fill">
+          <mat-label>نام</mat-label>
+          <input matInput formControlName="name" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>توضیحات</mat-label>
+          <textarea matInput rows="5" formControlName="description" required></textarea>
+        </mat-form-field>
+        <div fxLayout="column" fxLayoutGap="15px">
+          <span matSubheader>تصویر</span>
+          <photo-choose-button fxLayout="column"
+                               [data]="{formControl: stFormGroup.controls['image']}"
+                               (click)="$event.preventDefault()"></photo-choose-button>
+          <span matSubheader>SVG</span>
+          <photo-choose-button fxLayout="column"
+                               [data]="{formControl: stFormGroup.controls['svg']}"
+                               (click)="$event.preventDefault()"></photo-choose-button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>

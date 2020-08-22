@@ -30,11 +30,15 @@ const routes: Routes = [
       },
       {
         path: 'user',
-        loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule)
+        loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule)
       },
       {
         path: 'gallery',
         loadChildren: () => import('./pages/gallery/gallery.module').then(m => m.GalleryModule)
+      },
+      {
+        path: 'workforce',
+        loadChildren: () => import('./pages/workforce/workforce.module').then(m => m.WorkforceModule)
       }
     ]
   },

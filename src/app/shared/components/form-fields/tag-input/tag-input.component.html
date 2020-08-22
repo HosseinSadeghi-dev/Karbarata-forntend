@@ -1,5 +1,5 @@
 <mat-form-field fxLayout="column" appearance="fill">
-  <mat-label>برچسب</mat-label>
+  <mat-label>{{label ? label : 'برچسب'}}</mat-label>
   <mat-chip-list #chipList aria-label="Tag selection">
     <mat-chip *ngFor="let tag of data.formControl.value" [selectable]="selectable"
               [removable]="removable" (removed)="remove(tag)">

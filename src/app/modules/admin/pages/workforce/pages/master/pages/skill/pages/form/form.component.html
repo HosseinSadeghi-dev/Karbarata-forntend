@@ -1,0 +1,64 @@
+<div class="container my-4">
+  <form [formGroup]="stFormGroup" (ngSubmit)="onSubmit()">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          {{isEdit ? 'ویرایش مهارت' : 'ایجاد مهارت'}}
+        </mat-card-title>
+        <button-form class="mr-auto"
+                     prevUrl="/admin/workforce/master/skill"
+                     [isValid]="stFormGroup.valid"
+                     (submitEvent)="onSubmit()"></button-form>
+      </mat-card-header>
+      <mat-card-content>
+        <div fxLayout="column">
+          <div fxLayout="row" dir="rtl" fxLayout.xs="column" fxLayoutGap="15px">
+            <div fxFlex.gt-xs="50%" fxLayout="column">
+              <mat-form-field appearance="fill">
+                <mat-label>نام</mat-label>
+                <input matInput formControlName="name" required>
+              </mat-form-field>
+              <mat-form-field color="primary" appearance="fill">
+                <mat-label>دسته بندی</mat-label>
+                <mat-select formControlName="categories" multiple required>
+                  <mat-option *ngFor="let category of categories" [value]="category.slug">
+                    {{category.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <mat-form-field fxFlex.gt-xs="50%" appearance="fill">
+              <mat-label>توضیحات</mat-label>
+              <textarea matInput rows="5" formControlName="description" required></textarea>
+            </mat-form-field>
+          </div>
+          <tag-input fxFlex.gt-xs="50%" [data]="{formControl: stFormGroup.controls['tagList']}"></tag-input>
+          <span matSubheader>رسانه ها</span>
+          <div fxLayout="row" fxLayout.xs="column" dir="rtl" fxLayoutGap="15px">
+            <div fxFlex.gt-xs="50%">
+              <photo-choose-button [data]="{formControl: stFormGroup.controls['image']}" (click)="$event.preventDefault()"></photo-choose-button>
+            </div>
+            <div fxFlex.gt-xs="50%">
+              <photo-choose-button [data]="{formControl: stFormGroup.controls['svg']}" (click)="$event.preventDefault()"></photo-choose-button>
+            </div>
+          </div>
+          <div fxLayout="row wrap" fxLayoutGap="15px grid" fxLayout.xs="column">
+            <div fxFlex.gt-xs="33%">
+              <span matSubheader>خدمات</span>
+              <list-input [data]="{formControl: stFormGroup.controls['services']}"></list-input>
+            </div>
+            <div fxFlex.gt-xs="33%">
+              <span matSubheader>نکات</span>
+              <list-input [data]="{formControl: stFormGroup.controls['tips']}"></list-input>
+            </div>
+            <div fxFlex.gt-xs="33%">
+              <span matSubheader>اعلامیه ها</span>
+              <list-input [data]="{formControl: stFormGroup.controls['notices']}"></list-input>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>
+
