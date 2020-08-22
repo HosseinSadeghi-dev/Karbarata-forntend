@@ -97,7 +97,7 @@ export class FormComponent implements OnInit {
 
   handleRes(){
     console.log('run');
-    this.router.navigateByUrl('/admin/user/workforce/master')
+    // this.router.navigateByUrl('/admin/user/workforce/master')
   }
 
   public get UserRole(){
