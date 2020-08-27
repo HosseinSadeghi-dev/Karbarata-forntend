@@ -25,3 +25,15 @@ export interface MasterSkillContext {
   created?: Date,
   updated?: Date
 }
+
+
+export enum WorkforceStatus {
+  AVAILABLE = 'available',
+  UNAVAILABLE = 'unavailable',
+  WORK = 'work'
+}
+
+export enum WorkforceSimpleType {
+  DAILY = 'daily',
+  CONTRACT = 'contract'
+}

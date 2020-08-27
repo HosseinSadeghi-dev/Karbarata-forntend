@@ -9,6 +9,9 @@ import {
   ListComponent,
   MainComponent
 } from './pages';
+import { ButtonFormModule, ButtonCardModule, UserButtonModule, BottomSheetModule } from '@app/shared/components';
+import { PipesModule } from '@app/shared/pipes/pipes.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +24,13 @@ import {
   imports: [
     CommonModule,
     SimpleRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    PipesModule.forRoot(),
+    ButtonFormModule,
+    UserButtonModule,
+    ButtonCardModule,
+    BottomSheetModule
   ]
 })
-export class SimpleModule { }
+export class SimpleModule {}

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import {EnumToArrayPipe} from './enum-to-array.pipe';
 import { PersianDatePipe } from './persian-date.pipe';
 import { SrcImagePipe } from './src-image.pipe';
+import { SimpleWorkerEnum } from './simple-worker-enum.pipe';
+import { WorkforceStatusPipe } from './workforce-status.pipe'
 
 
 
@@ -10,7 +12,9 @@ import { SrcImagePipe } from './src-image.pipe';
   declarations: [
     EnumToArrayPipe,
     PersianDatePipe,
-    SrcImagePipe
+    SrcImagePipe,
+    SimpleWorkerEnum,
+    WorkforceStatusPipe
   ],
   imports: [
     CommonModule
@@ -18,10 +22,21 @@ import { SrcImagePipe } from './src-image.pipe';
   exports: [
     EnumToArrayPipe,
     PersianDatePipe,
-    SrcImagePipe
+    SrcImagePipe,
+    SimpleWorkerEnum,
+    WorkforceStatusPipe
   ],
   providers: [
-    EnumToArrayPipe
+    EnumToArrayPipe,
+    SimpleWorkerEnum,
+    WorkforceStatusPipe
   ]
 })
-export class PipesModule { }
+export class PipesModule {
+  static forRoot() {
+    return {
+      ngModule: PipesModule,
+      providers: [ EnumToArrayPipe ]
+    };
+  }
+}

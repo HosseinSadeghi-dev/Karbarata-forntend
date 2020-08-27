@@ -1,0 +1,7 @@
+<mat-nav-list>
+
+  <div *ngFor="let item of data.option" mat-list-item (click)="openLink($event, item)" class="p-4 my-1 cell">
+    <span mat-line>{{ item | workforceStatus }}</span>
+  </div>
+
+</mat-nav-list>

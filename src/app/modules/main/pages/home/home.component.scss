@@ -1,3 +1,6 @@
+$line-width: 7rem;
+$marginline: 1rem;
+
 .primary-bg {
   background-color: #fe8c00;
 }
@@ -30,13 +33,18 @@
   border-left: #fe8c00 solid 2px;
 }
 
+
 .backborder{
   &::before{
     display: inline-block;
     content: "";
     border-top: .3rem solid #FE8C00;
-    width: 30rem;
-    margin: 2rem 0 0;
-    transform: translateY(-1rem);
+    width: $line-width;
+    margin: 2rem 0 0 $marginline;
+    transform: translateY(0rem);
   }
 }
+.backborderHide{
+  margin-right: $marginline + $line-width;
+}
+

@@ -10,7 +10,7 @@ import {
 } from './pages';
 import {ReactiveFormsModule} from '@angular/forms';
 import {PipesModule} from '@app/shared/pipes/pipes.module';
-import {ButtonFormModule} from '@app/shared/components';
+import {ButtonFormModule, UserButtonModule, ButtonCardModule} from '@app/shared/components';
 
 
 @NgModule({
@@ -25,7 +25,9 @@ import {ButtonFormModule} from '@app/shared/components';
     SharedModule,
     ReactiveFormsModule,
     PipesModule,
-    ButtonFormModule
+    ButtonFormModule,
+    UserButtonModule,
+    ButtonCardModule
   ]
 })
 export class MasterModule { }

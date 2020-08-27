@@ -6,6 +6,7 @@
           {{isEdit ? 'ویرایش نیرو متخصص' : 'ثبت نیرو متخصص'}}
         </mat-card-title>
         <button-form class="mr-auto"
+                     (click)="$event.preventDefault()"
                      prevUrl="/admin/user/workforce/master"
                      [isValid]="stFormGroup.valid"
                      (submitEvent)="onSubmit()"></button-form>

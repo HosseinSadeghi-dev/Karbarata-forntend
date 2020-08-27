@@ -1,1 +1,109 @@
-<p>form works!</p>
+<div class="container my-4">
+  <form [formGroup]="stFormGroup" (ngSubmit)="onSubmit()">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          {{isEdit ? 'ویرایش نیرو ساده' : 'ثبت نیرو ساده'}}
+        </mat-card-title>
+        <button-form class="mr-auto"
+                     (click)="$event.preventDefault()"
+                     prevUrl="/admin/user/workforce/simple"
+                     [isValid]="stFormGroup.valid"
+                     (submitEvent)="onSubmit()"></button-form>
+      </mat-card-header>
+      <mat-card-content>
+        <div fxLayout="row warp" fxLayout.xs="column" dir="rtl" fxLayoutGap="15px grid">
+          <ng-container formGroupName="user">
+            <mat-form-field fxFlex.gt-md="33%" appearance="fill">
+              <mat-label>نام</mat-label>
+              <input matInput formControlName="name" required>
+            </mat-form-field>
+            <mat-form-field fxFlex.gt-md="33%" appearance="fill">
+              <mat-label>نام خانوادگی</mat-label>
+              <input matInput formControlName="lastName" required>
+            </mat-form-field>
+            <mat-form-field fxFlex.gt-md="33%" appearance="fill">
+              <mat-label>کدملی</mat-label>
+              <input matInput formControlName="pid" #pid maxlength="10" required>
+              <mat-hint align="end">{{pid.value.length}} / 10</mat-hint>
+            </mat-form-field>
+            <mat-form-field fxFlex.gt-md="33%" appearance="fill">
+              <mat-label>شماره تلفن</mat-label>
+              <span matSuffix>98+ &nbsp;</span>
+              <input matInput formControlName="phoneNumber" #phoneNumber maxlength="10" required type="number">
+              <mat-icon matPrefix>phone</mat-icon>
+              <mat-hint align="end">{{phoneNumber.value.length}} / 10</mat-hint>
+            </mat-form-field>
+            <mat-form-field fxFlex.gt-md="33%" appearance="fill">
+              <mat-label>ایمیل</mat-label>
+              <input matInput formControlName="email" type="email">
+            </mat-form-field>
+          </ng-container>
+          <ng-container formGroupName="shared">
+            <mat-form-field fxFlex.gt-md="33%" appearance="fill">
+              <mat-label>سابقه کاری</mat-label>
+              <input matInput formControlName="exp">
+              <mat-hint>به ماه می باشد.</mat-hint>
+            </mat-form-field>
+            <mat-form-field fxFlex="100%" appearance="fill">
+              <mat-label>شماره شبا</mat-label>
+              <input matInput formControlName="shabaNumber">
+            </mat-form-field>
+          </ng-container>
+
+          <div fxFlex.gt-md="50%" fxLayout="column" fxLayoutGap="15px">
+            <ng-container formGroupName="user">
+              <mat-form-field  appearance="fill">
+                <mat-label>آدرس</mat-label>
+                <textarea matInput rows="5" formControlName="address"></textarea>
+              </mat-form-field>
+              <mat-form-field fxFlex="100%" appearance="fill">
+                <mat-label>پلاک</mat-label>
+                <input matInput formControlName="houseNumber" type="number" required>
+              </mat-form-field>
+            </ng-container>
+          </div>
+
+          <div fxFlex.gt-md="50%" fxLayout="column" fxLayoutGap="15px">
+            <ng-container formGroupName="user">
+              <mat-form-field color="primary" appearance="fill">
+                <mat-label>سطح دسترسی</mat-label>
+                <mat-select formControlName="roles" multiple required>
+                  <mat-option *ngFor="let role of roles | enumToArray" [value]="role" [disabled]="role !== UserRole.USER">
+                    <ng-container [ngSwitch]="role">
+                      <span *ngSwitchCase="UserRole.ADMIN">مدیر</span>
+                      <span *ngSwitchCase="UserRole.AUTHOR">نویسنده</span>
+                      <span *ngSwitchCase="UserRole.USER">کاربر</span>
+                      <span *ngSwitchCase="UserRole.WORKER">نیرو ساده</span>
+                      <span *ngSwitchCase="UserRole.MASTER">نیرو متخصص</span>
+                      <span *ngSwitchCase="UserRole.EXPERT">کارشناس</span>
+                      <span *ngSwitchCase="UserRole.ACCOUNTANT">حسابدار</span>
+                      <span *ngSwitchCase="UserRole.OPERATOR">اپراتور</span>
+                    </ng-container>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </ng-container>
+              <mat-radio-group formControlName="type" [(ngModel)]="typeWork" fxFlex="100" fxLayoutAlign="space-between center" color="primary" class="mx-2" aria-label="Select an option">
+                <label id="example-radio-group-label">نوع همکاری:</label>
+                <mat-radio-button value="daily">روز مزد</mat-radio-button>
+                <mat-radio-button value="contract">قراردادی</mat-radio-button>
+              </mat-radio-group>
+            <ng-container formGroupName="shared">
+              <div fxFlex="row" fxLayoutAlign="space-between center">
+                <mat-label class="mr-2">گوشی هوشمند دارد</mat-label>
+                <mat-checkbox formControlName="isSmartPhone" color="primary"></mat-checkbox>
+              </div>
+            </ng-container>
+            <ng-container formGroupName="user">
+              <div fxFlex="row" fxLayoutAlign="space-between center">
+                <mat-label class="mr-2">وضعیت حساب</mat-label>
+                <mat-slide-toggle formControlName="status" color="primary"></mat-slide-toggle>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>

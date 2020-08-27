@@ -30,3 +30,4 @@ export * from "./global/favorite-dialog/favorite-dialog.module";
 export * from "./global/tag-dialog/tag-dialog.module";
 export * from "./global/button-table/button-table.module";
 export * from "./global/button-card/button-card.module";
+export * from "./global/bottom-sheet/bottom-sheet.module";

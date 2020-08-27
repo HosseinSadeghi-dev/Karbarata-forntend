@@ -1,4 +1,5 @@
 import {FormControl} from '@angular/forms';
+import { MasterSkillContext, WorkforceSimpleType } from './_workforce.model';
 
 export interface Credentials {
   token: string;
@@ -7,6 +8,14 @@ export interface Credentials {
 export interface UserContext {
   mobile: string;
   password: string;
+}
+
+export interface UserMaster {
+  id?: number,
+  primarySkill?: MasterSkillContext,
+  secondarySkills?: MasterSkillContext[],
+  shared?:Shared,
+  user?:ProfileContext,
 }
 
 export interface ProfileContext {
@@ -24,6 +33,16 @@ export interface ProfileContext {
   status?: UserStatus,
 }
 
+export interface Shared{
+  authImage?: string,
+  exp?: string,
+  id?: number,
+  isAuthenticated?: boolean,
+  isSmartPhone?: boolean,
+  shabaNumber?: string,
+  status?: UserStatus
+}
+
 export enum UserRole {
   ADMIN = 'admin',
   USER = 'user',
@@ -39,6 +58,22 @@ export enum UserRole {
 export enum UserStatus {
   ACTIVATE = 'activate',
   DEACTIVATE = 'deactivate'
+}
+
+
+export interface UserWorkforceMaster {
+  id?: number,
+  primarySkill?: MasterSkillContext,
+  secondarySkills?: MasterSkillContext[],
+  user?: ProfileContext,
+  shared?: Shared
+}
+
+export interface UserWorkforceSimple {
+  id?: number,
+  type?: WorkforceSimpleType,
+  user?: ProfileContext,
+  shared?: Shared
 }
 
 

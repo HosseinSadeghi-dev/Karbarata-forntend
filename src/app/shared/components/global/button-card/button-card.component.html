@@ -6,7 +6,7 @@
     <mat-icon>refresh</mat-icon>
     <span>بروزرسانی</span>
   </button>
-  <button mat-menu-item *ngFor="let row of data" [routerLink]="[row?.url]">
+  <button mat-menu-item *ngFor="let row of data" (click)="sss()" [routerLink]="[row?.url]">
     <mat-icon>{{row?.icon}}</mat-icon>
     <span>{{row?.label}}</span>
   </button>

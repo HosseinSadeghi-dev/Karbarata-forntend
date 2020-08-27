@@ -48,9 +48,9 @@
             <span>{{row.title}}</span>
           </button>
           <mat-menu #menuLoop="matMenu">
-            <ng-container *ngFor="let row of row.items">
-              <button [routerLink]="row.link" mat-menu-item>
-                <span>{{row.title}}</span>
+            <ng-container *ngFor="let item of row.items">
+              <button [routerLink]="item.link" mat-menu-item>
+                <span>{{item.title}}</span>
               </button>
             </ng-container>
           </mat-menu>

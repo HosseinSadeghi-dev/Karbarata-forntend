@@ -79,6 +79,7 @@ export class UserService {
       catchError((error: HttpErrorResponse) => throwError(error))
     );
   }
+
   findOneUserMaster(id){
     return this.httpClient.get(`/user/workforce/master/${id}`).pipe(
       map((response: any) => response),
@@ -95,6 +96,50 @@ export class UserService {
 
   deleteUserMaster(id){
     return this.httpClient.delete(`/user/workforce/master/${id}`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+
+
+  saveUserSimple(data){
+    return this.httpClient.post(`/user/workforce/simple`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  findAllUserSimple(){
+    return this.httpClient.get(`/user/workforce/simple`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  findOneUserSimple(id){
+    return this.httpClient.get(`/user/workforce/simple/${id}`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  updateUserSimple(id,data){
+    return this.httpClient.put(`/user/workforce/simple/${id}`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  updateUserSimpleStatus(id,status){
+    return this.httpClient.patch(`/user/workforce/simple/${id}/status`,status).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  deleteUserSimple(id){
+    return this.httpClient.delete(`/user/workforce/simple/${id}`).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );

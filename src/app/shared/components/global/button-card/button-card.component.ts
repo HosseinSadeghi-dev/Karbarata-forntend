@@ -22,4 +22,9 @@ export class ButtonCardComponent implements OnInit {
     this.reloadEvent.emit()
   }
 
+  sss(){
+    console.log("ok");
+
+  }
+
 }
