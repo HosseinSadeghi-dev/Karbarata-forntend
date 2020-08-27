@@ -39,6 +39,10 @@ const routes: Routes = [
       {
         path: 'workforce',
         loadChildren: () => import('./pages/workforce/workforce.module').then(m => m.WorkforceModule)
+      },
+      {
+        path: 'request',
+        loadChildren: () => import('./pages/request/request.module').then(m => m.RequestModule)
       }
     ]
   },

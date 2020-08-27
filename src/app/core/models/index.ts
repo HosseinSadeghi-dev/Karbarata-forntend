@@ -4,4 +4,6 @@ export * from "./_gallery.model";
 export * from "./_news.model";
 export * from "./_menu.model";
 export * from "./_faq.model";
+export * from "./_request.model";
+export * from "./_payment.model";
 export * from "./_workforce.model";

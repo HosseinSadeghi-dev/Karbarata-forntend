@@ -78,6 +78,23 @@ export const DashboardMenuList: MenuContext[] = [
     ]
   },
   {
+    title: 'مدیریت درخواست ها',
+    items: [
+      {
+        title: 'درخواست ها',
+        link: '/admin/request'
+      },
+      {
+        title: 'نیرو ساده',
+        link: '/admin/request/simple'
+      },
+      {
+        title: 'نیرو متخصص',
+        link: '/admin/request/master'
+      },
+    ]
+  },
+  {
     title: 'بلاگ',
     items: [
       {

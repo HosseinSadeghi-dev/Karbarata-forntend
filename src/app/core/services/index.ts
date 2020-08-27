@@ -7,3 +7,4 @@ export * from "./_app.service";
 export * from "./_news.service";
 export * from "./_faq.service";
 export * from "./_workforce.service";
+export * from "./_request.service";
