@@ -20,9 +20,9 @@ export class RequestStatementComponent implements OnInit {
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
     if (params.id){
-      // this.requestService.getRequestStatusStatementListById(params.id).subscribe(
-      //   res => this.statusStatements = res,
-      // )
+      this.requestService.findAllRequestStatementList(params.id).subscribe(
+        res => this.statusStatements = res,
+      )
     }
   }
 

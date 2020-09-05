@@ -20,7 +20,7 @@ export class RequestStatusComponent implements OnInit {
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
     if (params.id){
-      this.requestService.getRequestStatusListById(params.id).subscribe(
+      this.requestService.findAllRequestStatus(params.id).subscribe(
         res => this.handleRes(res)
       )
     }

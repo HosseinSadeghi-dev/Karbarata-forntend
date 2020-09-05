@@ -8,7 +8,8 @@ import {RequestService} from "@app/core/services";
 
 import {
   RequestStatusStatementContext,
-  RequestStatusStatementItemContext, StatusStatementItemUnit,
+  RequestStatusStatementItemContext,
+  StatusStatementItemUnit,
   StatusStatementType
 } from "@app/core/models";
 
@@ -42,11 +43,11 @@ export class RequestStatementFormComponent implements OnInit {
       items: [[], [Validators.required,Validators.minLength(1)]]
     });
     const params = this.activatedRoute.snapshot.params;
-    // if (params.sid){
-    //   this.requestService.getRequestStatusStatement(params.sid).subscribe(
-    //     res => this.handleRes(res),
-    //   )
-    // }
+    if (params.sid){
+      this.requestService.findOneRequestStatement(params.sid).subscribe(
+        res => this.handleRes(res),
+      )
+    }
   }
 
   handleRes(res){
@@ -61,29 +62,26 @@ export class RequestStatementFormComponent implements OnInit {
   onSubmit(){
     const params = this.activatedRoute.snapshot.params,
       form = this.stFormGroup.value;
-    // if (params.id){
-    //   if (params.sid){
-    //     this.requestService.updateRequestStatusStatementById(params.sid, form).subscribe(
-    //       res => this.handleResSubmit(res)
-    //     )
-    //   }else {
-    //     this.requestService.saveRequestStatusStatementByRequest(params.id, form).subscribe(
-    //       res => this.handleResSubmit(res)
-    //     )
-    //   }
-    // }
+    if (params.id){
+      if (params.sid){
+        this.requestService.updateRequestStatusStatement(params.sid, form).subscribe(
+          res => this.location.back()
+        )
+      }else {
+        this.requestService.saveRequestStatusStatementByRequest(params.id, form).subscribe(
+          res => this.location.back()
+        )
+      }
+    }
   }
 
   updateExpertApproval(){
     const params = this.activatedRoute.snapshot.params;
-    // this.requestService.updateRequestStatusStatementExpertApproval(params.id,{isExpertApproval: true}).subscribe(
-    //   res => this.handleResSubmit(res)
-    // );
+    this.requestService.updateRequestStatementExpertApproval(params.id,{isExpertApproval: true}).subscribe(
+      res => this.location.back()
+    );
   }
 
-  handleResSubmit(res){
-    this.location.back();
-  }
 
   openDialog(action,obj) {
     const dialogRef = this.dialog.open(RequestStatementFormComponent, {

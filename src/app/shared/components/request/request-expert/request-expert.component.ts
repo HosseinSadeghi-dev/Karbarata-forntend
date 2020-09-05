@@ -22,7 +22,7 @@ export class RequestExpertComponent implements OnInit {
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
     if (params.id){
-      this.requestService.getRequestExpertById(params.id).subscribe(
+      this.requestService.findOneRequestExpert(params.id).subscribe(
         res => this.handleRes(res),
       )
     }

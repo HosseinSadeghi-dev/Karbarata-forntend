@@ -33,7 +33,7 @@ export class RequestContractorComponent implements OnInit {
   getContractors(){
     const params = this.activatedRoute.snapshot.params;
     if (params.id){
-      this.requestService.getRequestContractorById(params.id).subscribe(
+      this.requestService.findOneRequestContractor(params.id).subscribe(
         res => this.handleRes(res)
       )
     }

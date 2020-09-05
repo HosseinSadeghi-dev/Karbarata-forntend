@@ -99,7 +99,7 @@ export class RequestService {
   //INFORMATION
 
   //status
-  getRequestStatusListById(id){
+  findAllRequestStatus(id){
     return this.httpClient.get(`/request/${id}/status`).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
@@ -107,7 +107,7 @@ export class RequestService {
   }
 
   //expert
-  getRequestExpertById(id){
+  findOneRequestExpert(id){
     return this.httpClient.get(`/request/${id}/expert`).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
@@ -123,7 +123,7 @@ export class RequestService {
   //workforce
 
   //simple
-  getSimpleRequestWorkForceById(id){
+  findOneSimpleRequestWorkForce(id){
     return this.httpClient.get(`/request/${id}/simple/workforce`).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
@@ -137,7 +137,7 @@ export class RequestService {
   }
 
   //master
-  getMasterRequestWorkForceById(id){
+  findOneMasterRequestWorkForce(id){
     return this.httpClient.get(`/request/${id}/master/workforce`).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
@@ -151,7 +151,7 @@ export class RequestService {
   }
 
   //contractor
-  getRequestContractorById(id){
+  findOneRequestContractor(id){
     return this.httpClient.get(`/request/${id}/contractor`).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
@@ -181,7 +181,7 @@ export class RequestService {
   }
 
   //report list
-  getRequestReportList(id){
+  findAllRequestReport(id){
     return this.httpClient.get(`/request/${id}/report`).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
@@ -189,6 +189,42 @@ export class RequestService {
   }
   saveRequestReport(id, data){
     return this.httpClient.post(`/request/report/${id}`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  //statement
+  findAllRequestStatementList(id){
+    return this.httpClient.get(`/request/${id}/statusStatement`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  findOneRequestStatement(id){
+    return this.httpClient.get(`/requestStatusStatement/${id}`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  updateRequestStatusStatement(id, data){
+    return this.httpClient.put(`/requestStatusStatement/${id}`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  saveRequestStatusStatementByRequest(id, data){
+    return this.httpClient.post(`/requestStatusStatement/${id}`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  updateRequestStatementExpertApproval(id, data){
+    return this.httpClient.patch(`/requestStatusStatement/${id}/isExpertApproval`,data).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );

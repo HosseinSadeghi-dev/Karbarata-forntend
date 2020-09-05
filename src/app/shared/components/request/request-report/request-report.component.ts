@@ -29,7 +29,7 @@ export class RequestReportComponent implements OnInit {
     const params = this.activatedRoute.snapshot.params;
     if (params.id){
       this.requestId = params.id;
-      this.requestService.getRequestReportList(params.id).subscribe(
+      this.requestService.findAllRequestReport(params.id).subscribe(
         res => this.reports = res,
       )
     }

@@ -33,7 +33,7 @@ export class RequestWorkforceComponent implements OnInit {
   getWorkforces(){
     const params = this.activatedRoute.snapshot.params;
     if (params.id){
-      this.requestService.getSimpleRequestWorkForceById(params.id).subscribe(
+      this.requestService.findOneSimpleRequestWorkForce(params.id).subscribe(
         res => this.handleRes(res)
       )
     }
