@@ -1,0 +1,19 @@
+<mat-list>
+  <div fxLayout="row wrap" dir="rtl" fxLayout.xs="column" fxLayoutGap="15px grid">
+    <div fxFlex.gt-md="25%" fxFlex.sm="50%" *ngFor="let row of data">
+      <mat-list-item>
+        <div mat-line [ngSwitch]="row.type">
+          <mat-chip-list aria-label="Fish selection">
+            <mat-chip *ngSwitchCase="StatusType.PENDING">در انتظار تایید</mat-chip>
+            <mat-chip *ngSwitchCase="StatusType.EXPERTAPPROVAL">تایید کارشناس</mat-chip>
+            <mat-chip *ngSwitchCase="StatusType.STATUSSTATEMENT">صورت وضعیت درخواست</mat-chip>
+            <mat-chip *ngSwitchCase="StatusType.SETTLEMENT">تسویه حساب</mat-chip>
+            <mat-chip *ngSwitchCase="StatusType.DONE">تایید نهایی</mat-chip>
+            <mat-chip *ngSwitchDefault>نامشخص</mat-chip>
+          </mat-chip-list>
+        </div>
+        <div mat-line> {{row.created | persianDate}} </div>
+      </mat-list-item>
+    </div>
+  </div>
+</mat-list>

@@ -1,0 +1,51 @@
+<form [formGroup]="stFormGroup" (ngSubmit)="doAction()">
+  <h1 mat-dialog-title>صورت وضعیت :: <ng-container [ngSwitch]="action">
+    <strong *ngSwitchCase="'Add'">جدید</strong>
+    <strong *ngSwitchCase="'Update'">ویرایش</strong>
+    <strong *ngSwitchCase="'Delete'">حذف</strong>
+  </ng-container></h1>
+  <div mat-dialog-content>
+    <div fxLayout="column" *ngIf="action != 'Delete'; else elseTemplate">
+      <mat-form-field appearance="fill">
+        <mat-label>عنوان</mat-label>
+        <input matInput formControlName="name" required>
+      </mat-form-field>
+      <mat-form-field color="primary" appearance="fill">
+        <mat-label>واحد</mat-label>
+        <mat-select formControlName="unit" required>
+          <mat-option *ngFor="let unit of units | enumToArray" [value]="unit">
+            <ng-container [ngSwitch]="unit">
+              <span *ngSwitchCase="Unit.KG">کیلوگرم</span>
+              <span *ngSwitchCase="Unit.PERSON">نفر</span>
+            </ng-container>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>تعداد</mat-label>
+        <input matInput formControlName="quantity" type="number" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>فی</mat-label>
+        <input matInput placeholder="قیمت واحد" formControlName="cost" type="number" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>کل</mat-label>
+        <input matInput [value]="stFormGroup.controls['cost'].value * stFormGroup.controls['quantity'].value" formControlName="costTotal" readonly>
+      </mat-form-field>
+    </div>
+    <ng-template #elseTemplate>
+      مطمئنی حذف شود <b>{{local_data.status.name}}</b>؟
+    </ng-template>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="doAction()">
+      <ng-container [ngSwitch]="action">
+        <span *ngSwitchCase="'Add'">ثبت</span>
+        <span *ngSwitchCase="'Update'">ویرایش</span>
+        <span *ngSwitchCase="'Delete'">حذف</span>
+      </ng-container>
+    </button>
+    <button mat-button (click)="$event.preventDefault();closeDialog()" mat-flat-button color="warn">لغو</button>
+  </div>
+</form>

@@ -1,22 +1,30 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "@app/shared/shared.module";
-import {ButtonCardModule, UserButtonModule} from "@app/shared/components";
+import {PipesModule} from "@app/shared/pipes/pipes.module";
+import {ButtonCardModule, DayCounterModule, UserButtonModule} from "@app/shared/components";
 import { SimpleRoutingModule } from './simple-routing.module';
 
 import {
   MainComponent,
   ListComponent,
-  FormComponent
+  FormComponent,
+  ShowComponent
 } from './pages';
-import {PipesModule} from "../../../../../../shared/pipes/pipes.module";
+
+import {
+  RequestCostComponent
+} from "./containers";
 
 
 @NgModule({
   declarations: [
     MainComponent,
     ListComponent,
-    FormComponent
+    FormComponent,
+    ShowComponent,
+    RequestCostComponent,
   ],
   imports: [
     CommonModule,
@@ -24,7 +32,9 @@ import {PipesModule} from "../../../../../../shared/pipes/pipes.module";
     SharedModule,
     ButtonCardModule,
     UserButtonModule,
-    PipesModule
+    PipesModule,
+    ReactiveFormsModule,
+    DayCounterModule
   ]
 })
 export class SimpleModule { }

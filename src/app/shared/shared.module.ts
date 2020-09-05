@@ -8,13 +8,24 @@ import {MatPaginatorIntl} from '@angular/material/paginator';
 import {getPersianPaginatorIntl} from './persian-paginator-intl';
 import {MaterialModule} from './material/material.module';
 import {CustomLayoutGapStyleBuilder} from "./helpers";
-import {CancelDirective, FavoriteDialogDirective, PhotoChooseDirective, TagDialogDirective} from '@app/shared/directives';
+import {
+  CancelDirective,
+  FavoriteDialogDirective,
+  PhotoChooseDirective,
+  TagDialogDirective,
+  UserChooseDirective,
+  RequestReportFormDirective
+} from '@app/shared/directives';
+
+import {PipesModule} from "@app/shared/pipes/pipes.module";
 
 const directives = [
   CancelDirective,
   PhotoChooseDirective,
   TagDialogDirective,
-  FavoriteDialogDirective
+  FavoriteDialogDirective,
+  UserChooseDirective,
+  RequestReportFormDirective
 ];
 
 @NgModule({
@@ -25,7 +36,8 @@ const directives = [
     CommonModule,
     FlexLayoutModule,
     LazyLoadImageModule,
-    MaterialModule
+    MaterialModule,
+    PipesModule
   ],
   exports: [
     FlexLayoutModule,

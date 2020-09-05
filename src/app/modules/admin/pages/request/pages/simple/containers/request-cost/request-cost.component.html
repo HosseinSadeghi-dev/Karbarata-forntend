@@ -1,0 +1,17 @@
+<form [formGroup]="costFormGroup" (ngSubmit)="onSubmit()">
+  <div fxLayout="row" class="mt-3" fxLayoutGap="15px">
+    <mat-form-field appearance="fill">
+      <mat-label>هزینه نیرو</mat-label>
+      <input formControlName="cost" type="number" matInput required>
+      <mat-hint matSuffix>تومان</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>هزینه کل</mat-label>
+      <input matInput [value]="(costFormGroup.controls['cost'].value * data?.quantity * data?.duration)" readonly>
+      <mat-hint matSuffix>تومان</mat-hint>
+    </mat-form-field>
+    <button mat-fab class="mx-3" type="submit" (click)="onSubmit()" [disabled]="!costFormGroup.valid" color="primary">
+      <mat-icon>done</mat-icon>
+    </button>
+  </div>
+</form>

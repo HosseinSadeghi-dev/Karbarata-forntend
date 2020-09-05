@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>نمایش گزارش</h1>
+<div mat-dialog-content>
+  <mat-list>
+    <mat-list-item>
+      <img matListAvatar [src]="data.user?.image | srcImage: 'user' " [alt]="data.user.fullName">
+      <h3 matLine> {{data.user.fullName}} </h3>
+    </mat-list-item>
+  </mat-list>
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="20px grid" dir="rtl">
+    <mat-form-field fxFlex.gt-xs="50%" appearance="fill">
+      <mat-label>شماره</mat-label>
+      <input [value]="data?.id" matInput readonly>
+    </mat-form-field>
+    <mat-form-field fxFlex.gt-xs="50%" appearance="fill">
+      <mat-label>تاریخ</mat-label>
+      <input [value]="data?.created | persianDate " matInput readonly>
+    </mat-form-field>
+    <mat-form-field fxFlex="100%" appearance="fill">
+      <mat-label>عنوان</mat-label>
+      <input [value]="data?.type === ReportType.EDIT ? 'ویرایش اطلاعات' : data?.type === ReportType.ESTIMATION ? 'برآورد نیرو و هزینه' : data?.title"
+             matInput readonly>
+    </mat-form-field>
+    <mat-form-field fxFlex="100%" appearance="fill">
+      <mat-label>متن</mat-label>
+      <textarea [value]="data?.body" matInput readonly></textarea>
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">بستن</button>
+</div>

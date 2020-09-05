@@ -11,14 +11,20 @@ export interface RequestContext {
   serviceDate?: Date,
   serviceTime?: string,
   user?: ProfileContext,
+
+  //status
   status?: RequestStatusContext[],
+
+  //types
   simple?: RequestSimpleContext,
   master?: RequestMasterContext,
   construct?: RequestConstructContext,
+
   expert?: RequestExpertContext,
   reports?: RequestReportContext[],
   contractors?: ProfileContext[],
   statusStatements?: RequestStatusStatementContext[],
+
   created?: Date,
   updated?: Date
 }
@@ -36,6 +42,7 @@ export interface RequestSimpleContext {
   cost?: number,
   type?: WorkforceSimpleType,
   duration?: number,
+  user?: ProfileContext,
   request?: RequestContext,
   workforces?: ProfileContext[],
   created?: Date,
@@ -45,6 +52,7 @@ export interface RequestMasterContext {
   id?: number,
   skills?: MasterSkillContext[]
   request?: RequestContext,
+  user?: ProfileContext,
   created?: Date,
   updated?: Date
 }
@@ -95,25 +103,14 @@ export interface RequestStatusStatementContext {
   created?: Date,
   updated?: Date
 }
+
 export interface RequestInvoiceContext {
   id?: number,
   accountant?: ProfileContext,
   costTotal?: number,
   request?: RequestContext,
-  statusStatements?: RequestStatusStatement[],
+  statusStatements?: RequestStatusStatementContext[],
   payment?: PaymentContext,
-  created?: Date,
-  updated?: Date
-}
-export interface RequestStatusStatement {
-  id?: number,
-  isExpertApproval?: boolean,
-  tax?: number,
-  type?: StatusStatementItemUnit,
-  items?: RequestStatusStatementItemContext[],
-  user?: ProfileContext,
-  invoice?: RequestInvoiceContext,
-  request?: RequestContext,
   created?: Date,
   updated?: Date
 }
@@ -148,3 +145,9 @@ export enum StatusStatementItemUnit {
   PERSON = 'person',
   KG = 'kg'
 }
+export enum StatusStatementType {
+  STUFF = 'stuff',
+  WORKFORCE = 'workforce',
+  BOTH = 'both'
+}
+

@@ -18,6 +18,7 @@ export interface MasterSkillContext {
   slug?: string,
   image?: GalleryPhotoContext,
   svg?: GalleryPhotoContext,
+  categories?: MasterCategoryContext[],
   notices: string[],
   services?: string[],
   tips?: string[],

@@ -1,0 +1,44 @@
+<div fxLayout="column">
+
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+
+    <div>
+      <button (click)="data = data + 1; onChange(data)"
+              color="primary"
+              mat-mini-fab aria-label="plus">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    <div fxFlex="40%" fxLayout="row">
+
+      <input
+        class="field"
+        fxFlex="35%"
+        [disabled]="disabled"
+        [value]="data"
+        (input)="onChange($event.target.value)"
+        type="number"
+      >
+      <span matPrefix class="mat-h2 mt-1 mx-2 pt-2">{{type}}</span>
+
+    </div>
+
+
+
+    <div>
+      <button (click)="data = data - 1; onChange(data)"
+              color="primary"
+              [disabled]="data < 1"
+              mat-mini-fab aria-label="minus">
+        <mat-icon>remove</mat-icon>
+      </button>
+    </div>
+
+  </div>
+
+  <mat-hint *ngIf="data > 6 && type === 'روز' " style="color: red">
+    درخواست شما بصورت قراردادی خواهد بود
+  </mat-hint>
+
+</div>

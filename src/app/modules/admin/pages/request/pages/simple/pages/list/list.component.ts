@@ -47,6 +47,6 @@ export class ListComponent implements OnInit {
   }
 
   public get RequestStatus() {
-    return RequestStatusType
+    return RequestStatusType;
   }
 }

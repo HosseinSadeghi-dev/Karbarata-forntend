@@ -1,27 +1,34 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import {SharedModule} from "@app/shared/shared.module";
+import {ButtonCardModule, UserButtonModule} from "@app/shared/components";
+import {PipesModule} from "@app/shared/pipes/pipes.module";
+import {ReactiveFormsModule} from "@angular/forms";
 import { MasterRoutingModule } from './master-routing.module';
 
 import {
   MainComponent,
   ListComponent,
+  FormComponent,
+  ShowComponent,
 } from './pages';
-import { FormComponent } from './pages/form/form.component';
-import {SharedModule} from "../../../../../../shared/shared.module";
-import {ButtonCardModule, UserButtonModule} from "../../../../../../shared/components";
-import {PipesModule} from "../../../../../../shared/pipes/pipes.module";
 
 
 @NgModule({
-  declarations: [MainComponent, ListComponent, FormComponent],
-  imports: [
-    CommonModule,
-    MasterRoutingModule,
-    SharedModule,
-    ButtonCardModule,
-    UserButtonModule,
-    PipesModule
-  ]
+  declarations: [
+    MainComponent,
+    ListComponent,
+    FormComponent,
+    ShowComponent
+  ],
+    imports: [
+        CommonModule,
+        MasterRoutingModule,
+        SharedModule,
+        ButtonCardModule,
+        UserButtonModule,
+        PipesModule,
+        ReactiveFormsModule
+    ]
 })
 export class MasterModule { }

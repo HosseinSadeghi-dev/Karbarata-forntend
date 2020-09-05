@@ -1,0 +1,24 @@
+<div fxLayout="column" class="mt-4">
+  <div fxLayout="row" fxLayoutAlign="center center" >
+    <button appRequestReportForm
+            color="accent" class="mb-3 py-2" fxFlex.gt-xs="50%"
+            [reqId]="requestId"
+            (click)="$event.preventDefault()"
+            (reportUpdated)="getReports()"
+            mat-flat-button>
+      <mat-icon>add</mat-icon>
+      <span class="mr-2">ایجاد گزارش</span>
+    </button>
+  </div>
+</div>
+<mat-selection-list [multiple]="false">
+  <mat-list-option *ngFor="let report of reports;let i = index" (click)="openDialog(report)">
+    <ng-container [ngSwitch]="report.type">
+      <span *ngSwitchCase="ReportType.EDIT">ویرایش اطلاعات</span>
+      <span *ngSwitchCase="ReportType.ESTIMATION">برآورد نیرو و هزینه</span>
+      <span *ngSwitchCase="ReportType.OTHER">{{report.title}}</span>
+      <span *ngSwitchDefault>نامشخص</span>
+    </ng-container>
+    <span>{{ report.created | persianDate }}</span>
+  </mat-list-option>
+</mat-selection-list>

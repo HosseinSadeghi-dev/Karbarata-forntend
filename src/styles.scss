@@ -718,3 +718,36 @@ app-component-sidenav {
     flex-direction: column;
   }
 }
+
+textarea {
+  resize: none !important;
+}
+
+@mixin field($theme){
+  $primary : map-get($theme, primary);
+  $accent : map-get($theme, accent);
+  .field{
+    //color: mat-color($primary) !important;
+    //background-color: mat-color($accent) !important;
+    //padding: 15px 0 !important;
+    font-size: 35px !important;
+    border-style: none !important;
+    border-image: none !important;
+    border-width: 0 !important;
+    appearance: none !important;
+    outline: none !important;
+  }
+}
+@include field($theme);
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

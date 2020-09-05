@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PersianDatePipe implements PipeTransform {
 
-  transform(value: string,
+  transform(value: any,
             arg?: string): string {
     switch(arg) {
       case 'fullTime': {

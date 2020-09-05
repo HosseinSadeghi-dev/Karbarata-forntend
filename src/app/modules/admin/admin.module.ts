@@ -4,12 +4,12 @@ import {SharedModule} from '@app/shared/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
 import {FooterModule, PreloaderModule} from '@app/shared/components';
 import {PipesModule} from '@app/shared/pipes/pipes.module';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
 
 import {
   MainComponent,
   HomeComponent
 } from './pages';
-import {CdkAccordionModule} from '@angular/cdk/accordion';
 
 
 @NgModule({

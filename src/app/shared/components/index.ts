@@ -21,6 +21,8 @@ export * from "./form-fields/tag-input/tag-input.module"
 export * from "./form-fields/accessor-editor/accessor-editor.module";
 export * from "./form-fields/list-input/list-input.module";
 export * from "./form-fields/button-form/button-form.module";
+export * from "./form-fields/day-counter/day-counter.module";
+export * from "./form-fields/user-choose/user-choose.module";
 
 //global
 export * from "./global/image-lazy/image-lazy.module";
@@ -31,3 +33,6 @@ export * from "./global/tag-dialog/tag-dialog.module";
 export * from "./global/button-table/button-table.module";
 export * from "./global/button-card/button-card.module";
 export * from "./global/bottom-sheet/bottom-sheet.module";
+
+//request
+export * from './request/index'

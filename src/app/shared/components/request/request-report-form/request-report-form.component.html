@@ -1,0 +1,30 @@
+<div class="container">
+  <form [formGroup]="stFormGroup" (ngSubmit)="onSubmit()">
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap=" grid">
+      <mat-form-field fxFlex="100%" color="accent" appearance="fill">
+        <mat-label>نوع گزارش</mat-label>
+        <mat-select formControlName="type" required>
+          <mat-option *ngFor="let type of reportTypes | enumToArray" [value]="type">
+            <ng-container [ngSwitch]="type">
+              <span *ngSwitchCase="ReportType.EDIT">ویرایش اطلاعات</span>
+              <span *ngSwitchCase="ReportType.ESTIMATION">برآورد نیرو و هزینه</span>
+              <span *ngSwitchCase="ReportType.OTHER">متفرقه</span>
+            </ng-container>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field fxFlex="100%" appearance="fill">
+        <mat-label>عنوان</mat-label>
+        <input formControlName="title" matInput>
+      </mat-form-field>
+      <mat-form-field fxFlex="100%" appearance="fill">
+        <mat-label>متن</mat-label>
+        <textarea formControlName="body" matInput required></textarea>
+      </mat-form-field>
+    </div>
+    <div class="text-center">
+      <button mat-raised-button [disabled]="!stFormGroup.valid" color="primary">ثبت</button>
+    </div>
+  </form>
+
+</div>

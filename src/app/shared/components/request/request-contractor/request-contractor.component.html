@@ -1,0 +1,38 @@
+
+<form [formGroup]="stFormGroup" (ngSubmit)="onSubmit()">
+
+  <div fxLayout="row" class="mt-4" fxLayoutGap="15px" fxLayoutAlign="space-evenly center">
+
+    <button fxFlex.gt-xs="90%" appUserChoose [disabled]="isView" color="accent" class="mb-3 py-3"
+            [roles]="UserRole.CONTRACTOR"
+
+            [multiple]="false"
+            [selected]="contractors"
+            (userUpdated)="getContractor($event)"
+            mat-flat-button>
+      <mat-icon>account_circle</mat-icon>
+      <span class="mr-2">انتخاب پیمانکار</span>
+    </button>
+
+    <div>
+      <button mat-mini-fab *ngIf="!isView || isEdit" type="submit" color="primary" (click)="onSubmit()" [disabled]="!stFormGroup.valid">
+        <mat-icon>done</mat-icon>
+      </button>
+      <button mat-mini-fab *ngIf="isView && !isEdit" color="primary">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+
+  </div>
+
+  <div fxLayout="column">
+    <mat-list>
+      <mat-list-item *ngFor="let row of contractors" class="text-right">
+        <img matListAvatar [src]="row.image | srcImage:'user' " [alt]="row.fullName">
+        <p matLine><span> {{row.fullName}} </span></p>
+        <p matLine><span> {{row?.phoneNumber}} </span></p>
+      </mat-list-item>
+    </mat-list>
+  </div>
+
+</form>

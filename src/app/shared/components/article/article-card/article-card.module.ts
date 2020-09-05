@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArticleCardComponent } from './article-card.component';
 import {RouterModule} from '@angular/router';
-import {SharedModule} from '@app/shared/shared.module';
 import {ArticleFavoriteButtonModule} from '../..';
+import {SharedModule} from "@app/shared/shared.module";
 // import {ArticleFavoriteButtonModule} from '@app/shared/components';
 
 

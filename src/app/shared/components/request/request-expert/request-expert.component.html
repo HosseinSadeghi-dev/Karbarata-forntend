@@ -1,0 +1,31 @@
+<mat-list *ngIf="isView">
+  <mat-list-item>
+    <img matListAvatar [src]="data.image | srcImage: 'user' " [alt]="data.fullName">
+    <h3 matLine> {{data.fullName}} </h3>
+    <p matLine>
+      <span> {{data.phoneNumber}} </span>
+    </p>
+  </mat-list-item>
+</mat-list>
+<div fxLayout="column" class="mt-3" *ngIf="!isView">
+  <button appUserChoose class="mb-3"
+          [roles]="UserRole.EXPERT"
+          (click)="$event.preventDefault()"
+          (userUpdated)="onSubmit($event)"
+          mat-raised-button color="primary">
+    <ng-container *ngIf="!data; else skeletonUserPreview">
+      <mat-icon>account_circle</mat-icon>
+      <span>انتخاب کارشناس</span>
+    </ng-container>
+    <ng-template #skeletonUserPreview>
+      <mat-list>
+        <mat-list-item class="text-right">
+          <img matListAvatar [src]="data.image | srcImage: 'user' " [alt]="data.fullName">
+          <p matLine>
+            <span> {{data.fullName}} </span>
+          </p>
+        </mat-list-item>
+      </mat-list>
+    </ng-template>
+  </button>
+</div>

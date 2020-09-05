@@ -1,0 +1,30 @@
+<div fxLayout="column" class="mt-4">
+  <div fxLayout="row" fxLayoutAlign="center center" >
+    <button fxFlex.gt-xs="50%" [routerLink]="['create']" color="accent" class="mb-3 py-2" mat-flat-button>
+      <mat-icon>add</mat-icon>
+      <span class="mr-2">ایجاد صورت وضعیت</span>
+    </button>
+  </div>
+</div>
+<mat-selection-list [multiple]="false">
+  <div fxLayout="row wrap" dir="rtl" fxLayout.xs="column" fxLayoutGap="15px grid">
+    <div fxFlex.gt-md="25%" fxFlex.sm="50%" *ngFor="let status of statusStatements;let i = index">
+      <mat-list-option [routerLink]="[status.id]">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <div fxLayout="column">
+            <ng-container [ngSwitch]="status.type">
+              <span *ngSwitchCase="StatusStatementType.WORKFORCE">نیرو</span>
+              <span *ngSwitchCase="StatusStatementType.STUFF">کالا</span>
+              <span *ngSwitchCase="StatusStatementType.BOTH">هردو</span>
+              <span *ngSwitchDefault>تامشخص</span>
+            </ng-container>
+            <span>{{ status?.created | persianDate }}</span>
+          </div>
+          <mat-chip-list>
+            <mat-chip [selected]="status.isExpertApproval">{{status.isExpertApproval ? 'تایید شد' : 'در انتظار تایید'}}</mat-chip>
+          </mat-chip-list>
+        </div>
+      </mat-list-option>
+    </div>
+  </div>
+</mat-selection-list>

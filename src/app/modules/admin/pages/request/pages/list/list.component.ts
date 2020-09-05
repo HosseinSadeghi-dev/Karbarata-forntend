@@ -36,7 +36,7 @@ export class ListComponent implements OnInit {
   }
 
   getList(){
-    this.requestService.findAll().subscribe(res => this.handleRes(res))
+    this.requestService.findAllRequest().subscribe(res => this.handleRes(res))
   }
 
   delete(id: number){

@@ -1,0 +1,108 @@
+<div class="my-4 container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>جزئیات درخواست</mat-card-title>
+
+      <button (click)="navigate()" mat-icon-button class="mr-auto">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-list>
+        <div fxLayout="row wrap" dir="rtl" fxLayout.xs="column" fxLayoutGap="15px grid">
+
+          <div fxFlex.gt-md="25%" fxFlex.sm="50%">
+            <div mat-subheader>درخواست کننده</div>
+            <mat-list-item>
+              <img matListAvatar [src]="data?.user.image | srcImage: 'user' "
+                   [alt]="data?.user.fullName">
+              <h3 matLine> {{data?.user.fullName}} </h3>
+              <p matLine>
+                <span> {{data?.user.phoneNumber}} </span>
+              </p>
+            </mat-list-item>
+          </div>
+
+          <div fxFlex.gt-md="25%" fxFlex.sm="50%">
+            <div mat-subheader>متراژ تقریبی درخواست</div>
+            <mat-list-item>
+              <mat-icon mat-list-icon>gavel</mat-icon>
+              <div mat-line>{{data?.approximateArea}}</div>
+            </mat-list-item>
+          </div>
+
+          <!--          <div fxFlex.gt-md="25%" fxFlex.sm="50%">-->
+          <!--            <div mat-subheader>تعداد نیرو مورد نیاز</div>-->
+          <!--            <mat-list-item>-->
+          <!--              <mat-icon mat-list-icon>gavel</mat-icon>-->
+          <!--              <div mat-line>{{data?.simple.quantity}}<small>نفر</small></div>-->
+          <!--            </mat-list-item>-->
+          <!--          </div>-->
+          <div fxFlex.gt-md="25%" fxFlex.sm="50%">
+            <div mat-subheader>آدرس</div>
+            <mat-list-item>
+              <mat-icon mat-list-icon>location_on</mat-icon>
+              <div mat-line>{{data?.address}}</div>
+            </mat-list-item>
+          </div>
+
+          <div fxFlex.gt-md="25%" fxFlex.sm="50%">
+            <div mat-subheader>پلاک</div>
+            <mat-list-item>
+              <mat-icon mat-list-icon>label_important</mat-icon>
+              <div mat-line>{{data?.houseNumber}}</div>
+            </mat-list-item>
+          </div>
+
+          <div fxFlex.gt-md="25%" fxFlex.sm="50%">
+            <div mat-subheader>توضیحات</div>
+            <mat-list-item>
+              <mat-icon mat-list-icon>description</mat-icon>
+              <div mat-line>{{data?.description === ''? 'ندارد' : data?.description}}</div>
+            </mat-list-item>
+          </div>
+
+          <div fxFlex.gt-md="25%" fxFlex.sm="50%">
+            <ng-container *ngIf="!data?.isForce;else isForceSection">
+              <div mat-subheader>تاریخ مراجعه</div>
+              <mat-list-item>
+                <mat-icon mat-list-icon>calendar_today</mat-icon>
+                <div mat-line>{{ data?.created | persianDate}}</div>
+              </mat-list-item>
+            </ng-container>
+            <ng-template #isForceSection>
+              <div mat-subheader>درخواست فوری</div>
+              <mat-list-item>
+                <mat-icon mat-list-icon>done</mat-icon>
+                <div mat-line>دارد</div>
+              </mat-list-item>
+            </ng-template>
+          </div>
+
+          <div fxFlex.gt-md="25%" fxFlex.sm="50%">
+            <div mat-subheader>مهارت مورد نیاز</div>
+            <mat-list-item *ngFor="let row of data?.master.skills">
+              <mat-icon mat-list-icon>wb_sunny</mat-icon>
+              <div mat-line>{{row.name}}</div>
+            </mat-list-item>
+          </div>
+
+        </div>
+      </mat-list>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <nav mat-tab-nav-bar dir="rtl">
+        <a mat-tab-link *ngFor="let link of links"
+           [routerLink]="link.path"
+           routerLinkActive #rla="routerLinkActive"
+           [routerLinkActiveOptions]="{exact:true}"
+           [active]="rla.isActive"> {{link.label}} </a>
+      </nav>
+      <router-outlet></router-outlet>
+    </mat-card-actions>
+
+  </mat-card>
+</div>
