@@ -40,15 +40,16 @@ const routes: Routes = [
         component: FormComponent
       },
       {
+        path: 'edit/:id',
+        component: FormComponent
+      },
+      {
         path: ':id',
         children:[
           {
             path: '',
             children: [
-              {
-                path: 'edit',
-                component: FormComponent
-              },
+
               {
                 path: '',
                 component: ShowComponent,

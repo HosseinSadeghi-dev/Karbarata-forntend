@@ -11,7 +11,11 @@ import {
 import {
   RequestContractorComponent,
   RequestExpertComponent,
+  RequestReportComponent,
+  RequestStatementComponent,
+  RequestStatementFormComponent,
   RequestStatusComponent,
+  RequestStatusPerDayComponent,
   RequestWorkforceComponent
 } from "@app/shared/components/request";
 
@@ -34,15 +38,16 @@ const routes: Routes = [
         component: FormComponent
       },
       {
+        path: 'edit/:id',
+        component: FormComponent
+      },
+      {
         path: ':id',
         children:[
           {
             path: '',
             children: [
-              {
-                path: 'edit',
-                component: FormComponent
-              },
+
               {
                 path: '',
                 component: ShowComponent,
@@ -66,31 +71,31 @@ const routes: Routes = [
                         path: 'workforce',
                         component: RequestWorkforceComponent
                       },
-                      // {
-                      //   path: 'report',
-                      //   component: RequestReportListComponent
-                      // },
-                      // {
-                      //   path: 'statusPerDay',
-                      //   component: RequestStatusPerDayFormComponent
-                      // },
-                      // {
-                      //   path: 'statusStatement',
-                      //   children: [
-                      //     {
-                      //       path: ':sid',
-                      //       component: RequestStatusStatementFormComponent
-                      //     },
-                      //     {
-                      //       path: '',
-                      //       component: RequestStatusStatementListComponent
-                      //     },
-                      //     {
-                      //       path: 'create',
-                      //       component: RequestStatusStatementFormComponent
-                      //     }
-                      //   ]
-                      // },
+                      {
+                        path: 'report',
+                        component: RequestReportComponent
+                      },
+                      {
+                        path: 'statusPerDay',
+                        component: RequestStatusPerDayComponent
+                      },
+                      {
+                        path: 'statusStatement',
+                        children: [
+                          {
+                            path: ':sid',
+                            component: RequestStatementComponent
+                          },
+                          {
+                            path: '',
+                            component: RequestStatementFormComponent
+                          },
+                          {
+                            path: 'create',
+                            component: RequestStatementComponent
+                          }
+                        ]
+                      },
                       // {
                       //   path: 'invoice',
                       //   children: [

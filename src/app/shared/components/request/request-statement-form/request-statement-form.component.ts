@@ -42,11 +42,11 @@ export class RequestStatementFormComponent implements OnInit {
       items: [[], [Validators.required,Validators.minLength(1)]]
     });
     const params = this.activatedRoute.snapshot.params;
-    if (params.sid){
-      this.requestService.getRequestStatusStatement(params.sid).subscribe(
-        res => this.handleRes(res),
-      )
-    }
+    // if (params.sid){
+    //   this.requestService.getRequestStatusStatement(params.sid).subscribe(
+    //     res => this.handleRes(res),
+    //   )
+    // }
   }
 
   handleRes(res){
