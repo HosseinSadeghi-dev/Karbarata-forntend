@@ -40,6 +40,10 @@ const routes: Routes = [
             path: '',
             children: [
               {
+                path: 'edit',
+                component: FormComponent
+              },
+              {
                 path: '',
                 component: ShowComponent,
                 children: [
