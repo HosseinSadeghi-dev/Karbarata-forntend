@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {RequestService} from "@app/core/services";
+import {RequestStatementDialogComponent} from "..";
 
 import {
   RequestStatusStatementContext,
@@ -84,7 +85,7 @@ export class RequestStatementFormComponent implements OnInit {
 
 
   openDialog(action,obj) {
-    const dialogRef = this.dialog.open(RequestStatementFormComponent, {
+    const dialogRef = this.dialog.open(RequestStatementDialogComponent, {
       width: '350px',
       data:{status: obj, action: action}
     });

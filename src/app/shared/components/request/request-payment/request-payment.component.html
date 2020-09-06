@@ -1,0 +1,37 @@
+<mat-list>
+  <div mat-subheader>جزئیات پرداخت</div>
+  <mat-list-item>
+    <div mat-line>مبلغ پرداخت شده</div>
+    <div mat-line> {{data.amount}} </div>
+  </mat-list-item>
+  <mat-list-item>
+    <div mat-line>کد پیگیری</div>
+    <div mat-line> {{data.saleReferenceId}} </div>
+  </mat-list-item>
+  <mat-list-item>
+    <div mat-line>وضعیت پرداخت</div>
+    <div mat-line>
+      <ng-container [ngSwitch]="data.status">
+        <ng-container *ngSwitchCase="Status.SUCCESS">پرداخت شده</ng-container>
+        <ng-container *ngSwitchCase="Status.CANCELED">لغو شده</ng-container>
+        <ng-container *ngSwitchCase="Status.PENDING">ارسال به بانک</ng-container>
+      </ng-container>
+    </div>
+  </mat-list-item>
+  <mat-list-item>
+    <div mat-line>نحوه پرداخت</div>
+    <div mat-line>
+      <ng-container [ngSwitch]="data.method">
+        <ng-container *ngSwitchCase="Method.GATEWAY">اینترنتی</ng-container>
+        <ng-container *ngSwitchCase="Method.POS">کارت خوان</ng-container>
+        <ng-container *ngSwitchCase="Method.CHARGE">شارژ</ng-container>
+      </ng-container>
+    </div>
+  </mat-list-item>
+  <mat-list-item>
+    <div mat-line>زمان پرداخت</div>
+    <div mat-line>
+      {{data.updated | persianDate}}
+    </div>
+  </mat-list-item>
+</mat-list>

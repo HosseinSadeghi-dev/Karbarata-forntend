@@ -14,7 +14,9 @@ import {
   PhotoChooseDirective,
   TagDialogDirective,
   UserChooseDirective,
-  RequestReportFormDirective
+  RequestReportFormDirective,
+  RequestPaymentBottomSheetDirective,
+  StatusStatementChooseDirective
 } from '@app/shared/directives';
 
 import {PipesModule} from "@app/shared/pipes/pipes.module";
@@ -25,7 +27,9 @@ const directives = [
   TagDialogDirective,
   FavoriteDialogDirective,
   UserChooseDirective,
-  RequestReportFormDirective
+  RequestReportFormDirective,
+  RequestPaymentBottomSheetDirective,
+  StatusStatementChooseDirective
 ];
 
 @NgModule({

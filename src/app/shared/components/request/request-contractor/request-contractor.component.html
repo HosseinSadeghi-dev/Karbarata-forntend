@@ -2,12 +2,11 @@
 <form [formGroup]="stFormGroup" (ngSubmit)="onSubmit()">
 
   <div fxLayout="row" class="mt-4" fxLayoutGap="15px" fxLayoutAlign="space-evenly center">
-
     <button fxFlex.gt-xs="90%" appUserChoose [disabled]="isView" color="accent" class="mb-3 py-3"
             [roles]="UserRole.CONTRACTOR"
-
-            [multiple]="false"
+            [multiple]="true"
             [selected]="contractors"
+            (click)="$event.preventDefault()"
             (userUpdated)="getContractor($event)"
             mat-flat-button>
       <mat-icon>account_circle</mat-icon>
@@ -18,17 +17,16 @@
       <button mat-mini-fab *ngIf="!isView || isEdit" type="submit" color="primary" (click)="onSubmit()" [disabled]="!stFormGroup.valid">
         <mat-icon>done</mat-icon>
       </button>
-      <button mat-mini-fab *ngIf="isView && !isEdit" color="primary">
+      <button mat-mini-fab *ngIf="isView && !isEdit" color="primary" (click)="$event.preventDefault()">
         <mat-icon>edit</mat-icon>
       </button>
     </div>
-
   </div>
 
   <div fxLayout="column">
     <mat-list>
       <mat-list-item *ngFor="let row of contractors" class="text-right">
-        <img matListAvatar [src]="row.image | srcImage:'user' " [alt]="row.fullName">
+        <img matListAvatar [src]="row?.image | srcImage:'user' ">
         <p matLine><span> {{row.fullName}} </span></p>
         <p matLine><span> {{row?.phoneNumber}} </span></p>
       </mat-list-item>

@@ -11,6 +11,8 @@ import {
 import {
   RequestContractorComponent,
   RequestExpertComponent,
+  RequestInvoiceComponent,
+  RequestInvoiceFormComponent,
   RequestReportComponent,
   RequestStatementComponent,
   RequestStatementFormComponent,
@@ -83,36 +85,36 @@ const routes: Routes = [
                         path: 'statusStatement',
                         children: [
                           {
-                            path: ':sid',
-                            component: RequestStatementComponent
-                          },
-                          {
                             path: '',
-                            component: RequestStatementFormComponent
+                            component: RequestStatementComponent
                           },
                           {
                             path: 'create',
-                            component: RequestStatementComponent
-                          }
+                            component: RequestStatementFormComponent
+                          },
+                          {
+                            path: ':sid',
+                            component: RequestStatementFormComponent
+                          },
                         ]
                       },
-                      // {
-                      //   path: 'invoice',
-                      //   children: [
-                      //     {
-                      //       path: ':sid',
-                      //       component: RequestInvoiceFormComponent
-                      //     },
-                      //     {
-                      //       path: '',
-                      //       component: RequestInvoiceComponent
-                      //     },
-                      //     {
-                      //       path: 'create',
-                      //       component: RequestInvoiceFormComponent
-                      //     }
-                      //   ]
-                      // }
+                      {
+                        path: 'invoice',
+                        children: [
+                          {
+                            path: '',
+                            component: RequestInvoiceComponent
+                          },
+                          {
+                            path: 'create',
+                            component: RequestInvoiceFormComponent
+                          },
+                          {
+                            path: ':sid',
+                            component: RequestInvoiceFormComponent
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]

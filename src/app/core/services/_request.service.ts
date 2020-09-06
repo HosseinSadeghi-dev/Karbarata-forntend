@@ -151,7 +151,7 @@ export class RequestService {
   }
 
   //contractor
-  findOneRequestContractor(id){
+  findAllRequestContractor(id){
     return this.httpClient.get(`/request/${id}/contractor`).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
@@ -225,6 +225,43 @@ export class RequestService {
 
   updateRequestStatementExpertApproval(id, data){
     return this.httpClient.patch(`/requestStatusStatement/${id}/isExpertApproval`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  //Reports
+  findOneRequestReportList(id){
+    return this.httpClient.get(`/request/${id}/report`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  //Invoice
+  findOneRequestInvoiceList(id){
+    return this.httpClient.get(`/requestStatusStatement/${id}`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  findOneRequestInvoice(id){
+    return this.httpClient.get(`/requestInvoice/${id}`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  updateRequestInvoice(id, data){
+    return this.httpClient.patch(`/requestInvoice/${id}`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  saveRequestInvoice(data){
+    return this.httpClient.post(`/requestInvoice`,data).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );

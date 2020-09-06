@@ -35,7 +35,7 @@ export class UserChooseComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userService.findAllUser().subscribe(
+    this.userService.findAllUser('role',this.data.roles).subscribe(
       res => this.handleRes(res)
     )
   }

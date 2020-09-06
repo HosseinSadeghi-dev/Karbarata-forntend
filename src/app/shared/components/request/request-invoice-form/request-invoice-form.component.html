@@ -1,0 +1,49 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="my-5">
+  <div fxFlex.gt-xs="75%">
+    <form [formGroup]="stFormGroup" (ngSubmit)="onSubmit()">
+      <div fxLayout="column" >
+        <div fxLayout="row" fxLayoutAlign="center center" >
+          <button fxFlex.gt-xs="50%" appStatusStatementChoose color="accent" class="mb-3 py-2"
+                  [request]="stFormGroup.controls['request'].value"
+                  [disabled]="!stFormGroup.controls['request'].valid"
+                  [multiple]="true"
+                  [selected]="stFormGroup.controls['statusStatements'].value"
+                  (click)="$event.preventDefault()"
+                  (statusStatementUpdated)="getStatusStatement($event)" mat-flat-button>
+            <mat-icon>add</mat-icon>
+            <span class="mr-2">انتخاب صورت وضعیت</span>
+          </button>
+        </div>
+        <!--          <mat-form-field appearance="fill">-->
+        <!--            <mat-label>شماره درخواست</mat-label>-->
+        <!--            <input formControlName="request" type="number" matInput>-->
+        <!--            <button mat-icon-button matSuffix appStatusStatementChoose-->
+        <!--                    [request]="stFormGroup.controls['request'].value"-->
+        <!--                    [disabled]="!stFormGroup.controls['request'].valid" [multiple]="true" [selected]="stFormGroup.controls['statusStatements'].value" (click)="$event.preventDefault()" (statusStatementUpdated)="getStatusStatement($event)">-->
+        <!--              <mat-icon>done</mat-icon>-->
+        <!--            </button>-->
+        <!--          </mat-form-field>-->
+        <ng-container *ngIf="stFormGroup.controls['statusStatements'].valid">
+          <ng-container *ngFor="let row of stFormGroup.controls['statusStatements'].value">
+            <app-request-status-statement-table class="mb-5" [dataSource]="row.items"></app-request-status-statement-table>
+          </ng-container>
+        </ng-container>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+        <div mat-subheader>مجموع صورت حساب</div>
+        <h3> {{costTotal}} <small>تومان</small> </h3>
+      </div>
+      <div fxLayout="row" fxLayoutGap="15px" class="mt-4" fxLayoutAlign="center center" >
+        <button fxFlex.gt-xs="20%" color="primary" type="submit" mat-raised-button [disabled]="!stFormGroup.valid">
+          <mat-icon>save_alt</mat-icon>
+          <span class="mr-2">ذخیره</span>
+        </button>
+        <button fxFlex.gt-xs="20%" color="warn" (click)="$event.preventDefault()" appCancel mat-flat-button>
+          <mat-icon>cancel_presentation</mat-icon>
+          <span class="mr-2">لغو</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
