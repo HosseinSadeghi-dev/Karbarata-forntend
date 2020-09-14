@@ -34,7 +34,7 @@
         <th mat-header-cell *matHeaderCellDef> نام و نام خانوادگی </th>
         <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="نام و نام خانوادگی">
           <button mat-button>
-            <img [src]="!element.image ? 'assets/image/morche.png': 'https://endpoint.karbarata.com/api/image/user/'+element.image" class="img-fluid mr-2 rounded-circle" width="35px">
+            <img [src]="element.image | srcImage: 'user' " class="img-fluid mr-2 rounded-circle" width="35px">
             <span class="mr-3">{{element.name}} {{element.lastName}}</span>
           </button>
         </td>
@@ -74,7 +74,8 @@
   </div>
 </div>
 <div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-around center">
-  <button mat-flat-button color="primary" [disabled]="selection.selected.length === 0" [mat-dialog-close]="selection.selected">{{selection.selected.length}}
+  <button mat-flat-button color="primary" [disabled]="selection.selected.length === 0" [mat-dialog-close]="selection.selected">
+    {{selection.selected.length}}
     <span>کاربر انتخاب شده</span>
   </button>
   <button mat-button (click)="onNoClick()">بستن</button>

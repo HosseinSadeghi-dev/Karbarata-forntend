@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>{{photo.name}}</h1>
 <div mat-dialog-content>
   <img class="img-fluid"
-       [src]="['https://end.ratabit.com/api/upload/gallery/'+photo.name]"
+       [src]="photo.name | srcImage"
        [alt]="photo.name">
 </div>
 <div mat-dialog-actions>

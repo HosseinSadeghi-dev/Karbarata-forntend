@@ -50,7 +50,8 @@ export interface RequestSimpleContext {
 }
 export interface RequestMasterContext {
   id?: number,
-  skills?: MasterSkillContext[]
+  skills?: MasterSkillContext[],
+  workforces?:RequestMasterWorkforceContext[],
   request?: RequestContext,
   user?: ProfileContext,
   created?: Date,
@@ -122,6 +123,13 @@ export interface RequestStatusStatementItemContext {
   quantity?: number,
   costTotal?: string,
   unit?: StatusStatementItemUnit
+}
+
+export interface RequestMasterWorkforceContext {
+  id?: number;
+  cost?: number;
+  skill?: MasterSkillContext;
+  user?: ProfileContext;
 }
 
 export enum RequestStatusType {

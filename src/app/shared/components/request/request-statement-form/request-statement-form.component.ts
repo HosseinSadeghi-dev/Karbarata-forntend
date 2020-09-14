@@ -5,7 +5,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {RequestService} from "@app/core/services";
-import {RequestStatementDialogComponent} from "..";
 
 import {
   RequestStatusStatementContext,
@@ -13,6 +12,7 @@ import {
   StatusStatementItemUnit,
   StatusStatementType
 } from "@app/core/models";
+import {RequestStatementDialogComponent} from "@app/shared/components/request/request-statement-dialog/request-statement-dialog.component";
 
 @Component({
   selector: 'app-request-statement-form',
@@ -66,11 +66,11 @@ export class RequestStatementFormComponent implements OnInit {
     if (params.id){
       if (params.sid){
         this.requestService.updateRequestStatusStatement(params.sid, form).subscribe(
-          res => this.location.back()
+          res => this.router.navigateByUrl(`admin/request/master/${params.id}/statusStatement`)
         )
       }else {
         this.requestService.saveRequestStatusStatementByRequest(params.id, form).subscribe(
-          res => this.location.back()
+          res => this.router.navigateByUrl(`admin/request/master/${params.id}/statusStatement`)
         )
       }
     }
@@ -78,8 +78,8 @@ export class RequestStatementFormComponent implements OnInit {
 
   updateExpertApproval(){
     const params = this.activatedRoute.snapshot.params;
-    this.requestService.updateRequestStatementExpertApproval(params.id,{isExpertApproval: true}).subscribe(
-      res => this.location.back()
+    this.requestService.updateRequestStatementExpertApproval(params.sid,{isExpertApproval: true}).subscribe(
+      res => this.router.navigateByUrl(`admin/request/master/${params.id}/statusStatement`)
     );
   }
 

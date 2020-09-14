@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
 import {throwError} from 'rxjs';
 
@@ -25,7 +25,10 @@ export class UserService {
   }
 
   findAllUser(verb?, data?){
-    return this.httpClient.get(`/user?${verb}=${data}`).pipe(
+    return this.httpClient.get(`/user`,
+      {
+        params: new HttpParams().set(verb, data)
+      }).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );

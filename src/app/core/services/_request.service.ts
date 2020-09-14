@@ -143,8 +143,20 @@ export class RequestService {
       catchError((error: HttpErrorResponse) => throwError(error))
     );
   }
+  findOneMasterRequestSkills(id){
+    return this.httpClient.get(`/request/${id}/master/skill`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
   saveMasterRequestWorkForce(id, data){
     return this.httpClient.post(`/request/${id}/master/workforce`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+  updateMasterRequestWorkForce(id, data){
+    return this.httpClient.put(`/request/${id}/master/workforce`,data).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );
@@ -195,8 +207,22 @@ export class RequestService {
   }
 
   //statement
-  findAllRequestStatementList(id){
+  findOneRequestStatementList(id){
     return this.httpClient.get(`/request/${id}/statusStatement`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  findOneRequestStatusStatementFilter(verb, data){
+    return this.httpClient.get(`/requestStatusStatement?${verb}=${data}`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  findAllRequestStatementList(){
+    return this.httpClient.get(`/requestStatusStatement`).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );
@@ -240,7 +266,7 @@ export class RequestService {
 
   //Invoice
   findOneRequestInvoiceList(id){
-    return this.httpClient.get(`/requestStatusStatement/${id}`).pipe(
+    return this.httpClient.get(`/request/${id}/invoice`).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );
@@ -266,5 +292,7 @@ export class RequestService {
       catchError((error: HttpErrorResponse) => throwError(error))
     );
   }
+
+
 
 }

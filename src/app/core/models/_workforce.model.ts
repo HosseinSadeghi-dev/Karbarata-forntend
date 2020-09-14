@@ -12,6 +12,7 @@ export interface MasterCategoryContext {
   skills?: MasterSkillContext[]
 }
 
+
 export interface MasterSkillContext {
   id?: number,
   name?: string,
@@ -19,7 +20,7 @@ export interface MasterSkillContext {
   image?: GalleryPhotoContext,
   svg?: GalleryPhotoContext,
   categories?: MasterCategoryContext[],
-  notices: string[],
+  notices?: string[],
   services?: string[],
   tips?: string[],
   tagList?: string[],

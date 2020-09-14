@@ -16,6 +16,7 @@ import {
 import {
   RequestCostComponent
 } from "./containers";
+import { RequestWorkforceComponent } from './containers/request-workforce/request-workforce.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {
     FormComponent,
     ShowComponent,
     RequestCostComponent,
+    RequestWorkforceComponent,
   ],
   imports: [
     CommonModule,

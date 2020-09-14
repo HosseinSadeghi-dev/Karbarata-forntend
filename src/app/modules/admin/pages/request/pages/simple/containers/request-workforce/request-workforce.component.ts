@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ProfileContext, UserRole} from "@app/core/models";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {RequestService} from "@app/core/services";
+import {ProfileContext, UserRole} from "@app/core/models";
 
 @Component({
   selector: 'app-request-workforce',
@@ -43,6 +43,7 @@ export class RequestWorkforceComponent implements OnInit {
     this.workforces = res;
     const selectedUsers: string[] = [];
     this.workforces.forEach(row => selectedUsers.push(String(row.id)));
+    console.log('selected',selectedUsers);
     this.stFormGroup.get('workforces').setValue(selectedUsers);
   }
 
@@ -57,6 +58,7 @@ export class RequestWorkforceComponent implements OnInit {
   }
 
   handleRes(res){
+    console.log('simple',res)
     res.length !== 0 && (this.isView = true);
     this.workforces = res;
     this.getWorkforce(this.workforces);

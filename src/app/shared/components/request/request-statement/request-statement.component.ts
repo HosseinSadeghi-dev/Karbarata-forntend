@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {RequestStatusStatementContext, StatusStatementType} from "@app/core/models";
 import {ActivatedRoute} from "@angular/router";
-import {RequestService} from "../../../../core/services";
+import {RequestService} from "@app/core/services";
 
 @Component({
   selector: 'app-request-statement',
@@ -20,7 +20,7 @@ export class RequestStatementComponent implements OnInit {
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
     if (params.id){
-      this.requestService.findAllRequestStatementList(params.id).subscribe(
+      this.requestService.findOneRequestStatementList(params.id).subscribe(
         res => this.statusStatements = res,
       )
     }

@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService} from "@app/core/services";
 import { MatTableDataSource } from "@angular/material/table";
-import { ProfileContext, UserStatus, UserRole } from "@app/core/models";
+import {ProfileContext, UserStatus, UserRole, RequestContext} from "@app/core/models";
 import { MatPaginator } from "@angular/material/paginator";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-list',
@@ -20,21 +21,21 @@ export class ListComponent implements OnInit {
   }
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.getList();
-    console.log('element') ;
   }
 
   getList(){
     this.userService.findAllUser().subscribe(res=> this.handleRes(res))
   }
 
-  getOne(id: number){
-    this.userService.findUserById(id).subscribe(res=> this.handleRes(res));
-  }
+  // getOne(id: number){
+  //   this.userService.findUserById(id).subscribe(res=> this.handleRes(res));
+  // }
 
   delete(id: number){
     this.userService.deleteUser(id).subscribe(res => this.getList())
@@ -56,6 +57,23 @@ export class ListComponent implements OnInit {
     this.dataSource = new MatTableDataSource<ProfileContext>(this.data);
     setTimeout(() => this.dataSource.paginator = this.paginator);
   }
+
+  routing(user:ProfileContext){
+
+    // this.router.navigateByUrl(`/admin/user/workforce/simple/${request.id}`);
+
+    if(user.workforceMaster)
+    {
+      this.router.navigateByUrl(`/admin/user/workforce/master/${user.workforceMaster.id}`);
+    }
+    else if(user.workforceSimple)
+    {
+      this.router.navigateByUrl(`/admin/user/workforce/simple/${user.workforceSimple.id}`);
+    }
+    else
+      this.router.navigateByUrl(`/admin/user/${user.id}`);
+  }
+
 
   public get UserStatus() {
     return UserStatus;

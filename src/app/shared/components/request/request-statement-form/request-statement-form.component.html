@@ -76,7 +76,7 @@
           <mat-list fxFlex.gt-md="33%">
             <div mat-subheader>صادر کننده</div>
             <mat-list-item *ngIf="statusStatement?.user">
-              <img matListAvatar [src]="statusStatement.user?.image | srcImage" [alt]="statusStatement.user?.fullName">
+              <img matListAvatar [src]="statusStatement.user?.image | srcImage:'user' " [alt]="statusStatement.user?.fullName">
               <h3 matLine> {{statusStatement.user?.fullName}} </h3>
             </mat-list-item>
             <mat-list-item *ngIf="!statusStatement?.user">
@@ -107,7 +107,7 @@
             <mat-icon>cancel_presentation</mat-icon>
             <span class="mr-2">لغو</span>
           </button>
-          <button fxFlex.gt-xs="20%" color="primary" (click)="updateExpertApproval()" *ngIf="isView" [disabled]="statusStatement?.isExpertApproval" mat-flat-button>
+          <button fxFlex.gt-xs="25%" color="primary" (click)="updateExpertApproval()" *ngIf="isView" [disabled]="statusStatement?.isExpertApproval" mat-raised-button>
             <mat-icon>done</mat-icon>
             <span class="mr-2">تایید صورت وضعیت</span>
           </button>

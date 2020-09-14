@@ -1,0 +1,75 @@
+<div fxLayout="row">
+
+  <div fxLayout="column" fxFlex="30%" style="background-color: #0D47A1" class="container">
+
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+      <form [formGroup]="stFormGroup">
+        <mat-vertical-stepper style="background-color: #0D47A1;color: white">
+
+          <ng-template matStepperIcon>
+            <mat-icon>edit</mat-icon>
+          </ng-template>
+
+          <mat-step  fxLayout="column"
+                     label="انتخاب دسته"
+
+                     [stepControl]="stFormGroup.controls.typeForm">
+            <ng-template matste>
+                دسته بندی مورد نظر خود را انتخاب کنید
+                و نوع اجرا یا را انتخاب کنید
+            </ng-template>
+
+
+          </mat-step>
+
+          <mat-step  fxLayout="column"
+                     label="انتخاب دسته"
+                     [stepControl]="stFormGroup.controls.durationForm">
+
+            <mat-hint>
+              دسته بندی مورد نظر خود را انتخاب کنید
+              و نوع اجرا یا را انتخاب کنید
+            </mat-hint>
+
+          </mat-step>
+
+          <mat-step  fxLayout="column"
+                     label="انتخاب دسته"
+                     [stepControl]="stFormGroup.controls.locationForm">
+
+            <mat-hint>
+              دسته بندی مورد نظر خود را انتخاب کنید
+              و نوع اجرا یا را انتخاب کنید
+            </mat-hint>
+
+          </mat-step>
+
+          <mat-step  fxLayout="column"
+                     label="انتخاب دسته"
+                     [stepControl]="stFormGroup.controls.confirmForm">
+
+            <mat-hint>
+              دسته بندی مورد نظر خود را انتخاب کنید
+              و نوع اجرا یا را انتخاب کنید
+            </mat-hint>
+
+          </mat-step>
+
+          <ng-template matStepperIcon="phone">
+            <mat-icon>call_end</mat-icon>
+          </ng-template>
+          <ng-template matStepperIcon="chat">
+            <mat-icon>forum</mat-icon>
+          </ng-template>
+
+        </mat-vertical-stepper>
+      </form>
+    </div>
+
+  </div>
+
+  <div fxLayout="column" fxFlex="70%" style="background-color: #303030">
+
+  </div>
+
+</div>

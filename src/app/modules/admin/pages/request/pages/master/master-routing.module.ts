@@ -9,6 +9,10 @@ import {
 } from "./pages";
 
 import {
+  WorkforceMasterComponent
+} from "./containers";
+
+import {
   RequestContractorComponent,
   RequestExpertComponent,
   RequestInvoiceComponent,
@@ -18,8 +22,7 @@ import {
   RequestStatementFormComponent,
   RequestStatusComponent,
   RequestStatusPerDayComponent,
-  RequestWorkforceComponent
-} from "@app/shared/components/request";
+} from "@app/shared/components";
 
 const routes: Routes = [
   {
@@ -71,7 +74,7 @@ const routes: Routes = [
                       },
                       {
                         path: 'workforce',
-                        component: RequestWorkforceComponent
+                        component: WorkforceMasterComponent
                       },
                       {
                         path: 'report',

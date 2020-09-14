@@ -26,6 +26,7 @@ export class RequestInvoiceComponent implements OnInit {
         res =>  this.invoices = res
       )
     }
+    console.log('invoices',this.invoices)
   }
 
   onPay(method: PaymentMethod, amount: number, invoice: number){

@@ -61,6 +61,13 @@
                         <span *ngSwitchCase="UserRole.ADMIN">مدیر</span>
                         <span *ngSwitchCase="UserRole.AUTHOR">نویسنده</span>
                         <span *ngSwitchCase="UserRole.USER">کاربر</span>
+                        <span *ngSwitchCase="UserRole.WORKER">نیرو ساده</span>
+                        <span *ngSwitchCase="UserRole.MASTER">نیرو متخصص</span>
+                        <span *ngSwitchCase="UserRole.EXPERT">کارشناس</span>
+                        <span *ngSwitchCase="UserRole.ACCOUNTANT">حسابدار</span>
+                        <span *ngSwitchCase="UserRole.OPERATOR">اپراتور</span>
+                        <span *ngSwitchCase="UserRole.CONTRACTOR">پیمانکار</span>
+                        <span *ngSwitchDefault>نا مشخص</span>
                       </ng-container>
                     </mat-option>
                   </mat-select>

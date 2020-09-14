@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RequestReportDialogComponent } from './request-report-dialog.component';
 import {SharedModule} from "../../../shared.module";
 import {PipesModule} from "../../../pipes/pipes.module";
+import {RequestReportDialogComponent} from "@app/shared/components/request/request-report-dialog/request-report-dialog.component";
 
 
 

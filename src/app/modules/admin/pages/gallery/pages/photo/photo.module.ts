@@ -14,6 +14,7 @@ import {
   FormDialogComponent,
   ShowDialogComponent
 } from './components';
+import {PipesModule} from "../../../../../../shared/pipes/pipes.module";
 
 @NgModule({
   declarations: [
@@ -22,12 +23,13 @@ import {
     FormDialogComponent,
     ShowDialogComponent
   ],
-  imports: [
-    CommonModule,
-    PhotoRoutingModule,
-    SharedModule,
-    PhotoUploadFormModule,
-    FormsModule
-  ]
+    imports: [
+        CommonModule,
+        PhotoRoutingModule,
+        SharedModule,
+        PhotoUploadFormModule,
+        FormsModule,
+        PipesModule
+    ]
 })
 export class PhotoModule { }

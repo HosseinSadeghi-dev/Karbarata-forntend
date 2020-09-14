@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RequestContext, RequestSimpleContext} from "@app/core/models";
+import { RequestSimpleContext} from "@app/core/models";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {RequestService} from "@app/core/services";
@@ -29,7 +29,6 @@ export class RequestCostComponent implements OnInit {
 
   getRequest(){
     const params = this.activatedRoute.snapshot.params;
-    console.log('param',params)
     if (params.id) {
       this.requestService.findOneRequest(params.id).subscribe(
         res => this.handleRes(res)
@@ -38,11 +37,10 @@ export class RequestCostComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log('cost',this.costFormGroup)
     const params = this.activatedRoute.snapshot.params;
     if (params.id){
       const form = this.costFormGroup.value;
-      this.requestService.saveRequestSimpleCost(params.id, form).subscribe(
+      this.requestService.saveRequestSimpleCost(this.data.id, form).subscribe(
         res => this.getRequest()
       );
     }
@@ -54,10 +52,6 @@ export class RequestCostComponent implements OnInit {
       this.costFormGroup.disable();
       this.costFormGroup.get('cost').setValue(this.data.cost);
     }
-  }
-
-  handleResSubmit(){
-    this.getRequest();
   }
 
 }

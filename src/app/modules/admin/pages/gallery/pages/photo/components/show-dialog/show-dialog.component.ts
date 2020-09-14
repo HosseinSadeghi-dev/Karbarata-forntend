@@ -8,6 +8,7 @@ import {GalleryPhotoContext} from '@app/core/models';
   styleUrls: ['./show-dialog.component.scss']
 })
 export class ShowDialogComponent {
+
   constructor(
     public dialogRef: MatDialogRef<ShowDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public photo: GalleryPhotoContext) {}
@@ -15,4 +16,5 @@ export class ShowDialogComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
+
 }

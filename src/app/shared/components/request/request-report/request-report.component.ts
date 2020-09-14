@@ -3,7 +3,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ActivatedRoute} from "@angular/router";
 import {RequestService} from "@app/core/services";
 import {RequestReportContext, RequestReportType} from "@app/core/models";
-import {RequestReportDialogComponent} from "..";
+import {RequestReportDialogComponent} from "@app/shared/components/request/request-report-dialog/request-report-dialog.component";
 
 @Component({
   selector: 'app-request-report',

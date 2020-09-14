@@ -4,7 +4,7 @@
   <div fxLayout="row" class="mt-4" fxLayoutGap="15px" fxLayoutAlign="space-evenly center">
 
     <button fxFlex.gt-xs="90%" appUserChoose [disabled]="isView" color="accent" class="mb-3 py-3"
-            [roles]="UserRole.CONTRACTOR"
+            [roles]="UserRole.WORKER"
             [multiple]="true"
             [selected]="workforces"
             (click)="$event.preventDefault()"
@@ -18,9 +18,21 @@
       <button mat-mini-fab *ngIf="!isView || isEdit" type="submit" color="primary" (click)="onSubmit()" [disabled]="!stFormGroup.valid">
         <mat-icon>done</mat-icon>
       </button>
-      <button mat-mini-fab *ngIf="isView && !isEdit" color="primary" (click)="$event.preventDefault()">
+
+<!--      <button mat-mini-fab *ngIf="isView && !isEdit" color="primary" (click)="$event.preventDefault()">-->
+<!--        <mat-icon>edit</mat-icon>-->
+<!--      </button>-->
+
+      <button fxFlex.gt-xs="90%" appUserChoose *ngIf="isView && !isEdit" color="primary"
+              [roles]="UserRole.WORKER"
+              [multiple]="true"
+              [selected]="workforces"
+              (click)="$event.preventDefault()"
+              (userUpdated)="getWorkforce($event)"
+              mat-mini-fab>
         <mat-icon>edit</mat-icon>
       </button>
+
     </div>
 
   </div>

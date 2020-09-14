@@ -1,0 +1,74 @@
+
+<form [formGroup]="stFormGroup">
+
+  <div fxLayout="row" class="mt-4" fxLayoutGap="15px" fxLayoutAlign="space-evenly center">
+
+    <button fxFlex.gt-xs="90%" appMasterWorkforceChoose color="accent" class="mb-3 py-3"
+            [workforces]="workforces"
+            [skills]="skills"
+            (click)="$event.preventDefault()"
+            (dataUpdated)="getWorkforce($event)"
+            mat-flat-button>
+      <mat-icon>account_circle</mat-icon>
+      <span class="mr-2">انتخاب نیرو</span>
+    </button>
+
+    <div>
+      <button mat-mini-fab *ngIf="!isView && isEdit" type="submit" color="primary" (click)="onSubmit()" [disabled]="!stFormGroup.valid">
+        <mat-icon>done</mat-icon>
+      </button>
+
+      <button mat-mini-fab *ngIf="isView && !isEdit"  type="submit" color="primary" (click)="onEdit()" [disabled]="!stFormGroup.valid">
+        <mat-icon>done</mat-icon>
+      </button>
+
+<!--      <button fxFlex.gt-xs="90%" appMasterWorkforceChoose [disabled]="isView" color="accent" class="mb-3 py-3"-->
+<!--              [workforces]="workforces"-->
+<!--              (click)="$event.preventDefault()"-->
+<!--              (dataUpdated)="getWorkforce($event)"-->
+<!--              mat-flat-button>-->
+<!--        <mat-icon>account_circle</mat-icon>-->
+<!--        <span class="mr-2">انتخاب نیرو</span>-->
+<!--      </button>-->
+
+    </div>
+
+  </div>
+
+  <div fxLayout="column" *ngIf="workforces.length >= 1">
+
+
+    <mat-accordion fxLayout="column" fxLayoutGap="10px">
+
+      <ng-container *ngFor="let skill of skills" >
+
+        <mat-expansion-panel>
+
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{skill.name}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <ng-container *ngFor="let row of workforces">
+
+            <mat-list *ngIf="row?.skill?.name === skill?.name">
+              <mat-list-item class="text-right">
+                <img matListAvatar [src]="row.user.image | srcImage:'user' " [alt]="row.user.fullName">
+                <p matLine><span> {{row.user.fullName}} </span></p>
+                <p matLine><span> {{row.user.phoneNumber}} </span></p>
+              </mat-list-item>
+            </mat-list>
+
+          </ng-container>
+
+        </mat-expansion-panel>
+
+      </ng-container>
+
+    </mat-accordion>
+
+
+  </div>
+
+</form>

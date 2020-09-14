@@ -9,7 +9,8 @@ import {
 } from "./pages";
 
 import {
-  RequestCostComponent
+  RequestCostComponent,
+  RequestWorkforceComponent
 } from "./containers";
 
 import {
@@ -22,8 +23,7 @@ import {
   RequestStatementFormComponent,
   RequestStatusComponent,
   RequestStatusPerDayComponent,
-  RequestWorkforceComponent
-} from "@app/shared/components/request";
+} from "@app/shared/components";
 
 const routes: Routes = [
   {

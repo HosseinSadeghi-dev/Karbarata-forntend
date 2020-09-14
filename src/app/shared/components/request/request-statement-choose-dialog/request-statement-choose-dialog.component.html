@@ -29,10 +29,12 @@
         <th mat-header-cell *matHeaderCellDef> ردیف </th>
         <td mat-cell *matCellDef="let element;let i = index" data-label="ردیف"> {{i+1}} </td>
       </ng-container>
+
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> شماره درخواست </th>
         <td mat-cell *matCellDef="let element" data-label="شماره درخواست"> {{element.request.id}} </td>
       </ng-container>
+
       <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef> نوع صورت وضعیت </th>
         <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="نوع صورت وضعیت">
@@ -46,11 +48,12 @@
           </mat-chip-list>
         </td>
       </ng-container>
+
       <ng-container matColumnDef="user">
         <th mat-header-cell *matHeaderCellDef> ثبت کننده </th>
         <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="ثبت کننده">
           <button mat-button *ngIf="element.user" [disabled]="element.invoice">
-            <img [src]="element.user.image | srcImage:'user' ">
+            <img [src]="element.user.image | srcImage:'user' " class="img-fluid mr-2 rounded-circle" width="35px">
             <span class="mr-3">{{element.user.fullName}}</span>
           </button>
           <button mat-button *ngIf="!element.user">
@@ -68,7 +71,7 @@
       <ng-container matColumnDef="created">
         <th mat-header-cell *matHeaderCellDef> تاریخ </th>
         <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="تاریخ درخواست">
-          {{app.convertDateFa(element.created)}}
+          {{element?.created | persianDate }}
         </td>
       </ng-container>
 
@@ -79,6 +82,7 @@
     </table>
   </div>
 </div>
+
 <div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-around center">
   <button mat-flat-button color="primary" [disabled]="selection.selected.length === 0" [mat-dialog-close]="selection.selected">{{selection.selected.length}}
     <span>صورت وضعیت انتخاب شده</span>

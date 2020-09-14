@@ -16,7 +16,8 @@ import {
   UserChooseDirective,
   RequestReportFormDirective,
   RequestPaymentBottomSheetDirective,
-  StatusStatementChooseDirective
+  StatusStatementChooseDirective,
+  MasterWorkforceChooseDirective
 } from '@app/shared/directives';
 
 import {PipesModule} from "@app/shared/pipes/pipes.module";
@@ -29,12 +30,13 @@ const directives = [
   UserChooseDirective,
   RequestReportFormDirective,
   RequestPaymentBottomSheetDirective,
-  StatusStatementChooseDirective
+  StatusStatementChooseDirective,
+  MasterWorkforceChooseDirective
 ];
 
 @NgModule({
   declarations: [
-    directives
+    directives,
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,7 @@ const directives = [
     FlexLayoutModule,
     LazyLoadImageModule,
     MaterialModule,
-    directives
+    directives,
   ],
   providers: [
     {provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE]},

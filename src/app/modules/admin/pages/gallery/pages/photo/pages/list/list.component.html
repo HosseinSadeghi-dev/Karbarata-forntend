@@ -26,7 +26,7 @@
                 <div class="view rounded">
                   <img class="img-fluid mx-auto"
                        [defaultImage]="'assets/image/image-loader.svg'"
-                       [lazyLoad]="'https://end.ratabit.com/api/upload/gallery/'+photo.name"
+                       [lazyLoad]="photo.name | srcImage"
                        [alt]="photo.name">
                   <div class="mask" fxLayout="row" fxLayoutAlign=" end">
                     <div class="mr-2 mb-2">

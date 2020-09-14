@@ -34,15 +34,15 @@ export class RequestStatementChooseDialogComponent implements OnInit {
     private requestService: RequestService
   )
   {
-    // if (data.request !== 0) {
-    //   this.requestService.getRequestStatusStatementFilter('request',data.request).subscribe(
-    //     res => this.handleRes(res)
-    //   );
-    // }else {
-    //   this.requestService.getRequestStatusStatementList().subscribe(
-    //     res => this.handleRes(res)
-    //   );
-    // }
+    if (data.request !== 0) {
+      this.requestService.findOneRequestStatusStatementFilter('request',data.request).subscribe(
+        res => this.handleRes(res)
+      );
+    }else {
+      this.requestService.findAllRequestStatementList().subscribe(
+        res => this.handleRes(res)
+      );
+    }
   }
 
   ngOnInit(): void {
@@ -75,7 +75,7 @@ export class RequestStatementChooseDialogComponent implements OnInit {
       this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  checkboxLabel(row) {
+  checkboxLabel(row?) {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }

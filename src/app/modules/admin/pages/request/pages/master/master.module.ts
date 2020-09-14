@@ -12,6 +12,7 @@ import {
   FormComponent,
   ShowComponent,
 } from './pages';
+import {WorkforceMasterComponent} from "./containers";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {
     MainComponent,
     ListComponent,
     FormComponent,
-    ShowComponent
+    ShowComponent,
+    WorkforceMasterComponent
   ],
     imports: [
         CommonModule,
