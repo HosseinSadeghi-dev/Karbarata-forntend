@@ -95,7 +95,6 @@ export class WorkforceMasterComponent implements OnInit {
   }
 
   onEdit(){
-
     const params = this.activatedRoute.snapshot.params;
     if (params.id){
       this.requestService.updateMasterRequestWorkForce(params.id, this.workforces).subscribe(

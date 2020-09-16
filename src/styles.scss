@@ -220,11 +220,91 @@ $theme-warn: mat-palette($mat-warn, main, lighter, darker);;
 $theme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
 $altTheme: mat-dark-theme($theme-primary, $theme-accent-dark, $theme-warn);
 
+@mixin field($theme){
+  $primary : map-get($theme, primary);
+  $accent : map-get($theme, accent);
+  .field{
+    //color: mat-color($primary) !important;
+    //background-color: mat-color($accent) !important;
+    //padding: 15px 0 !important;
+    font-size: 35px !important;
+    border-style: none !important;
+    border-image: none !important;
+    border-width: 0 !important;
+    appearance: none !important;
+    outline: none !important;
+  }
+}
+
+@mixin stepper($theme){
+  $primary : map-get($theme, primary);
+  $accent : map-get($theme, accent);
+
+  .stepper{
+
+    //@include mat-stepper-theme($theme);
+
+    &__step {
+      mat-hint{
+        color: white !important;
+      }
+
+      //h1, h2, h3, h4, h5, h6, span{
+      //}
+    }
+
+
+    .headline-text:before {
+      display: inline-block;
+      content: "";
+      border-top: .15rem solid mat-color($primary);
+      width: 4rem;
+      margin-right: 5px;
+      transform: translateY(-0.27rem);
+    }
+
+    .top-border:before {
+      display: block;
+      content: "";
+      border-top: .15rem solid mat-color($primary);
+      width: 9rem;
+      margin-top: 10px;
+    }
+
+    mat-button-toggle{
+      background-color: mat-color($mat-accent) !important;
+      border: none !important;
+    }
+
+    img{
+      //fill: red !important;
+      filter: invert(1) !important;
+    }
+
+    input{
+      color: mat-color($primary);
+      background-color: transparent !important;
+    }
+
+
+    .mat-button-toggle-checked{
+      border: outset mat-color($primary) !important;
+      background-color: mat-color($accent) !important;
+    }
+
+  }
+
+}
+
 // Theme Init
 @include angular-material-theme($theme);
+@include stepper($theme);
+@include field($theme);
 
 .theme-alternate {
   @include angular-material-theme($altTheme);
+  @include stepper($altTheme);
+  @include field($altTheme);
 }
 
 
@@ -722,23 +802,6 @@ app-component-sidenav {
 textarea {
   resize: none !important;
 }
-
-@mixin field($theme){
-  $primary : map-get($theme, primary);
-  $accent : map-get($theme, accent);
-  .field{
-    //color: mat-color($primary) !important;
-    //background-color: mat-color($accent) !important;
-    //padding: 15px 0 !important;
-    font-size: 35px !important;
-    border-style: none !important;
-    border-image: none !important;
-    border-width: 0 !important;
-    appearance: none !important;
-    outline: none !important;
-  }
-}
-@include field($theme);
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

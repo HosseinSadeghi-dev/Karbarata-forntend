@@ -11,6 +11,7 @@ import {
 } from './pages';
 import { SimpleComponent } from './pages/simple/simple.component';
 import { MasterComponent } from './pages/master/master.component';
+import {DayCounterModule} from "../../shared/components";
 
 
 @NgModule({
@@ -19,12 +20,13 @@ import { MasterComponent } from './pages/master/master.component';
     SimpleComponent,
     MasterComponent
   ],
-  imports: [
-    CommonModule,
-    RequestRoutingModule,
-    SharedModule,
-    PipesModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        RequestRoutingModule,
+        SharedModule,
+        PipesModule,
+        ReactiveFormsModule,
+        DayCounterModule
+    ]
 })
 export class RequestModule { }

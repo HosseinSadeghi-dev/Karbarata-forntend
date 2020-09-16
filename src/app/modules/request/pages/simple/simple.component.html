@@ -1,10 +1,10 @@
-<div fxLayout="row">
+<div fxLayout="row" class="stepper">
 
   <div fxLayout="column" fxFlex="30%" style="background-color: #0D47A1" class="container">
 
     <div fxLayout="column" fxLayoutAlign="space-around center">
       <form [formGroup]="stFormGroup">
-        <mat-vertical-stepper style="background-color: #0D47A1;color: white">
+        <mat-vertical-stepper class="stepper__step" style="background-color: #0D47A1;color: white">
 
           <ng-template matStepperIcon>
             <mat-icon>edit</mat-icon>
@@ -14,16 +14,16 @@
                      label="انتخاب دسته"
 
                      [stepControl]="stFormGroup.controls.typeForm">
-            <ng-template matste>
+            <mat-hint>
                 دسته بندی مورد نظر خود را انتخاب کنید
                 و نوع اجرا یا را انتخاب کنید
-            </ng-template>
+            </mat-hint>
 
 
           </mat-step>
 
           <mat-step  fxLayout="column"
-                     label="انتخاب دسته"
+                     label="مدت زمان درخواست"
                      [stepControl]="stFormGroup.controls.durationForm">
 
             <mat-hint>
@@ -34,7 +34,7 @@
           </mat-step>
 
           <mat-step  fxLayout="column"
-                     label="انتخاب دسته"
+                     label="مکان درخواست"
                      [stepControl]="stFormGroup.controls.locationForm">
 
             <mat-hint>
@@ -45,7 +45,7 @@
           </mat-step>
 
           <mat-step  fxLayout="column"
-                     label="انتخاب دسته"
+                     label="تایید درخواست"
                      [stepControl]="stFormGroup.controls.confirmForm">
 
             <mat-hint>
@@ -68,7 +68,71 @@
 
   </div>
 
-  <div fxLayout="column" fxFlex="70%" style="background-color: #303030">
+  <div fxLayout="column" fxFlex="70%" dir="rtl">
+
+
+      <form fxLayout="column" class="my-2 mx-5" [formGroup]="stFormGroup">
+
+        <div fxLayoutAlign="start center">
+          <h2>
+            درخواست انتخاب شده
+          </h2>
+        </div>
+
+        <div fxLayoutAlign="start center" fxFlexOffset="1%">
+          <h3 class="headline-text">
+            نیرو ساده
+          </h3>
+        </div>
+
+        <div fxLayoutAlign="start center" fxFlexOffset="2%">
+          <h2>
+            انتخاب نوع درخواست
+          </h2>
+        </div>
+
+        <div fxLayoutAlign="space-around center" fxFlexOffset="2%" formGroupName="typeForm">
+
+          <mat-button-toggle-group fxLayoutGap="12px" formControlName="type">
+
+            <mat-button-toggle value="daily">
+              <img src="assets/image/Group%2087.svg" class="p-2" alt="daily">
+              <span class="top-border">
+              روزمزد
+            </span>
+            </mat-button-toggle>
+
+            <mat-button-toggle value="contractor">
+              <img src="assets/image/home.svg" class="p-2" alt="contractor">
+              <span class="top-border">
+              قراردادی
+            </span>
+            </mat-button-toggle>
+
+          </mat-button-toggle-group>
+
+          <div class="py-1 px-2 text-center" fxFlex="35%">
+            <app-day-counter formControlName="quantity" [type]="'نفر'"></app-day-counter>
+            <span class="mat-small mat-hint">
+                تعداد نیرو مورد نیاز
+                </span>
+          </div>
+
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="end center">
+
+          <button mat-flat-button [disabled]="!stFormGroup.controls['typeForm'].valid" (click)="check()" color="primary">
+            مرحله بعد
+          </button>
+
+          <button mat-raised-button disabled>
+            مرحله قبل
+          </button>
+
+        </div>
+
+      </form>
 
   </div>
 

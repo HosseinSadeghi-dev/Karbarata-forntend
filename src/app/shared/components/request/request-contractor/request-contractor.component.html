@@ -2,7 +2,7 @@
 <form [formGroup]="stFormGroup" (ngSubmit)="onSubmit()">
 
   <div fxLayout="row" class="mt-4" fxLayoutGap="15px" fxLayoutAlign="space-evenly center">
-    <button fxFlex.gt-xs="90%" appUserChoose [disabled]="isView" color="accent" class="mb-3 py-3"
+    <button fxFlex.gt-xs="90%" appUserChoose color="accent" class="mb-3 py-3"
             [roles]="UserRole.CONTRACTOR"
             [multiple]="true"
             [selected]="contractors"
@@ -17,7 +17,7 @@
       <button mat-mini-fab *ngIf="!isView || isEdit" type="submit" color="primary" (click)="onSubmit()" [disabled]="!stFormGroup.valid">
         <mat-icon>done</mat-icon>
       </button>
-      <button mat-mini-fab *ngIf="isView && !isEdit" color="primary" (click)="$event.preventDefault()">
+      <button mat-mini-fab *ngIf="isView && !isEdit" color="primary" (click)="$event.preventDefault();onSubmit()" [disabled]="!stFormGroup.valid">
         <mat-icon>edit</mat-icon>
       </button>
     </div>

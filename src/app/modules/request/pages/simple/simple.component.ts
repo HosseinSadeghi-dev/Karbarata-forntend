@@ -45,5 +45,9 @@ export class SimpleComponent implements OnInit {
     })
   }
 
+  check(){
+    console.log('form',this.stFormGroup.controls['typeForm'].value)
+  }
+
 
 }
