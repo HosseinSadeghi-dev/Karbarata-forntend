@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {PipesModule} from "../../../pipes/pipes.module";
 import {SharedModule} from "../../../shared.module";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RequestWorkforceMasterComponent} from "./request-workforce-master.component";
 
 
@@ -13,7 +13,8 @@ import {RequestWorkforceMasterComponent} from "./request-workforce-master.compon
     CommonModule,
     PipesModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
   ]
 })
 export class RequestWorkforceMasterModule { }

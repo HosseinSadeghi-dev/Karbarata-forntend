@@ -5,7 +5,7 @@
       <button-card class="mr-auto" (reloadEvent)="getList()" [data]="[{
         label: 'مهارت جدید',
         icon: 'add',
-        url: 'admin/workforce/master/skill/create'
+        url: 'create'
        }]"></button-card>
     </mat-card-header>
     <mat-card-content>
@@ -78,7 +78,10 @@
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef> کنترل </th>
             <td mat-cell *matCellDef="let element" data-label="کنترل">
-              <button-table [isEdit]="{url: element.slug}"></button-table>
+<!--              <button-table [isEdit]="{url: element.slug}"></button-table>-->
+              <button mat-icon-button [routerLink]="element.slug">
+                <mat-icon>edit</mat-icon>
+              </button>
             </td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

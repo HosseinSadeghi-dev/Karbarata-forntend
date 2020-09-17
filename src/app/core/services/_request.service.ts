@@ -155,6 +155,12 @@ export class RequestService {
       catchError((error: HttpErrorResponse) => throwError(error))
     );
   }
+  deleteMasterRequestWorkForce(id, data){
+    return this.httpClient.delete(`/request/${id}/master/workforce`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
   updateMasterRequestWorkForce(id, data){
     return this.httpClient.put(`/request/${id}/master/workforce`,data).pipe(
       map((response: any) => response),

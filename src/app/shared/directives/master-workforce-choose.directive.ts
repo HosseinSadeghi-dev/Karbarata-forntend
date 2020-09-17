@@ -10,6 +10,7 @@ export class MasterWorkforceChooseDirective {
 
   @Input() workforces: RequestMasterWorkforceContext[] = [];
   @Input() skills: MasterSkillContext[] = [];
+  @Input() id: number
   @Output() private dataUpdated = new EventEmitter();
 
   constructor(
@@ -20,10 +21,11 @@ export class MasterWorkforceChooseDirective {
     const dialogRef = this.dialog.open(RequestWorkforceMasterComponent, {
       width: '1200px',
       height: '550px',
-      // panelClass: 'custom-dialog-container',
+      // panelClass: 'custom-dialog',
       data: {
         workforces: this.workforces,
-        skills: this.skills
+        skills: this.skills,
+        id: this.id
       }
     });
     dialogRef.afterClosed().subscribe(result => {

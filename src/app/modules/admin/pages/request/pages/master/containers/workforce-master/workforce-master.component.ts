@@ -64,12 +64,9 @@ export class WorkforceMasterComponent implements OnInit {
   }
 
   getWorkforce(res){
-    console.log("res",res)
     this.workforces = res;
     let skill : string = '';
     // this.workforces.forEach(row => selectedUsers.push(String(row.id)));
-
-    console.log('workforces',this.workforces)
 
     this.workforces.forEach(row =>
       this.selectedUsers.push( row.user )

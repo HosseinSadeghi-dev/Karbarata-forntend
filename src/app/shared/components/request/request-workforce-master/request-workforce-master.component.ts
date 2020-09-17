@@ -1,28 +1,31 @@
-import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {MasterSkillContext, ProfileContext, RequestMasterWorkforceContext, UserRole} from "@app/core/models";
 import {SelectionModel} from "@angular/cdk/collections";
 import {MatPaginator} from "@angular/material/paginator";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ActivatedRoute} from "@angular/router";
-import {UserService, WorkforceService} from "@app/core/services";
+import {ActivatedRoute, Router} from "@angular/router";
+import {RequestService, UserService, WorkforceService} from "@app/core/services";
+import {logger} from "codelyzer/util/logger";
 
 export interface dialogContext {
   workforces?: RequestMasterWorkforceContext[],
-  skills?: MasterSkillContext[]
+  skills?: MasterSkillContext[],
+  id?: number
 }
 
 @Component({
   selector: 'app-request-workforce-master',
   templateUrl: './request-workforce-master.component.html',
-  styleUrls: ['./request-workforce-master.component.scss']
+  styleUrls: ['./request-workforce-master.component.scss'],
 })
 export class RequestWorkforceMasterComponent implements OnInit {
 
   skills: MasterSkillContext[] = [];
   selectedUsers: ProfileContext[] = [];
   users: ProfileContext[] = [];
-  choosed: MasterSkillContext;
+  choosedSkill: MasterSkillContext;
+  choosedUser: ProfileContext;
   displayedColumns: string[] = ['select', 'id', 'name','phoneNumber', 'experience', 'primary','secondary'];
   dataSource = new MatTableDataSource<ProfileContext>([]);
   selection = new SelectionModel<ProfileContext>(true, []);
@@ -35,7 +38,9 @@ export class RequestWorkforceMasterComponent implements OnInit {
     public dialogRef: MatDialogRef<RequestWorkforceMasterComponent>,
     @Inject(MAT_DIALOG_DATA) public data: dialogContext,
     private activatedRoute: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private requestService: RequestService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -46,8 +51,8 @@ export class RequestWorkforceMasterComponent implements OnInit {
 
     this.skills = this.data.skills
 
-    this.choosed = this.skills[0];
-    this.getWorkforces(this.skills[0].slug)
+    // this.choosedSkill = this.skills[0];
+    // this.getWorkforces(this.skills[0].slug)
   }
 
   getWorkforces(data: string){
@@ -57,6 +62,9 @@ export class RequestWorkforceMasterComponent implements OnInit {
   }
 
   handleRes(res,skill){
+
+    this.choosedUser = null;
+
     this.users = res;
 
     this.dataSource = new MatTableDataSource<ProfileContext>(this.users);
@@ -103,6 +111,7 @@ export class RequestWorkforceMasterComponent implements OnInit {
     //
     // console.log('selection',this.selectedUsers)
 
+
     //////////////////////////
 
     // this.selection.selected.forEach(row => {
@@ -119,51 +128,72 @@ export class RequestWorkforceMasterComponent implements OnInit {
 
   }
 
-  checkbox(event){
-    console.log('event',event)
-
-    ///source.name = user.id
-
-    if(event.checked){
-      console.log('yap')
-      this.data.workforces.push(
-        {
-          user: this.users.find(value => value.id === event.source.name),
-          skill: this.choosed
-        }
-      )
-    }
-    else{
-      console.log('nope')
-      this.data.workforces = this.data.workforces.filter(obj => obj.user.id !== event.source.name)
-    }
-
-    console.log('data',this.data)
-  }
-
-
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
-  masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
-    // this.dataSource.data.forEach(row => this.selection.select(row));
-  }
-
-  checkboxLabel(row?: ProfileContext): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
-  }
+  // checkbox(event){
+  //   console.log('event',event)
+  //
+  //   ///source.name = user.id
+  //
+  //   if(event.checked){
+  //     console.log('yap')
+  //     this.data.workforces.push(
+  //       {
+  //         user: this.users.find(value => value.id === event.source.name),
+  //         skill: this.choosedSkill
+  //       }
+  //     )
+  //   }
+  //   else{
+  //     console.log('nope')
+  //     this.data.workforces = this.data.workforces.filter(obj => obj.user.id !== event.source.name)
+  //   }
+  //
+  //   console.log('data',this.data)
+  // }
+  // isAllSelected() {
+  //   const numSelected = this.selection.selected.length;
+  //   const numRows = this.dataSource.data.length;
+  //   return numSelected === numRows;
+  // }
+  //
+  // masterToggle() {
+  //   this.isAllSelected() ?
+  //     this.selection.clear() :
+  //     this.dataSource.data.forEach(row => this.selection.select(row));
+  //   // this.dataSource.data.forEach(row => this.selection.select(row));
+  // }
+  //
+  // checkboxLabel(row?: ProfileContext): string {
+  //   if (!row) {
+  //     return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+  //   }
+  //   return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+  // }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  check(user: ProfileContext){
+    this.choosedUser = user;
+  }
+
+  onSubmit(){
+
+    let workforce: RequestMasterWorkforceContext = {
+      user: this.choosedUser,
+      skill: this.choosedSkill
+    }
+
+    this.requestService.saveMasterRequestWorkForce(this.data.id, workforce).subscribe(
+      // res => this.router.navigateByUrl(`/admin/request/master/${params.id}`)
+    )
+  }
+
+  onDelete(data){
+    console.log('delete',data)
+    this.requestService.deleteMasterRequestWorkForce(this.data.id, data).subscribe(
+      // res => this.router.navigateByUrl(`/admin/request/master/${params.id}`)
+    )
   }
 
 }
