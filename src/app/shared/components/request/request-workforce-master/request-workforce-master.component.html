@@ -18,7 +18,7 @@
 
           <ng-container *ngFor="let skill of skills" >
 
-            <mat-expansion-panel hideToggle>
+            <mat-expansion-panel >
 
             <mat-expansion-panel-header>
               <mat-panel-title>
@@ -51,7 +51,7 @@
                   </mat-list-item>
 
                   <div fxLayout="row" fxLayoutAlign="space-between center">
-                    <button mat-icon-button color="accent" aria-label="edit">
+                    <button mat-icon-button (click)="getWorkforces(skill.slug);choosedSkill = skill" color="accent" aria-label="edit">
                       <mat-icon>edit</mat-icon>
                     </button>
 
@@ -102,8 +102,10 @@
 <!--                        [aria-label]="checkboxLabel(row)">-->
 <!--          </mat-checkbox>-->
           <mat-radio-button
-            (click)="check(row)"
+            (change)="check($event)"
             [value]="row"
+            [checked]="selection.isSelected(row)"
+            [disabled]="selection.isSelected(row)"
             color="primary">
           </mat-radio-button>
         </td>

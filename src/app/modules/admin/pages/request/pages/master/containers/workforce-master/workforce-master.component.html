@@ -6,7 +6,7 @@
     <button fxFlex.gt-xs="90%" appMasterWorkforceChoose color="accent" class="mb-3 py-3"
             [workforces]="workforces"
             [skills]="skills"
-            [id]="requestMaster?.id"
+            [id]="params.id"
             (click)="$event.preventDefault()"
             (dataUpdated)="getWorkforce($event)"
             mat-flat-button>

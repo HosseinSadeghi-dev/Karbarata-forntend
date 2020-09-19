@@ -55,7 +55,7 @@ export class FormComponent implements OnInit {
         address: ['', Validators.required],
         houseNumber: ['', Validators.required],
         description: [''],
-        isForce: [false],
+        isForce: [],
         serviceDate: ['', Validators.required],
       }),
 
@@ -88,7 +88,7 @@ export class FormComponent implements OnInit {
       );
     }else {
       this.requestService.saveMasterRequest(masterRequest).subscribe(
-        res => this.router.navigateByUrl(`/admin/request/master/${params.id}`)
+        res => this.router.navigateByUrl(`/admin/request/master`)
       );
 
     }

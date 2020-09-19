@@ -173,8 +173,9 @@ export class RequestWorkforceMasterComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  check(user: ProfileContext){
-    this.choosedUser = user;
+  check(user){
+    // console.log('user',user.value)
+    this.choosedUser = user.value;
   }
 
   onSubmit(){
@@ -185,15 +186,19 @@ export class RequestWorkforceMasterComponent implements OnInit {
     }
 
     this.requestService.saveMasterRequestWorkForce(this.data.id, workforce).subscribe(
-      // res => this.router.navigateByUrl(`/admin/request/master/${params.id}`)
+      // res => this.router.navigateByUrl(`/admin/request/master/${this.data.id}`)
     )
   }
 
   onDelete(data){
     console.log('delete',data)
-    this.requestService.deleteMasterRequestWorkForce(this.data.id, data).subscribe(
-      // res => this.router.navigateByUrl(`/admin/request/master/${params.id}`)
-    )
+    // this.requestService.deleteMasterRequestWorkForce(this.data.id, data).subscribe(
+    //   res => this.router.navigateByUrl(`/admin/request/master/${this.data.id}`)
+    // )
+  }
+
+  onEdit(){
+
   }
 
 }

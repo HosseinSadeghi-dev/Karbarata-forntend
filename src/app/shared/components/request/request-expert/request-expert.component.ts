@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProfileContext, UserRole} from "@app/core/models";
 import {RequestService} from "@app/core/services";
@@ -10,6 +10,7 @@ import {RequestService} from "@app/core/services";
 })
 export class RequestExpertComponent implements OnInit {
 
+  type: any;
   data: ProfileContext;
   isView: boolean;
 
@@ -20,6 +21,8 @@ export class RequestExpertComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.type = this.activatedRoute.data;
+
     const params = this.activatedRoute.snapshot.params;
     if (params.id){
       this.requestService.findOneRequestExpert(params.id).subscribe(
@@ -32,7 +35,12 @@ export class RequestExpertComponent implements OnInit {
     const params = this.activatedRoute.snapshot.params;
     if (params.id){
       this.requestService.saveRequestExpert(params.id,{user: res.id}).subscribe(
-        res => this.router.navigateByUrl(`/admin/request/simple/${params.id}`)
+        res => {
+          if (this.type.value.type === 'master')
+            this.router.navigateByUrl(`/admin/request/master/${params.id}`)
+          else
+            this.router.navigateByUrl(`/admin/request/simple/${params.id}`)
+        }
       )
     }
   }

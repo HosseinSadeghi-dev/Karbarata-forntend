@@ -22,6 +22,7 @@ export class WorkforceMasterComponent implements OnInit {
   workforces: RequestMasterWorkforceContext[] = [];
   selectedUsers: ProfileContext[] = [];
   stFormGroup: FormGroup;
+  params: any
   isView: boolean;
   isEdit: boolean;
 
@@ -43,9 +44,9 @@ export class WorkforceMasterComponent implements OnInit {
   }
 
   getWorkforces(){
-    const params = this.activatedRoute.snapshot.params;
-    if (params.id){
-      this.requestService.findOneMasterRequestWorkForce(params.id).subscribe(
+    this.params = this.activatedRoute.snapshot.params;
+    if (this.params.id){
+      this.requestService.findOneMasterRequestWorkForce(this.params.id).subscribe(
         res => this.handleRes(res)
       )
     }
