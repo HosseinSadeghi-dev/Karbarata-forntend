@@ -1,10 +1,16 @@
 <mat-chip-list>
   <ng-container *ngFor="let role of roles">
     <ng-container [ngSwitch]="role">
-      <mat-chip class="mr-1" *ngSwitchCase="UserRole.ADMIN" selected>مدیر</mat-chip>
-      <mat-chip class="mr-1" *ngSwitchCase="UserRole.AUTHOR">نویسنده</mat-chip>
-      <mat-chip class="mr-1" *ngSwitchCase="UserRole.USER">کاربر</mat-chip>
-      <mat-chip class="mr-1" *ngSwitchDefault>نامشخص</mat-chip>
+      <mat-chip *ngSwitchCase="UserRole.ADMIN" selected>مدیر</mat-chip>
+      <mat-chip *ngSwitchCase="UserRole.AUTHOR">نویسنده</mat-chip>
+      <mat-chip *ngSwitchCase="UserRole.USER">کاربر</mat-chip>
+      <mat-chip *ngSwitchCase="UserRole.WORKER">نیرو ساده</mat-chip>
+      <mat-chip *ngSwitchCase="UserRole.MASTER">نیرو متخصص</mat-chip>
+      <mat-chip *ngSwitchCase="UserRole.EXPERT">کارشناس</mat-chip>
+      <mat-chip *ngSwitchCase="UserRole.ACCOUNTANT">حسابدار</mat-chip>
+      <mat-chip *ngSwitchCase="UserRole.OPERATOR">اپراتور</mat-chip>
+      <mat-chip *ngSwitchCase="UserRole.CONTRACTOR">پیمانکار</mat-chip>
+      <mat-chip *ngSwitchDefault>نا مشخص</mat-chip>
     </ng-container>
   </ng-container>
 </mat-chip-list>
