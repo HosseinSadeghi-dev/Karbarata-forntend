@@ -13,12 +13,12 @@ import {
 } from "./pages";
 
 import {
-  AccessorEditorModule,
-  ArticleFavoriteButtonModule,
-  PhotoChooseModule,
-  TagInputModule,
-  UserButtonModule,
-  UserListItemModule
+    AccessorEditorModule,
+    ArticleFavoriteButtonModule, ButtonCardModule,
+    PhotoChooseModule,
+    TagInputModule,
+    UserButtonModule,
+    UserListItemModule
 } from '@app/shared/components';
 
 @NgModule({
@@ -28,19 +28,20 @@ import {
     FormComponent,
 
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    ArticleFavoriteButtonModule,
-    UserButtonModule,
-    ReactiveFormsModule,
-    PhotoChooseModule,
-    UserRoutingModule,
-    UserListItemModule,
-    TagInputModule,
-    AccessorEditorModule,
-    RouterModule,
-    PipesModule
-  ]
+    imports: [
+        CommonModule,
+        SharedModule,
+        ArticleFavoriteButtonModule,
+        UserButtonModule,
+        ReactiveFormsModule,
+        PhotoChooseModule,
+        UserRoutingModule,
+        UserListItemModule,
+        TagInputModule,
+        AccessorEditorModule,
+        RouterModule,
+        PipesModule,
+        ButtonCardModule
+    ]
 })
 export class UserModule { }

@@ -4,9 +4,11 @@
       <mat-card>
         <mat-card-header>
           <mat-card-title>لیست کاربران</mat-card-title>
-          <button mat-icon-button (click)="getList()" class="mr-auto">
-            <mat-icon>refresh</mat-icon>
-          </button>
+          <button-card class="mr-auto" (reloadEvent)="getList()" [data]="[{
+        label: 'نیرو ساده جدید',
+        icon: 'add',
+        url: 'create'
+       }]"></button-card>
         </mat-card-header>
         <mat-card-content>
           <div fxLayout="column" fxLayoutGap="15px">

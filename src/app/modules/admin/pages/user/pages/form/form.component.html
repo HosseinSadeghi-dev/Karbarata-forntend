@@ -56,7 +56,10 @@
                 <mat-form-field fxFlex="50%" fxFlex.gt-md="50%" color="primary" appearance="fill">
                   <mat-label>سطح دسترسی</mat-label>
                   <mat-select formControlName="roles" multiple required>
-                    <mat-option *ngFor="let role of UserRole | enumToArray" [value]="role">
+                    <mat-option
+                      *ngFor="let role of UserRole | enumToArray"
+                      [value]="role"
+                      [disabled]="role !== UserRole.USER && role !== UserRole.AUTHOR">
                       <ng-container [ngSwitch]="role">
                         <span *ngSwitchCase="UserRole.ADMIN">مدیر</span>
                         <span *ngSwitchCase="UserRole.AUTHOR">نویسنده</span>
