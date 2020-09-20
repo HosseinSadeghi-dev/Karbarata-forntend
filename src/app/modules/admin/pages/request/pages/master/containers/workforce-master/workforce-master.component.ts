@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {RequestService} from "@app/core/services";
+import {RequestService, UserService} from "@app/core/services";
 import {
   MasterSkillContext,
   ProfileContext,
@@ -9,6 +9,9 @@ import {
   RequestMasterWorkforceContext,
   UserRole
 } from "@app/core/models";
+import {MatTableDataSource} from "@angular/material/table";
+import {SelectionModel} from "@angular/cdk/collections";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-request-workforce-master',
@@ -17,34 +20,35 @@ import {
 })
 export class WorkforceMasterComponent implements OnInit {
 
-  skills: MasterSkillContext[] = [];
   requestMaster: RequestMasterContext
-  workforces: RequestMasterWorkforceContext[] = [];
   selectedUsers: ProfileContext[] = [];
-  stFormGroup: FormGroup;
-  params: any
-  isView: boolean;
-  isEdit: boolean;
+  isEdit: boolean = false;
+  users: ProfileContext[] = [];
+  choosedSkill: MasterSkillContext;
+  choosedUser: ProfileContext;
+  prev: RequestMasterWorkforceContext;
+  params: any;
+  displayedColumns: string[] = ['select', 'id', 'name','phoneNumber', 'experience', 'primary','secondary'];
+  dataSource = new MatTableDataSource<ProfileContext>([]);
+  selection = new SelectionModel<ProfileContext>(true, []);
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
   constructor(
-    private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
+    private userService: UserService,
     private requestService: RequestService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-
-    this.getWorkforces();
-
-    this.stFormGroup = this.formBuilder.group({
-      skill:[],
-      workforces: [[], [Validators.required]],
-    });
+    this.params = this.activatedRoute.snapshot.params
+    this.getWorkforcesByRequest();
   }
 
-  getWorkforces(){
-    this.params = this.activatedRoute.snapshot.params;
+  getWorkforcesByRequest(){
     if (this.params.id){
       this.requestService.findOneMasterRequestWorkForce(this.params.id).subscribe(
         res => this.handleRes(res)
@@ -53,52 +57,71 @@ export class WorkforceMasterComponent implements OnInit {
   }
 
   handleRes(res: RequestMasterContext){
-    // console.log('master',res);
     this.requestMaster = res
-
-    res.workforces.length !== 0 && (this.isView = true);
-
-    this.workforces = res.workforces;
-    this.skills = res.skills
-
-    this.getWorkforce(this.workforces);
   }
 
-  getWorkforce(res){
-    this.workforces = res;
-    let skill : string = '';
-    // this.workforces.forEach(row => selectedUsers.push(String(row.id)));
+  getWorkforcesBySkill(data: string){
+    this.userService
+      .findAllUser('skill',data)
+      .subscribe(res => this.handleTable(res,data))
+  }
 
-    this.workforces.forEach(row =>
-      this.selectedUsers.push( row.user )
-    );
+  handleTable(res,skill){
 
-    this.workforces.forEach(row =>
-      skill = row.skill.name
+    this.choosedUser = null;
+
+    this.users = res;
+
+    this.dataSource = new MatTableDataSource<ProfileContext>(this.users);
+
+    this.requestMaster.skills.forEach(
+      row => {
+        if (row.slug === skill){
+          this.requestMaster.workforces.forEach(
+            each => {
+              if(each.skill.slug === row.slug)
+              {
+                this.selectedUsers.push(this.users.find(i => i.id === each.user.id));
+              }
+            }
+          )
+        }
+      }
     )
 
-    // console.log('selected',selectedUsers);
-    this.stFormGroup.get('workforces').setValue(this.selectedUsers);
-    this.stFormGroup.get('skill').setValue(skill);
+    this.selection = new SelectionModel<ProfileContext>(true, this.selectedUsers);
   }
 
+  check(user){
+    this.choosedUser = user.value;
+  }
 
   onSubmit(){
-    const params = this.activatedRoute.snapshot.params;
-    if (params.id){
-      this.requestService.saveMasterRequestWorkForce(params.id, this.workforces).subscribe(
-        res => this.router.navigateByUrl(`/admin/request/master/${params.id}`)
+
+    let workforce: RequestMasterWorkforceContext = {
+      user: this.choosedUser,
+      skill: this.choosedSkill
+    }
+
+    if(this.isEdit){
+      console.log(this.prev)
+      this.requestService.updateMasterRequestWorkForce(this.params.id, workforce, this.prev.id).subscribe(
+        () => this.getWorkforcesByRequest()
+      )
+    }
+    else {
+      this.requestService.saveMasterRequestWorkForce(this.params.id, workforce).subscribe(
+        // res => this.router.navigateByUrl(`/admin/request/master/${this.data.id}`)
+        () => this.getWorkforcesByRequest()
       )
     }
   }
 
-  onEdit(){
-    const params = this.activatedRoute.snapshot.params;
-    if (params.id){
-      this.requestService.updateMasterRequestWorkForce(params.id, this.workforces).subscribe(
-        res => this.router.navigateByUrl(`/admin/request/master/${params.id}`)
-      )
-    }
+  onDelete(data){
+    console.log('delete',data)
+    this.requestService.deleteMasterRequestWorkForce(this.params.id, data.id).subscribe(
+      () => this.getWorkforcesByRequest()
+    )
   }
 
   public get UserRole() {

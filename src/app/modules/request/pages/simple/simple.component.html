@@ -4,7 +4,7 @@
 
     <div fxLayout="column" fxLayoutAlign="space-around center">
       <form [formGroup]="stFormGroup">
-        <mat-vertical-stepper class="stepper__step" style="background-color: #0D47A1;color: white">
+        <mat-vertical-stepper class="stepper__step" style="background-color: #0D47A1;color: white" #stepper>
 
           <ng-template matStepperIcon>
             <mat-icon>edit</mat-icon>
@@ -73,60 +73,141 @@
 
       <form fxLayout="column" class="my-2 mx-5" [formGroup]="stFormGroup">
 
-        <div fxLayoutAlign="start center">
-          <h2>
-            درخواست انتخاب شده
-          </h2>
-        </div>
+        <div fxLayout="column" *ngIf="stepIndex === 0">
+          <div fxLayoutAlign="start center">
+            <h2>
+              درخواست انتخاب شده
+            </h2>
+          </div>
 
-        <div fxLayoutAlign="start center" fxFlexOffset="1%">
-          <h3 class="headline-text">
-            نیرو ساده
-          </h3>
-        </div>
+          <div fxLayoutAlign="start center" fxFlexOffset="1%">
+            <h3 class="headline-text">
+              نیرو ساده
+            </h3>
+          </div>
 
-        <div fxLayoutAlign="start center" fxFlexOffset="2%">
-          <h2>
-            انتخاب نوع درخواست
-          </h2>
-        </div>
+          <div fxLayoutAlign="start center" fxFlexOffset="2%">
+            <h2>
+              انتخاب نوع درخواست
+            </h2>
+          </div>
 
-        <div fxLayoutAlign="space-around center" fxFlexOffset="2%" formGroupName="typeForm">
+          <div fxLayoutAlign="space-around center" fxFlexOffset="2%" formGroupName="typeForm">
 
-          <mat-button-toggle-group fxLayoutGap="12px" formControlName="type">
+            <mat-button-toggle-group fxLayoutGap="12px" formControlName="type">
 
-            <mat-button-toggle value="daily">
-              <img src="assets/image/Group%2087.svg" class="p-2" alt="daily">
-              <span class="top-border">
+              <mat-button-toggle value="daily">
+                <img src="assets/image/Group%2087.svg" class="p-2" alt="daily">
+                <span class="top-border">
               روزمزد
             </span>
-            </mat-button-toggle>
+              </mat-button-toggle>
 
-            <mat-button-toggle value="contractor">
-              <img src="assets/image/home.svg" class="p-2" alt="contractor">
-              <span class="top-border">
+              <mat-button-toggle value="contractor">
+                <img src="assets/image/home.svg" class="p-2" alt="contractor">
+                <span class="top-border">
               قراردادی
             </span>
-            </mat-button-toggle>
+              </mat-button-toggle>
 
-          </mat-button-toggle-group>
+            </mat-button-toggle-group>
 
-          <div class="py-1 px-2 text-center" fxFlex="35%">
-            <app-day-counter formControlName="quantity" [type]="'نفر'"></app-day-counter>
-            <span class="mat-small mat-hint">
+            <div class="py-1 px-2 text-center" fxFlex="35%">
+              <app-day-counter formControlName="quantity" [type]="'نفر'"></app-day-counter>
+              <span class="mat-small mat-hint">
                 تعداد نیرو مورد نیاز
                 </span>
+            </div>
+
           </div>
+        </div>
+
+        <div fxLayout="column" *ngIf="stepIndex === 1">
+
+        </div>
+
+        <div fxLayout="column" *ngIf="stepIndex === 2">
+          <form formGroupName="locationForm">
+
+            <div fxLayout="column">
+              <h3>متراژ تقریبی به متر</h3>
+
+              <mat-form-field appearance="outline">
+                <mat-label>متراژ</mat-label>
+                <input matInput formControlName="approximateArea" type="number" required>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="column">
+              <h3>آدرس</h3>
+
+              <mat-form-field appearance="outline">
+                <mat-label>آدرس</mat-label>
+                <input matInput formControlName="address" required>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="column">
+              <h3>پلاک</h3>
+
+              <mat-form-field appearance="outline">
+                <mat-label>پلاک</mat-label>
+                <input matInput formControlName="houseNumber" type="number" required>
+              </mat-form-field>
+            </div>
+
+          </form>
+        </div>
+
+        <div fxLayout="column" *ngIf="stepIndex === 3">
+          <form formGroupName="confirmForm">
+            <div fxLayout="column">
+              <h3>توضیحات</h3>
+
+              <mat-form-field appearance="outline">
+                <mat-label>توضیحات</mat-label>
+                <textarea matInput rows="6" formControlName="description"></textarea>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="column">
+              <h3>تاریخ مراجعه</h3>
+
+              <mat-form-field appearance="outline">
+                <mat-label>تاریخ مراجعه</mat-label>
+                <input matInput [matDatepicker]="picker"
+                       [min]="minDate" (focus)="picker.open()"
+                       [disabled]="stFormGroup.controls['confirmForm'].value.isForce"
+                       formControlName="serviceDate"
+                       readonly required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="column">
+              <mat-checkbox color="primary" formControlName="isForce">درخواست فوری</mat-checkbox>
+              <mat-hint>در صورت درخواست فوری مبلغ جزئی به درخواست اضافه میشود</mat-hint>
+            </div>
+
+          </form>
+
 
         </div>
 
         <div fxLayout="row" fxLayoutAlign="end center">
 
-          <button mat-flat-button [disabled]="!stFormGroup.controls['typeForm'].valid" (click)="check()" color="primary">
+          <button
+            mat-flat-button
+            [disabled]="!stFormGroup.controls['typeForm'].valid || stepIndex > 2"
+            (click)="nextStep(stepper);$event.preventDefault()"
+            color="primary">
             مرحله بعد
           </button>
 
-          <button mat-raised-button disabled>
+          <button
+            mat-flat-button
+            [disabled]="stepIndex < 1" (click)="prevStep(stepper);$event.preventDefault()" color="primary">
             مرحله قبل
           </button>
 
