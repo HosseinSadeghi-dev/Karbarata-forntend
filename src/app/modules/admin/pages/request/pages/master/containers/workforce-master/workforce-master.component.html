@@ -1,48 +1,12 @@
+<div fxLayout="row" class="m-1" fxLayoutGap="10px">
 
-<form [formGroup]="stFormGroup">
-
-  <div fxLayout="row" class="mt-4" fxLayoutGap="15px" fxLayoutAlign="space-evenly center">
-
-    <button fxFlex.gt-xs="90%" appMasterWorkforceChoose color="accent" class="mb-3 py-3"
-            [workforces]="workforces"
-            [skills]="skills"
-            (click)="$event.preventDefault()"
-            (dataUpdated)="getWorkforce($event)"
-            mat-flat-button>
-      <mat-icon>account_circle</mat-icon>
-      <span class="mr-2">انتخاب نیرو</span>
-    </button>
-
-    <div>
-      <button mat-mini-fab *ngIf="!isView && isEdit" type="submit" color="primary" (click)="onSubmit()" [disabled]="!stFormGroup.valid">
-        <mat-icon>done</mat-icon>
-      </button>
-
-      <button mat-mini-fab *ngIf="isView && !isEdit"  type="submit" color="primary" (click)="onEdit()" [disabled]="!stFormGroup.valid">
-        <mat-icon>done</mat-icon>
-      </button>
-
-<!--      <button fxFlex.gt-xs="90%" appMasterWorkforceChoose [disabled]="isView" color="accent" class="mb-3 py-3"-->
-<!--              [workforces]="workforces"-->
-<!--              (click)="$event.preventDefault()"-->
-<!--              (dataUpdated)="getWorkforce($event)"-->
-<!--              mat-flat-button>-->
-<!--        <mat-icon>account_circle</mat-icon>-->
-<!--        <span class="mr-2">انتخاب نیرو</span>-->
-<!--      </button>-->
-
-    </div>
-
-  </div>
-
-  <div fxLayout="column" *ngIf="workforces.length >= 1">
-
+  <div fxLayout="column" fxFlex="27%"  class="text-center">
 
     <mat-accordion fxLayout="column" fxLayoutGap="10px">
 
-      <ng-container *ngFor="let skill of skills" >
+      <ng-container *ngFor="let skill of requestMaster?.skills" >
 
-        <mat-expansion-panel>
+        <mat-expansion-panel >
 
           <mat-expansion-panel-header>
             <mat-panel-title>
@@ -50,17 +14,41 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
 
-          <ng-container *ngFor="let row of workforces">
+          <button
+            fxLayout="row"
+            fxLayoutAlign="space-around center"
+            class="add-button"
+            mat-flat-button
+            color="primary"
+            (click)="getWorkforcesBySkill(skill.slug);choosedSkill = skill">
+            <span>افزودن متخصص</span>
+            <mat-icon>add</mat-icon>
+          </button>
 
-            <mat-list *ngIf="row?.skill?.name === skill?.name">
-              <mat-list-item class="text-right">
-                <img matListAvatar [src]="row.user.image | srcImage:'user' " [alt]="row.user.fullName">
-                <p matLine><span> {{row.user.fullName}} </span></p>
-                <p matLine><span> {{row.user.phoneNumber}} </span></p>
-              </mat-list-item>
-            </mat-list>
+          <div fxLayout="column" class="overflow">
 
-          </ng-container>
+            <ng-container *ngFor="let row of requestMaster.workforces">
+
+              <mat-list  fxLayout="row" fxLayoutAlign="space-between center" *ngIf="row?.skill?.name === skill?.name">
+                <mat-list-item class="text-right">
+                  <p matLine><span> {{row.user.fullName}} </span></p>
+                  <p matLine><span> {{row.user.phoneNumber}} </span></p>
+                </mat-list-item>
+
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                  <button mat-icon-button (click)="getWorkforcesBySkill(skill.slug);choosedSkill = skill;isEdit = true;prev = row" color="accent" aria-label="edit">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+
+                  <button mat-icon-button color="warn" (click)="onDelete(row)" aria-label="delete">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+
+              </mat-list>
+
+            </ng-container>
+          </div>
 
         </mat-expansion-panel>
 
@@ -68,7 +56,116 @@
 
     </mat-accordion>
 
+  </div>
+
+  <div fxLayout="column" fxFlex>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="mb-1">
+
+      <h4>نیرو های در دسترس</h4>
+
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>جست و جو</mat-label>
+      <input matInput (keyup)="applyFilter($event.target.value)">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" *ngIf="users">
+
+      <ng-container matColumnDef="select">
+
+        <th mat-header-cell *matHeaderCellDef></th>
+
+        <td mat-cell *matCellDef="let row">
+          <mat-radio-button
+            (change)="check($event)"
+            [value]="row"
+            [checked]="selection.isSelected(row)"
+            [disabled]="selection.isSelected(row)"
+            color="primary">
+          </mat-radio-button>
+        </td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ردیف </th>
+        <td mat-cell *matCellDef="let element;let i = index" data-label="ردیف"> {{i+1}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> نام و نام خانوادگی </th>
+        <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="نام و نام خانوادگی">
+          <button mat-button>
+            <img [src]="element.image | srcImage: 'user' " class="img-fluid mr-2 rounded-circle" width="35px">
+            <span class="mr-3">{{element.fullName}}</span>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="phoneNumber">
+        <th mat-header-cell *matHeaderCellDef> شماره تلفن </th>
+        <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="شماره تلفن">
+          {{element.phoneNumber}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="experience">
+        <th mat-header-cell *matHeaderCellDef> سابقه </th>
+        <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="سابقه">
+          {{element.workforceMaster.shared.exp + " ماه"}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="primary">
+        <th mat-header-cell *matHeaderCellDef> حرفه اصلی </th>
+        <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="حرفه اصلی">
+          <mat-chip [selected]="element.workforceMaster.primarySkill.name === this.choosedSkill.name">
+            {{element.workforceMaster.primarySkill.name}}
+          </mat-chip>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="secondary">
+        <th mat-header-cell *matHeaderCellDef>دیگر حرفه ها</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-chip-list>
+            <ng-container *ngFor="let skill of element.workforceMaster.secondarySkills">
+              <mat-chip [selected]="skill.name === this.choosedSkill.name">
+                {{skill.name}}
+              </mat-chip>
+            </ng-container>
+          </mat-chip-list>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <span class="mat-body-strong" *ngIf="!users">
+      در حال حاضر نیرویی در دسترس نیست!!!
+    </span>
+
+    <div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-around center" class="py-2">
+
+      <button mat-flat-button color="primary" [disabled]="!choosedUser" (click)="onSubmit()">
+        <span>ثبت</span>
+        <mat-icon>done</mat-icon>
+      </button>
+      <button mat-button>
+        لغو
+        <mat-icon>close</mat-icon>
+      </button>
+
+    </div>
 
   </div>
 
-</form>
+</div>
+
+
+

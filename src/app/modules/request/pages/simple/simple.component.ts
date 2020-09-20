@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {WorkforceSimpleType} from "../../../../core/models";
+import {MatStepper} from "@angular/material/stepper";
+import {WorkforceSimpleType} from "@app/core/models";
 
 @Component({
   selector: 'app-simple',
@@ -10,14 +11,15 @@ import {WorkforceSimpleType} from "../../../../core/models";
 export class SimpleComponent implements OnInit {
 
   minDate = new Date();
+  stepIndex: number = 0;
   stFormGroup: FormGroup;
   simpleType = WorkforceSimpleType;
-
   constructor(
     private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
+
 
     this.stFormGroup = this.formBuilder.group({
 
@@ -44,9 +46,17 @@ export class SimpleComponent implements OnInit {
 
     })
   }
+  log(stepper: MatStepper){
+    console.log('stepper',stepper.selectedIndex)
+  }
 
-  check(){
-    console.log('form',this.stFormGroup.controls['typeForm'].value)
+  nextStep(stepper: MatStepper){
+    stepper.next();
+    this.stepIndex = stepper.selectedIndex;
+  }
+  prevStep(stepper: MatStepper){
+    stepper.previous();
+    this.stepIndex = stepper.selectedIndex;
   }
 
 

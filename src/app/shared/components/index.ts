@@ -49,7 +49,6 @@ export * from './request/request-invoice/request-invoice.module'
 export * from './request/request-invoice-form/request-invoice-form.module'
 export * from './request/request-payment/request-payment.module'
 export * from './request/request-statement-choose-dialog/request-statement-choose-dialog.module'
-export * from './request/request-workforce-master/request-workforce-master.module'
 
 export * from './request/request-status/request-status.component'
 export * from './request/request-expert/request-expert.component'

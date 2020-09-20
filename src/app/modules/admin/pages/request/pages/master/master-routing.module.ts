@@ -66,11 +66,17 @@ const routes: Routes = [
                       },
                       {
                         path: 'expert',
-                        component: RequestExpertComponent
+                        component: RequestExpertComponent,
+                        data:{
+                          type:'master'
+                        }
                       },
                       {
                         path: 'contractor',
-                        component: RequestContractorComponent
+                        component: RequestContractorComponent,
+                        data:{
+                          type:'master'
+                        }
                       },
                       {
                         path: 'workforce',
@@ -78,14 +84,23 @@ const routes: Routes = [
                       },
                       {
                         path: 'report',
-                        component: RequestReportComponent
+                        component: RequestReportComponent,
+                        data:{
+                          type:'master'
+                        }
                       },
                       {
                         path: 'statusPerDay',
-                        component: RequestStatusPerDayComponent
+                        component: RequestStatusPerDayComponent,
+                        data:{
+                          type:'master'
+                        }
                       },
                       {
                         path: 'statusStatement',
+                        data:{
+                          type:'master'
+                        },
                         children: [
                           {
                             path: '',
@@ -103,6 +118,9 @@ const routes: Routes = [
                       },
                       {
                         path: 'invoice',
+                        data:{
+                          type:'master'
+                        },
                         children: [
                           {
                             path: '',

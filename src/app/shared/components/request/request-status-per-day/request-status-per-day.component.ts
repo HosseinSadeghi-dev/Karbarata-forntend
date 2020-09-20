@@ -10,6 +10,7 @@ import {RequestService} from "@app/core/services";
 })
 export class RequestStatusPerDayComponent implements OnInit {
 
+  type: any;
   stFormGroup: FormGroup;
 
   constructor(
@@ -20,9 +21,12 @@ export class RequestStatusPerDayComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
+    this.type = this.activatedRoute.data;
+
     this.stFormGroup = this.formBuilder.group({
       statusPerDay: ['',Validators.required]
     });
+
     this.getRequest();
   }
 
@@ -40,7 +44,12 @@ export class RequestStatusPerDayComponent implements OnInit {
     if (params.id) {
       const form = this.stFormGroup.value;
       this.requestService.saveRequestPerDayStatus(params.id, form).subscribe(
-        res => this.router.navigateByUrl(`/admin/request/simple/${params.id}`)
+        res => {
+          if (this.type.value.type === 'master')
+            this.router.navigateByUrl(`/admin/request/master/${params.id}/statusPerDay`)
+          else
+            this.router.navigateByUrl(`/admin/request/simple/${params.id}/statusPerDay`)
+        }
       )
     }
   }

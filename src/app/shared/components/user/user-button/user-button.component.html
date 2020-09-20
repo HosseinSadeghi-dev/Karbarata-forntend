@@ -1,4 +1,4 @@
 <button mat-button *ngIf="user" [routerLink]="[url ? url : '']">
-  <img matListAvatar [src]="!user.image ? 'assets/image/user.svg' : 'https://end.ratabit.com/api/upload/user/'+!user.image" alt="{{user.name}} {{user.lastName}}" class="rounded-circle ml-3" width="35px" height="35px">
+  <img matListAvatar [src]="user.image | srcImage: 'user' " alt="{{user.name}} {{user.lastName}}" class="rounded-circle ml-3" width="35px" height="35px">
   <span>{{user.fullName}}</span>
 </button>
