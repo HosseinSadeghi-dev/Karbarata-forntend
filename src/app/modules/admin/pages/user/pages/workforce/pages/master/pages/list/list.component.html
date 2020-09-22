@@ -14,28 +14,28 @@
       <div fxLayout="column" fxLayoutGap="15px">
         <mat-form-field appearance="fill">
           <mat-label>جست و جو</mat-label>
-          <input matInput (keyup)="applyFilter($event.target.value)">
+          <input matInput #input>
           <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
         <table mat-table [dataSource]="dataSource">
           <ng-container matColumnDef="count">
-            <th mat-header-cell *matHeaderCellDef> ردیف </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ردیف </th>
             <td mat-cell *matCellDef="let element;let i = index" data-label="ردیف"> {{i+1}} </td>
           </ng-container>
           <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> نام و نام خانوادگی </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> نام و نام خانوادگی </th>
             <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="نام و نام خانوادگی:">
               <app-user-button [user]="element?.user" [url]="element.id"></app-user-button>
             </td>
           </ng-container>
           <ng-container matColumnDef="pid">
-            <th mat-header-cell *matHeaderCellDef> کدملی </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> کدملی </th>
             <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="کدملی:">
               {{element.user.pid}}
             </td>
           </ng-container>
           <ng-container matColumnDef="phoneNumber">
-            <th mat-header-cell *matHeaderCellDef> شماره تلفن </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> شماره تلفن </th>
             <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="شماره تلفن:">
               <button mat-button>
                 {{element.user.phoneNumber}}
@@ -43,7 +43,7 @@
             </td>
           </ng-container>
           <ng-container matColumnDef="primarySkill">
-            <th mat-header-cell *matHeaderCellDef> مهارت اصلی </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> مهارت اصلی </th>
             <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="مهارت اصلی:">
               <mat-chip-list ngClass.lt-md="mr-4">
                 <mat-chip selected>{{element.primarySkill.name}}</mat-chip>
@@ -51,7 +51,7 @@
             </td>
           </ng-container>
           <ng-container matColumnDef="secondarySkills">
-            <th mat-header-cell *matHeaderCellDef> مهارت فرعی </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> مهارت فرعی </th>
             <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="مهارت فرعی:">
               <mat-chip-list ngClass.lt-md="mr-4">
                 <mat-chip *ngFor="let skill of element.secondarySkills">{{skill.name}}</mat-chip>
@@ -59,13 +59,13 @@
             </td>
           </ng-container>
           <ng-container matColumnDef="exp">
-            <th mat-header-cell *matHeaderCellDef> تجربه </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> تجربه </th>
             <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="تجربه:">
               {{element.shared.exp}}<small>ماه</small>
             </td>
           </ng-container>
           <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef> وضعیت </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> وضعیت </th>
             <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="وضعیت:">
               <mat-chip-list ngClass.lt-md="mr-4">
                 <ng-container [ngSwitch]="element.shared.status">
@@ -88,7 +88,7 @@
                   <mat-icon>edit</mat-icon>
                   <span>تغییر اطلاعات</span>
                 </button>
-                <button (click)="onDelete(element.id)" [disabled]="isLoading" mat-menu-item>
+                <button (click)="onDelete(element.id)" mat-menu-item>
                   <mat-icon>delete</mat-icon>
                   <span>حذف</span>
                 </button>
@@ -99,7 +99,10 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
       </div>
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      <mat-paginator [length]="dataSource.total"
+                     [pageSize]="dataSource.pageTotal"
+                     [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons></mat-paginator>
     </mat-card-content>
   </mat-card>
 </div>

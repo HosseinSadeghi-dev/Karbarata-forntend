@@ -92,6 +92,10 @@ export const DashboardMenuList: MenuContext[] = [
         title: 'نیرو متخصص',
         link: '/admin/request/master'
       },
+      {
+        title: 'نیرو طراحی و اجرا',
+        link: '/admin/request/construct'
+      },
     ]
   },
   {

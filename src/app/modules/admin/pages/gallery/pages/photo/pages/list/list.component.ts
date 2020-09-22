@@ -1,28 +1,33 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {GalleryPhotoContext} from '@app/core/models';
 import {MatPaginator} from '@angular/material/paginator';
-import {Observable} from 'rxjs';
+import {fromEvent, merge, Observable} from 'rxjs';
 import {MatTableDataSource} from '@angular/material/table';
 import {GalleryService} from '@app/core/services';
 import {ActivatedRoute} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {FormDialogComponent, ShowDialogComponent} from '../../components';
+import {MatSort} from "@angular/material/sort";
+import {PhotoDataSource} from "../../services";
+import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, AfterViewInit {
+
   isUpload: boolean = false;
   photos: GalleryPhotoContext[] = [];
   album: string;
-  @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
   obs: Observable<any>;
-  dataSource: MatTableDataSource<any>;
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+
+  dataSource: PhotoDataSource;
+
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('input') input: ElementRef;
 
   constructor(private galleryService: GalleryService,
               private activatedRoute: ActivatedRoute,
@@ -32,25 +37,61 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.getList();
   }
+
+  ngAfterViewInit(): void {
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+    fromEvent(this.input.nativeElement,'keyup')
+      .pipe(
+        debounceTime(150),
+        distinctUntilChanged(),
+        tap(() => {
+          this.paginator.pageIndex = 0;
+          this.loadPhotosPage();
+        })
+      )
+      .subscribe();
+
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        tap(() => this.loadPhotosPage())
+      )
+      .subscribe();
+  }
+
+  loadPhotosPage() {
+    this.dataSource.loadPhotos(
+      this.input.nativeElement.value,
+      this.sort.direction,
+      this.paginator.pageIndex,
+      this.paginator.pageSize);
+  }
+
+
+
   getList(){
+    this.paginator.firstPage();
+    this.dataSource = new PhotoDataSource(this.galleryService);
+
     this.activatedRoute.params.subscribe(routeParams => {
       if (routeParams.album){
         this.album = routeParams.album;
         this.isUpload = true;
-        this.galleryService.getGalleryPhotoFilter('album',routeParams.album).subscribe(res => this.handleResList(res))
+        this.dataSource.loadPhotos(routeParams.album, 'asc', 1, 3);
+        // this.galleryService.getGalleryPhotoFilter('album',routeParams.album).subscribe(res => this.handleResList(res))
       }else {
         this.isUpload = false;
-        this.galleryService.getGalleryPhotoList().subscribe(res => this.handleResList(res))
+        this.dataSource.loadPhotos('', 'asc', 1, 3);
+        // this.galleryService.getGalleryPhotoList().subscribe(res => this.handleResList(res))
       }
     });
   }
-  handleResList(res){
-    this.photos = res;
-    this.dataSource = new MatTableDataSource<GalleryPhotoContext>(this.photos);
-    this.changeDetectorRef.detectChanges();
-    this.dataSource.paginator = this.paginator;
-    this.obs = this.dataSource.connect();
-  }
+  // handleResList(res){
+  //   this.photos = res;
+  //   this.dataSource = new MatTableDataSource<GalleryPhotoContext>(this.photos);
+  //   this.changeDetectorRef.detectChanges();
+  //   this.dataSource.paginator = this.paginator;
+  //   this.obs = this.dataSource.connect();
+  // }
 
   openPhoto(photo: GalleryPhotoContext){
     const dialogRef = this.dialog.open(ShowDialogComponent, {

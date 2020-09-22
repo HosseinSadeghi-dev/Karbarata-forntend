@@ -1,18 +1,18 @@
 <table mat-table [dataSource]="dataSource">
   <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef> ردیف. </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> ردیف. </th>
     <td mat-cell *matCellDef="let element;let i = index" class="has_label_on_mobile" data-label="ردیف."> {{i+1}} </td>
   </ng-container>
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> عنوان </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> عنوان </th>
     <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="عنوان"> {{element.name}} </td>
   </ng-container>
   <ng-container matColumnDef="quantity">
-    <th mat-header-cell *matHeaderCellDef> تعداد </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> تعداد </th>
     <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="تعداد"> {{element.quantity}} </td>
   </ng-container>
   <ng-container matColumnDef="unit">
-    <th mat-header-cell *matHeaderCellDef> واحد </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> واحد </th>
     <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="واحد">
       <ng-container [ngSwitch]="element.unit">
         <span *ngSwitchCase="Unit.KG">کیلوگرم</span>
@@ -21,13 +21,17 @@
     </td>
   </ng-container>
   <ng-container matColumnDef="cost">
-    <th mat-header-cell *matHeaderCellDef> فی </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> فی </th>
     <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="فی"> {{element.cost}} </td>
   </ng-container>
   <ng-container matColumnDef="costTotal">
-    <th mat-header-cell *matHeaderCellDef> کل </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> کل </th>
     <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="کل"> {{element.costTotal}} </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+<mat-paginator [length]="dataSource.total"
+               [pageSize]="dataSource.pageTotal"
+               [pageSizeOptions]="[5, 10, 20]"
+               showFirstLastButtons></mat-paginator>

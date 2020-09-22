@@ -14,12 +14,12 @@
       <div fxLayout="column" fxLayoutGap="15px">
         <mat-form-field appearance="fill">
           <mat-label>جست و جو</mat-label>
-          <input matInput (keyup)="applyFilter($event.target.value)">
+          <input matInput #input>
           <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
-        <table mat-table [dataSource]="dataSource">
+        <table mat-table [dataSource]="dataSource" matSort matSortDisableClear>
           <ng-container matColumnDef="count">
-            <th mat-header-cell *matHeaderCellDef> ردیف </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ردیف </th>
             <td mat-cell *matCellDef="let element;let i = index" data-label="ردیف"> {{i+1}} </td>
           </ng-container>
           <ng-container matColumnDef="name">
@@ -44,14 +44,14 @@
           </ng-container>
 
           <ng-container matColumnDef="exp">
-            <th mat-header-cell *matHeaderCellDef> تجربه </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> تجربه </th>
             <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="تجربه:">
               {{element.shared.exp}}<small>ماه</small>
             </td>
           </ng-container>
 
           <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef> وضعیت حساب </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> وضعیت حساب </th>
             <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="وضعیت حساب:">
               <mat-chip-list ngClass.lt-md="mr-4">
                 <ng-container [ngSwitch]="element.user.status">
@@ -64,7 +64,7 @@
           </ng-container>
 
           <ng-container matColumnDef="workstatus">
-            <th mat-header-cell *matHeaderCellDef>وضعیت همکاری</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>وضعیت همکاری</th>
             <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="وضعیت همکاری:">
               <mat-chip-list ngClass.lt-md="mr-4">
                 <ng-container [ngSwitch]="element.shared.status">
@@ -78,7 +78,7 @@
           </ng-container>
 
           <ng-container matColumnDef="type">
-            <th mat-header-cell *matHeaderCellDef> نوع همکاری </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> نوع همکاری </th>
             <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="نوع همکاری:">
               {{element.type | simpleWorkerEnum}}
             </td>
@@ -100,7 +100,7 @@
                   <mat-icon>change_history</mat-icon>
                   <span>تغییر وضعیت</span>
                 </button>
-                <button (click)="onDelete(element.id)" [disabled]="isLoading" mat-menu-item>
+                <button (click)="onDelete(element.id)" mat-menu-item>
                   <mat-icon>delete</mat-icon>
                   <span>حذف</span>
                 </button>
@@ -111,7 +111,10 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
       </div>
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      <mat-paginator [length]="dataSource.total"
+                     [pageSize]="dataSource.pageTotal"
+                     [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons></mat-paginator>
     </mat-card-content>
   </mat-card>
 </div>

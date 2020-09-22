@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
 import {throwError} from 'rxjs';
 
@@ -17,8 +17,22 @@ export class ArticleService {
     );
   }
 
-  getArticleCategoryList(){
-    return this.httpClient.get(`/articleCategory`).pipe(
+  getArticleCategoryList(
+    filter = '',
+    sortOrder = 'asc',
+    pageNumber?,
+    pageSize?){
+    let params = new HttpParams()
+      .set('filter', filter)
+      .set('sortOrder', sortOrder);
+
+    if (pageNumber)
+      params = params.set('pageNumber', pageNumber.toString());
+
+    if (pageSize)
+      params = params.set('pageSize', pageSize.toString());
+
+    return this.httpClient.get(`/articleCategory`,{params}).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );
@@ -51,8 +65,22 @@ export class ArticleService {
     );
   }
 
-  getArticleList(){
-    return this.httpClient.get(`/article`).pipe(
+  getArticleList(
+    filter = '',
+    sortOrder = 'asc',
+    pageNumber?,
+    pageSize?){
+    let params = new HttpParams()
+      .set('filter', filter)
+      .set('sortOrder', sortOrder);
+
+    if (pageNumber)
+      params = params.set('pageNumber', pageNumber.toString());
+
+    if (pageSize)
+      params = params.set('pageSize', pageSize.toString());
+
+    return this.httpClient.get(`/article`,{params}).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );
