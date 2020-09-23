@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {RequestConstructContext, RequestStatusType} from "@app/core/models";
+import {RequestConstructContext, RequestConstructType, RequestStatusType} from "@app/core/models";
 import {RequestService} from "@app/core/services";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
@@ -16,7 +16,7 @@ export class ListComponent implements OnInit,AfterViewInit {
 
   data: RequestConstructContext[] = [];
   dataSource: RequestConstructDatasource;
-  displayedColumns: string[] = [ 'count','number','user','status','created','id' ];
+  displayedColumns: string[] = [ 'count','number','user','type','construct','status','created','id' ];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -71,6 +71,9 @@ export class ListComponent implements OnInit,AfterViewInit {
 
   public get RequestStatus() {
     return RequestStatusType
+  }
+  public get ConstructType() {
+    return RequestConstructType;
   }
 
 }

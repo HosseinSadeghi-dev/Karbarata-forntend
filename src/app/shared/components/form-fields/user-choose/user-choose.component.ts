@@ -53,6 +53,8 @@ export class UserChooseComponent implements OnInit, AfterViewInit {
     });
     this.selection = new SelectionModel<ProfileContext>(this.data.multiple, selectedUsers);
     console.log('data',this.dataSource)
+    // this.dataSource.connect().subscribe(value => {console.log('test',value)})
+
   }
 
   handleRes(res){
@@ -91,7 +93,10 @@ export class UserChooseComponent implements OnInit, AfterViewInit {
       this.input.nativeElement.value,
       this.sort.direction,
       this.paginator.pageIndex,
-      this.paginator.pageSize);
+      this.paginator.pageSize,
+      'role',
+      this.data.roles
+    );
   }
 
   getList(){
@@ -112,14 +117,18 @@ export class UserChooseComponent implements OnInit, AfterViewInit {
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
+    let numRows;
+    this.dataSource.connect().subscribe(value => {numRows = value.length})
     return numSelected === numRows;
   }
 
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
+      this.dataSource.connect().subscribe(value => {
+        value.forEach(row => this.selection.select(row))
+      })
+      // this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
   checkboxLabel(row?: ProfileContext): string {

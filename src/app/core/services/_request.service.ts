@@ -78,14 +78,14 @@ export class RequestService {
     if(verb)
       params = params.set(verb, data);
 
-    return this.httpClient.get(`/request/construct`,{params}).pipe(
+    return this.httpClient.get(`/requestConstruct`,{params}).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );
   }
 
   saveConstructRequest(data){
-    return this.httpClient.post(`/request/construct`,data).pipe(
+    return this.httpClient.post(`/requestConstruct`,data).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );

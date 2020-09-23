@@ -37,7 +37,7 @@ export class UserDatasource implements DataSource<ProfileContext>{
     this._total = res.total;
   }
 
-  connect(collectionViewer: CollectionViewer): Observable<ProfileContext[]> {
+  connect(collectionViewer?: CollectionViewer): Observable<ProfileContext[]> {
     return this.userSubjects.asObservable();
   }
 

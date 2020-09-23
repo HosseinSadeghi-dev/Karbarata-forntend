@@ -29,7 +29,7 @@ export class RequestConstructDatasource implements DataSource<RequestConstructCo
     verb?:string,
     data?:string) {
     this.requestService
-      .findAllMaster(filter, sortDirection, pageIndex, pageSize, verb, data)
+      .findAllConstruct(filter, sortDirection, pageIndex, pageSize, verb, data)
       .subscribe(value => this.handleRes(value));
   }
   handleRes(res){

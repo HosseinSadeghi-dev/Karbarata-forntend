@@ -12,6 +12,7 @@ import {
 import {SharedModule} from "../../../../../../shared/shared.module";
 import {ButtonCardModule, UserButtonModule} from "../../../../../../shared/components";
 import {PipesModule} from "../../../../../../shared/pipes/pipes.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -21,13 +22,14 @@ import {PipesModule} from "../../../../../../shared/pipes/pipes.module";
     ListComponent,
     ShowComponent
   ],
-  imports: [
-    CommonModule,
-    ConstructRoutingModule,
-    SharedModule,
-    ButtonCardModule,
-    UserButtonModule,
-    PipesModule
-  ]
+    imports: [
+        CommonModule,
+        ConstructRoutingModule,
+        SharedModule,
+        ButtonCardModule,
+        UserButtonModule,
+        PipesModule,
+        ReactiveFormsModule
+    ]
 })
 export class ConstructModule { }

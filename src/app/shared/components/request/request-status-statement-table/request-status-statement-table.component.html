@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dataSource">
+<table mat-table [dataSource]="dataSource" matSort matSortDisableClear>
   <ng-container matColumnDef="position">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> ردیف. </th>
     <td mat-cell *matCellDef="let element;let i = index" class="has_label_on_mobile" data-label="ردیف."> {{i+1}} </td>
@@ -31,7 +31,7 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<mat-paginator [length]="dataSource.total"
-               [pageSize]="dataSource.pageTotal"
+<mat-paginator [length]="dataSource.length"
+               [pageSize]="5"
                [pageSizeOptions]="[5, 10, 20]"
                showFirstLastButtons></mat-paginator>

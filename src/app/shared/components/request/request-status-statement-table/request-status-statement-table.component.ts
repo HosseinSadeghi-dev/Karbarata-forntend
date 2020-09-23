@@ -9,8 +9,9 @@ import {RequestStatusStatementItemContext, StatusStatementItemUnit} from "@app/c
 })
 export class RequestStatusStatementTableComponent implements OnInit {
 
-  @ViewChild(MatTable,{static:true}) table: MatTable<RequestStatusStatementItemContext>;
   displayedColumns: string[] = ['position', 'name', 'quantity','unit','cost','costTotal'];
+
+  @ViewChild(MatTable,{static:true}) table: MatTable<RequestStatusStatementItemContext>;
   @Input() dataSource = [];
 
   constructor() { }
