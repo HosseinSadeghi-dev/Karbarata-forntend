@@ -60,14 +60,31 @@ export class UserService {
     );
   }
 
-  /////
-  findAllAdminstrativeUser(){
-    return this.httpClient.get(`/user/adminstrative`).pipe(
+  findAllAdminstrative(
+    filter = '',
+    sortOrder = 'asc',
+    pageNumber?,
+    pageSize?,
+    verb = '',
+    data = ''){
+    let params = new HttpParams()
+      .set('filter', filter)
+      .set('sortOrder', sortOrder)
+
+    if (pageNumber)
+      params = params.set('pageNumber', pageNumber.toString());
+
+    if (pageSize)
+      params = params.set('pageSize', pageSize.toString());
+
+    if(verb)
+      params = params.set(verb, data);
+
+    return this.httpClient.get(`/user/adminstrative`,{params}).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );
   }
-  ////
 
   deleteUser(id){
     return this.httpClient.delete(`/user/${id}`).pipe(
@@ -94,6 +111,13 @@ export class UserService {
     return this.httpClient.put(`/user/${id}`,data).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  updateUserAdminstrative(id,data){
+    return this.httpClient.put(`/user/adminstrative/${id}`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError((error)))
     );
   }
 

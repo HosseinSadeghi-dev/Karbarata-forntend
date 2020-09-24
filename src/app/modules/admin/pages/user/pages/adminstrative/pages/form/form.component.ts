@@ -32,36 +32,25 @@ export class FormComponent implements OnInit {
       this.userService.findUserById(params.id).subscribe(res => this.handleRes(res));
     }
     this.stFormGroup = this.formBuilder.group({
-      name: ['', Validators.required],
-      lastName: ['', Validators.required],
-      phoneNumber: ['',Validators.required],
-      email: ['', Validators.required],
-      pid: ['', Validators.required],
-      address: ['', Validators.required],
-      houseNumber: ['', Validators.required],
+      user: this.formBuilder.group({
+        status: [{value: '', disabled: false}],
+        roles: [[], [Validators.required,Validators.minLength(1)]],
+        name: ['', Validators.required],
+        lastName: ['', Validators.required],
+        phoneNumber: ['',Validators.required],
+        email: ['', Validators.required],
+        pid: ['', Validators.required],
+        address: ['', Validators.required],
+        houseNumber: ['', Validators.required],
+      }),
       insuranceCode: ['',Validators.required],
-      status: [{value: '', disabled: false}],
-      roles: [[], [Validators.required,Validators.minLength(1)]],
     });
     console.log('form',this.stFormGroup)
   }
 
 
   onSubmit(){
-    const form : UserAdminstrative = {
-      insuranceCode: this.stFormGroup.get('insuranceCode').value,
-      user: {
-        name: this.stFormGroup.get('name').value,
-        lastName: this.stFormGroup.get('lastName').value,
-        phoneNumber: this.stFormGroup.get('phoneNumber').value,
-        email: this.stFormGroup.get('email').value,
-        pid: this.stFormGroup.get('pid').value,
-        address: this.stFormGroup.get('address').value,
-        houseNumber: this.stFormGroup.get('houseNumber').value,
-        status: this.stFormGroup.get('status').value,
-        roles: this.stFormGroup.get('roles').value
-      }
-    }
+    const form = this.stFormGroup.value
 
     form.user.status = form.user.status ? UserStatus.ACTIVATE : UserStatus.DEACTIVATE;
 
@@ -69,11 +58,12 @@ export class FormComponent implements OnInit {
 
     if (this.isEdit){
       const params = this.activatedRoute.snapshot.params;
-      this.userService.updateUser(params.id,form).subscribe(res => this.handleRes(res));
-      this.router.navigateByUrl('/admin/user');
+      this.userService.updateUserAdminstrative(params.id,form).
+      subscribe(res => this.router.navigateByUrl('/admin/user/adminstrative'));
+
     }else {
-      this.userService.saveUserAdminstrative(form).subscribe(res => this.handleRes(res) );
-      this.router.navigateByUrl('/admin/user');
+      this.userService.saveUserAdminstrative(form).
+      subscribe(res => this.router.navigateByUrl('/admin/user/adminstrative') );
     }
   }
 
