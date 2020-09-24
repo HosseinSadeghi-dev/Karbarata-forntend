@@ -1,6 +1,6 @@
 <div class="container my-4">
   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="15px">
-    <div fxFlex="50%"  >
+    <div fxFlex="50%">
       <form [formGroup]="stFormGroup" (ngSubmit)="onSubmit()">
         <mat-card>
           <mat-card-header>
@@ -53,28 +53,36 @@
                 <mat-label>پلاک</mat-label>
                 <input matInput formControlName="houseNumber" required>
               </mat-form-field>
-                <mat-form-field fxFlex="50%" fxFlex.gt-md="50%" color="primary" appearance="fill">
-                  <mat-label>سطح دسترسی</mat-label>
-                  <mat-select formControlName="roles" multiple required>
-                    <mat-option
-                      *ngFor="let role of UserRole | enumToArray"
-                      [value]="role"
-                      [disabled]="role !== UserRole.USER && role !== UserRole.AUTHOR">
-                      <ng-container [ngSwitch]="role">
-                        <span *ngSwitchCase="UserRole.ADMIN">مدیر</span>
-                        <span *ngSwitchCase="UserRole.AUTHOR">نویسنده</span>
-                        <span *ngSwitchCase="UserRole.USER">کاربر</span>
-                        <span *ngSwitchCase="UserRole.WORKER">نیرو ساده</span>
-                        <span *ngSwitchCase="UserRole.MASTER">نیرو متخصص</span>
-                        <span *ngSwitchCase="UserRole.EXPERT">کارشناس</span>
-                        <span *ngSwitchCase="UserRole.ACCOUNTANT">حسابدار</span>
-                        <span *ngSwitchCase="UserRole.OPERATOR">اپراتور</span>
-                        <span *ngSwitchCase="UserRole.CONTRACTOR">پیمانکار</span>
-                        <span *ngSwitchDefault>نا مشخص</span>
-                      </ng-container>
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>کد بیمه</mat-label>
+                <input matInput formControlName="insuranceCode" required>
+              </mat-form-field>
+              <mat-form-field fxFlex="50%" fxFlex.gt-md="50%" color="primary" appearance="fill">
+                <mat-label>سطح دسترسی</mat-label>
+                <mat-select formControlName="roles" multiple required>
+                  <mat-option
+                    *ngFor="let role of UserRole | enumToArray"
+                    [value]="role"
+                    [disabled]="
+                    role !== UserRole.ACCOUNTANT
+                    && role !== UserRole.OPERATOR
+                    && role !== UserRole.CONTRACTOR
+                    && role !== UserRole.EXPERT">
+                    <ng-container [ngSwitch]="role">
+                      <span *ngSwitchCase="UserRole.ADMIN">مدیر</span>
+                      <span *ngSwitchCase="UserRole.AUTHOR">نویسنده</span>
+                      <span *ngSwitchCase="UserRole.USER">کاربر</span>
+                      <span *ngSwitchCase="UserRole.WORKER">نیرو ساده</span>
+                      <span *ngSwitchCase="UserRole.MASTER">نیرو متخصص</span>
+                      <span *ngSwitchCase="UserRole.EXPERT">کارشناس</span>
+                      <span *ngSwitchCase="UserRole.ACCOUNTANT">حسابدار</span>
+                      <span *ngSwitchCase="UserRole.OPERATOR">اپراتور</span>
+                      <span *ngSwitchCase="UserRole.CONTRACTOR">پیمانکار</span>
+                      <span *ngSwitchDefault>نا مشخص</span>
+                    </ng-container>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
               <mat-slide-toggle formControlName="status" color="primary">وضعیت فعالیت</mat-slide-toggle>
             </div>
           </mat-card-content>

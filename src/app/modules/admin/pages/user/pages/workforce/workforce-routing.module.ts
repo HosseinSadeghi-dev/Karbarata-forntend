@@ -9,7 +9,8 @@ const routes: Routes = [
   {
     path: 'simple',
     loadChildren: () => import('./pages/simple/simple.module').then(m => m.SimpleModule)
-  }
+  },
+
 
 ];
 

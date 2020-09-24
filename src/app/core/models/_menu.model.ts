@@ -74,6 +74,10 @@ export const DashboardMenuList: MenuContext[] = [
       {
         title: 'نیرو متخصص',
         link: '/admin/user/workforce/master'
+      },
+      {
+        title: 'نیرو اداری',
+        link: '/admin/user/adminstrative'
       }
     ]
   },

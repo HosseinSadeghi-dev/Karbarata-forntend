@@ -34,6 +34,15 @@ export class UserService {
     );
   }
 
+  /////
+  findAllAdminstrativeUser(){
+    return this.httpClient.get(`/user/adminstrative`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+  ////
+
   deleteUser(id){
     return this.httpClient.delete(`/user/${id}`).pipe(
       map((response: any) => response),
@@ -69,6 +78,13 @@ export class UserService {
     );
   }
 
+  saveUserAdminstrative(data){
+    return this.httpClient.post(`/user/adminstrative`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
   saveUserMaster(data){
     return this.httpClient.post(`/user/workforce/master`,data).pipe(
       map((response: any) => response),
@@ -89,6 +105,7 @@ export class UserService {
       catchError((error: HttpErrorResponse) => throwError(error))
     );
   }
+
 
   updateUserMaster(id,data){
     return this.httpClient.put(`/user/workforce/master/${id}`,data).pipe(

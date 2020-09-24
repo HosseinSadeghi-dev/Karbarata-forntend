@@ -17,8 +17,12 @@ const routes: Routes = [
         loadChildren: () => import('./pages/workforce/workforce.module').then(m => m.WorkforceModule)
       },
       {
+        path: 'adminstrative',
+        loadChildren: () => import('./pages/adminstrative/adminstrative.module').then(m => m.AdminstrativeModule)
+      },
+      {
         path: '',
-        component: ListComponent
+        component: ListComponent,
       },
       {
         path: ':id',
