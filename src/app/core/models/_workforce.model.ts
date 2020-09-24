@@ -28,6 +28,20 @@ export interface MasterSkillContext {
   updated?: Date
 }
 
+export interface ConstructSkillContext{
+  id?: number,
+  name?: string,
+  slug?: string,
+  image?: GalleryPhotoContext,
+  svg?: GalleryPhotoContext,
+  notices?: string[],
+  services?: string[],
+  tips?: string[],
+  tagList?: string[],
+  created?: Date,
+  updated?: Date
+}
+
 
 export enum WorkforceStatus {
   AVAILABLE = 'available',

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
 import {throwError} from 'rxjs';
 
@@ -51,8 +51,22 @@ export class NewsService {
     );
   }
 
-  findAllNews(){
-    return this.httpClient.get(`/news`).pipe(
+  findAllNews(
+    filter = '',
+    sortOrder = 'asc',
+    pageNumber?,
+    pageSize?){
+    let params = new HttpParams()
+      .set('filter', filter)
+      .set('sortOrder', sortOrder);
+
+    if (pageNumber)
+      params = params.set('pageNumber', pageNumber.toString());
+
+    if (pageSize)
+      params = params.set('pageSize', pageSize.toString());
+
+    return this.httpClient.get(`/news`,{params}).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );

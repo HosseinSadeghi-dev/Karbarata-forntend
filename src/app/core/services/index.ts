@@ -8,4 +8,5 @@ export * from "./_news.service";
 export * from "./_faq.service";
 export * from "./_workforce.service";
 export * from "./_request.service";
-export * from "./_payment.service"
+export * from "./_payment.service";
+export * from "./_construct.service";

@@ -13,22 +13,22 @@
           <div fxLayout="column" fxLayoutGap="15px">
             <mat-form-field appearance="fill">
               <mat-label>جست و جو</mat-label>
-              <input matInput (keyup)="applyFilter($event.target.value)">
+              <input matInput #input>
               <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>
-            <table mat-table [dataSource]="dataSource">
+            <table mat-table [dataSource]="dataSource" matSort matSortDisableClear>
               <ng-container matColumnDef="count">
-                <th mat-header-cell *matHeaderCellDef> ردیف </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ردیف </th>
                 <td mat-cell *matCellDef="let element;let i = index" data-label="ردیف"> {{i+1}} </td>
               </ng-container>
               <ng-container matColumnDef="author">
-                <th mat-header-cell *matHeaderCellDef> نویسنده </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> نویسنده </th>
                 <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="نویسنده:">
                   <app-user-button [user]="element.reporter" [url]="'/blog/'+element.reporter.email+'/author'"></app-user-button>
                 </td>
               </ng-container>
               <ng-container matColumnDef="title">
-                <th mat-header-cell *matHeaderCellDef> عنوان </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> عنوان </th>
                 <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="عنوان:">
                   <button mat-button [routerLink]="['/blog',element.slug]">
                     <span>{{ (element.title.length>6)? (element.title | slice:0:40)+'..':(element.title) }}</span>
@@ -36,7 +36,7 @@
                 </td>
               </ng-container>
               <ng-container matColumnDef="image">
-                <th mat-header-cell *matHeaderCellDef> تصویر </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> تصویر </th>
                 <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="تصویر:">
                   <img class="img-fluid rounded mat-elevation-z1 my-2"
                        width="90px"
@@ -46,7 +46,7 @@
                 </td>
               </ng-container>
               <ng-container matColumnDef="tagList">
-                <th mat-header-cell *matHeaderCellDef> تگ ها </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> تگ ها </th>
                 <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="تگ ها:">
                   <button mat-button (click)="openTagDialog(element.tagList)">
                     <mat-icon color="accent">bookmarks</mat-icon>
@@ -55,7 +55,7 @@
                 </td>
               </ng-container>
               <ng-container matColumnDef="favoriteCount">
-                <th mat-header-cell *matHeaderCellDef> لایک </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> لایک </th>
                 <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="لایک:">
                   <button mat-button>
                     <mat-icon color="warn" (click)="openFavoriteDialog(element.favoriteClients)">favorite</mat-icon>
@@ -64,7 +64,7 @@
                 </td>
               </ng-container>
               <ng-container matColumnDef="categories">
-                <th mat-header-cell *matHeaderCellDef> دسته بندی </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> دسته بندی </th>
                 <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="دسته بندی:">
                   <mat-chip-list ngClass.lt-md="mr-4">
                     <ng-container *ngFor="let category of element.categories">
@@ -74,7 +74,7 @@
                 </td>
               </ng-container>
               <ng-container matColumnDef="status">
-                <th mat-header-cell *matHeaderCellDef> وضعیت </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> وضعیت </th>
                 <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="وضعیت:">
                   <mat-chip-list ngClass.lt-md="mr-4">
                     <ng-container [ngSwitch]="element.status">
@@ -86,7 +86,7 @@
                 </td>
               </ng-container>
               <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef> کنترل </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> کنترل </th>
                 <td mat-cell *matCellDef="let element" data-label="کنترل">
                   <button mat-icon-button [matMenuTriggerFor]="menu">
                     <mat-icon>more_vert</mat-icon>
@@ -111,7 +111,10 @@
               <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
             </table>
           </div>
-          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          <mat-paginator [length]="dataSource.total"
+                         [pageSize]="dataSource.pageTotal"
+                         [pageSizeOptions]="[5, 10, 20]"
+                         showFirstLastButtons></mat-paginator>
         </mat-card-content>
       </mat-card>
     </div>

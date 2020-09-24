@@ -24,11 +24,37 @@ export class UserService {
     );
   }
 
-  findAllUser(verb?, data?){
-    return this.httpClient.get(`/user`,
-      {
-        params: new HttpParams().set(verb, data)
-      }).pipe(
+  // findAllUser(verb?, data?){
+  //   return this.httpClient.get(`/user`,
+  //     {
+  //       params: new HttpParams().set(verb, data)
+  //     }).pipe(
+  //     map((response: any) => response),
+  //     catchError((error: HttpErrorResponse) => throwError(error))
+  //   );
+  // }
+
+  findAllUser(
+    filter = '',
+    sortOrder = 'asc',
+    pageNumber?,
+    pageSize?,
+    verb = '',
+    data = ''){
+    let params = new HttpParams()
+      .set('filter', filter)
+      .set('sortOrder', sortOrder)
+
+    if (pageNumber)
+      params = params.set('pageNumber', pageNumber.toString());
+
+    if (pageSize)
+      params = params.set('pageSize', pageSize.toString());
+
+    if(verb)
+      params = params.set(verb, data);
+
+    return this.httpClient.get(`/user`,{params}).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );
@@ -92,8 +118,27 @@ export class UserService {
     );
   }
 
-  findAllUserMaster(){
-    return this.httpClient.get(`/user/workforce/master`).pipe(
+  findAllUserMaster(
+    filter = '',
+    sortOrder = 'asc',
+    pageNumber?,
+    pageSize?,
+    verb?,
+    data?){
+    let params = new HttpParams()
+      .set('filter', filter)
+      .set('sortOrder', sortOrder);
+
+    if (pageNumber)
+      params = params.set('pageNumber', pageNumber.toString());
+
+    if (pageSize)
+      params = params.set('pageSize', pageSize.toString());
+
+    if(verb)
+      params = params.set(verb, data);
+
+    return this.httpClient.get(`/user/workforce/master`,{params}).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );
@@ -130,8 +175,27 @@ export class UserService {
     );
   }
 
-  findAllUserSimple(){
-    return this.httpClient.get(`/user/workforce/simple`).pipe(
+  findAllUserSimple(
+    filter = '',
+    sortOrder = 'asc',
+    pageNumber?,
+    pageSize?,
+    verb?,
+    data?){
+    let params = new HttpParams()
+      .set('filter', filter)
+      .set('sortOrder', sortOrder);
+
+    if (pageNumber)
+      params = params.set('pageNumber', pageNumber.toString());
+
+    if (pageSize)
+      params = params.set('pageSize', pageSize.toString());
+
+    if(verb)
+      params = params.set(verb, data);
+
+    return this.httpClient.get(`/user/workforce/simple`,{params}).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );

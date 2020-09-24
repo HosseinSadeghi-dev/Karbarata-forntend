@@ -1,6 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 import {RequestService, UserService} from "@app/core/services";
 import {
   MasterSkillContext,
@@ -12,6 +11,10 @@ import {
 import {MatTableDataSource} from "@angular/material/table";
 import {SelectionModel} from "@angular/cdk/collections";
 import {MatPaginator} from "@angular/material/paginator";
+import {UserDatasource} from "../../../../../user/services";
+import {MatSort} from "@angular/material/sort";
+import {fromEvent, merge} from "rxjs";
+import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-request-workforce-master',
@@ -29,18 +32,18 @@ export class WorkforceMasterComponent implements OnInit {
   prev: RequestMasterWorkforceContext;
   params: any;
   displayedColumns: string[] = ['select', 'id', 'name','phoneNumber', 'experience', 'primary','secondary'];
-  dataSource = new MatTableDataSource<ProfileContext>([]);
+  // dataSource = new MatTableDataSource<ProfileContext>([]);
+  dataSource: UserDatasource;
   selection = new SelectionModel<ProfileContext>(true, []);
+
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('input') input: ElementRef;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private requestService: RequestService,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -51,28 +54,60 @@ export class WorkforceMasterComponent implements OnInit {
   getWorkforcesByRequest(){
     if (this.params.id){
       this.requestService.findOneMasterRequestWorkForce(this.params.id).subscribe(
-        res => this.handleRes(res)
+        res => this.requestMaster = res
       )
     }
   }
 
-  handleRes(res: RequestMasterContext){
-    this.requestMaster = res
+  ngAfterViewInit(): void {
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+    fromEvent(this.input.nativeElement,'keyup')
+      .pipe(
+        debounceTime(150),
+        distinctUntilChanged(),
+        tap(() => {
+          this.paginator.pageIndex = 0;
+          this.loadUserPages();
+        })
+      )
+      .subscribe();
+
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        tap(() => this.loadUserPages())
+      )
+      .subscribe();
   }
 
-  getWorkforcesBySkill(data: string){
-    this.userService
-      .findAllUser('skill',data)
-      .subscribe(res => this.handleTable(res,data))
+  loadUserPages() {
+    this.dataSource.loadUsers(
+      this.input.nativeElement.value,
+      this.sort.direction,
+      this.paginator.pageIndex,
+      this.paginator.pageSize);
   }
 
-  handleTable(res,skill){
+  getList(data: string){
+    this.paginator.firstPage();
+    this.dataSource = new UserDatasource(this.userService);
+    this.dataSource.loadUsers('', 'asc', 1, 3, 'skill', data);
+    this.handleTable(data)
+    // console.log('data',this.dataSource)
+  }
+
+  // getList(data: string){
+  //   this.userService
+  //     .findAllUser('skill',data)
+  //     .subscribe(res => this.handleTable(res,data))
+  // }
+
+  handleTable(skill){
 
     this.choosedUser = null;
 
-    this.users = res;
-
-    this.dataSource = new MatTableDataSource<ProfileContext>(this.users);
+    // this.users = res;
+    //
+    // this.dataSource = new MatTableDataSource<ProfileContext>(this.users);
 
     this.requestMaster.skills.forEach(
       row => {

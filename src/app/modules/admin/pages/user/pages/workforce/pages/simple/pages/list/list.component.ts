@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { UserService, AppService } from '@app/core/services';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,6 +11,11 @@ import {
 } from '@app/core/models';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomSheetComponent } from '@app/shared/components/global/bottom-sheet/bottom-sheet.component';
+import {WorkforceSimpleDatasource} from "../../services/workforce-simple.datasource";
+import {fromEvent, merge} from "rxjs";
+import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
+import {WorkforceMasterDatasource} from "../../../master/services";
+import {MatSort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-list',
@@ -20,9 +25,8 @@ import { BottomSheetComponent } from '@app/shared/components/global/bottom-sheet
 export class ListComponent implements OnInit {
   public data: UserWorkforceMaster[] = [];
   public message: string;
-  public isLoading: boolean;
 
-  dataSource = null;
+  dataSource: WorkforceSimpleDatasource;
   displayedColumns: string[] = [
     'count',
     'name',
@@ -35,39 +39,53 @@ export class ListComponent implements OnInit {
     'id',
   ];
 
-  bottomsheetdata: string;
-
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
-  applyFilter(filterValue: string) {
-    this.dataSource.filterPredicate = filterValue.trim().toLowerCase();
-  }
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('input') input: ElementRef;
 
   constructor(
     private userService: UserService,
-    public app: AppService,
     public dialog: MatDialog,
     private _bottomSheet: MatBottomSheet
-  ) {
-    app.loading$.subscribe((value) => (this.isLoading = value));
-  }
+  ) {}
 
   ngOnInit() {
     this.getList();
   }
-  addMasterUser() {}
-  getList() {
-    this.app.nextLoading(true);
-    this.userService
-    .findAllUserSimple()
-    .subscribe((res) => this.handleRes(res));
-  }
-  handleRes(res) {
-    this.data = res;
-    this.dataSource = new MatTableDataSource<UserWorkforceSimple>(this.data);
 
-    setTimeout(() => (this.dataSource.paginator = this.paginator));
+  ngAfterViewInit(): void {
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+    fromEvent(this.input.nativeElement,'keyup')
+      .pipe(
+        debounceTime(150),
+        distinctUntilChanged(),
+        tap(() => {
+          this.paginator.pageIndex = 0;
+          this.loadWorkforcePage();
+        })
+      )
+      .subscribe();
+
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        tap(() => this.loadWorkforcePage())
+      )
+      .subscribe();
   }
+  loadWorkforcePage() {
+    this.dataSource.loadWorkforces(
+      this.input.nativeElement.value,
+      this.sort.direction,
+      this.paginator.pageIndex,
+      this.paginator.pageSize);
+  }
+  getList(){
+    this.paginator.firstPage();
+    this.dataSource = new WorkforceSimpleDatasource(this.userService);
+    console.log('datasource',this.dataSource)
+    this.dataSource.loadWorkforces('', 'asc', 1, 3);
+  }
+
   onDelete(id: number) {
     this.userService
     .deleteUserSimple(id)

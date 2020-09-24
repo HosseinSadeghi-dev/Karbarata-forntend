@@ -1,70 +1,77 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { UserService, AppService } from '@app/core/services';
 import { UserMaster, UserWorkforceMaster } from '@app/core/models';
 import { WorkforceStatus } from '@app/core/models'
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
+import {MatSort} from "@angular/material/sort";
+import {fromEvent, merge} from "rxjs";
+import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
+import {WorkforceMasterDatasource} from "../../services";
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, AfterViewInit {
 
   public data : UserWorkforceMaster[] = [];
   public message: string;
-  public isLoading: boolean;
 
-  dataSource = null;
+  dataSource : WorkforceMasterDatasource;
   displayedColumns: string[] = ['count','name','pid','phoneNumber','primarySkill','secondarySkills','exp','status','id'];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('input') input: ElementRef;
+
   constructor(
-    private api: UserService,
-    public app: AppService,
+    private userService: UserService,
     public dialog: MatDialog
-  ) {
-    app.loading$.subscribe(value => this.isLoading = value);
-  }
+  ) {}
 
   ngOnInit() {
     this.getList();
   }
-  addMasterUser(){
 
+  ngAfterViewInit(): void {
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+    fromEvent(this.input.nativeElement,'keyup')
+      .pipe(
+        debounceTime(150),
+        distinctUntilChanged(),
+        tap(() => {
+          this.paginator.pageIndex = 0;
+          this.loadWorkforcePage();
+        })
+      )
+      .subscribe();
+
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        tap(() => this.loadWorkforcePage())
+      )
+      .subscribe();
+  }
+  loadWorkforcePage() {
+    this.dataSource.loadWorkforces(
+      this.input.nativeElement.value,
+      this.sort.direction,
+      this.paginator.pageIndex,
+      this.paginator.pageSize);
   }
   getList(){
-    this.app.nextLoading(true);
-    this.api.findAllUserMaster().subscribe(
-      res=> this.handleRes(res),
-      err => this.handleErr(err)
-    )
+    this.paginator.firstPage();
+    this.dataSource = new WorkforceMasterDatasource(this.userService);
+    console.log('datasource',this.dataSource)
+    this.dataSource.loadWorkforces('', 'asc', 1, 3);
   }
-  handleRes(res){
-    this.app.nextLoading(false);
-    this.data = res;
-    this.dataSource = new MatTableDataSource<UserWorkforceMaster>(this.data);
-    setTimeout(() => this.dataSource.paginator = this.paginator);
-  }
-  handleErr(err){
-    this.app.nextLoading(false);
-    console.log(err);
-  }
+
   onDelete(id: number){
-    this.app.nextLoading(true);
-    this.api.deleteUserMaster(id).subscribe(
-      res => this.handleResDelete(res),
-      err => this.handleErr(err)
+    this.userService.deleteUserMaster(id).subscribe(
+      () => this.getList()
     )
-  }
-  handleResDelete(res){
-    this.app.nextLoading(false);
-    this.app.handleResponse(res.message);
-    this.getList();
   }
   // onChangeStatus(slug: string, status: ArticleStatus){
   //   this.app.nextLoading(true);
@@ -75,11 +82,7 @@ export class ListComponent implements OnInit {
   //     err => {console.log(err);this.app.nextLoading(false)},
   //   )
   // }
-  handleResUpdate(res){
-    this.app.nextLoading(false);
-    this.app.handleResponse(res.message);
-    this.getList();
-  }
+
   public get workforceStatus() {
     return WorkforceStatus;
   }

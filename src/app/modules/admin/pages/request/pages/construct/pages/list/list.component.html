@@ -1,0 +1,124 @@
+<div class="container-fluid my-4">
+  <div fxLayout="row">
+    <div fxFlex="100%">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            لیست درخواست های طراحی
+          </mat-card-title>
+          <button-card class="mr-auto" (reloadEvent)="getList()" [data]="[{
+        label: 'درخواست طراحی جدید',
+        icon: 'add',
+        url: 'create'
+       }]"></button-card>
+        </mat-card-header>
+        <mat-card-content>
+          <div fxLayout="column" fxLayoutGap="15px">
+
+            <mat-form-field appearance="fill">
+              <mat-label>جست و جو</mat-label>
+              <input matInput #input>
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+
+            <table mat-table [dataSource]="dataSource" matSort matSortDisableClear>
+
+              <ng-container matColumnDef="count">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ردیف </th>
+                <td mat-cell *matCellDef="let element;let i = index" data-label="ردیف"> {{i+1}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="number">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> شماره درخواست </th>
+                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="شماره درخواست :">
+                  {{element.id}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="user">
+                <th mat-header-cell *matHeaderCellDef> درخواست کننده </th>
+                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="درخواست کننده :">
+                  <app-user-button [user]="element.request.user"></app-user-button>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="construct">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> مهارت </th>
+                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="مهارت :">
+                  {{element.construct.name}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> نوع درخواست </th>
+                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="نوع درخواست :">
+                  <mat-chip-list ngClass.lt-md="mr-4">
+                    <ng-container [ngSwitch]="element.type">
+                      <mat-chip *ngSwitchCase="ConstructType.IMPLEMENTATION" selected>اجرا</mat-chip>
+                      <mat-chip *ngSwitchCase="ConstructType.DESIGNING" selected>طراحی</mat-chip>
+                      <mat-chip *ngSwitchCase="ConstructType.BOTH" selected>طراحی و اجرا</mat-chip>
+                      <mat-chip *ngSwitchDefault>نامشخص</mat-chip>
+                    </ng-container>
+                  </mat-chip-list>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> وضعیت </th>
+                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="وضعیت:">
+                  <mat-chip-list ngClass.lt-md="mr-4">
+                    <ng-container [ngSwitch]="element.request.status[0].type">
+                      <mat-chip *ngSwitchCase="RequestStatus.PENDING" selected>منتطر تایید اپراتور</mat-chip>
+                      <mat-chip *ngSwitchCase="RequestStatus.DONE" selected>کامل</mat-chip>
+                      <mat-chip *ngSwitchCase="RequestStatus.EXPERTAPPROVAL" selected>تایید کارشناس</mat-chip>
+                      <mat-chip *ngSwitchCase="RequestStatus.SETTLEMENT" selected>در دست بررسی</mat-chip>
+                      <mat-chip *ngSwitchCase="RequestStatus.STATUSSTATEMENT" selected>فعال</mat-chip>
+                      <mat-chip *ngSwitchDefault>نامشخص</mat-chip>
+                    </ng-container>
+                  </mat-chip-list>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="created">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> تاریخ درخواست </th>
+                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="تاریخ درخواست :">
+                  {{element.request.serviceDate | persianDate}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> کنترل </th>
+                <td mat-cell *matCellDef="let element" data-label="کنترل">
+                  <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button [routerLink]="[ element.request.id]" mat-menu-item>
+                      <mat-icon>edit</mat-icon>
+                      <span>تغییر اطلاعات</span>
+                    </button>
+                    <!--                    <button (click)="onChangeStatus(element.id, element.status)" mat-menu-item>-->
+                    <!--                      <mat-icon>change_history</mat-icon>-->
+                    <!--                      <span>تغییر وضعیت</span>-->
+                    <!--                    </button>-->
+                    <button (click)="delete(element.request.id)" mat-menu-item>
+                      <mat-icon>delete</mat-icon>
+                      <span>حذف</span>
+                    </button>
+                  </mat-menu>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+          </div>
+          <mat-paginator [length]="dataSource.total"
+                         [pageSize]="dataSource.pageTotal"
+                         [pageSizeOptions]="[5, 10, 20]"
+                         showFirstLastButtons></mat-paginator>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

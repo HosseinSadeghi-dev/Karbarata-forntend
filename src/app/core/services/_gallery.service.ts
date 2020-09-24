@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
 import {throwError} from 'rxjs';
 
@@ -22,8 +22,21 @@ export class GalleryService {
       catchError((error: HttpErrorResponse) => throwError(error))
     );
   }
-  getGalleryAlbumList(){
-    return this.httpClient.get(`/gallery/album`).pipe(
+  getGalleryAlbumList(filter = '',
+                      sortOrder = 'asc',
+                      pageNumber?,
+                      pageSize?){
+    let params = new HttpParams()
+      .set('filter', filter)
+      .set('sortOrder', sortOrder);
+
+    if (pageNumber)
+      params = params.set('pageNumber', pageNumber.toString());
+
+    if (pageSize)
+      params = params.set('pageSize', pageSize.toString());
+
+    return this.httpClient.get(`/gallery/album`,{params}).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );
@@ -57,8 +70,21 @@ export class GalleryService {
     );
   }
 
-  getGalleryPhotoList(){
-    return this.httpClient.get(`/gallery/photo`).pipe(
+  getGalleryPhotoList(filter = '',
+                      sortOrder = 'asc',
+                      pageNumber?,
+                      pageSize?){
+    let params = new HttpParams()
+      .set('filter', filter)
+      .set('sortOrder', sortOrder);
+
+    if (pageNumber)
+      params = params.set('pageNumber', pageNumber.toString());
+
+    if (pageSize)
+      params = params.set('pageSize', pageSize.toString());
+
+    return this.httpClient.get(`/gallery/photo`,{params}).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );

@@ -11,13 +11,14 @@
             <div fxLayout="row" fxLayoutGap="15px">
               <mat-form-field fxFlex.gt-xs="50%" appearance="fill">
                 <mat-label>جست و جو</mat-label>
-                <input matInput (keyup)="applyFilter($event.target.value)">
+                <input matInput #input>
                 <mat-icon matSuffix>search</mat-icon>
               </mat-form-field>
               <div fxFlex.gt-xs="50%">
-                <mat-paginator
-                  [pageSize]="6"
-                  [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                <mat-paginator [length]="dataSource.total"
+                               [pageSize]="dataSource.pageTotal"
+                               [pageSizeOptions]="[5, 10, 20]"
+                               showFirstLastButtons></mat-paginator>
               </div>
             </div>
 

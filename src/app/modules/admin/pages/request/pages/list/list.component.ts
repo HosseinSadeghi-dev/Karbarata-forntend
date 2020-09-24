@@ -1,25 +1,26 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from "@angular/material/paginator";
 import {RequestContext, RequestStatusType} from "@app/core/models";
 import {RequestService} from "@app/core/services";
-import {MatTableDataSource} from "@angular/material/table";
+import {RequestDatasource} from "../../services";
+import {MatSort} from "@angular/material/sort";
+import {fromEvent, merge} from "rxjs";
+import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-home',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, AfterViewInit {
 
   data: RequestContext[] = [];
-  dataSource = null;
+  dataSource: RequestDatasource;
   displayedColumns: string[] = [ 'count','number','user','type','status','created','id' ];
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  applyFilter(filterValue: string) {
-    console.log('filter',this.dataSource.filter)
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('input') input: ElementRef;
 
   constructor(
     private requestService:RequestService
@@ -29,14 +30,39 @@ export class ListComponent implements OnInit {
     this.getList();
   }
 
-  handleRes(res){
-    this.data = res;
-    this.dataSource = new MatTableDataSource<RequestContext>(this.data);
-    setTimeout(() => this.dataSource.paginator = this.paginator);
+  ngAfterViewInit(): void {
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+    fromEvent(this.input.nativeElement,'keyup')
+      .pipe(
+        debounceTime(150),
+        distinctUntilChanged(),
+        tap(() => {
+          this.paginator.pageIndex = 0;
+          this.loadRequestPages();
+        })
+      )
+      .subscribe();
+
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        tap(() => this.loadRequestPages())
+      )
+      .subscribe();
+  }
+
+  loadRequestPages() {
+    this.dataSource.loadRequests(
+      this.input.nativeElement.value,
+      this.sort.direction,
+      this.paginator.pageIndex,
+      this.paginator.pageSize);
   }
 
   getList(){
-    this.requestService.findAllRequest().subscribe(res => this.handleRes(res))
+    this.paginator.firstPage();
+    this.dataSource = new RequestDatasource(this.requestService);
+    this.dataSource.loadRequests('', 'asc', 1, 3);
+    console.log('data',this.dataSource)
   }
 
   delete(id: number){

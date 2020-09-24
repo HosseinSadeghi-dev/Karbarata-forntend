@@ -22,6 +22,10 @@ const routes: Routes = [
       {
         path: 'master',
         loadChildren: () => import('./pages/master/master.module').then(m => m.MasterModule)
+      },
+      {
+        path: 'construct',
+        loadChildren: () => import('./pages/construct/construct.module').then(m => m.ConstructModule)
       }
     ]
   }

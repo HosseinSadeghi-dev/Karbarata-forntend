@@ -48,6 +48,16 @@ export const DashboardMenuList: MenuContext[] = [
     ]
   },
   {
+    title: 'طراحی ساخت و ساز',
+    link: '/admin/construct',
+    items: [
+      {
+        title: 'مهارت ها',
+        link: '/admin/construct'
+      }
+    ]
+  },
+  {
     title: 'گالری',
     items: [
       {
@@ -95,6 +105,10 @@ export const DashboardMenuList: MenuContext[] = [
       {
         title: 'نیرو متخصص',
         link: '/admin/request/master'
+      },
+      {
+        title: 'طراحی ساخت و ساز',
+        link: '/admin/request/construct'
       },
     ]
   },

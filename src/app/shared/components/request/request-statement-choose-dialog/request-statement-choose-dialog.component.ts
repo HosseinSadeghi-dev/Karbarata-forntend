@@ -21,8 +21,8 @@ export class RequestStatementChooseDialogComponent implements OnInit {
 
   statusStatements: RequestStatusStatementContext[] = [];
   displayedColumns: string[] = ['select', 'id', 'type','user', 'isExpertApproval','created'];
-  dataSource = new MatTableDataSource<RequestStatusStatementContext>([]);
   selection = new SelectionModel<RequestStatusStatementContext>(this.data.multiple, []);
+  dataSource = new MatTableDataSource<RequestStatusStatementContext>([]);
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
