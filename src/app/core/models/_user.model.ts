@@ -18,6 +18,12 @@ export interface UserMaster {
   user?:ProfileContext,
 }
 
+export interface UserAdminstrative{
+  id?: number,
+  user?: ProfileContext,
+  insuranceCode?: number
+}
+
 export interface ProfileContext {
   id?: number,
   name?: string,

@@ -28,6 +28,7 @@ const routes: Routes = [
       {
         path: 'verify',
         component: VerifyFormComponent
+
       }
     ]
   },
