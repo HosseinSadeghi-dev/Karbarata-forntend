@@ -4,7 +4,7 @@ import {UserService} from "../../../../../../../core/services";
 import {ProfileContext} from "../../../../../../../core/models";
 
 
-export class AdminstrativeDatasource implements DataSource<ProfileContext>{
+export class AdminstrativeDataSource implements DataSource<ProfileContext>{
 
   private userSubjects = new BehaviorSubject<ProfileContext[]>([]);
   private _pageTotal;

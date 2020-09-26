@@ -8,6 +8,7 @@ import {MatSort} from "@angular/material/sort";
 import {fromEvent, merge} from "rxjs";
 import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
 import {UserDatasource} from "../../../../services";
+import {AdminstrativeDataSource} from "../../services";
 
 @Component({
   selector: 'app-list',
@@ -17,7 +18,7 @@ import {UserDatasource} from "../../../../services";
 export class ListComponent implements OnInit {
 
   data : ProfileContext[] = [];
-  dataSource : UserDatasource;
+  dataSource : AdminstrativeDataSource;
   // dataSource = null;
   displayedColumns: string[] = ['count','user','phoneNumber','role','status','id'];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -70,7 +71,7 @@ export class ListComponent implements OnInit {
 
   getList(){
     this.paginator.firstPage();
-    this.dataSource= new UserDatasource(this.userService);
+    this.dataSource= new AdminstrativeDataSource(this.userService);
     this.dataSource.loadUsers('', 'asc', 1, 3);
     console.log('data',this.dataSource)
   }
