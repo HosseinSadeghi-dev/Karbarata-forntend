@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthenticationService} from '../../../authentication.service';
 import {CredentialsService} from '../../../credentials.service';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-register-form',
@@ -10,27 +11,43 @@ import {CredentialsService} from '../../../credentials.service';
 })
 export class RegisterFormComponent implements OnInit {
 
-  public form = {
-    name: null,
-    lastName: null,
-    email: null,
-    password: null
-  };
+  // public form = {
+  //   name: null,
+  //   lastName: null,
+  //   email: null,
+  //   password: null,
+  //   phoneNumber:null
+  // };
+  stFormGroup: FormGroup;
 
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
-    private credentialService: CredentialsService
+    private credentialService: CredentialsService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
+    this.stFormGroup = this.formBuilder.group({
+      name: ['',Validators.required,Validators.minLength(3)],
+      lastName: ['',Validators.required,Validators.minLength(3)],
+      email: ['',Validators.required],
+      password: ['',Validators.required],
+      phoneNumber: ['',Validators.required],
+    })
   }
   onSubmit(){
-    this.authenticationService.onRegister(this.form).subscribe(res => this.handleRes(res))
+
+
+    this.authenticationService.onRegister(this.stFormGroup.value).subscribe(res => this.handleRes(res))
   }
   handleRes(res){
     this.credentialService.setCredentials(res.accessToken);
-    this.router.navigateByUrl('/')
+    this.router.navigate(['/auth/verify'],{
+      queryParams: {
+        phone: this.stFormGroup.value.phoneNumber
+      }
+    });
   }
 
 }

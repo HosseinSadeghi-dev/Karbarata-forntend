@@ -5,6 +5,7 @@ import {ProfileService} from '@app/core/authentication/profile.service';
 import {MenuContext, ProfileContext, MenuList} from '@app/core/models';
 import {animate, style, transition, trigger} from '@angular/animations';
 import {Helpers} from '../../../helpers';
+import {AuthenticationService} from "../../../../core/authentication/authentication.service";
 
 const enterTransition = transition(':enter', [
   style({
@@ -50,6 +51,7 @@ export class ToolbarComponent implements OnInit {
   public readonly helper = new Helpers();
 
   constructor(
+    private authenticationService: AuthenticationService,
     private credentialService: CredentialsService,
     private profileService: ProfileService,
     private router: Router) {
@@ -71,6 +73,8 @@ export class ToolbarComponent implements OnInit {
     // this.user.deleteData();
     // this.token.remove();
     // this.auth.changeAuthStatus(false);
-    this.router.navigateByUrl('/');
+    this.authenticationService.logout();
+    // this.router.navigateByUrl('/');
+    window.location.reload();
   }
 }
