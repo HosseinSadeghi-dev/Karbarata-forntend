@@ -35,12 +35,7 @@ export class RequestExpertComponent implements OnInit {
     const params = this.activatedRoute.snapshot.params;
     if (params.id){
       this.requestService.saveRequestExpert(params.id,{user: res.id}).subscribe(
-        res => {
-          if (this.type.value.type === 'master')
-            this.router.navigateByUrl(`/admin/request/master/${params.id}/expert`)
-          else
-            this.router.navigateByUrl(`/admin/request/simple/${params.id}/expert`)
-        }
+        () => this.ngOnInit()
       )
     }
   }

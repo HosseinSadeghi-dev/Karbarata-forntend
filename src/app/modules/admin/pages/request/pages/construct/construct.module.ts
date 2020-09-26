@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import {ReactiveFormsModule} from "@angular/forms";
 import { ConstructRoutingModule } from './construct-routing.module';
+import {SharedModule} from "@app/shared/shared.module";
+import {ButtonCardModule, UserButtonModule} from "@app/shared/components";
+import {PipesModule} from "@app/shared/pipes/pipes.module";
 
 import {
   FormComponent,
@@ -9,10 +12,10 @@ import {
   MainComponent,
   ShowComponent
 } from "./pages";
-import {SharedModule} from "../../../../../../shared/shared.module";
-import {ButtonCardModule, UserButtonModule} from "../../../../../../shared/components";
-import {PipesModule} from "../../../../../../shared/pipes/pipes.module";
-import {ReactiveFormsModule} from "@angular/forms";
+
+import {
+  WorkforceConstructComponent
+} from './containers';
 
 
 @NgModule({
@@ -20,7 +23,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     MainComponent,
     FormComponent,
     ListComponent,
-    ShowComponent
+    ShowComponent,
+    WorkforceConstructComponent
   ],
     imports: [
         CommonModule,
