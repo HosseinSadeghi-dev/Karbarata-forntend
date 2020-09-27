@@ -30,7 +30,7 @@ export class WorkforceMasterDatasource implements DataSource<UserWorkforceMaster
     data?
   ) {
     this.userService
-      .findAllUserSimple(filter, sortDirection, pageIndex, pageSize, verb, data)
+      .findAllUserMaster(filter, sortDirection, pageIndex, pageSize, verb, data)
       .subscribe(value => this.handleRes(value));
   }
   handleRes(res){

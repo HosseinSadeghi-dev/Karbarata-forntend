@@ -20,7 +20,7 @@ export class ListComponent implements OnInit {
   data : ProfileContext[] = [];
   dataSource : AdminstrativeDataSource;
   // dataSource = null;
-  displayedColumns: string[] = ['count','user','phoneNumber','role','status','id'];
+  displayedColumns: string[] = ['count','user','phoneNumber','insuranceCode','role','status','id'];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('input') input: ElementRef;
@@ -60,7 +60,6 @@ export class ListComponent implements OnInit {
       this.sort.direction,
       this.paginator.pageIndex,
       this.paginator.pageSize,
-      'admin',
       );
   }
 
@@ -72,7 +71,7 @@ export class ListComponent implements OnInit {
   getList(){
     this.paginator.firstPage();
     this.dataSource= new AdminstrativeDataSource(this.userService);
-    this.dataSource.loadUsers('', 'asc', 1, 3);
+    this.dataSource.loadUsers('', 'asc', 0, 3);
     console.log('data',this.dataSource)
   }
 

@@ -29,9 +29,10 @@ export class FormComponent implements OnInit {
     const params = this.activatedRoute.snapshot.params;
     if (params.id && isNumeric(params.id)) {
       this.isEdit = true;
-      this.userService.findUserById(params.id).subscribe(res => this.handleRes(res));
+      this.userService.findOneAdminstrative(params.id).subscribe(res => this.handleRes(res));
     }
     this.stFormGroup = this.formBuilder.group({
+
       user: this.formBuilder.group({
         status: [{value: '', disabled: false}],
         roles: [[], [Validators.required,Validators.minLength(1)]],
@@ -43,7 +44,8 @@ export class FormComponent implements OnInit {
         address: ['', Validators.required],
         houseNumber: ['', Validators.required],
       }),
-      insuranceCode: ['',Validators.required],
+      insuranceCode: [,Validators.required],
+
     });
     console.log('form',this.stFormGroup)
   }
@@ -62,21 +64,23 @@ export class FormComponent implements OnInit {
       subscribe(res => this.router.navigateByUrl('/admin/user/adminstrative'));
 
     }else {
-      this.userService.saveUserAdminstrative(form).
+      this.userService.createUserAdminstrative(form).
       subscribe(res => this.router.navigateByUrl('/admin/user/adminstrative') );
     }
   }
 
   handleRes(res) {
-
-    this.stFormGroup.get('name').setValue(res.user.name);
-    this.stFormGroup.get('lastName').setValue(res.user.lastName);
-    this.stFormGroup.get('phoneNumber').setValue(res.user.phoneNumber);
-    this.stFormGroup.get('address').setValue(res.user.address);
-    this.stFormGroup.get('pid').setValue(res.user.pid);
-    this.stFormGroup.get('houseNumber').setValue(res.user.houseNumber);
-    this.stFormGroup.get('roles').setValue(res.user.roles);
-    res.status == UserStatus.ACTIVATE ? this.stFormGroup.get('status').setValue(true) : this.stFormGroup.get('status').setValue(false);
+    console.log('res',res)
+    this.stFormGroup.get('user').get('name').setValue(res.user.name);
+    this.stFormGroup.get('user').get('lastName').setValue(res.user.lastName);
+    this.stFormGroup.get('user').get('phoneNumber').setValue(res.user.phoneNumber);
+    this.stFormGroup.get('user').get('email').setValue(res.user.email);
+    this.stFormGroup.get('user').get('address').setValue(res.user.address);
+    this.stFormGroup.get('user').get('pid').setValue(res.user.pid);
+    this.stFormGroup.get('user').get('houseNumber').setValue(res.user.houseNumber);
+    this.stFormGroup.get('user').get('roles').setValue(res.user.roles);
+    this.stFormGroup.get('insuranceCode').setValue(res.insuranceCode);
+    res.user.status == UserStatus.ACTIVATE ? this.stFormGroup.get('user').get('status').setValue(true) : this.stFormGroup.get('user').get('status').setValue(false);
   }
 
   public get UserStatus() {

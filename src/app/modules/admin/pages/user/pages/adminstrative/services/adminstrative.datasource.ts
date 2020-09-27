@@ -1,12 +1,12 @@
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {UserService} from "../../../../../../../core/services";
-import {ProfileContext} from "../../../../../../../core/models";
+import {ProfileContext, UserAdminstrative} from "../../../../../../../core/models";
 
 
-export class AdminstrativeDataSource implements DataSource<ProfileContext>{
+export class AdminstrativeDataSource implements DataSource<UserAdminstrative>{
 
-  private userSubjects = new BehaviorSubject<ProfileContext[]>([]);
+  private userSubjects = new BehaviorSubject<UserAdminstrative[]>([]);
   private _pageTotal;
   private _total;
 
@@ -37,7 +37,7 @@ export class AdminstrativeDataSource implements DataSource<ProfileContext>{
     this._total = res.total;
   }
 
-  connect(collectionViewer?: CollectionViewer): Observable<ProfileContext[]> {
+  connect(collectionViewer?: CollectionViewer): Observable<UserAdminstrative[]> {
     return this.userSubjects.asObservable();
   }
 

@@ -12,38 +12,51 @@
         </mat-card-header>
         <mat-card-content>
           <div fxLayout="column" fxLayoutGap="15px">
+
             <mat-form-field appearance="fill">
               <mat-label>جست و جو</mat-label>
               <input matInput #input>
               <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>
+
             <table mat-table [dataSource]="dataSource" matSort matSortDisableClear>
+
               <ng-container matColumnDef="count">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> ردیف </th>
                 <td mat-cell *matCellDef="let element;let i = index" data-label="ردیف"> {{i+1}} </td>
               </ng-container>
+
               <ng-container matColumnDef="user">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> کاربر </th>
                 <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="کاربر :">
-                  <app-user-button [user]="element"></app-user-button>
+                  <app-user-button [user]="element.user"></app-user-button>
                 </td>
               </ng-container>
+
               <ng-container matColumnDef="phoneNumber">
                 <th mat-header-cell *matHeaderCellDef> شماره تلفن </th>
                 <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="شماره تلفن :">
-                  {{element.phoneNumber ? element.phoneNumber : '---'}}
+                  {{element.user.phoneNumber ? element.user.phoneNumber : '---'}}
                 </td>
               </ng-container>
+
+              <ng-container matColumnDef="insuranceCode">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> کد بیمه </th>
+                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="کد بیمه :">
+                  {{element.insuranceCode ? element.insuranceCode : '---'}}
+                </td>
+              </ng-container>
+
               <ng-container matColumnDef="role" >
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> نقش </th>
                 <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="نقش :">
                   <mat-chip-list ngClass.lt-md="mr-4">
-                    <ng-container *ngFor="let role of element.roles" >
-                      <mat-chip *ngIf="role === UserRole.ADMIN">مدیر</mat-chip>
-                      <mat-chip *ngIf="role === UserRole.AUTHOR">نویسنده</mat-chip>
-                      <mat-chip *ngIf="role === UserRole.USER">کاربر</mat-chip>
-                      <mat-chip *ngIf="role === UserRole.WORKER">نیرو ساده</mat-chip>
-                      <mat-chip *ngIf="role === UserRole.MASTER">نیرو متخصص</mat-chip>
+                    <ng-container *ngFor="let role of element.user.roles" >
+<!--                      <mat-chip *ngIf="role === UserRole.ADMIN">مدیر</mat-chip>-->
+<!--                      <mat-chip *ngIf="role === UserRole.AUTHOR">نویسنده</mat-chip>-->
+<!--                      <mat-chip *ngIf="role === UserRole.USER">کاربر</mat-chip>-->
+<!--                      <mat-chip *ngIf="role === UserRole.WORKER">نیرو ساده</mat-chip>-->
+<!--                      <mat-chip *ngIf="role === UserRole.MASTER">نیرو متخصص</mat-chip>-->
                       <mat-chip *ngIf="role === UserRole.EXPERT">کارشناس</mat-chip>
                       <mat-chip *ngIf="role === UserRole.ACCOUNTANT">حسابدار</mat-chip>
                       <mat-chip *ngIf="role === UserRole.OPERATOR">اپراتور</mat-chip>
@@ -52,11 +65,12 @@
                   </mat-chip-list>
                 </td>
               </ng-container>
+
               <ng-container matColumnDef="status">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> وضعیت </th>
                 <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="وضعیت:">
                   <mat-chip-list ngClass.lt-md="mr-4">
-                    <ng-container [ngSwitch]="element.status">
+                    <ng-container [ngSwitch]="element.user.status">
                       <mat-chip *ngSwitchCase="UserStatus.ACTIVATE" selected>فعال</mat-chip>
                       <mat-chip *ngSwitchCase="UserStatus.DEACTIVATE">غیر فعال</mat-chip>
                       <mat-chip *ngSwitchDefault>نامشخص</mat-chip>
@@ -75,11 +89,11 @@
                       <mat-icon>edit</mat-icon>
                       <span>تغییر اطلاعات</span>
                     </button>
-                    <button (click)="onChangeStatus(element.id, element.status)" mat-menu-item>
+                    <button (click)="onChangeStatus(element.user.id, element.user.status)" mat-menu-item>
                       <mat-icon>change_history</mat-icon>
                       <span>تغییر وضعیت</span>
                     </button>
-                    <button (click)="delete(element.id)" mat-menu-item disabled>
+                    <button (click)="delete(element.user.id)" mat-menu-item disabled>
                       <mat-icon>delete</mat-icon>
                       <span>حذف</span>
                     </button>

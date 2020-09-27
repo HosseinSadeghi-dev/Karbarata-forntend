@@ -37,8 +37,9 @@ export interface ProfileContext {
   phoneNumber?: string,
   roles?: UserRole[],
   status?: UserStatus,
-  workforceMaster?: UserWorkforceMaster
-  workforceSimple?: UserWorkforceSimple
+  workforceMaster?: UserWorkforceMaster,
+  workforceSimple?: UserWorkforceSimple,
+  adminstrative?: UserAdminstrative
 }
 
 export interface Shared{

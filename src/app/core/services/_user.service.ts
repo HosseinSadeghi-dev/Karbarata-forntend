@@ -60,34 +60,6 @@ export class UserService {
     );
   }
 
-
-
-  findAllAdminstrative(
-    filter = '',
-    sortOrder = 'asc',
-    pageNumber?,
-    pageSize?,
-    verb = '',
-    data = ''){
-    let params = new HttpParams()
-      .set('filter', filter)
-      .set('sortOrder', sortOrder)
-
-    if (pageNumber)
-      params = params.set('pageNumber', pageNumber.toString());
-
-    if (pageSize)
-      params = params.set('pageSize', pageSize.toString());
-
-    if(verb)
-      params = params.set(verb, data);
-
-    return this.httpClient.get(`/user/adminstrative`,{params}).pipe(
-      map((response: any) => response),
-      catchError((error: HttpErrorResponse) => throwError(error))
-    );
-  }
-
   deleteUser(id){
     return this.httpClient.delete(`/user/${id}`).pipe(
       map((response: any) => response),
@@ -116,22 +88,8 @@ export class UserService {
     );
   }
 
-  updateUserAdminstrative(id,data){
-    return this.httpClient.put(`/user/adminstrative/${id}`,data).pipe(
-      map((response: any) => response),
-      catchError((error: HttpErrorResponse) => throwError((error)))
-    );
-  }
-
   saveUser(data){
     return this.httpClient.post(`/user`,data).pipe(
-      map((response: any) => response),
-      catchError((error: HttpErrorResponse) => throwError(error))
-    );
-  }
-
-  saveUserAdminstrative(data){
-    return this.httpClient.post(`/user/adminstrative`,data).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );
@@ -264,6 +222,55 @@ export class UserService {
 
   findOnePayment(id){
     return this.httpClient.get(`/user/payment/${id}`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  ///// ADMINSTRATIVE
+
+  findAllAdminstrative(
+    filter = '',
+    sortOrder = 'asc',
+    pageNumber?,
+    pageSize?,
+    verb = '',
+    data = ''){
+    let params = new HttpParams()
+      .set('filter', filter)
+      .set('sortOrder', sortOrder)
+
+    if (pageNumber)
+      params = params.set('pageNumber', pageNumber.toString());
+
+    if (pageSize)
+      params = params.set('pageSize', pageSize.toString());
+
+    if(verb)
+      params = params.set(verb, data);
+
+    return this.httpClient.get(`/user/adminstrative`,{params}).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  findOneAdminstrative(id){
+    return this.httpClient.get(`/user/adminstrative/${id}`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError((error)))
+    );
+  }
+
+  updateUserAdminstrative(id,data){
+    return this.httpClient.put(`/user/adminstrative/${id}`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError((error)))
+    );
+  }
+
+  createUserAdminstrative(data){
+    return this.httpClient.post(`/user/adminstrative`,data).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );
