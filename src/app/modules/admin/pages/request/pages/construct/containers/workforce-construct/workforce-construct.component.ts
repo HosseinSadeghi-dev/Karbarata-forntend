@@ -1,28 +1,27 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {RequestService, UserService} from "@app/core/services";
 import {
   MasterSkillContext,
   ProfileContext,
   RequestMasterContext,
-  RequestMasterWorkforceContext,
-  UserRole
-} from "@app/core/models";
+  RequestMasterWorkforceContext, UserRole
+} from "../../../../../../../../core/models";
+import {UserDatasource} from "../../../../../user/services";
 import {SelectionModel} from "@angular/cdk/collections";
 import {MatPaginator} from "@angular/material/paginator";
-import {UserDatasource} from "../../../../../user/services";
 import {MatSort} from "@angular/material/sort";
+import {ActivatedRoute} from "@angular/router";
+import {RequestService, UserService} from "../../../../../../../../core/services";
 import {fromEvent, merge} from "rxjs";
 import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
 
 @Component({
-  selector: 'app-request-workforce-master',
-  templateUrl: './workforce-master.component.html',
-  styleUrls: ['./workforce-master.component.scss']
+  selector: 'app-workforce-construct',
+  templateUrl: './workforce-construct.component.html',
+  styleUrls: ['./workforce-construct.component.scss']
 })
-export class WorkforceMasterComponent implements OnInit {
+export class WorkforceConstructComponent implements OnInit {
 
-  requestMaster: RequestMasterContext
+  requestConstruct: RequestMasterContext
   selectedUsers: ProfileContext[] = [];
   isEdit: boolean = false;
   users: ProfileContext[] = [];
@@ -52,10 +51,8 @@ export class WorkforceMasterComponent implements OnInit {
 
   getWorkforcesByRequest(){
     if (this.params.id){
-      this.requestService.findOneMasterRequestWorkForce(this.params.id).subscribe(
-        res => {
-          this.requestMaster = res;
-        }
+      this.requestService.findOneConstructRequestWorkForce(this.params.id).subscribe(
+        res => this.requestConstruct = res
       )
     }
   }
@@ -95,7 +92,7 @@ export class WorkforceMasterComponent implements OnInit {
     this.dataSource = new UserDatasource(this.userService);
     this.dataSource.loadUsers('', 'asc', 1, 3, 'skill', data);
     this.handleTable(data)
-    console.log('data',this.dataSource)
+    // console.log('data',this.dataSource)
   }
 
   // getList(data: string){
@@ -112,10 +109,10 @@ export class WorkforceMasterComponent implements OnInit {
     //
     // this.dataSource = new MatTableDataSource<ProfileContext>(this.users);
 
-    this.requestMaster.skills.forEach(
+    this.requestConstruct.skills.forEach(
       row => {
         if (row.slug === skill){
-          this.requestMaster.workforces.forEach(
+          this.requestConstruct.workforces.forEach(
             each => {
               if(each.skill.slug === row.slug)
               {
@@ -143,12 +140,12 @@ export class WorkforceMasterComponent implements OnInit {
 
     if(this.isEdit){
       console.log(this.prev)
-      this.requestService.updateMasterRequestWorkForce(this.params.id, workforce, this.prev.id).subscribe(
+      this.requestService.updateConstructRequestWorkForce(this.params.id, workforce, this.prev.id).subscribe(
         () => this.getWorkforcesByRequest()
       )
     }
     else {
-      this.requestService.saveMasterRequestWorkForce(this.params.id, workforce).subscribe(
+      this.requestService.saveConstructRequestWorkForce(this.params.id, workforce).subscribe(
         // res => this.router.navigateByUrl(`/admin/request/master/${this.data.id}`)
         () => this.getWorkforcesByRequest()
       )
@@ -157,7 +154,7 @@ export class WorkforceMasterComponent implements OnInit {
 
   onDelete(data){
     console.log('delete',data)
-    this.requestService.deleteMasterRequestWorkForce(this.params.id, data.id).subscribe(
+    this.requestService.deleteConstructRequestWorkForce(this.params.id, data.id).subscribe(
       () => this.getWorkforcesByRequest()
     )
   }

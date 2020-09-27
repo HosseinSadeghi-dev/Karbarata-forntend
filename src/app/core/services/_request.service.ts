@@ -242,6 +242,32 @@ export class RequestService {
     );
   }
 
+  //construct
+  findOneConstructRequestWorkForce(id){
+    return this.httpClient.get(`/request/${id}/construct/workforce`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+  saveConstructRequestWorkForce(id, data){
+    return this.httpClient.post(`/request/${id}/construct/workforce`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+  deleteConstructRequestWorkForce(id,  masterId){
+    return this.httpClient.delete(`/request/${id}/construct/workforce/${masterId}`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+  updateConstructRequestWorkForce(id, data, masterId){
+    return this.httpClient.put(`/request/${id}/construct/workforce/${masterId}`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
   //master
   findOneMasterRequestWorkForce(id){
     return this.httpClient.get(`/request/${id}/master/workforce`).pipe(

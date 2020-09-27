@@ -66,11 +66,11 @@ export class RequestStatementFormComponent implements OnInit {
     if (params.id){
       if (params.sid){
         this.requestService.updateRequestStatusStatement(params.sid, form).subscribe(
-          res => this.router.navigateByUrl(`admin/request/master/${params.id}/statusStatement`)
+          () => this.ngOnInit()
         )
       }else {
         this.requestService.saveRequestStatusStatementByRequest(params.id, form).subscribe(
-          res => this.router.navigateByUrl(`admin/request/master/${params.id}/statusStatement`)
+          () => this.ngOnInit()
         )
       }
     }
@@ -79,7 +79,7 @@ export class RequestStatementFormComponent implements OnInit {
   updateExpertApproval(){
     const params = this.activatedRoute.snapshot.params;
     this.requestService.updateRequestStatementExpertApproval(params.sid,{isExpertApproval: true}).subscribe(
-      res => this.router.navigateByUrl(`admin/request/master/${params.id}/statusStatement`)
+      () => this.ngOnInit()
     );
   }
 

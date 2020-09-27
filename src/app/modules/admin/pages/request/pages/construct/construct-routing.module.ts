@@ -20,6 +20,10 @@ import {
   RequestStatusPerDayComponent
 } from "@app/shared/components";
 
+import {
+  WorkforceConstructComponent
+} from "./containers";
+
 const routes: Routes = [
   {
     path: '',
@@ -74,10 +78,10 @@ const routes: Routes = [
                           type:'construct'
                         }
                       },
-                      // {
-                      //   path: 'workforce',
-                      //   component: WorkforceMasterComponent
-                      // },
+                      {
+                        path: 'workforce',
+                        component: WorkforceConstructComponent
+                      },
                       {
                         path: 'report',
                         component: RequestReportComponent,

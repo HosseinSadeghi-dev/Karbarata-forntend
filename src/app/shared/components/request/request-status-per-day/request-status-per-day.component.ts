@@ -44,12 +44,7 @@ export class RequestStatusPerDayComponent implements OnInit {
     if (params.id) {
       const form = this.stFormGroup.value;
       this.requestService.saveRequestPerDayStatus(params.id, form).subscribe(
-        res => {
-          if (this.type.value.type === 'master')
-            this.router.navigateByUrl(`/admin/request/master/${params.id}/statusPerDay`)
-          else
-            this.router.navigateByUrl(`/admin/request/simple/${params.id}/statusPerDay`)
-        }
+        () => this.getRequest()
       )
     }
   }

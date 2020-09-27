@@ -54,6 +54,7 @@ export class FormComponent implements OnInit {
     this.stFormGroup = this.formBuilder.group({
       construct: ['', [Validators.required,Validators.minLength(1)]],
       type: ['',Validators.required],
+
       request: this.formBuilder.group({
         approximateArea: ['', Validators.required],
         address: ['', Validators.required],
@@ -61,8 +62,9 @@ export class FormComponent implements OnInit {
         description: [''],
         isForce: [],
         serviceDate: ['', Validators.required],
-        user: ['',Validators.required],
       }),
+
+      user: ['',Validators.required],
 
     });
   }

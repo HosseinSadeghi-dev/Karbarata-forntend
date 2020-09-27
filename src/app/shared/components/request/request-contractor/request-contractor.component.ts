@@ -56,7 +56,7 @@ export class RequestContractorComponent implements OnInit {
     const params = this.activatedRoute.snapshot.params;
     if (params.id){
       this.requestService.saveRequestContractor(params.id,form).subscribe(
-        res => this.getContractors()
+        () => this.getContractors()
       )
     }
   }

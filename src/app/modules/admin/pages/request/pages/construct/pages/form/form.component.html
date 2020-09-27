@@ -32,7 +32,7 @@
               <button [disabled]="isEdit" appUserChoose class="mb-3"
                       [roles]="UserRole.USER"
                       (click)="$event.preventDefault()"
-                      (userUpdated)="userPreview = $event;stFormGroup.controls['request'].get('user').setValue($event)"
+                      (userUpdated)="userPreview = $event;stFormGroup.get('user').setValue($event)"
                       mat-raised-button color="accent">
                 <ng-container *ngIf="!userPreview; else skeletonUserPreview">
                   <mat-icon>account_circle</mat-icon>
@@ -55,7 +55,6 @@
                 <mat-radio-button *ngFor="let type of ConstructType | enumToArray" [value]="type" class="px-2" color="primary">
                   <span *ngIf="type === ConstructType.BOTH">طراحی و اجرا</span>
                   <span *ngIf="type === ConstructType.DESIGNING">طراحی</span>
-                  <span *ngIf="type === ConstructType.IMPLEMENTATION">اجرا</span>
                 </mat-radio-button>
               </mat-radio-group>
 
