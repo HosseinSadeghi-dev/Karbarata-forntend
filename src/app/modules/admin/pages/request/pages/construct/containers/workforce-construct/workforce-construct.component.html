@@ -2,9 +2,22 @@
 
   <div fxLayout="column" fxFlex="27%"  class="text-center">
 
+    <button
+      fxLayout="row"
+      appSkillChoose
+      [selected]="requestConstruct?.masterWorkforces?.skills"
+      (skillUpdated)="$event"
+      fxLayoutAlign="space-around center"
+      class="add-button"
+      mat-flat-button
+      color="primary">
+      <span>افزودن مهارت</span>
+      <mat-icon>add</mat-icon>
+    </button>
+
     <mat-accordion fxLayout="column" fxLayoutGap="10px">
 
-      <ng-container *ngFor="let skill of requestConstruct?.skills" >
+      <ng-container *ngFor="let skill of requestConstruct?.masterWorkforces?.skills" >
 
         <mat-expansion-panel >
 
@@ -27,7 +40,7 @@
 
           <div fxLayout="column" class="overflow">
 
-            <ng-container *ngFor="let row of requestConstruct?.workforces">
+            <ng-container *ngFor="let row of requestConstruct?.masterWorkforces.workforces">
 
               <mat-list  fxLayout="row" fxLayoutAlign="space-between center" *ngIf="row?.skill?.name === skill?.name">
                 <mat-list-item class="text-right">

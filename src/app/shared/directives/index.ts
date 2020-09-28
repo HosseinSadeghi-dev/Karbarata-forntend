@@ -6,3 +6,4 @@ export * from "./user-choose.directive";
 export * from "./request-report-form.directive";
 export * from "./request-payment-bottom-sheet.directive";
 export * from "./status-statement-choose.directive";
+export * from "./skill-choose.directive"

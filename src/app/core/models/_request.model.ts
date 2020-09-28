@@ -61,7 +61,9 @@ export interface RequestConstructContext {
   id?: number,
   construct?: ConstructContext
   request?: RequestContext,
-  type?: RequestConstructType
+  type?: RequestConstructType,
+  masterWorkforces?: RequestMasterContext,
+  simpleWorkforces?: RequestSimpleContext
   created?: Date,
   updated?: Date
 }
