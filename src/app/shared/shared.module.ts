@@ -17,6 +17,7 @@ import {
   RequestReportFormDirective,
   RequestPaymentBottomSheetDirective,
   StatusStatementChooseDirective,
+  SkillChooseDirective,
 } from '@app/shared/directives';
 
 import {PipesModule} from "@app/shared/pipes/pipes.module";
@@ -30,6 +31,7 @@ const directives = [
   RequestReportFormDirective,
   RequestPaymentBottomSheetDirective,
   StatusStatementChooseDirective,
+  SkillChooseDirective
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {
   MasterSkillContext,
-  ProfileContext,
+  ProfileContext, RequestConstructContext,
   RequestMasterContext,
   RequestMasterWorkforceContext, UserRole
 } from "../../../../../../../../core/models";
@@ -21,7 +21,7 @@ import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
 })
 export class WorkforceConstructComponent implements OnInit {
 
-  requestConstruct: RequestMasterContext
+  requestConstruct: RequestConstructContext
   selectedUsers: ProfileContext[] = [];
   isEdit: boolean = false;
   users: ProfileContext[] = [];
@@ -109,10 +109,10 @@ export class WorkforceConstructComponent implements OnInit {
     //
     // this.dataSource = new MatTableDataSource<ProfileContext>(this.users);
 
-    this.requestConstruct.skills.forEach(
+    this.requestConstruct.masterWorkforces.skills.forEach(
       row => {
         if (row.slug === skill){
-          this.requestConstruct.workforces.forEach(
+          this.requestConstruct.masterWorkforces.workforces.forEach(
             each => {
               if(each.skill.slug === row.slug)
               {
