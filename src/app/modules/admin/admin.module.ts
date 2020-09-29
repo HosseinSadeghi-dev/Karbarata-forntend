@@ -10,12 +10,14 @@ import {
   MainComponent,
   HomeComponent
 } from './pages';
+import { MenuListItemComponent } from './components/menu-list-item/menu-list-item.component';
 
 
 @NgModule({
   declarations: [
     MainComponent,
-    HomeComponent
+    HomeComponent,
+    MenuListItemComponent
   ],
   imports: [
     CommonModule,

@@ -1,17 +1,21 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {OverlayContainer} from '@angular/cdk/overlay';
-import {DashboardMenuList, MenuContext, ProfileContext, UserRole} from '@app/core/models';
+import {DashboardMenuList, MenuContext, NavItem, navItems, ProfileContext, UserRole} from '@app/core/models';
 import {CredentialsService} from '@app/core/authentication/credentials.service';
 import {ProfileService} from '@app/core/authentication/profile.service';
+import { NavService } from '@app/core/services';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
-  menuItems: MenuContext[] = DashboardMenuList;
+export class MainComponent implements OnInit, AfterViewInit {
+  // menuItems: MenuContext[] = DashboardMenuList;
+  @ViewChild('appDrawer') appDrawer: ElementRef;
+
+  dashboardItems: NavItem[] = navItems;
   mobileQuery: MediaQueryList;
   public loggedIn : boolean;
   public userProfile: ProfileContext;
@@ -22,7 +26,8 @@ export class MainComponent implements OnInit {
               media: MediaMatcher,
               overlayContainer: OverlayContainer,
               private credentialService: CredentialsService,
-              private profileService: ProfileService) {
+              private profileService: ProfileService,
+              private navService: NavService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -40,6 +45,10 @@ export class MainComponent implements OnInit {
   }
   ngOnInit(): void {}
 
+  ngAfterViewInit() {
+    this.navService.appDrawer = this.appDrawer;
+  }
+
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
@@ -54,4 +63,9 @@ export class MainComponent implements OnInit {
   public get UserRole(){
     return UserRole;
   }
+  
+  openSide(){
+    this.navService.openNav();
+  }
+
 }
