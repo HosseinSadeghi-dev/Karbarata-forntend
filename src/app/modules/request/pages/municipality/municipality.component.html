@@ -1,0 +1,42 @@
+<div class="h-100">
+
+  <div fxFlex="50%" fxHide.lt-md class="true">
+
+    <img src="assets/image/asa.jpg" class="img-fluid" alt="" fxFlex>
+<!--    <image-lazy image="assets/image/Mask%20Group%209.png"-->
+<!--                alt="municipality"-->
+<!--                fxFill></image-lazy>-->
+  </div>
+
+  <div fxLayout="row" fxFlex class="mt-4 mx-4 line">
+
+    <div fxFlex="100%" fxLayout="column">
+      <h2>خدمات شهرداری</h2>
+
+      <h4>انجام انواع امور اعم از خلافی ، دریافت مجوز و ...</h4>
+
+      <form [formGroup]="stFormGroup" fxLayout="column" class="mt-5">
+
+        <mat-form-field appearance="outline" dir="rtl">
+          <mat-label>توضیحات</mat-label>
+          <textarea rows="5" matInput formControlName="description"></textarea>
+          <mat-hint>لطفا توضیحات درخواست خود را وارد کنید</mat-hint>
+        </mat-form-field>
+
+        <div fxLayoutAlign="end center" class="mt-5">
+          <button mat-flat-button
+                  color="primary"
+                  [disabled]="!stFormGroup.valid"
+                  (click)="onSubmit()">
+            ثبت درخواست
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+
+
+  </div>
+
+</div>

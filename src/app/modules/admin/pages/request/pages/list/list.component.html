@@ -100,6 +100,7 @@
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
             </table>
+
           </div>
           <mat-paginator [length]="dataSource.total"
                          [pageSize]="dataSource.pageTotal"

@@ -236,6 +236,23 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent-dark, $theme-warn);
   }
 }
 
+@mixin category($theme){
+  $primary : map-get($theme, primary);
+  $accent : map-get($theme, accent);
+
+  .section {
+    background: url("/assets/image/Mask Group 2.png") center center no-repeat;
+    background-size: cover;
+    height: 80vh;
+
+    .mat-card{
+      background-color: mat-color($accent) !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+  }
+}
+
 @mixin stepper($theme){
   $primary : map-get($theme, primary);
   $accent : map-get($theme, accent);
@@ -245,6 +262,7 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent-dark, $theme-warn);
     //@include mat-stepper-theme($theme);
 
     &__step {
+      background-color: #0D47A1 !important;
       mat-hint{
         color: white !important;
       }
@@ -258,7 +276,7 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent-dark, $theme-warn);
       display: inline-block;
       content: "";
       border-top: .15rem solid mat-color($primary);
-      width: 4rem;
+      width: 3rem;
       margin-right: 5px;
       transform: translateY(-0.27rem);
     }
@@ -300,11 +318,13 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent-dark, $theme-warn);
 @include angular-material-theme($theme);
 @include stepper($theme);
 @include field($theme);
+@include category($theme);
 
 .theme-alternate {
   @include angular-material-theme($altTheme);
   @include stepper($altTheme);
   @include field($altTheme);
+  @include category($altTheme);
 }
 
 
@@ -805,6 +825,13 @@ textarea {
 
 .mat-dialog-container{
   border-radius: 15px !important;
+}
+
+.add-button {
+  border-radius: 20px !important;
+  *{
+    color: white !important;
+  }
 }
 
 /* Chrome, Safari, Edge, Opera */

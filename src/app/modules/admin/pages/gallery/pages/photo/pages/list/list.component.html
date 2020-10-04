@@ -8,44 +8,55 @@
       <mat-card>
         <mat-card-content>
           <div fxLayout="column" fxLayoutGap="15px">
+
             <div fxLayout="row" fxLayoutGap="15px">
               <mat-form-field fxFlex.gt-xs="50%" appearance="fill">
                 <mat-label>جست و جو</mat-label>
                 <input matInput #input>
                 <mat-icon matSuffix>search</mat-icon>
               </mat-form-field>
-              <div fxFlex.gt-xs="50%">
-                <mat-paginator [length]="dataSource.total"
-                               [pageSize]="dataSource.pageTotal"
-                               [pageSizeOptions]="[5, 10, 20]"
-                               showFirstLastButtons></mat-paginator>
-              </div>
+
             </div>
 
+<!--            <table mat-table [dataSource]="dataSource" matSort matSortDisableClear>-->
             <div fxLayout="row wrap" fxLayout.xs="column" dir="rtl" fxLayoutGap="15px grid">
+
               <div fxFlex.gt-sm="25%" *ngFor="let photo of obs | async;let i = index">
                 <div class="view rounded">
                   <img class="img-fluid mx-auto"
                        [defaultImage]="'assets/image/image-loader.svg'"
                        [lazyLoad]="photo.name | srcImage"
                        [alt]="photo.name">
+
                   <div class="mask" fxLayout="row" fxLayoutAlign=" end">
                     <div class="mr-2 mb-2">
+
                       <button color="primary" (click)="openPhoto(photo)" mat-mini-fab matTooltip="نمایش">
                         <mat-icon>visibility</mat-icon>
                       </button>
+
                       <button class="mr-2" color="accent" (click)="editDialog(photo)" mat-mini-fab matTooltip="تغییر">
                         <mat-icon>create</mat-icon>
                       </button>
+
                       <button class="mr-2" color="warn" (click)="onDelete(photo.id)" mat-mini-fab matTooltip="تغییر">
                         <mat-icon>delete</mat-icon>
                       </button>
+
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>
+
+<!--            </table>-->
+
           </div>
+          <mat-paginator [length]="dataSource.total"
+                         [pageSize]="dataSource.pageTotal"
+                         [pageSizeOptions]="[5, 10, 20]"
+                         showFirstLastButtons></mat-paginator>
 
         </mat-card-content>
       </mat-card>

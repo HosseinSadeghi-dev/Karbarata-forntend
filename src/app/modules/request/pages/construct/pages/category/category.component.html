@@ -1,0 +1,31 @@
+<div fxLayout="column">
+
+  <div class="section" fxLayoutAlign="start end">
+
+    <div fxFlex="10%"></div>
+
+    <mat-card fxFlex="40%" class=" mb-n4 p-4">
+      <h3>طراحی ، ساخت و ساز</h3>
+      <span class="text-justify">طراحی و اجرای پروژه های کوچک و بزرگ خود را در زمینه های زیر میتوانید از قسمت طراحی ساخت و ساز سفارش دهید</span>
+    </mat-card>
+
+  </div>
+
+  <div class="mt-5" fxLayoutAlign="center center">
+    <div fxFlex="80%" fxLayout="row wrap" fxLayoutGap="2%" dir="rtl">
+
+      <ng-container *ngFor="let category of data">
+
+        <app-skill-show
+          [name]="category.name"
+          [slug]="category.slug"
+          [image]="category.image.name"
+          fxFlex="30%" class="pb-3">
+        </app-skill-show>
+
+      </ng-container>
+
+    </div>
+  </div>
+
+</div>

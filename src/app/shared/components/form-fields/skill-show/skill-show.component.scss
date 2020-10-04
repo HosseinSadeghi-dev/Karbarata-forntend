@@ -1,0 +1,28 @@
+.square{
+  padding-top: 100%;
+  position: relative;
+  width: 100%;
+  background: center center no-repeat;
+  background-size: cover;
+  &:hover{
+    cursor: pointer;
+  }
+}
+.text {
+  z-index: 5;
+  &::before {
+    margin-left: 18px;
+    content: '';
+    width: 8px;
+    border-right: 4px solid orangered;
+  }
+}
+
+.overLayer{
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}

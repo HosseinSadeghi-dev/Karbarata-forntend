@@ -36,9 +36,11 @@
           <span matSubheader>رسانه ها</span>
           <div fxLayout="row" fxLayout.xs="column" dir="rtl" fxLayoutGap="15px">
             <div fxFlex.gt-xs="50%">
+              تصویر
               <photo-choose-button [data]="{formControl: stFormGroup.controls['image']}" (click)="$event.preventDefault()"></photo-choose-button>
             </div>
             <div fxFlex.gt-xs="50%">
+              SVG
               <photo-choose-button [data]="{formControl: stFormGroup.controls['svg']}" (click)="$event.preventDefault()"></photo-choose-button>
             </div>
           </div>

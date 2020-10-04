@@ -289,5 +289,16 @@ export const MenuList: MenuContext[] = [
   }
 ];
 
+export enum AdviceCategoryContext{
+  CONSTRUCT = 'construct',
+  WORKFORCE = 'workforce ',
+  PRICEADVICE = 'priceadvice ',
+  MATERIALSHOP = 'materialshop ',
+  TOOLSSHOP = 'toolsshop ',
+  HEAVYMACHINERY = 'heavymachinery ',
+  SPECIALSERVICES = 'specialservices ',
+  MUNICIPALSERVICES = 'municipalservices '
+}
+
 
 

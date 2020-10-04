@@ -26,7 +26,7 @@ export class ListComponent implements OnInit, AfterViewInit {
   dataSource: PhotoDataSource;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  // @ViewChild(MatSort) sort: MatSort;
   @ViewChild('input') input: ElementRef;
 
   constructor(private galleryService: GalleryService,
@@ -39,7 +39,7 @@ export class ListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+    // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     fromEvent(this.input.nativeElement,'keyup')
       .pipe(
         debounceTime(150),
@@ -51,17 +51,17 @@ export class ListComponent implements OnInit, AfterViewInit {
       )
       .subscribe();
 
-    merge(this.sort.sortChange, this.paginator.page)
-      .pipe(
-        tap(() => this.loadPhotosPage())
-      )
-      .subscribe();
+    // merge(this.sort.sortChange, this.paginator.page)
+    //   .pipe(
+    //     tap(() => this.loadPhotosPage())
+    //   )
+    //   .subscribe();
   }
 
   loadPhotosPage() {
     this.dataSource.loadPhotos(
       this.input.nativeElement.value,
-      this.sort.direction,
+      'asc',
       this.paginator.pageIndex,
       this.paginator.pageSize);
   }

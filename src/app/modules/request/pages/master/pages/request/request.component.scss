@@ -1,0 +1,7 @@
+::ng-deep .mat-vertical-stepper-header{
+  padding: 54px 24px !important;
+}
+::ng-deep .mat-stepper-vertical-line::before {
+  top: -36px !important;
+  bottom: -36px !important;
+}

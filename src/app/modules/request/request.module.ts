@@ -7,26 +7,30 @@ import {PipesModule} from "@app/shared/pipes/pipes.module";
 import { RequestRoutingModule } from './request-routing.module';
 
 import {
-  MainComponent
+  MainComponent,
+  SimpleComponent,
+  MunicipalityComponent
 } from './pages';
-import { SimpleComponent } from './pages/simple/simple.component';
-import { MasterComponent } from './pages/master/master.component';
-import {DayCounterModule} from "../../shared/components";
+
+import {
+  DayCounterModule, ImageLazyModule
+} from "@app/shared/components";
 
 
 @NgModule({
   declarations: [
     MainComponent,
     SimpleComponent,
-    MasterComponent
+    MunicipalityComponent,
   ],
-    imports: [
-        CommonModule,
-        RequestRoutingModule,
-        SharedModule,
-        PipesModule,
-        ReactiveFormsModule,
-        DayCounterModule
-    ]
+  imports: [
+    CommonModule,
+    RequestRoutingModule,
+    SharedModule,
+    PipesModule,
+    ReactiveFormsModule,
+    DayCounterModule,
+    ImageLazyModule
+  ]
 })
 export class RequestModule { }

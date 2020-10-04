@@ -10,4 +10,5 @@ export * from "./_workforce.service";
 export * from "./_request.service";
 export * from "./_payment.service";
 export * from "./_construct.service";
+export * from "./_user-request.service"
 export * from "./_nav.service"

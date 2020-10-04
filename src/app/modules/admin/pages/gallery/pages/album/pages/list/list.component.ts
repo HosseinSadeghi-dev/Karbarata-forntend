@@ -7,6 +7,7 @@ import {AlbumsDataSource} from "../../services";
 import {MatSort} from "@angular/material/sort";
 import {fromEvent, merge} from "rxjs";
 import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-list',
@@ -25,7 +26,9 @@ export class ListComponent implements OnInit, AfterViewInit {
   @ViewChild('input') input: ElementRef;
 
   constructor(
-    private galleryService: GalleryService
+    private galleryService: GalleryService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -64,6 +67,17 @@ export class ListComponent implements OnInit, AfterViewInit {
     this.dataSource.loadAlbums('', 'asc', 1, 3);
   }
 
+  onRouter(slug){
+    // const params = this.activatedRoute.snapshot.params;
+    // console.log('params',params)
+    // if (params.slug){
+    //
+    // }
+    // else (){
+    //
+    // }
+    this.router.navigateByUrl(`admin/gallery/album/${slug}`)
+  }
 
   onDelete(slug){
     this.galleryService.deleteGalleryAlbum(slug).subscribe(res => this.getList())

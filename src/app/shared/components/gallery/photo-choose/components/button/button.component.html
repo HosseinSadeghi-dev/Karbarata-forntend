@@ -9,6 +9,7 @@
          [src]="[previewUrl]">
   </button>
 </ng-container>
+
 <ng-template #arrayTemplate>
   <button class="py-3" (click)="$event.preventDefault()"
           appPhotoChoose
@@ -21,7 +22,7 @@
   <div fxLayout="row wrap" class="mt-2" fxLayoutAlign="space-around center" fxLayoutGap="15px grid">
     <div fxFlex.gt-xs="20%" *ngFor="let row of data.formControl.value">
       <img class="img-fluid rounded"
-           [src]="'https://end.ratabit.com/api/upload/gallery/'+ row.name">
+           [src]="row.name | srcImage">
     </div>
   </div>
 <!--  <div *ngFor="let row of data.formControl.value">-->

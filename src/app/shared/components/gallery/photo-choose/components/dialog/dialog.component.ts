@@ -46,7 +46,7 @@ export class DialogComponent implements OnInit {
     });
   }
   getList(){
-    this.galleryService.getGalleryAlbumList().subscribe(res => this.handleRes(res))
+    this.galleryService.getGalleryAlbumList().subscribe(res => this.handleRes(res.results))
   }
   handleRes(res){
     this.albums = res;

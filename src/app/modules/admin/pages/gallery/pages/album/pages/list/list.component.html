@@ -34,7 +34,11 @@
                     <mat-icon>more_vert</mat-icon>
                   </button>
                   <mat-menu #menu="matMenu">
-                    <button [routerLink]="[element.slug]" mat-menu-item>
+<!--                    <button [routerLink]="[element.slug]" mat-menu-item>-->
+<!--                      <span>ویرایش</span>-->
+<!--                      <mat-icon>edit</mat-icon>-->
+<!--                    </button>-->
+                    <button (click)="onRouter(element.slug)" mat-menu-item>
                       <span>ویرایش</span>
                       <mat-icon>edit</mat-icon>
                     </button>

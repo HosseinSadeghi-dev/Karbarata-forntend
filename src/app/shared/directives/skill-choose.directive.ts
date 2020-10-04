@@ -23,9 +23,7 @@ export class SkillChooseDirective {
     })
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result){
         this.skillUpdated.emit(result);
-      }
     });
   }
 

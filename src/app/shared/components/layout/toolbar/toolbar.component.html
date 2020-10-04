@@ -19,10 +19,7 @@
   </mat-toolbar-row>
   <mat-toolbar-row fxLayout="row" fxLayoutAlign="center center" *ngIf="!isScroll && !mobileQuery.matches" @fadeIn @fadeOut>
     <a routerLink="/" mat-button>صفحه اصلی</a>
-    <button [matMenuTriggerFor]="WorkmanMenu" mat-button>درخواست نیرو</button>
-    <a routerLink="/construct" routerLinkActive="active-list-item" mat-button>طراحی ، ساخت و ساز</a>
-    <a [routerLink]="['/municipality']" routerLinkActive="active-list-item" mat-button>خدمات شهرداری</a>
-    <a routerLink="/comingSoon" routerLinkActive="active-list-item" mat-button>خدمات ویژه</a>
+    <button [matMenuTriggerFor]="WorkmanMenu" mat-button>درخواست</button>
     <a routerLink="/comingSoon" mat-button>فروشگاه</a>
     <a [routerLink]="['/blog']" routerLinkActive="active-list-item" mat-button>بلاگ</a>
     <a [routerLink]="['/about']" routerLinkActive="active-list-item" mat-button>درباره ما</a>
@@ -39,6 +36,9 @@
 <mat-menu #WorkmanMenu="matMenu">
   <button mat-menu-item [routerLink]="'/request/simple'">نیرو ساده</button>
   <button mat-menu-item [routerLink]="'/request/master'">نیرو متخصص</button>
+  <button mat-menu-item [routerLink]="'/request/construct'">طراحی ، ساخت و ساز</button>
+  <button mat-menu-item [routerLink]="'/request/municipality'">خدمات شهرداری</button>
+  <button mat-menu-item [routerLink]="'/request/special'">خدمات ویژه</button>
 </mat-menu>
 <mat-menu #appUserMenu="matMenu">
   <mat-list>

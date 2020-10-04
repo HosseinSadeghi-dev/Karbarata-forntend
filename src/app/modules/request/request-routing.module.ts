@@ -3,10 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import {
   MainComponent,
   SimpleComponent,
-  MasterComponent
+  MunicipalityComponent
 } from "./pages";
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'request',
+    pathMatch: 'full'
+  },
   {
     path: '',
     component: MainComponent,
@@ -17,7 +22,15 @@ const routes: Routes = [
       },
       {
         path: 'master',
-        component: MasterComponent
+        loadChildren: () => import('./pages/master/master.module').then(m => m.MasterModule)
+      },
+      {
+        path: 'construct',
+        loadChildren: () => import('./pages/construct/construct.module').then(m => m.ConstructModule)
+      },
+      {
+        path: 'municipality',
+        component: MunicipalityComponent
       }
     ]
   }

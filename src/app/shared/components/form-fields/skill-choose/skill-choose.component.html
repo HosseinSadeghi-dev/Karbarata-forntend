@@ -45,21 +45,36 @@
 <!--          </mat-checkbox>-->
 <!--        </ng-container>-->
 <!--      </mat-optgroup>-->
+<form [formGroup]="stFormGroup">
+  <mat-selection-list formControlName="choosed">
 
-<mat-selection-list>
+    <ng-container *ngFor="let category of categories">
 
-  <ng-container *ngFor="let category of categories">
+      <mat-optgroup>
+        {{category.name}}
+      </mat-optgroup>
 
-    <mat-optgroup>
-      {{category.name}}
-    </mat-optgroup>
+      <mat-list-option *ngFor="let skill of category?.skills"
+                       [selected]="checkSelected(skill)"
+                       [value]="skill"
+                       [disabled]="skill.name === data.selected[0].name"
+                       disableRipple
+                       multiple color="primary">
+        {{skill.name}}
+      </mat-list-option>
 
-    <mat-list-option *ngFor="let skills of category.skills">
-      {{skills.name}}
-    </mat-list-option>
+      <mat-divider></mat-divider>
 
-    <mat-divider></mat-divider>
+    </ng-container>
 
-  </ng-container>
 
-</mat-selection-list>
+  </mat-selection-list>
+</form>
+
+
+<div fxLayoutAlign="space-evenly center" class="pt-2">
+
+  <button mat-flat-button color="primary"
+          [mat-dialog-close]="stFormGroup.controls['choosed'].value" cdkFocusInitial>ثبت</button>
+  <button mat-flat-button color="accent" (click)="dialogRef.close()">لغو</button>
+</div>
