@@ -9,7 +9,8 @@ import { RequestRoutingModule } from './request-routing.module';
 import {
   MainComponent,
   SimpleComponent,
-  MunicipalityComponent
+  MunicipalityComponent,
+  PriceAdviceComponent
 } from './pages';
 
 import {
@@ -22,6 +23,7 @@ import {
     MainComponent,
     SimpleComponent,
     MunicipalityComponent,
+    PriceAdviceComponent,
   ],
   imports: [
     CommonModule,

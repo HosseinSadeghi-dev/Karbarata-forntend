@@ -19,95 +19,157 @@ interface SubMenuContext {
 
 
 export interface NavItem {
-  displayName: string;
+  title: string;
   disabled?: boolean;
-  iconName: string;
-  route?: string;
-  children?: NavItem[];
+  icon?: string;
+  link?: string;
+  items?: NavItem[];
 }
 
 export const navItems: NavItem[] = [
   {
-    displayName: 'DevFestFL',
-    iconName: 'recent_actors',
-    children: [
+    title: 'سوالات متداول',
+    icon: 'help_outline',
+    items: [
       {
-        displayName: 'Speakers',
-        iconName: 'group',
-        children: [
-          {
-            displayName: 'Michael Prentice',
-            iconName: 'person',
-            route: 'michael-prentice',
-            children: [
-              {
-                displayName: 'Create Enterprise UIs',
-                iconName: 'star_rate',
-                route: 'material-design'
-              }
-            ]
-          },
-          {
-            displayName: 'Stephen Fluin',
-            iconName: 'person',
-            route: 'stephen-fluin',
-            children: [
-              {
-                displayName: 'What\'s up with the Web?',
-                iconName: 'star_rate',
-                route: 'what-up-web'
-              }
-            ]
-          },
-          {
-            displayName: 'Mike Brocchi',
-            iconName: 'person',
-            route: 'mike-brocchi',
-            children: [
-              {
-                displayName: 'My ally, the CLI',
-                iconName: 'star_rate',
-                route: 'my-ally-cli'
-              },
-              {
-                displayName: 'Become an Angular Tailor',
-                iconName: 'star_rate',
-                route: 'become-angular-tailer'
-              }
-            ]
-          }
-        ]
+        title: 'دسته بندی',
+        link: '/admin/faq/category'
       },
       {
-        displayName: 'Sessions',
-        iconName: 'speaker_notes',
-        children: [
-          {
-            displayName: 'Create Enterprise UIs',
-            iconName: 'star_rate',
-            route: 'material-design'
-          },
-          {
-            displayName: 'What\'s up with the Web?',
-            iconName: 'star_rate',
-            route: 'what-up-web'
-          },
-          {
-            displayName: 'My ally, the CLI',
-            iconName: 'star_rate',
-            route: 'my-ally-cli'
-          },
-          {
-            displayName: 'Become an Angular Tailor',
-            iconName: 'star_rate',
-            route: 'become-angular-tailer'
-          }
-        ]
+        title: 'سوال جدید',
+        link: '/admin/faq/create'
       },
       {
-        displayName: 'Feedback',
-        iconName: 'feedback',
-        route: 'material-design'
+        title: 'لیست سوالات',
+        link: '/admin/faq'
+      }
+    ]
+  },
+  {
+    title: 'نیرو اجرایی ساختمان',
+    icon: 'engineering',
+    link: '/admin/workforce',
+    items: [
+      {
+        title: 'دسته بندی متخصص',
+        link: '/admin/workforce/master/category',
+      },
+      {
+        title: 'مهارت ها',
+        link: '/admin/workforce/master/skill'
+      }
+    ]
+  },
+  {
+    title: 'طراحی ساخت و ساز',
+    icon: 'construction',
+    link: '/admin/construct',
+    items: [
+      {
+        title: 'مهارت ها',
+        link: '/admin/construct'
+      }
+    ]
+  },
+  {
+    title: 'گالری',
+    icon: 'collections',
+    items: [
+      {
+        title: 'آلبوم',
+        link: '/admin/gallery/album'
+      },
+      {
+        title: 'تصاویر',
+        link: '/admin/gallery/photo'
+      }
+    ]
+  },
+  {
+    title: 'مدیریت کاربران',
+    icon: 'people',
+    items: [
+      {
+        title: 'کاربران',
+        link: '/admin/user'
+      },
+      {
+        title: 'نیرو ساده',
+        link: '/admin/user/workforce/simple'
+      },
+      {
+        title: 'نیرو متخصص',
+        link: '/admin/user/workforce/master'
+      },
+      {
+        title: 'نیرو اداری',
+        link: '/admin/user/adminstrative'
+      }
+    ]
+  },
+  {
+    title: 'مدیریت درخواست ها',
+    icon: 'receipt_long',
+    items: [
+      {
+        title: 'درخواست ها',
+        link: '/admin/request'
+      },
+      {
+        title: 'نیرو ساده',
+        link: '/admin/request/simple'
+      },
+      {
+        title: 'نیرو متخصص',
+        link: '/admin/request/master'
+      },
+      {
+        title: 'طراحی ساخت و ساز',
+        link: '/admin/request/construct'
+      },
+    ]
+  },
+  {
+    title: 'بلاگ',
+    icon: 'rss_feed',
+    items: [
+      {
+        title: 'دسته بندی',
+        link: '/admin/article/category'
+      },
+      {
+        title: 'مقاله جدید',
+        link: '/admin/article/create'
+      },
+      {
+        title: 'مقالات',
+        link: '/admin/article'
+      },
+      {
+        title: 'نظرات',
+        link: '/admin/article/comment'
+      }
+    ]
+  },
+  {
+    title: 'محصولات',
+    icon: 'local_grocery_store',
+    items: [
+      {
+        title: 'دسته بندی',
+        link: '/admin/product/category'
+      },
+      {
+        title: 'برند',
+        link: '/admin/product/brand'
+      },
+      {
+        title: 'محصول جدید',
+        link: '/admin/product/create'
+      },
+      {
+        title: 'محصولات',
+        link: '/admin/product'
       }
     ]
   }
@@ -292,7 +354,6 @@ export const MenuList: MenuContext[] = [
 export enum AdviceCategoryContext{
   CONSTRUCT = 'construct',
   WORKFORCE = 'workforce ',
-  PRICEADVICE = 'priceadvice ',
   MATERIALSHOP = 'materialshop ',
   TOOLSSHOP = 'toolsshop ',
   HEAVYMACHINERY = 'heavymachinery ',

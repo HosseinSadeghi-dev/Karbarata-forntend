@@ -15,6 +15,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   // menuItems: MenuContext[] = DashboardMenuList;
   @ViewChild('appDrawer') appDrawer: ElementRef;
 
+  nav: boolean = true
   dashboardItems: NavItem[] = navItems;
   mobileQuery: MediaQueryList;
   public loggedIn : boolean;
@@ -63,9 +64,11 @@ export class MainComponent implements OnInit, AfterViewInit {
   public get UserRole(){
     return UserRole;
   }
-  
+
   openSide(){
-    this.navService.openNav();
+    this.nav ? this.navService.openNav() : this.navService.closeNav();
+    this.nav = !this.nav;
   }
+
 
 }

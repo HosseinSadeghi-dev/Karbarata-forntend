@@ -35,11 +35,11 @@ export class MenuListItemComponent {
   }
 
   onItemSelected(item: NavItem) {
-    if (!item.children || !item.children.length) {
-      this.router.navigate([item.route]);
+    if (!item.items || !item.items.length) {
+      this.router.navigate([item.link]);
       this.navService.closeNav();
     }
-    if (item.children && item.children.length) {
+    if (item.items && item.items.length) {
       this.expanded = !this.expanded;
     }
   }

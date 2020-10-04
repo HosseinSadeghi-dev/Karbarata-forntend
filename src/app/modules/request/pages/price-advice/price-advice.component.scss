@@ -1,0 +1,9 @@
+.line::before{
+  display: inline-block;
+  content: "";
+  border-top: .35rem solid orangered;
+  width: 8rem;
+  margin-right: -5.5rem;
+  margin-left: 1rem;
+  transform: translateY(2.2rem);
+}

@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {
   MainComponent,
   SimpleComponent,
-  MunicipalityComponent
+  MunicipalityComponent,
+  PriceAdviceComponent
 } from "./pages";
 
 const routes: Routes = [
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'municipality',
         component: MunicipalityComponent
+      },
+      {
+        path: 'price-advice',
+        component: PriceAdviceComponent
       }
     ]
   }

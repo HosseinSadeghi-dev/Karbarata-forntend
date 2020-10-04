@@ -1,0 +1,57 @@
+<div class="h-100">
+
+  <div fxFlex="50%" fxHide.lt-md class="true">
+
+    <img src="assets/image/scott-graham-OQMZwNd3ThU-unsplash.jpg" class="img-fluid" alt="">
+    <!--    <image-lazy image="assets/image/Mask%20Group%209.png"-->
+    <!--                alt="municipality"-->
+    <!--                fxFill></image-lazy>-->
+  </div>
+
+  <div fxLayout="row" fxFlex class="mt-4 mx-4 line">
+
+    <div fxFlex="100%" fxLayout="column">
+      <h2>مشاوره و استعلام قیمت</h2>
+
+      <h4 class="my-2">...</h4>
+
+      <form [formGroup]="stFormGroup" fxLayout="column" class="my-1">
+
+        <mat-form-field appearance="fill">
+          <mat-label>موضوع درخواست</mat-label>
+          <mat-select required formControlName="type">
+            <mat-option *ngFor="let category of AdviceCategoryContext | enumToArray" [value]="category">
+              <span *ngIf="category === AdviceCategoryContext.CONSTRUCT">طراحی ، ساخت وساز</span>
+              <span *ngIf="category === AdviceCategoryContext.HEAVYMACHINERY">ماشین آلات سنگین</span>
+              <span *ngIf="category === AdviceCategoryContext.MATERIALSHOP">فروشگاه مصالح</span>
+              <span *ngIf="category === AdviceCategoryContext.MUNICIPALSERVICES">خدمات شهرداری</span>
+              <span *ngIf="category === AdviceCategoryContext.TOOLSSHOP">فروشگاه ابزار</span>
+              <span *ngIf="category === AdviceCategoryContext.SPECIALSERVICES">خدمات ویژه</span>
+              <span *ngIf="category === AdviceCategoryContext.WORKFORCE">درخواست نیرو</span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" dir="rtl">
+          <mat-label>توضیحات</mat-label>
+          <textarea rows="5" matInput formControlName="description"></textarea>
+          <mat-hint>لطفا توضیحات درخواست خود را وارد کنید</mat-hint>
+        </mat-form-field>
+
+        <div fxLayoutAlign="end center" class="mt-5">
+          <button mat-flat-button
+                  color="primary"
+                  [disabled]="!stFormGroup.valid"
+                  (click)="onSubmit()">
+            ثبت درخواست
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+
+
+  </div>
+
+</div>
