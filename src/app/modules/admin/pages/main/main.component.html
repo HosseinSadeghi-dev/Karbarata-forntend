@@ -20,10 +20,10 @@
       خروج</button>
   </mat-menu>
 
-  <mat-sidenav-container>
+  <mat-sidenav-container style="overflow: hidden">
     <mat-sidenav #appDrawer mode="over" opened="false">
       <mat-nav-list>
-        <app-menu-list-item *ngFor="let item of dashboardItems" [item]="item"></app-menu-list-item>
+        <app-menu-list-item *ngFor="let item of dashboardItems" [item]="item" ></app-menu-list-item>
       </mat-nav-list>
     </mat-sidenav>
     <router-outlet></router-outlet>

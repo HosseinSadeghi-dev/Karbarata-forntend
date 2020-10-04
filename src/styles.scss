@@ -845,3 +845,7 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.mat-drawer-inner-container{
+  overflow: hidden !important;
+}
