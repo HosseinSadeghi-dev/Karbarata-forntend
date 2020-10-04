@@ -20,7 +20,7 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
     this.stFormGroup = this.formBuilder.group({
       fullName: ['', Validators.required],
-      phoneNumber: ['',Validators.required],
+      contactWay: ['',Validators.required],
   });
     console.log('form',this.stFormGroup)
   }
