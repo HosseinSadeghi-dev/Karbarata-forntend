@@ -25,11 +25,7 @@ export class FooterComponent implements OnInit {
     console.log('form',this.stFormGroup)
   }
 
-
-
   onSubmit(){
-    const form = this.stFormGroup.value
-
     this.userService.createUser(this.stFormGroup.value).
     subscribe( );
   }
