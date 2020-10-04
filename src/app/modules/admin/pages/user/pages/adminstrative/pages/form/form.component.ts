@@ -44,7 +44,7 @@ export class FormComponent implements OnInit {
         address: ['', Validators.required],
         houseNumber: ['', Validators.required],
       }),
-      insuranceCode: [,Validators.required],
+      insuranceCode: ['',Validators.required],
 
     });
     console.log('form',this.stFormGroup)
