@@ -26,3 +26,17 @@
     list-style: none;
   }
 }
+
+.divider {
+  position: relative;
+  &::after{
+    position: absolute;
+    content: "";
+    border-left: 3px solid rgba(255, 255, 255, 0.3);
+    left: 0;
+    top: 10%;
+    bottom: 10%;
+  }
+
+}
+

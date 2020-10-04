@@ -275,4 +275,12 @@ export class UserService {
       catchError((error: HttpErrorResponse) => throwError(error))
     );
   }
+
+  createUser(data){
+    return this.httpClient.post(`/user`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
 }

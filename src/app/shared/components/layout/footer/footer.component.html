@@ -6,35 +6,46 @@
     class="background-form"
     style="background-image: url('assets/image/Group 2.png');">
 
-    <div fxLayout="column" fxFlex="50%" fxLayoutAlign="center center" class="py-4">
-
-      <div
-        fxLayout="column"
-        class="w-50"
-        dir="rtl">
+    <div fxLayout="column" fxFlex="50%" fxLayoutAlign="center center" class="py-4 divider">
+      <form [formGroup]="stFormGroup"
+            fxLayout="column"
+            class="w-50"
+            dir="rtl" >
         <h1 class="text-center">
           با ما در تماس باشید
         </h1>
+
         <mat-form-field appearance="outline">
           <mat-label>نام و نام خانوادگی</mat-label>
-          <input matInput>
+          <input matInput formControlName="fullName" required>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>شماره تلفن یا ایمیل</mat-label>
-          <input matInput>
+          <input matInput formControlName="email" required>
         </mat-form-field>
 
         <div fxFlex="40%"
              fxLayoutAlign="end center">
-          <button mat-flat-button color="primary">Primary</button>
+          <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!stFormGroup.valid">
+            ارسال اطلاعات
+          </button>
         </div>
-
-      </div>
-
+      </form>
     </div>
 
-    <div fxLayout="column" fxFlex="50%">
-
+    <div fxLayout="column" fxFlex="50%" fxLayoutAlign="center center">
+      <div
+      fxLayout="column"
+      class="w-50 section"
+      dir="rtl">
+        <div fxLayoutAlign="center center" class="w-100">
+        <img src="assets/image/logo-dark.png" alt="KBR" >
+        </div>
+        <h2 class="text-center my-1">کارباراتا</h2>
+      <span class="text-center">
+        سامانه جامع خدمات مهندسی
+      </span>
+      </div>
     </div>
 
   </div>
@@ -77,10 +88,10 @@
 
     <div fxLayout="column" fxLayoutAlign="space-between start" fxFlex="15%"  fxFlexAlign="stretch">
 
-      <h2>لینک</h2>
+      <h2>آدرس</h2>
 
       <ul class="list p-0 pt-2 m-0">
-        <li><a href="">حریم خصوصی</a></li>
+        <li><a href="">نبش کلاهدوز 11، پلاک 79</a></li>
         <li><a href="">حریم خصوصی</a></li>
         <li><a href="">حریم خصوصی</a></li>
         <li><a href="">حریم خصوصی</a></li>
@@ -88,18 +99,6 @@
 
     </div>
 
-<!--    <div fxLayout="column" fxLayoutAlign="space-around center" fxFlex="15%"  fxFlexAlign="stretch">-->
-
-<!--      <div fxFlex="35%" fxLayoutAlign="start center" fxFill>-->
-<!--        <h2 fxLayoutAlign="center end">آدرس</h2>-->
-<!--      </div>-->
-<!--      <div fxFlex fxFill fxLayout="column" fxLayoutAlign="space-between start">-->
-<!--        <span>نبش کلاهدوز 11، پلاک 79</span>-->
-<!--        <span>حریم خصوصی</span>-->
-<!--        <span>حریم خصوصی</span>-->
-<!--        <span>حریم خصوصی</span>-->
-<!--      </div>-->
-<!--    </div>-->
 
     <div fxLayout="column" fxLayoutAlign="space-around center" fxFlex="25%"  fxFlexAlign="stretch">
       <div fxFlex="35%" fxLayoutAlign="start center" fxFill ></div>
