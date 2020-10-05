@@ -7,9 +7,9 @@ export const PERSIAN_DATE_FORMATS = {
     },
     display: {
         dateInput: "jYYYY/jMM/jDD",
-        monthYearLabel: "jYYYY jMMMM",
+        monthYearLabel: "jYYYY jMM",
         dateA11yLabel: "jYYYY/jMM/jDD",
-        monthYearA11yLabel: "jYYYY jMMMM"
+        monthYearA11yLabel: "jYYYY j"
     }
 };
 
