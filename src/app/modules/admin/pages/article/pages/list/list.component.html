@@ -41,7 +41,7 @@
                   <img class="img-fluid rounded mat-elevation-z1 my-2"
                        width="90px"
                        [defaultImage]="'assets/image/image-loader.svg'"
-                       [lazyLoad]="'https://end.ratabit.com/api/upload/gallery/'+element.image.name"
+                       [lazyLoad]="element.image.name | srcImage"
                        [alt]="element.title">
                 </td>
               </ng-container>

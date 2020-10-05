@@ -23,6 +23,7 @@ import {
   FavoriteListDialogComponent,
   TagListDialogComponent
 } from './components';
+import {PipesModule} from "../../../../shared/pipes/pipes.module";
 
 
 
@@ -34,17 +35,18 @@ import {
     FavoriteListDialogComponent,
     TagListDialogComponent
   ],
-  imports: [
-    CommonModule,
-    ArticleRoutingModule,
-    SharedModule,
-    ArticleFavoriteButtonModule,
-    UserButtonModule,
-    ReactiveFormsModule,
-    PhotoChooseModule,
-    UserListItemModule,
-    TagInputModule,
-    AccessorEditorModule
-  ]
+    imports: [
+        CommonModule,
+        ArticleRoutingModule,
+        SharedModule,
+        ArticleFavoriteButtonModule,
+        UserButtonModule,
+        ReactiveFormsModule,
+        PhotoChooseModule,
+        UserListItemModule,
+        TagInputModule,
+        AccessorEditorModule,
+        PipesModule
+    ]
 })
 export class ArticleModule { }

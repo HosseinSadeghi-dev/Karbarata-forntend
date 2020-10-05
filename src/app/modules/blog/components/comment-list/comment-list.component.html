@@ -1,0 +1,35 @@
+<mat-card class="mb-4">
+  <mat-card-header>
+    <mat-card-title>دیدگاه کاربران</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <span *ngIf="comments.length === 0" class="mat-subheader">دیدگاهی موجود نیست.</span>
+    <ng-container *ngFor="let comment of comments">
+      <mat-card-header>
+        <img mat-card-avatar class="mat-card-avatar" [src]="!comment.user?.image ? 'assets/image/user.svg' : 'https://end.ratabit.com/api/upload/user/'+comment.user?.image">
+        <mat-card-title>{{comment.user?.fullName}}</mat-card-title>
+        <mat-card-subtitle fxLayout="column">
+          {{helper.convertDateTime(comment.created)}}
+          <app-user-role-chip [roles]="comment.user.roles"></app-user-role-chip>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div fxFlex="80%" class="mr-auto">
+          <p class="mat-body-1">{{comment.body}}</p>
+          <ng-container *ngFor="let reply of comment.reply">
+            <mat-card-header>
+              <img mat-card-avatar class="mat-card-avatar" [src]="!comment.user?.image ? 'assets/image/user.svg' : 'https://end.ratabit.com/api/upload/user/'+comment.user?.image">
+              <mat-card-title>{{comment.user?.fullName}}</mat-card-title>
+              <mat-card-subtitle fxLayout="column">
+                {{helper.convertDateTime(reply.created)}}
+                <app-user-role-chip [roles]="reply.user.roles"></app-user-role-chip>
+              </mat-card-subtitle>
+            </mat-card-header>
+            <p class="mat-body-1">{{reply.body}}</p>
+          </ng-container>
+        </div>
+      </mat-card-content>
+    </ng-container>
+
+  </mat-card-content>
+</mat-card>

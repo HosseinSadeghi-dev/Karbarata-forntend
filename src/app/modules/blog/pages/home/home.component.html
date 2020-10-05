@@ -1,0 +1,92 @@
+<div class="container-fluid my-4" fxLayoutGap="15px" fxLayout="column">
+
+  <mat-form-field fxFlex appearance="fill">
+    <mat-label>جست و جو</mat-label>
+    <input matInput #input>
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <div fxLayout="column" fxLayoutGap="15px" fxLayoutGap.xs="40px">
+    <div fxLayout="row" class="mb-4" fxLayout.xs="column" fxLayoutGap.gt-xs="40px" dir="rtl">
+      <ng-container *ngFor="let row of dataSource.connect() | async;let first = first">
+        <ng-container *ngIf="first">
+
+          <div fxFlex.gt-xs="50%">
+            <img [defaultImage]="'assets/image/image-loader.svg'"
+                 [lazyLoad]="row?.image.name | srcImage"
+                 [alt]="row?.title"
+                 class="img-fluid rounded mat-elevation-z1 my-2">
+          </div>
+
+          <div fxFlex.gt-xs="30%" fxFlex.sm="50%" fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="space-between none">
+            <h3 class="mat-h2">{{row?.title}}</h3>
+            <span ngClass.lt-md="mat-small">{{row?.description}}</span>
+
+            <mat-chip-list class="ml-auto">
+              <ng-container *ngFor="let category of row?.categories">
+                <mat-chip [routerLink]="['/blog',category.slug,'category']" selected>{{ category.name }}</mat-chip>
+              </ng-container>
+            </mat-chip-list>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <button [routerLink]="['/blog',row?.slug]" mat-icon-button aria-label="Example icon button with a delete icon">
+                <mat-icon color="primary">keyboard_arrow_left</mat-icon>
+              </button>
+              <div>
+                <button mat-button color="primary">
+                  <mat-icon color="accent">mode_comment</mat-icon>
+                  {{row?.comments.length}}
+                </button>
+                <app-article-favorite-button [favoriteCount]="row?.favoriteCount"
+                                             [favoriteClients]="row?.favoriteClients"
+                                             [slug]="row?.slug"
+                                             (favoriteUpdated)="getList()"></app-article-favorite-button>
+              </div>
+            </div>
+          </div>
+
+        </ng-container>
+      </ng-container>
+    </div>
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap.gt-xs="50px grid" fxLayoutGap.xs="40px" dir="rtl">
+      <ng-container *ngFor="let row of dataSource.connect() | async;let first = first">
+        <div fxFlex.gt-xs="33%" fxFlex.sm="50%" fxLayout="column" *ngIf="!first" fxLayoutGap.gt-xs="30px">
+          <content-preview [data]="row" [prefix]="'/blog'"></content-preview>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <!--  <h1 class="mat-h1">مقالات</h1>-->
+
+  <mat-paginator [length]="dataSource.total"
+                 [pageSize]="dataSource.pageTotal"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons></mat-paginator>
+  <!--  <div fxLayout="row wrap" fxLayout.xs="column" dir="rtl" fxLayoutGap="15px grid">-->
+  <!--    <ng-container *ngFor="let article of obs | async">-->
+  <!--      <app-article-card fxFlex.gt-xs="33%" [@fadeIn] [data]="article" (articleUpdated)="getArticleList()"></app-article-card>-->
+  <!--    </ng-container>-->
+  <!--  </div>-->
+
+</div>
+<!--<ng-template #skeleton>-->
+<!--  <div class="container-fluid my-4 skeleton">-->
+<!--    <div fxLayout="row wrap" fxLayout.xs="column" dir="rtl" fxLayoutGap="15px grid">-->
+<!--      <div fxFlex.gt-xs="33%" *ngFor="let article of ['0','1','2','3','4','5']">-->
+<!--        <mat-card [@fadeIn]>-->
+<!--          <img mat-card-image>-->
+<!--          <mat-card-header>-->
+<!--            <div fxFlex="50%">-->
+<!--              <mat-card-title></mat-card-title>-->
+<!--              <mat-card-subtitle class="mt-2"></mat-card-subtitle>-->
+<!--            </div>-->
+<!--          </mat-card-header>-->
+<!--          <mat-card-content>-->
+<!--            <p></p>-->
+<!--            <p></p>-->
+<!--          </mat-card-content>-->
+<!--        </mat-card>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</ng-template>-->

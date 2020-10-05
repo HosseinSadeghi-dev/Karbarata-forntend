@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {BeforeLoginService} from '@app/core/authentication/before-login.service';
 import {RoutingGuard} from '@app/core/authentication/routing.guard';
 import {UserRole} from '@app/core/models';
+import {NotFoundComponent} from "@app/shared/components/global/404/not-found.component";
 
 
 const routes: Routes = [
@@ -14,7 +15,7 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),
-    // canActivate: [RoutingGuard],
+    canActivate: [RoutingGuard],
     data: {
       roles: [UserRole.ADMIN]
     }
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./modules/layout.module').then(m => m.LayoutModule)
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 
