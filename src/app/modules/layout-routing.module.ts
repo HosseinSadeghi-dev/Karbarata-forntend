@@ -18,7 +18,11 @@ const routes: Routes = [
       },
       {
         path: 'request',
-        loadChildren: ()=> import('./request/request.module').then(m => m.RequestModule)
+        loadChildren: () => import('./request/request.module').then(m => m.RequestModule)
+      },
+      {
+        path: 'faq',
+        loadChildren: () => import('./faq/faq.module').then(m => m.FaqModule)
       }
 
     ]
