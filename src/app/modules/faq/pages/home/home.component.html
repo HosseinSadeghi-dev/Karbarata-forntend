@@ -11,7 +11,7 @@
     <div fxLayout="column" fxLayoutGap.gt-xs="5px"
          fxLayoutGap.xs="40px" dir="rtl">
 
-      <ng-container *ngFor="let faq of faqs">
+      <ng-container *ngFor="let faq of dataSource.connect() | async">
         <div fxFlex.gt-xs="33%" fxFlex.sm="50%" fxLayout="column" fxLayoutGap.gt-xs="30px">
           <mat-expansion-panel>
 
@@ -27,7 +27,14 @@
         </div>
       </ng-container>
 
+
+      <mat-paginator [length]="dataSource.total"
+                     [pageSize]="dataSource.pageTotal"
+                     [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons></mat-paginator>
+
     </div>
+
   </div>
 
 </div>

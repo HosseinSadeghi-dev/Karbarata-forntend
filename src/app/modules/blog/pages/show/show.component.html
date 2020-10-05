@@ -1,0 +1,127 @@
+<ng-container *ngIf="article; else skeleton">
+  <img class="w-100 image-fit"
+       [defaultImage]="'assets/image/image-loader.svg'"
+       [lazyLoad]="article.image.name | srcImage"
+       [alt]="article?.title"
+       [ngStyle]="{'height.rem': 25}">
+  <div class="container mt-n5" [@fadeIn]>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="15px" dir="rtl">
+      <div fxFlex.gt-sm="70%" fxLayoutGap="15px" fxLayout="column">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>{{article?.title}}</mat-card-title>
+            <mat-card-subtitle>
+              <small>تاریخ انتشار: </small>
+              {{helper.convertDateTime(article?.created)}}
+            </mat-card-subtitle>
+            <app-article-favorite-button class="mr-auto" [favoriteCount]="article?.favoriteCount"
+                                         [favoriteClients]="article?.favoriteClients"
+                                         [slug]="article?.slug"
+                                         (favoriteUpdated)="updateArticle($event)"></app-article-favorite-button>
+          </mat-card-header>
+          <mat-card-content>
+            <div [innerHTML]="article?.body" class="mat-body-1 article-body is-link text-justify" [ngStyle]="{'line-height': 1.9}"></div>
+            <mat-divider></mat-divider>
+            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="15px grid">
+              <div fxFlex.gt-xs="33%">
+                <h3 mat-subheader class="mb-0">نویسنده</h3>
+                <mat-nav-list>
+                  <app-user-list-item [user]="article.author" [url]="'/blog/'+article?.author.email+'/author'"></app-user-list-item>
+                </mat-nav-list>
+              </div>
+              <div fxFlex.gt-xs="33%">
+                <h3 mat-subheader>برچسب ها</h3>
+                <mat-chip-list>
+                  <ng-container *ngFor="let tag of article?.tagList">
+                    <mat-chip color="accent" [routerLink]="['/blog',tag,'tag']" selected>{{ tag }}</mat-chip>
+                  </ng-container>
+                </mat-chip-list>
+              </div>
+              <div fxFlex.gt-xs="33%">
+                <h3 mat-subheader>دسته بندی</h3>
+                <mat-chip-list>
+                  <ng-container *ngFor="let category of article?.categories">
+                    <mat-chip color="primary" [routerLink]="['/blog',category.slug,'category']" selected>{{ category.name }}</mat-chip>
+                  </ng-container>
+                </mat-chip-list>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <div>
+          <app-comment-list [comments]="article?.comments"></app-comment-list>
+          <comment-form *ngIf="loggedIn" (commentUpdated)="updateComments($event)" [slug]="article?.slug"></comment-form>
+          <mat-card class="mb-4" *ngIf="!loggedIn">
+            <mat-card-header>
+              <mat-card-title>برای ثبت نظر دیدگاه وارد شوید!</mat-card-title>
+              <div class="mr-auto">
+                <button mat-raised-button [routerLink]="['/user/auth/login']" color="accent">ورود</button>
+                <button mat-raised-button [routerLink]="['/user/auth/register']" class="mr-2" color="primary">ثبت نام</button>
+              </div>
+            </mat-card-header>
+          </mat-card>
+        </div>
+      </div>
+      <div fxFlex.gt-sm="30%" fxFlexAlign="stretch" fxLayout="column" fxLayoutGap="15px">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>مقالات مرتبط</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-nav-list>
+              <ng-container *ngFor="let row of articleByCategory;let i = index">
+                <a mat-list-item  [routerLink]="['/blog',row?.slug]" *ngIf="i < 5">
+                  <img matListAvatar class="rounded" [defaultImage]="'assets/image/image-loader.svg'"
+                       [lazyLoad]="row?.image.name | srcImage"
+                       [alt]="article?.title">
+                  <h3 matLine> {{row.title}} </h3>
+                </a>
+              </ng-container>
+            </mat-nav-list>
+          </mat-card-content>
+        </mat-card>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>مقالات اخیر</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-nav-list>
+              <ng-container *ngFor="let row of recentArticles;let i = index">
+                <a mat-list-item  [routerLink]="['/blog',row?.slug]" *ngIf="i < 5">
+                  <img matListAvatar class="rounded" [defaultImage]="'assets/image/image-loader.svg'"
+                       [lazyLoad]="row?.image.name | srcImage"
+                       [alt]="article?.title">
+                  <h3 matLine> {{row.title}} </h3>
+                </a>
+              </ng-container>
+            </mat-nav-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div fxLayout="column">
+
+    </div>
+  </div>
+</ng-container>
+<ng-template #skeleton>
+  <div class="container my-4 skeleton">
+    <mat-card [@fadeIn]>
+      <img mat-card-image>
+      <mat-card-header>
+        <div fxFlex="50%">
+          <mat-card-title></mat-card-title>
+          <mat-card-subtitle class="mt-2"></mat-card-subtitle>
+        </div>
+      </mat-card-header>
+      <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="15px grid">
+        <div fxFlex.gt-xs="33%" *ngFor="let article of ['0','1','2']">
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</ng-template>

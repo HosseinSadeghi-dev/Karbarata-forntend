@@ -69,16 +69,21 @@ export class ArticleService {
     filter = '',
     sortOrder = 'asc',
     pageNumber?,
-    pageSize?){
+    pageSize?,
+    verb = '',
+    data = ''){
     let params = new HttpParams()
       .set('filter', filter)
-      .set('sortOrder', sortOrder);
+      .set('sortOrder', sortOrder)
 
     if (pageNumber)
       params = params.set('pageNumber', pageNumber.toString());
 
     if (pageSize)
       params = params.set('pageSize', pageSize.toString());
+
+    if(verb)
+      params = params.set(verb, data);
 
     return this.httpClient.get(`/article`,{params}).pipe(
       map((response: any) => response),

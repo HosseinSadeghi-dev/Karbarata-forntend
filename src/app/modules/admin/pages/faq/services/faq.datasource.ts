@@ -38,7 +38,7 @@ export class FaqDatasource implements DataSource<FaqContext>{
     this._total = res.total;
   }
 
-  connect(collectionViewer: CollectionViewer): Observable<FaqContext[]> {
+  connect(collectionViewer?: CollectionViewer): Observable<FaqContext[]> {
     return this.faqSubject.asObservable();
   }
 
