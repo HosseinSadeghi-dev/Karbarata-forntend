@@ -26,6 +26,7 @@ export class FooterComponent implements OnInit {
   }
 
   onSubmit(){
+
     this.userService.createUser(this.stFormGroup.value).
     subscribe( );
   }
