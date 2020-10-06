@@ -52,4 +52,18 @@ export class UserRequestService {
     );
   }
 
+  requestContact(data){
+    return this.httpClient.post(`/contact`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  requestCooperate(data){
+    return this.httpClient.post(`/contact/cooperate`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
 }
