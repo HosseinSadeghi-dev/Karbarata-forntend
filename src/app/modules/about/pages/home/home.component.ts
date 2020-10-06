@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-home',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  stFormGroup :FormGroup
 
-  constructor() { }
+  constructor(
+   private formBuilder: FormBuilder
 
-  ngOnInit(): void {
+  ) { }
+
+  ngOnInit() {
+    this.stFormGroup = this.formBuilder.group({
+      fullName: ['', Validators.required],
+      contactWay: ['',Validators.required],
+      message: ['',Validators.required]
+    });
   }
+
+  onsubmit(){}
 
 }
