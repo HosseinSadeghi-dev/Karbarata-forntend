@@ -36,7 +36,8 @@ export * from "./global/tag-dialog/tag-dialog.module";
 export * from "./global/button-table/button-table.module";
 export * from "./global/button-card/button-card.module";
 export * from "./global/bottom-sheet/bottom-sheet.module";
-export * from "./global/404/not-found.module"
+export * from "./global/404/not-found.module";
+export * from "./global/complaint/complaint.module"
 
 //request
 export * from './request/request-status/request-status.module'

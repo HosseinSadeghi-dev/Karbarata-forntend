@@ -66,4 +66,11 @@ export class UserRequestService {
     );
   }
 
+  requestComplain(data){
+    return this.httpClient.post(`/complain`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
 }

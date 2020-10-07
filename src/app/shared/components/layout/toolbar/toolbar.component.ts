@@ -6,6 +6,8 @@ import {MenuContext, ProfileContext, MenuList} from '@app/core/models';
 import {animate, style, transition, trigger} from '@angular/animations';
 import {Helpers} from '../../../helpers';
 import {AuthenticationService} from "../../../../core/authentication/authentication.service";
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {ComplaintComponent} from "@app/shared/components/global/complaint/complaint.component";
 
 const enterTransition = transition(':enter', [
   style({
@@ -51,6 +53,7 @@ export class ToolbarComponent implements OnInit {
   public readonly helper = new Helpers();
 
   constructor(
+    public dialog: MatDialog,
     private authenticationService: AuthenticationService,
     private credentialService: CredentialsService,
     private profileService: ProfileService,
@@ -64,6 +67,17 @@ export class ToolbarComponent implements OnInit {
       });
     }
   }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ComplaintComponent, {
+      width: '360px',
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.router.navigateByUrl('/')
+    });
+  }
+
 
   ngOnInit(): void {
   }
