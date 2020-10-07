@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Inject, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Inject, OnInit, Output} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {MasterCategoryContext, MasterSkillContext} from "@app/core/models";
 import {RequestService, WorkforceService} from "@app/core/services";
@@ -16,6 +16,8 @@ export interface dialogData{
 export class SkillChooseComponent implements OnInit {
 
   categories: MasterCategoryContext[] = [];
+
+  @Output() choosed: MasterSkillContext[] = [];
 
   stFormGroup: FormGroup;
 
@@ -52,10 +54,8 @@ export class SkillChooseComponent implements OnInit {
     return checked;
   }
 
-  getSkills(){
-    console.log(this.stFormGroup)
-    // const form = this.stFormGroup.value;
-    // return form.choosed;
+  onSubmit(){
+
   }
 
   onNoClick(): void {

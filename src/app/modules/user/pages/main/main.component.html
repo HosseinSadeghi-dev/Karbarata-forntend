@@ -1,17 +1,20 @@
 <nav mat-tab-nav-bar mat-align-tabs="center" color="primary" dir="rtl">
+
   <a mat-tab-link *ngIf="credentialsService.roleMatch([UserRole.ADMIN,UserRole.AUTHOR])" [routerLink]="['/admin']">
-<!--    <mat-icon>event_seat</mat-icon>-->
+    <mat-icon class="px-1">event_seat</mat-icon>
     <span>پنل مدیریت</span>
   </a>
+
   <a mat-tab-link
      *ngFor="let link of data;let i = index"
      [routerLink]="[link.url]"
      routerLinkActive #rla="routerLinkActive"
      [routerLinkActiveOptions]="{exact:true}"
      [active]="rla.isActive">
-<!--    <mat-icon>{{link.icon}}</mat-icon>-->
+    <mat-icon class="px-1">{{link.icon}}</mat-icon>
     <span>{{link.title}}</span>
   </a>
+
 </nav>
 
 <router-outlet></router-outlet>

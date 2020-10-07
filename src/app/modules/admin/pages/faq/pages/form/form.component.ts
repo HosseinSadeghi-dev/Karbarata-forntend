@@ -39,7 +39,7 @@ export class FormComponent implements OnInit {
       categories: [[], [Validators.required,Validators.minLength(1)]]
     });
     this.faqService.findAllFaqCategory().
-    subscribe(res=> this.cats = res)
+    subscribe(res=> this.cats = res.results)
   }
 
   handleResById(res){

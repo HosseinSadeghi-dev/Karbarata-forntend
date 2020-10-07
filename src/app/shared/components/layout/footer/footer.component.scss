@@ -16,11 +16,6 @@
   }
 }
 
-.background-form{
-  background: center center no-repeat;
-  background-size: cover;
-}
-
 .list{
   li{
     //margin-top: 1.6rem;
@@ -28,18 +23,6 @@
   }
 }
 
-.divider {
-  position: relative;
-  &::after{
-    position: absolute;
-    content: "";
-    border-left: 3px solid rgba(255, 255, 255, 0.3);
-    left: 0;
-    top: 10%;
-    bottom: 10%;
-  }
-
-}
 
 button{
 

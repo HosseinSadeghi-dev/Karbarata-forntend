@@ -14,7 +14,8 @@ export * from "./gallery/photo-upload-form/photo-upload-form.module";
 //layout
 export * from "./layout/preloader/preloader.module";
 export * from "./layout/toolbar/toolbar.module";
-export * from "./layout/footer/footer.module"
+export * from "./layout/footer/footer.module";
+export * from "./layout/footer-form/footer-form.module"
 
 //form fields
 export * from "./form-fields/tag-input/tag-input.module"

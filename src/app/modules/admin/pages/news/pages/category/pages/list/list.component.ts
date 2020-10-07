@@ -61,7 +61,7 @@ export class ListComponent implements OnInit,AfterViewInit {
   getList(){
     this.paginator.firstPage();
     this.dataSource = new NewsCategoryDatasource(this.newsService);
-    this.dataSource.loadCategories('', 'asc', 1, 3);
+    this.dataSource.loadCategories('', 'asc', 0, 5);
   }
 
   delete(slug){

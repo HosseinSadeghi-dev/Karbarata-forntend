@@ -44,15 +44,21 @@
             <b>رسانه ها</b>
           </div>
           <div fxFlex="40%" fxLayoutAlign="space-evenly center">
-            <button mat-flat-button fxFlex="20%">
+
+            <a href="https://t.me/karbarata">
+              <button mat-flat-button fxFlex="20%">
                 <mat-icon><img class="img-fluid px-2" src="assets/image/telegram.svg" alt="telegram"></mat-icon>
                 <span>تلگرام</span>
-            </button>
+              </button>
+            </a>
 
-            <button mat-flat-button fxFlex="20%">
+            <a href="https://www.instagram.com/karbarata/">
+              <button mat-flat-button fxFlex="20%">
                 <mat-icon><img class="img-fluid px-2" src="assets/image/034-instagram.svg" alt="instagram"></mat-icon>
                 <span>اینستاگرام</span>
-            </button>
+              </button>
+            </a>
+
 
           </div>
 
@@ -64,11 +70,11 @@
           <img class="img-fluid" width="280px" src="assets/image/ratagostar.png" alt="logo-ratagostar">
         </div>
 
-        <div fxLayout="column" fxFlex="35%" fxLayoutAlign="center center">
+        <form [formGroup]="stFormGroup" fxLayout="column" fxFlex="35%" fxLayoutAlign="center center">
           <mat-card fxFill>
 
             <mat-card-header>
-              <h2 class="text-center">
+              <h2 class="text-center" fxFlex="100%">
                 فرم تماس با ما
               </h2>
             </mat-card-header>
@@ -92,12 +98,16 @@
               <div>
                 <mat-form-field appearance="outline" fxFill>
                   <mat-label>پیغام شما</mat-label>
-                  <textarea matInput formControlName="message" rows="5" required ></textarea>
+                  <textarea matInput formControlName="description" rows="5" required ></textarea>
                 </mat-form-field>
               </div>
 
               <div fxLayoutAlign="center center">
-                <button mat-flat-button color="primary" fxFlex="30%">ارسال</button>
+                <button mat-flat-button
+                        color="primary"
+                        (click)="onsubmit()"
+                        [disabled]="!stFormGroup.valid"
+                        fxFlex="30%">ارسال</button>
               </div>
 
             </mat-card-content>
@@ -105,7 +115,7 @@
 
 
           </mat-card>
-        </div>
+        </form>
 
       </div>
     </div>

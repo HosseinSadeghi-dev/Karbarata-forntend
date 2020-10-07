@@ -60,7 +60,7 @@ export class ListComponent implements OnInit, AfterViewInit {
   getList(){
     this.paginator.firstPage();
     this.dataSource = new FaqDatasource(this.faqService);
-    this.dataSource.loadFaqs('', 'asc', 1, 3);
+    this.dataSource.loadFaqs('', 'asc', 0, 5);
     console.log('data',this.dataSource)
   }
 

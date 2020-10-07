@@ -1,0 +1,50 @@
+<div
+  fxLayout="row"
+  fxLayoutAlign="center center"
+  class="background-form"
+  style="background-image: url('assets/image/Group 2.png');">
+
+  <div fxLayout="column" fxFlex="50%" fxLayoutAlign="center center" class="py-4 divider">
+    <form [formGroup]="stFormGroup"
+          fxLayout="column"
+          class="w-50"
+          dir="rtl" >
+      <h1 class="text-center">
+        با ما در تماس باشید
+      </h1>
+
+      <mat-form-field appearance="outline">
+        <mat-label>نام و نام خانوادگی</mat-label>
+        <input matInput formControlName="fullName" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>شماره تلفن یا ایمیل</mat-label>
+        <span matSuffix >98+ &nbsp;</span>
+        <input matInput formControlName="contactWay" required>
+      </mat-form-field>
+
+      <div fxFlex="40%"
+           fxLayoutAlign="end center">
+        <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!stFormGroup.valid">
+          ارسال اطلاعات
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div fxLayout="column" fxFlex="50%" fxLayoutAlign="center center">
+    <div
+      fxLayout="column"
+      class="w-50 footer"
+      dir="rtl">
+      <div fxLayoutAlign="center center" class="w-100">
+        <img src="assets/image/logo-dark.png" alt="KBR" >
+      </div>
+      <h2 class="text-center my-1">کارباراتا</h2>
+      <span class="text-center">
+        سامانه جامع خدمات مهندسی
+      </span>
+    </div>
+  </div>
+
+</div>

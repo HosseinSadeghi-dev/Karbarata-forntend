@@ -83,7 +83,7 @@ export class ListComponent implements OnInit {
     this.paginator.firstPage();
     this.dataSource = new WorkforceSimpleDatasource(this.userService);
     console.log('datasource',this.dataSource)
-    this.dataSource.loadWorkforces('', 'asc', 1, 3);
+    this.dataSource.loadWorkforces('', 'asc', 0, 5);
   }
 
   onDelete(id: number) {

@@ -75,6 +75,6 @@
 <div fxLayoutAlign="space-evenly center" class="pt-2">
 
   <button mat-flat-button color="primary"
-          [mat-dialog-close]="stFormGroup.controls['choosed'].value" cdkFocusInitial>ثبت</button>
+          (click)="dialogRef.close(stFormGroup.controls['choosed'].value)" cdkFocusInitial>ثبت</button>
   <button mat-flat-button color="accent" (click)="dialogRef.close()">لغو</button>
 </div>

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MainRoutingModule } from './main-routing.module';
 import { SharedModule } from '@app/shared/shared.module';
 import { SampleWorkComponent } from './containers';
-import {FooterModule, ImageLazyModule} from '@app/shared/components';
+import {FooterFormModule, FooterModule, ImageLazyModule} from '@app/shared/components';
 import { PipesModule } from '@app/shared/pipes/pipes.module';
 
 import {
@@ -26,7 +26,8 @@ import {
         SharedModule,
         ImageLazyModule,
         PipesModule,
-        FooterModule
+        FooterModule,
+        FooterFormModule
     ]
 })
 export class MainModule { }

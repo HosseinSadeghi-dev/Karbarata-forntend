@@ -819,6 +819,10 @@ app-component-sidenav {
   }
 }
 
+.mat-form-field-suffix{
+  top: 0 !important;
+}
+
 textarea {
   resize: none !important;
 }

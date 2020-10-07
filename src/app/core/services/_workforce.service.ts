@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {throwError} from 'rxjs';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
 import {MasterCategoryContext, MasterSkillContext} from '@app/core/models';
 
@@ -18,9 +18,27 @@ export class WorkforceService {
     );
   }
 
-  findAllMasterCategory(){
-    return this.httpClient.get(`/workforce/master/category`).pipe(
-      map((response: MasterCategoryContext[]) => response),
+  findAllMasterCategory(filter = '',
+                        sortOrder = 'asc',
+                        pageNumber?,
+                        pageSize?,
+                        verb = '',
+                        data = ''){
+    let params = new HttpParams()
+      .set('filter', filter)
+      .set('sortOrder', sortOrder)
+
+    if (pageNumber)
+      params = params.set('pageNumber', pageNumber.toString());
+
+    if (pageSize)
+      params = params.set('pageSize', pageSize.toString());
+
+    if(verb)
+      params = params.set(verb, data);
+
+    return this.httpClient.get(`/workforce/master/category`,{params}).pipe(
+      map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );
   }
@@ -53,9 +71,28 @@ export class WorkforceService {
     );
   }
 
-  findAllMasterSkill(){
-    return this.httpClient.get(`/workforce/master/skill`).pipe(
-      map((response: MasterSkillContext[]) => response),
+  findAllMasterSkill(
+    filter = '',
+    sortOrder = 'asc',
+    pageNumber?,
+    pageSize?,
+    verb = '',
+    data = ''){
+    let params = new HttpParams()
+      .set('filter', filter)
+      .set('sortOrder', sortOrder)
+
+    if (pageNumber)
+      params = params.set('pageNumber', pageNumber.toString());
+
+    if (pageSize)
+      params = params.set('pageSize', pageSize.toString());
+
+    if(verb)
+      params = params.set(verb, data);
+
+    return this.httpClient.get(`/workforce/master/skill`,{params}).pipe(
+      map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );
   }

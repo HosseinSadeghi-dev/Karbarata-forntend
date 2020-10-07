@@ -30,7 +30,7 @@
                   <mat-hint align="end">{{question.value?.length || 0}}/191</mat-hint>
                 </mat-form-field>
               </div>
-              <mat-form-field fxFlex.gt-xs="30%" color="accent" appearance="fill">
+              <mat-form-field fxFlex.gt-xs="30%" color="primary" appearance="fill">
                 <mat-label>دسته بندی</mat-label>
                 <mat-select formControlName="categories" multiple required>
                   <mat-option *ngFor="let cat of cats" [value]="cat.slug">

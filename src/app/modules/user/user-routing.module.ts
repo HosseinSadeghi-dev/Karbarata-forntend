@@ -36,8 +36,11 @@ const routes: Routes = [
             component: ArticleFavoriteComponent
           }
         ]
+      },
+      {
+        path: 'inbox',
+        loadChildren: () => import('./pages/inbox/inbox.module').then(m => m.InboxModule)
       }
-      // { path: 'article/', loadChildren: () => import('./favorite/favorite.module').then(m => m.FavoriteModule) }
     ]
   }
 ];

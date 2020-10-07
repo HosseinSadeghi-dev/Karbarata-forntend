@@ -76,11 +76,11 @@ export class ListComponent implements OnInit, AfterViewInit {
       if (routeParams.album){
         this.album = routeParams.album;
         this.isUpload = true;
-        this.dataSource.loadPhotos(routeParams.album, 'asc', 1, 3);
+        this.dataSource.loadPhotos(routeParams.album, 'asc', 0, 5);
         // this.galleryService.getGalleryPhotoFilter('album',routeParams.album).subscribe(res => this.handleResList(res))
       }else {
         this.isUpload = false;
-        this.dataSource.loadPhotos('', 'asc', 1, 3);
+        this.dataSource.loadPhotos('', 'asc', 0, 5);
         // this.galleryService.getGalleryPhotoList().subscribe(res => this.handleResList(res))
       }
     });

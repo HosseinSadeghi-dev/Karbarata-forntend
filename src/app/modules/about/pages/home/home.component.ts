@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     this.stFormGroup = this.formBuilder.group({
       fullName: ['', Validators.required],
       contactWay: ['',Validators.required],
-      message: ['',Validators.required]
+      description: ['',Validators.required]
     });
   }
 

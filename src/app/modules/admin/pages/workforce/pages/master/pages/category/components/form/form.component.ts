@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router, RouterModule} from '@angular/router';
 import {GalleryPhotoContext} from '@app/core/models';
 import {WorkforceService} from '@app/core/services';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-form',
@@ -20,6 +21,7 @@ export class FormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private workforceService: WorkforceService,
+    private location: Location,
     private router: Router
   ) {}
 
@@ -58,7 +60,7 @@ export class FormComponent implements OnInit {
   onSubmit(){
     const form = this.stFormGroup.value;
     if (this.isEdit){
-      const params = this.activatedRoute.snapshot.queryParams;
+      const params = this.activatedRoute.snapshot.params;
       this.workforceService.updateMasterCategory(params.slug,form).
       subscribe(res => this.handleResSubmit())
     }else {
@@ -70,6 +72,7 @@ export class FormComponent implements OnInit {
     this.isEdit = false;
     this.onReset();
     this.categoryUpdated.emit(true);
+    this.location.back();
   }
   onReset(){
     this.isEdit = false;

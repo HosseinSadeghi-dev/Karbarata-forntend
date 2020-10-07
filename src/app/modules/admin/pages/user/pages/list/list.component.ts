@@ -61,7 +61,7 @@ export class ListComponent implements OnInit, AfterViewInit {
   getList(){
     this.paginator.firstPage();
     this.dataSource = new UserDatasource(this.userService);
-    this.dataSource.loadUsers('', 'asc', 1, 3);
+    this.dataSource.loadUsers('', 'asc', 0, 5);
     console.log('data',this.dataSource)
   }
 

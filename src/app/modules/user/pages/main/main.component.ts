@@ -31,6 +31,11 @@ export class MainComponent implements OnInit {
         title: 'مقالات مورد علاقه',
         url: '/user/favorite/article',
         icon: 'description'
+      },
+      {
+        title: 'لیست درخواست ها',
+        url: '/user/inbox',
+        icon: 'inbox'
       }
     ]
   }
