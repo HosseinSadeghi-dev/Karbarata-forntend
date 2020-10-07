@@ -52,4 +52,11 @@ export class UserRequestService {
     );
   }
 
+  requestComplain(data){
+    return this.httpClient.post(`/user/auth/request/MunicipalService`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
 }

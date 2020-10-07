@@ -31,7 +31,7 @@
 <mat-menu #contactMenu="matMenu">
   <button [routerLink]="['/about/cooperate']" mat-menu-item>                            همکاری با ما
   </button>
-  <button mat-menu-item>                            ارسال شکایت
+  <button mat-menu-item (click)="openDialog()">                            ارسال شکایت
   </button>
 </mat-menu>
 <mat-menu #WorkmanMenu="matMenu">
