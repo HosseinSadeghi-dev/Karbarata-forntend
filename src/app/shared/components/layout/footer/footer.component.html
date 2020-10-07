@@ -21,6 +21,7 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>شماره تلفن یا ایمیل</mat-label>
+          <span matSuffix >98+ &nbsp;</span>
           <input matInput formControlName="contactWay" required>
         </mat-form-field>
 
@@ -52,130 +53,187 @@
 
   <div fxLayout="row" fxLayoutAlign="space-around center" class="py-4 footer">
 
-    <div fxLayout="column" fxLayoutAlign="space-around center" fxFlex="25%" fxFlexAlign="stretch">
-      <div fxLayoutAlign="start start" class="w-100">
+    <div fxLayout="column" fxLayoutAlign=" center" fxFlex="25%" fxFlexAlign="stretch">
+
+      <div fxLayoutAlign="start start" class="w-100" fxFlex="25%">
         <img src="assets/image/logo-dark.png" alt="KBR" class="img-fluid">
       </div>
-      <div class="py-4">
-       <span class="text-justify">هلدینگ مهندسی راتا گستر فعالیت خود را در زمینه
+
+      <div fxFlex="40%" class="mt-1">
+               <span class="text-justify">
+                 هلدینگ مهندسی راتا گستر فعالیت خود را در زمینه
       مهندسی ساختمان، در جهت بهبود کیفیت ، امنیت
       و تسریع در زمان اتمام پروژه های شما آغاز کرده و
       آماده همکاری با تمامی شما عزیزان می باشد.
-       </span>
+               </span>
       </div>
-      <div fxLayoutAlign="space-between end" class="w-100 not-opacity">
-        <a href="https://karbarata.com/">
-          <button mat-icon-button >
-            <mat-icon>
-              <img class="" src="assets/image/007-whatsapp.svg" alt="instagram">
-            </mat-icon>
+
+      <div fxLayoutAlign="space-between center" class="w-100 not-opacity" fxFlex>
+
+        <a href="https://karbarata.com/" target="_blank" fxFlex="25%">
+          <button mat-icon-button>
+              <img class="img-fluid" src="assets/image/007-whatsapp.svg" alt="whatsapp">
           </button>
         </a>
-        <a href="https://karbarata.com/">
-          <button mat-icon-button >
-            <mat-icon>
-              <img class="" src="assets/image/013-twitter-1.svg" alt="instagram">
-            </mat-icon>
+
+        <a href="https://t.me/karbarata" target="_blank" fxFlex="25%">
+          <button mat-icon-button>
+              <img class="img-fluid" src="assets/image/telegram.svg" alt="telegram">
           </button>
         </a>
-        <a href="https://karbarata.com/">
-          <button mat-icon-button >
-            <mat-icon>
-              <img class="" src="assets/image/031-linkedin.svg" alt="instagram">
-            </mat-icon>
+
+        <a href="https://karbarata.com/" target="_blank" fxFlex="25%">
+          <button mat-icon-button>
+              <img class="img-fluid" src="assets/image/031-linkedin.svg" alt="LinkedIn">
           </button>
         </a>
-        <a href="https://karbarata.com/">
-          <button mat-icon-button >
-            <mat-icon>
-              <img class="" src="assets/image/034-instagram.svg" alt="instagram">
-            </mat-icon>
+
+        <a href="https://www.instagram.com/karbarata/" target="_blank" fxFlex="25%">
+          <button mat-icon-button>
+              <img class="img-fluid" src="assets/image/034-instagram.svg" alt="instagram">
           </button>
         </a>
-        <a href="https://karbarata.com/">
-          <button mat-icon-button >
-            <mat-icon>
-              <img class="" src="assets/image/045-facebook.svg" alt="instagram">
-            </mat-icon>
-          </button>
-        </a>
-        <a href="https://karbarata.com/">
-          <button mat-icon-button >
-            <mat-icon>
-              <img class="" src="assets/image/035-google-plus.svg" alt="instagram">
-            </mat-icon>
-          </button>
-        </a>
+
       </div>
 
     </div>
 
-    <div fxLayout="column" fxLayoutAlign="space-between start" fxFlex="10%"  fxFlexAlign="stretch">
+    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="10%" fxFlexAlign="stretch">
 
-      <h2 >لینک</h2>
+      <div fxFlex="25%">
+        <h2>لینک</h2>
+      </div>
 
-      <ul class="list p-0 pt-2 m-0">
-        <li><a routerLink="/faq">سوالات متداول</a></li>
-        <li><a href="">قوانین و مقررات</a></li>
-        <li><a href="">ارسال و شکایت</a></li>
-        <li></li>
-<!--        <li><a href="">حریم خصوصی</a></li>-->
-      </ul>
+
+<!--      <ul class="list" fxLayoutGap="5px" fxLayout="column">-->
+<!--        <li><a routerLink="/faq">سوالات متداول</a></li>-->
+<!--        <li><a routerLink="/terms">قوانین و مقررات</a></li>-->
+<!--        <li><a routerLink="/complaint">ارسال و شکایت</a></li>-->
+<!--      </ul>-->
+
+      <mat-list role="link" fxFlex>
+        <mat-list-item role="listitem">
+          <a routerLink="/faq">سوالات متداول</a>
+        </mat-list-item>
+
+        <mat-list-item role="listitem">
+          <a routerLink="/terms">قوانین و مقررات</a>
+        </mat-list-item>
+
+        <mat-list-item role="listitem">
+          <a routerLink="/complaint">ارسال و شکایت</a>
+        </mat-list-item>
+
+        <mat-list-item role="listitem">
+<!--          <a routerLink="/complaint">ارسال و شکایت</a>-->
+        </mat-list-item>
+      </mat-list>
 
     </div>
 
-    <div fxLayout="column" fxLayoutAlign="space-between start" fxFlex="15%"  fxFlexAlign="stretch">
+    <div fxLayout="column"
+         fxLayoutAlign="start start"
+         class="not-opacity"
+         fxFlex="15%"
+         fxFlexAlign="stretch">
 
-      <h2>آدرس</h2>
+      <div fxFlex="25%">
+        <h2>آدرس</h2>
+      </div>
 
-      <ul class="list p-0 pt-2 m-0">
-        <li><p><mat-icon>home</mat-icon>حاشیه کلاهدوز 11،پلاک 79،طبقه دوم،واحد 4<p></li>
-        <li><a href="tel:+9838430193" fxLayoutAlign="center center">
-          <mat-icon>phone</mat-icon>
-          <span>051-38430193</span>
-        </a></li>
-        <li><a href="tel:+9809032113337"><mat-icon>phone</mat-icon>09032113337</a></li>
-        <li><a href="mailto:info@karbarata.com"><mat-icon>mail</mat-icon>info@karbarata.com</a></li>
-      </ul>
+<!--      <ul class="list p-0 pt-2 m-0">-->
+<!--        <li><p><mat-icon>home</mat-icon>حاشیه کلاهدوز 11،پلاک 79،طبقه دوم،واحد 4<p></li>-->
+<!--        <li><a href="tel:+9838430193" fxLayoutAlign="center center">-->
+<!--          <mat-icon>phone</mat-icon>-->
+<!--          <span>051-38430193</span>-->
+<!--        </a></li>-->
+<!--        <li><a href="tel:+9809032113337"><mat-icon>phone</mat-icon>09032113337</a></li>-->
+<!--        <li><a href="mailto:info@karbarata.com"><mat-icon>mail</mat-icon>info@karbarata.com</a></li>-->
+<!--      </ul>-->
+
+      <mat-list role="link" class="" fxFlex>
+        <mat-list-item role="listitem">
+          <mat-icon>home</mat-icon>
+          <span>حاشیه کلاهدوز 11 ، پلاک 79</span>
+        </mat-list-item>
+
+        <mat-list-item role="listitem">
+          <a href="tel:+985138430193" fxLayoutAlign="center center">
+            <mat-icon>phone</mat-icon>
+            <span>051-38430193</span>
+          </a>
+        </mat-list-item>
+
+        <mat-list-item role="listitem">
+          <a href="tel:+989032113337" fxLayoutAlign="center center">
+            <mat-icon>phone</mat-icon>
+            <span>09032113337</span>
+          </a>
+        </mat-list-item>
+
+        <mat-list-item role="listitem">
+          <a href="mailto: info@karbarta.com" fxLayoutAlign="center center">
+            <mat-icon>email</mat-icon>
+            <span>info@karbarata.com</span>
+          </a>
+        </mat-list-item>
+      </mat-list>
 
     </div>
 
 
-    <div fxLayout="column" fxLayoutAlign="space-around center" fxFlex="25%"  fxFlexAlign="stretch">
-      <div fxFlex="35%" fxLayoutAlign="start center" fxFill ></div>
+    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="25%"  fxFlexAlign="stretch">
 
-       <span class="text-justify">هلدینگ مهندسی راتا گستر فعالیت خود را در زمینه
-         مهندسی ساختمان، در جهت بهبود کیفیت ، امنیت
-         و تسریع در زمان اتمام پروژه های شما آغاز کرده و
-         آماده همکاری با تمامی شما عزیزان می باشد.
-       </span>
+      <div fxFlex="25%" fxFill></div>
 
-      <div fxLayoutAlign="space-between end" class="w-100 not-opacity">
-       <div><a href="" target="_blank">
-         <img class="img-fluid" id=""
-              onclick="window.open()"
-              src="assets/image/enamad_icon__text_color_blue_1024.png"
-              alt="logo-samandehi" style="cursor: pointer">
-       </a>
+      <div fxFlex="40%" class="mt-1">
+               <span class="text-justify">
+                 هلدینگ مهندسی راتا گستر فعالیت خود را در زمینه
+      مهندسی ساختمان، در جهت بهبود کیفیت ، امنیت
+      و تسریع در زمان اتمام پروژه های شما آغاز کرده و
+      آماده همکاری با تمامی شما عزیزان می باشد.
+               </span>
+      </div>
 
-       </div>
-        <div><a href="" target="_blank">
-          <img class="img-fluid" src="assets/image/icon-vezarat-kar.png" alt="اداره کار">
-        </a>
+      <div fxFlex="30%" fxLayoutAlign="space-between center" class="w-100 mt-1">
 
+        <div fxFlex="30%">
+
+<!--          <img id='jxlzwlaooeukjzpergvjjzpe'-->
+<!--               style ='cursor:pointer'-->
+<!--               onclick ='window.open("https://logo.samandehi.ir/Verify.aspx?id=148737&p=rfthaodsmcsijyoexlaojyoe",-->
+<!--                "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")'-->
+<!--               alt ='logo-samandehi'-->
+<!--               src ='https://logo.samandehi.ir/logo.aspx?id=148737&p=nbpdshwlaqgwyndtqftiyndt'-->
+<!--               width="90px"/>-->
+
+          <a href="https://logo.samandehi.ir/Verify.aspx?id=148737&p=rfthaodsmcsijyoexlaojyoe"
+             id="jxlzwlaooeukjzpergvjjzpe"
+             target="_blank">
+            <img src="https://logo.samandehi.ir/logo.aspx?id=148737&p=nbpdshwlaqgwyndtqftiyndt"
+                  alt="logo-samandehi" class="img-fluid">
+          </a>
         </div>
-        <div><a href="" target="_blank">
-          <img class="img-fluid" src="assets/image/enamad_icon__text_color_blue_1024.png" alt="logo-enamad">
-        </a>
 
+        <div fxFlex="30%">
+          <a href="https://www.mcls.gov.ir/" target="_blank">
+            <img src="assets/image/icon-vezarat-kar.png" alt="اداره کار" class="img-fluid">
+          </a>
         </div>
+
+        <div fxFlex="30%" target="_blank">
+          <a href="https://trustseal.enamad.ir/?id=132275&Code=mMuzZy0EVi6VqcfLtlkz">
+            <img src="https://trustseal.eNamad.ir/logo.aspx?id=132275&Code=mMuzZy0EVi6VqcfLtlkz" alt="eNamad" class="img-fluid">
+          </a>
+        </div>
+
       </div>
 
     </div>
   </div>
 
   <div fxLayout="row" fxLayoutAlign="center center">
-    <span>کپی رایت: شرکت مهندسی راتا 2019© </span>
+    <span>© 2020 کپی رایت: شرکت مهندسی راتا </span>
   </div>
 
 </div>

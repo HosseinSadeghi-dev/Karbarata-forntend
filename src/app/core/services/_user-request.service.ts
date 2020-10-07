@@ -52,8 +52,22 @@ export class UserRequestService {
     );
   }
 
+  requestContact(data){
+    return this.httpClient.post(`/contact`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
+  requestCooperate(data){
+    return this.httpClient.post(`/contact/cooperate`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
   requestComplain(data){
-    return this.httpClient.post(`/user/auth/request/MunicipalService`,data).pipe(
+    return this.httpClient.post(`/complain`,data).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );

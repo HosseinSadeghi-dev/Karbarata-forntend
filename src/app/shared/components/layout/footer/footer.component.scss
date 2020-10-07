@@ -9,7 +9,8 @@
     }
   };
   p{opacity:0.5};
-  span{opacity:0.5}
+  span{opacity:0.5};
+
   .not-opacity{
     a{opacity: 1};
   }
@@ -22,7 +23,7 @@
 
 .list{
   li{
-    margin-top: 1.6rem;
+    //margin-top: 1.6rem;
     list-style: none;
   }
 }
@@ -40,3 +41,25 @@
 
 }
 
+button{
+
+  img{
+    &:hover{
+      transition: 0.4s;
+    }
+  }
+
+}
+
+mat-list{
+  padding: 0;
+
+  ::ng-deep.mat-list-item-content{
+    padding: 0 !important;
+  }
+
+  mat-icon{
+    padding-left: 4px;
+  }
+
+}

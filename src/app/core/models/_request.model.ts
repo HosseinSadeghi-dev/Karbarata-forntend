@@ -1,4 +1,11 @@
-import {ProfileContext, MasterSkillContext, GalleryPhotoContext, PaymentContext, WorkforceSimpleType} from './';
+import {
+  ProfileContext,
+  MasterSkillContext,
+  GalleryPhotoContext,
+  PaymentContext,
+  WorkforceSimpleType,
+  MasterCategoryContext
+} from './';
 
 export interface RequestContext {
   id?: number,
@@ -132,6 +139,18 @@ export interface RequestMasterWorkforceContext {
   cost?: number;
   skill?: MasterSkillContext;
   user?: ProfileContext;
+}
+
+export interface RequestContact {
+  id?: number,
+  name?: string,
+  email?: string,
+  phoneNumber?: string,
+  description?: string,
+  score?: number,
+  experience?: number,
+  address?: string,
+  field?: MasterCategoryContext
 }
 
 export enum RequestStatusType {

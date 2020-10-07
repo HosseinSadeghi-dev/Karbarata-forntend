@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import {
-  CooperationComponent,
   HomeComponent,
   MainComponent
 } from "./pages";
@@ -15,10 +14,6 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent
-      },
-      {
-        path: 'cooperation',
-        component: CooperationComponent
       }
     ]
   }
@@ -28,4 +23,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AboutRoutingModule { }
+export class TermsRoutingModule { }

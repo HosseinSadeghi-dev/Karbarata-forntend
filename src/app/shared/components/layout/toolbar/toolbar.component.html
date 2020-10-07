@@ -20,7 +20,7 @@
   <mat-toolbar-row fxLayout="row" fxLayoutAlign="center center" *ngIf="!isScroll && !mobileQuery.matches" @fadeIn @fadeOut>
     <a routerLink="/" mat-button>صفحه اصلی</a>
     <button [matMenuTriggerFor]="WorkmanMenu" mat-button>درخواست</button>
-    <a routerLink="/comingSoon" mat-button>فروشگاه</a>
+<!--    <a routerLink="/comingSoon" mat-button>فروشگاه</a>-->
     <a [routerLink]="['/blog']" routerLinkActive="active-list-item" mat-button>بلاگ</a>
     <a [routerLink]="['/faq']" routerLinkActive="active-list-item" mat-button>سوالات متداول</a>
     <a [routerLink]="['/about']" routerLinkActive="active-list-item" mat-button>درباره ما</a>
@@ -29,7 +29,7 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-menu #contactMenu="matMenu">
-  <button [routerLink]="['/about/cooperate']" mat-menu-item>                            همکاری با ما
+  <button [routerLink]="['/about/cooperation']" mat-menu-item>                            همکاری با ما
   </button>
   <button mat-menu-item (click)="openDialog()">                            ارسال شکایت
   </button>

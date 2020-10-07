@@ -8,13 +8,15 @@ import {ReactiveFormsModule} from "@angular/forms";
 
 import {
   MainComponent,
-  HomeComponent
-} from "./pages"
+  HomeComponent,
+  CooperationComponent
+} from "./pages";
 
 @NgModule({
   declarations: [
     MainComponent,
-    HomeComponent
+    HomeComponent,
+    CooperationComponent
   ],
   imports: [
     CommonModule,

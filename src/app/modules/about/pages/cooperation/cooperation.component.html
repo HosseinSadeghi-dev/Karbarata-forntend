@@ -1,0 +1,59 @@
+<div class="container my-2" fxLayoutAlign="center center">
+
+  <form [formGroup]="stFormGroup" fxFlex="50%" fxLayout="column" class="px-2">
+
+    <h2>همکاری با ما</h2>
+
+    <div>
+      <mat-form-field appearance="outline" dir="rtl" fxFill>
+        <mat-label>نام و نام خانوادگی</mat-label>
+        <input matInput required formControlName="name" type="text">
+      </mat-form-field>
+    </div>
+
+    <div fxLayoutAlign="space-between center">
+      <mat-form-field appearance="outline" dir="rtl" fxFlex="48%">
+        <mat-label>شماره تلفن</mat-label>
+        <input matInput class="text-left" formControlName="phoneNumber" required type="number">
+        <span matSuffix class="mx-1">98+</span>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" dir="rtl"  fxFlex="48%">
+        <mat-label>سابقه کار</mat-label>
+        <input matInput required formControlName="experience" type="number">
+        <mat-hint>سابقه کار به ماه می باشد.</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" dir="rtl" fxFill>
+        <mat-label>زمینه همکاری نیرو</mat-label>
+        <mat-select formControlName="field" required>
+          <mat-option *ngFor="let category of categories" [value]="category.slug">
+            {{category?.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline" dir="rtl" fxFill>
+        <mat-label>آدرس شما</mat-label>
+        <textarea rows="5" matInput formControlName="address"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div fxLayoutAlign="center center">
+      <button mat-flat-button color="primary" fxFlex="30%" (click)="onSubmit()" [disabled]="!stFormGroup.valid">
+        ارسال درخواست
+      </button>
+    </div>
+
+  </form>
+
+  <div fxFlex="40%" class="px-2" fxLayout="column">
+    <img src="assets/image/business-deal-animate.svg" class="img-fluid" alt="Cooperation">
+    <p class="mat-small text-center">برای همکاری با تیم کارباراتا فرم همکاری مقابل را تکمیل بفرمایید.</p>
+  </div>
+
+</div>
