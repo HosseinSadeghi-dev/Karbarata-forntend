@@ -30,6 +30,7 @@ export class TagInputComponent implements OnInit {
     if ((value || '').trim()) {
       tagList.push( value.trim());
     }
+
     this.data.formControl.setValue(tagList);
 
     if (input) {

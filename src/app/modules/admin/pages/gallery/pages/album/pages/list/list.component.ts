@@ -80,6 +80,8 @@ export class ListComponent implements OnInit, AfterViewInit {
   }
 
   onDelete(slug){
-    this.galleryService.deleteGalleryAlbum(slug).subscribe(res => this.getList())
+    this.galleryService.deleteGalleryAlbum(slug).subscribe(
+      () => this.router.navigateByUrl('admin/gallery/album')
+    )
   }
 }

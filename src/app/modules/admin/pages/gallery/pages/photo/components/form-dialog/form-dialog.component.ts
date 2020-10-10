@@ -3,13 +3,18 @@ import {GalleryAlbumContext, GalleryPhotoContext} from '@app/core/models';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {GalleryService} from '@app/core/services';
 import {HttpEventType} from '@angular/common/http';
+import {SrcImagePipe} from "@app/shared/pipes/src-image.pipe";
 
 @Component({
   selector: 'app-form-dialog',
   templateUrl: './form-dialog.component.html',
-  styleUrls: ['./form-dialog.component.scss']
+  styleUrls: ['./form-dialog.component.scss'],
+  providers:[
+      SrcImagePipe
+  ]
 })
 export class FormDialogComponent implements OnInit {
+
   form = {
     name: null,
     album: null
@@ -22,23 +27,27 @@ export class FormDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public photo: GalleryPhotoContext,
-    private galleryService: GalleryService) {}
+    private galleryService: GalleryService,
+    private srcImagePipe: SrcImagePipe
+  ) {}
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   ngOnInit(): void {
-    this.previewUrl = `https://end.ratabit.com/api/upload/gallery/${this.photo.name}`;
+    // this.previewUrl = `https://endpoint.karbarata.com/api/upload/gallery/${this.photo.name}`;
+    this.previewUrl = this.srcImagePipe.transform(this.photo.name);
     this.form.album = this.photo.album.slug;
     this.galleryService.getGalleryAlbumList().subscribe(
-      res=> this.handleResList(res),
-      err => {console.log(err)}
+      res => this.handleResList(res.results)
     )
   }
+
   handleResList(res){
     this.albums = res;
   }
+
   onSubmit(){
     const formData = new FormData();
     this.fileData != null && (formData.append('image', this.fileData));
@@ -73,6 +82,8 @@ export class FormDialogComponent implements OnInit {
       this.dialogRef.close(true);
       // this.app.nextLoading(false);
     }
+
+    this.onNoClick();
   }
 
 }

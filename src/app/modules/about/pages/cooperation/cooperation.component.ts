@@ -21,7 +21,7 @@ export class CooperationComponent implements OnInit {
 
   ngOnInit(): void {
     this.workforceService.findAllMasterCategory().subscribe(
-      res => this.categories = res
+      res => this.categories = res.results
     )
 
     this.stFormGroup = this.formBuilder.group({

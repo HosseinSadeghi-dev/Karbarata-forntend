@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
 import {catchError, map} from "rxjs/operators";
 import {MasterSkillContext} from "../models";
 import {throwError} from "rxjs";
@@ -18,9 +18,29 @@ export class ConstructService {
     );
   }
 
-  findAllConstructSkill(){
-    return this.httpClient.get(`/construct`).pipe(
-      map((response: any[]) => response),
+  findAllConstructSkill(
+    filter = '',
+    sortOrder = 'asc',
+    pageNumber?,
+    pageSize?,
+    verb?,
+    data?
+  ){
+    let params = new HttpParams()
+      .set('filter', filter)
+      .set('sortOrder', sortOrder);
+
+    if (pageNumber)
+      params = params.set('pageNumber', pageNumber.toString());
+
+    if (pageSize)
+      params = params.set('pageSize', pageSize.toString());
+
+    if(verb)
+      params = params.set(verb, data);
+
+    return this.httpClient.get(`/construct`,{params}).pipe(
+      map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );
   }

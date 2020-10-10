@@ -61,8 +61,7 @@ export class ListComponent implements OnInit, AfterViewInit {
   getList(){
     this.paginator.firstPage();
     this.dataSource = new UserDatasource(this.userService);
-    this.dataSource.loadUsers('', 'asc', 0, 5);
-    console.log('data',this.dataSource)
+    this.dataSource.loadUsers('', 'asc', 1, 5);
   }
 
   // getOne(id: number){
@@ -90,13 +89,14 @@ export class ListComponent implements OnInit, AfterViewInit {
 
     // this.router.navigateByUrl(`/admin/user/workforce/simple/${request.id}`);
 
-    if(user.workforceMaster)
-    {
+    if(user.workforceMaster) {
       this.router.navigateByUrl(`/admin/user/workforce/master/${user.workforceMaster.id}`);
     }
-    else if(user.workforceSimple)
-    {
+    else if(user.workforceSimple) {
       this.router.navigateByUrl(`/admin/user/workforce/simple/${user.workforceSimple.id}`);
+    }
+    else if(user.adminstrative){
+      this.router.navigateByUrl(`/admin/user/workforce/adminstrative/${user.adminstrative.id}`);
     }
     else
       this.router.navigateByUrl(`/admin/user/${user.id}`);

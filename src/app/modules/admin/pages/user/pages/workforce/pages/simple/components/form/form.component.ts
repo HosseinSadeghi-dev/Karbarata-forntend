@@ -13,7 +13,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class FormComponent implements OnInit {
 
   public readonly helper = new Helpers();
-  data: MasterCategoryContext[] = [];
   isEdit: boolean = false;
   stFormGroup: FormGroup;
   roles = UserRole;
@@ -54,27 +53,25 @@ export class FormComponent implements OnInit {
         isSmartPhone: [true]
       })
     });
-    this.workforceService
-      .findAllMasterCategory()
-      .subscribe(res => this.data = res)
+
   }
 
   handleResById(res){
-    this.stFormGroup.get('user.name').patchValue(res.user.name);
-    this.stFormGroup.get('user.lastName').patchValue(res.user.lastName);
-    this.stFormGroup.get('user.email').patchValue(res.user.email);
-    this.stFormGroup.get('user.houseNumber').patchValue(res.user.houseNumber);
-    this.stFormGroup.get('user.address').patchValue(res.user.address);
-    this.stFormGroup.get('user.pid').patchValue(res.user.pid);
-    this.stFormGroup.get('user.phoneNumber').patchValue(res.user.phoneNumber);
-    this.stFormGroup.get('user.roles').patchValue(res.user.roles);
+    this.stFormGroup.controls['user'].get('name').setValue(res.user.name);
+    this.stFormGroup.controls['user'].get('lastName').setValue(res.user.lastName);
+    this.stFormGroup.controls['user'].get('email').setValue(res.user.email);
+    this.stFormGroup.controls['user'].get('houseNumber').setValue(res.user.houseNumber);
+    this.stFormGroup.controls['user'].get('address').setValue(res.user.address);
+    this.stFormGroup.controls['user'].get('pid').setValue(res.user.pid);
+    this.stFormGroup.controls['user'].get('phoneNumber').setValue(res.user.phoneNumber);
+    this.stFormGroup.controls['user'].get('roles').setValue(res.user.roles);
     res.user.status == UserStatus.ACTIVATE
-      ? this.stFormGroup.get('user.status').patchValue(true)
-      : this.stFormGroup.get('user.status').patchValue(false);
-    this.stFormGroup.get('shared.exp').patchValue(res.shared.exp);
-    this.stFormGroup.get('shared.shabaNumber').patchValue(res.shared.shabaNumber);
-    this.stFormGroup.get('shared.isSmartPhone').patchValue(res.shared.isSmartPhone);
-    this.stFormGroup.get('type').patchValue(res.type)
+      ? this.stFormGroup.controls['user'].get('status').setValue(true)
+      : this.stFormGroup.controls['user'].get('status').setValue(false);
+    this.stFormGroup.get('shared.exp').setValue(res.shared.exp);
+    this.stFormGroup.get('shared.shabaNumber').setValue(res.shared.shabaNumber);
+    this.stFormGroup.get('shared.isSmartPhone').setValue(res.shared.isSmartPhone);
+    this.stFormGroup.get('type').setValue(res.type)
   }
 
   onSubmit(){

@@ -21,7 +21,7 @@
 <!--            <table mat-table [dataSource]="dataSource" matSort matSortDisableClear>-->
             <div fxLayout="row wrap" fxLayout.xs="column" dir="rtl" fxLayoutGap="15px grid">
 
-              <div fxFlex.gt-sm="25%" *ngFor="let photo of obs | async;let i = index">
+              <div fxFlex.gt-sm="25%" *ngFor="let photo of dataSource.connect() | async;let i = index">
                 <div class="view rounded">
                   <img class="img-fluid mx-auto"
                        [defaultImage]="'assets/image/image-loader.svg'"

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ComplaintComponent} from "@app/shared/components/global/complaint/complaint.component";
+import {MatDialog} from "@angular/material/dialog";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-footer',
@@ -7,7 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() {}
+  constructor(
+    public dialog: MatDialog,
+    private router: Router
+    ) {}
 
   ngOnInit() {}
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ComplaintComponent, {
+      width: '360px',
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.router.navigateByUrl('/')
+    });
+  }
 }

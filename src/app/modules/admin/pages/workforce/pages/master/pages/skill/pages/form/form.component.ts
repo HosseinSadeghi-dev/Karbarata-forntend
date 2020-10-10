@@ -32,9 +32,11 @@ export class FormComponent implements OnInit {
         .findOneMasterSkill(params.slug)
         .subscribe(res => this.handleResBySlug(res));
     }
+
     this.workforceService
       .findAllMasterCategory()
-      .subscribe(res => this.categories = res);
+      .subscribe(res => this.categories = res.results);
+
     this.stFormGroup = this.formBuilder.group({
       image: this.formBuilder.group({
         id: ['', Validators.required],

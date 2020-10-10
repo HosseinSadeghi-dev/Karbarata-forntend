@@ -73,9 +73,7 @@ export class ToolbarComponent implements OnInit {
       width: '360px',
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.router.navigateByUrl('/')
-    });
+    // dialogRef.afterClosed().subscribe(() => {} );
   }
 
 

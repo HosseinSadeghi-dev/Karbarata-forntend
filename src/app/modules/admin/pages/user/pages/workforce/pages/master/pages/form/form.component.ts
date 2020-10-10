@@ -55,7 +55,7 @@ export class FormComponent implements OnInit {
     });
     this.workforceService
       .findAllMasterCategory()
-      .subscribe(res => this.data = res)
+      .subscribe(res => this.data = res.results)
   }
 
   handleResById(res){

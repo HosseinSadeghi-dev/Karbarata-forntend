@@ -51,11 +51,11 @@ export class ListComponent implements OnInit, AfterViewInit {
       )
       .subscribe();
 
-    // merge(this.sort.sortChange, this.paginator.page)
-    //   .pipe(
-    //     tap(() => this.loadPhotosPage())
-    //   )
-    //   .subscribe();
+    merge(this.paginator.page)
+      .pipe(
+        tap(() => this.loadPhotosPage())
+      )
+      .subscribe();
   }
 
   loadPhotosPage() {

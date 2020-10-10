@@ -22,10 +22,12 @@ export class GalleryService {
       catchError((error: HttpErrorResponse) => throwError(error))
     );
   }
-  getGalleryAlbumList(filter = '',
-                      sortOrder = 'asc',
-                      pageNumber?,
-                      pageSize?){
+  getGalleryAlbumList(
+    filter = '',
+    sortOrder = 'asc',
+    pageNumber?,
+    pageSize?
+  ){
     let params = new HttpParams()
       .set('filter', filter)
       .set('sortOrder', sortOrder);

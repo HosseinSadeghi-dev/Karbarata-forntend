@@ -11,17 +11,17 @@ import {MatDialogRef} from "@angular/material/dialog";
   styleUrls: ['./complaint.component.scss']
 })
 export class ComplaintComponent implements OnInit {
-  stformGroup: FormGroup;
+  stFormGroup: FormGroup;
 
   constructor(
     private formBuilder:FormBuilder,
     private userRequestService: UserRequestService,
     private router: Router,
-    private dialogRed: MatDialogRef<SkillChooseComponent>
+    private dialogRef: MatDialogRef<SkillChooseComponent>
   ) { }
 
   ngOnInit() {
-    this.stformGroup = this.formBuilder.group({
+    this.stFormGroup = this.formBuilder.group({
       name: ['', Validators.required],
       phoneNumber: ['',Validators.required],
       description: ['',Validators.required]
@@ -29,14 +29,16 @@ export class ComplaintComponent implements OnInit {
   }
 
   onSubmit(){
-    const form = this.stformGroup.value
-    this.userRequestService.requestComplain(form).
-    subscribe(res => this.router.navigateByUrl('/complain'));
+    const form = this.stFormGroup.value
+    this.userRequestService.requestComplain(form).subscribe(
+      () => this.router.navigateByUrl('/complain')
+    );
   }
 
    onNoClick(){
-    this.dialogRed.close()
-}
+    this.dialogRef.close();
+  }
+
 }
 
 

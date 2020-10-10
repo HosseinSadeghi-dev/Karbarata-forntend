@@ -16,7 +16,7 @@ export class MainComponent implements OnInit {
     this.galleryService.getGalleryAlbumList().subscribe(res=> this.handleRes(res))
   }
   handleRes(res){
-    this.albums = res;
+    this.albums = res.results;
   }
 
 }

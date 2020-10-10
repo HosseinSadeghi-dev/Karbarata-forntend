@@ -1,18 +1,22 @@
 <nav mat-tab-nav-bar color="primary" dir="rtl">
-  <a mat-tab-link
-     [routerLink]="['/blog']"
-     routerLinkActive #rla="routerLinkActive"
-     [routerLinkActiveOptions]="{exact:true}"
-     [active]="rla.isActive">
-    جدیدترین ها
-  </a>
-  <a mat-tab-link
-     *ngFor="let element of categories;let i = index"
-     [routerLink]="['/blog',element.slug,'category']"
-     routerLinkActive #rla="routerLinkActive"
-     [routerLinkActiveOptions]="{exact:true}"
-     [active]="rla.isActive">
-    {{element.name}}
-  </a>
+
+    <a mat-tab-link
+       [routerLink]="['/blog']"
+       routerLinkActive #rla="routerLinkActive"
+       [routerLinkActiveOptions]="{exact:true}"
+       [active]="rla.isActive">
+      جدیدترین ها
+    </a>
+
+    <a mat-tab-link
+       *ngFor="let element of categories"
+       [routerLink]="['/blog/' + element.slug + '/category']"
+       routerLinkActive #rla="routerLinkActive"
+       [routerLinkActiveOptions]="{exact:true}"
+       [active]="rla.isActive">
+      {{element.name}}
+    </a>
+
 </nav>
+
 <router-outlet></router-outlet>

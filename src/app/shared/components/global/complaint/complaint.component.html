@@ -2,7 +2,7 @@
   <h3>ارسال شکایت</h3>
   <mat-hint>شکایات و نارضایتی خود را از طریق فرم زیر با ما در میان بگذارید.</mat-hint>
 
-    <form [formGroup]="stformGroup" fxLayout="column" >
+    <form [formGroup]="stFormGroup" fxLayout="column" >
 
         <div class="pt-3">
           <mat-form-field appearance="outline" fxFill>
@@ -27,8 +27,8 @@
         </div>
 
         <div>
+          <button mat-button color="primary" (click)="onSubmit()" [disabled]="!stFormGroup.valid">ثبت</button>
           <button mat-button color="primary" (click)="onNoClick()">بستن</button>
-          <button mat-button color="primary" (click)="onSubmit()" [disabled]="!stformGroup.valid">ثبت</button>
         </div>
 
     </form>

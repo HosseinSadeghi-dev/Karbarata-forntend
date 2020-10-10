@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "@app/core/services";
-import {ProfileContext, UserRole, UserStatus} from "@app/core/models";
+import { UserRole, UserStatus} from "@app/core/models";
 import {isNumeric} from "rxjs/internal-compatibility";
 import {Helpers} from "@app/shared/helpers";
 
@@ -72,6 +72,7 @@ export class FormComponent implements OnInit {
     this.stFormGroup.get('pid').setValue(res.pid);
     this.stFormGroup.get('houseNumber').setValue(res.houseNumber);
     this.stFormGroup.get('roles').setValue(res.roles);
+    this.stFormGroup.get('email').setValue(res.email);
     res.status == UserStatus.ACTIVATE ? this.stFormGroup.get('status').setValue(true) : this.stFormGroup.get('status').setValue(false);
   }
 

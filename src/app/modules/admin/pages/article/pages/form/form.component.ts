@@ -43,8 +43,7 @@ export class FormComponent implements OnInit {
       status: [{value: '', disabled: false}]
     });
     this.articleService.getArticleCategoryList().subscribe(
-      res => this.handleResCategoryList(res),
-      err => this.handleErrCategoryList(err)
+      res => this.handleResCategoryList(res.results)
     )
   }
   handleResById(res){
@@ -56,12 +55,11 @@ export class FormComponent implements OnInit {
     res.status == ArticleStatus.PUBLISHED ? this.stFormGroup.get('status').setValue(true) : this.stFormGroup.get('status').setValue(false);
     this.onChangeImage(res.image);
   }
+
   handleResCategoryList(res){
     this.cats = res;
   }
-  handleErrCategoryList(err){
-    console.log(err);
-  }
+
   onSubmit(){
     const form = this.stFormGroup.value;
     form.status = form.status ? ArticleStatus.PUBLISHED : ArticleStatus.UNPUBLISHED;

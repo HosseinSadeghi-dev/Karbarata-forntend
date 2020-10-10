@@ -35,7 +35,7 @@ export class PhotoDataSource implements DataSource<GalleryPhotoContext>{
     this._total = res.total;
   }
 
-  connect(collectionViewer: CollectionViewer): Observable<GalleryPhotoContext[]> {
+  connect(collectionViewer?: CollectionViewer): Observable<GalleryPhotoContext[]> {
     return this.photoSubject.asObservable();
   }
 
