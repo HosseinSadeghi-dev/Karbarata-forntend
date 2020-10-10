@@ -34,7 +34,7 @@ export class FaqDatasource implements DataSource<FaqContext>{
   }
   handleRes(res){
     this.faqSubject.next(res.results);
-    this._pageTotal = res.page_total;
+    // this._pageTotal = res.page_total;
     this._total = res.total;
   }
 

@@ -34,7 +34,7 @@ export class ConstructDatasource implements DataSource<ConstructContext>{
   }
   handleRes(res){
     this.constructSubjects.next(res.results);
-    this._pageTotal = res.page_total;
+    // this._pageTotal = res.page_total;
     this._total = res.total;
   }
 

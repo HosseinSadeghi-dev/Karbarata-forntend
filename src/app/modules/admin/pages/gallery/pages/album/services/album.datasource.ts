@@ -31,7 +31,7 @@ export class AlbumsDataSource implements DataSource<GalleryAlbumContext>{
   }
   handleRes(res){
     this.albumsSubject.next(res.results);
-    this._pageTotal = res.page_total;
+    // this._pageTotal = res.page_total;
     this._total = res.total;
   }
 

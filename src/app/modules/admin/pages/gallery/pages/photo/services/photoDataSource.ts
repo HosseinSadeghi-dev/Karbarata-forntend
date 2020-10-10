@@ -31,7 +31,7 @@ export class PhotoDataSource implements DataSource<GalleryPhotoContext>{
   }
   handleRes(res){
     this.photoSubject.next(res.results);
-    this._pageTotal = res.page_total;
+    // this._pageTotal = res.page_total;
     this._total = res.total;
   }
 

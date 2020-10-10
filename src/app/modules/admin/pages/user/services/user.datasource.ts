@@ -23,17 +23,17 @@ export class UserDatasource implements DataSource<ProfileContext>{
   loadUsers(
     filter:string,
     sortDirection:string,
-    pageIndex:number,
+    pageNumber:number,
     pageSize:number,
     verb?:string,
     data?:string) {
     this.userService
-      .findAllUser(filter, sortDirection, pageIndex, pageSize, verb, data)
+      .findAllUser(filter, sortDirection, pageNumber, pageSize, verb, data)
       .subscribe(value => this.handleRes(value));
   }
   handleRes(res){
     this.userSubjects.next(res.results);
-    this._pageTotal = res.page_total;
+    // this._pageTotal = res.page_total;
     this._total = res.total;
   }
 

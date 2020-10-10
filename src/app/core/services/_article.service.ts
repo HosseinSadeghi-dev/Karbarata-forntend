@@ -24,9 +24,9 @@ export class ArticleService {
     pageSize?){
     let params = new HttpParams()
       .set('filter', filter)
-      .set('sortOrder', sortOrder);
+      .set('sortOrder', sortOrder ? sortOrder : 'asc' );
 
-    if (pageNumber)
+    if (pageNumber || pageNumber === 0)
       params = params.set('pageNumber', pageNumber.toString());
 
     if (pageSize)
@@ -74,9 +74,9 @@ export class ArticleService {
     data = ''){
     let params = new HttpParams()
       .set('filter', filter)
-      .set('sortOrder', sortOrder)
+      .set('sortOrder', sortOrder ? sortOrder : 'asc' );
 
-    if (pageNumber)
+    if (pageNumber || pageNumber === 0)
       params = params.set('pageNumber', pageNumber.toString());
 
     if (pageSize)

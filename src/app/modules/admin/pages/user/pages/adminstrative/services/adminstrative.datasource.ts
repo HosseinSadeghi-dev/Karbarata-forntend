@@ -33,7 +33,7 @@ export class AdminstrativeDataSource implements DataSource<UserAdminstrative>{
   }
   handleRes(res){
     this.userSubjects.next(res.results);
-    this._pageTotal = res.page_total;
+    // this._pageTotal = res.page_total;
     this._total = res.total;
   }
 

@@ -32,7 +32,7 @@ export class NewsDataSource implements DataSource<NewsContext>{
   }
   handleRes(res){
     this.newsSubject.next(res.results);
-    this._pageTotal = res.page_total;
+    // this._pageTotal = res.page_total;
     this._total = res.total;
   }
 

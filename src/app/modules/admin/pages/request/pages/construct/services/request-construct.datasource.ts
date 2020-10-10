@@ -34,7 +34,7 @@ export class RequestConstructDatasource implements DataSource<RequestConstructCo
   }
   handleRes(res){
     this.requestSubject.next(res.results);
-    this._pageTotal = res.page_total;
+    // this._pageTotal = res.page_total;
     this._total = res.total;
   }
 

@@ -33,7 +33,7 @@ export class RequestDatasource implements DataSource<RequestContext>{
   }
   handleRes(res){
     this.requestSubject.next(res.results);
-    this._pageTotal = res.page_total;
+    // this._pageTotal = res.page_total;
     this._total = res.total;
   }
 

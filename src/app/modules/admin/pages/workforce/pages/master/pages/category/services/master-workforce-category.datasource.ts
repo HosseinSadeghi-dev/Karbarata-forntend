@@ -33,7 +33,7 @@ export class MasterWorkforceCategoryDatasource implements DataSource<MasterCateg
   }
   handleRes(res){
     this.categoriesSubject.next(res.results);
-    this._pageTotal = res.page_total;
+    // this._pageTotal = res.page_total;
     this._total = res.total;
   }
 

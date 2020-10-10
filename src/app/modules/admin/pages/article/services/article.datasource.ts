@@ -32,7 +32,7 @@ export class ArticlesDataSource implements DataSource<ArticleContext>{
   }
   handleRes(res){
     this.articlesSubject.next(res.results.filter(article => article.status !== ArticleStatus.UNPUBLISHED));
-    this._pageTotal = res.page_total;
+    // this._pageTotal = res.page_total;
     this._total = res.total;
   }
 

@@ -32,7 +32,7 @@ export class MasterWorkforceSkillsDatasource implements DataSource<MasterSkillCo
   }
   handleRes(res){
     this.skillsObject.next(res.results);
-    this._pageTotal = res.page_total;
+    // this._pageTotal = res.page_total;
     this._total = res.total;
   }
 
