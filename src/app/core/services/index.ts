@@ -12,3 +12,4 @@ export * from "./_payment.service";
 export * from "./_construct.service";
 export * from "./_user-request.service"
 export * from "./_nav.service"
+export * from "./_contact.service"

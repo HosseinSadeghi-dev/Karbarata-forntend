@@ -1,30 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AlbumRoutingModule } from './album-routing.module';
+import {CooperationRoutingModule} from "./cooperation-routing.module";
 import {SharedModule} from '@app/shared/shared.module';
 import {ReactiveFormsModule} from '@angular/forms';
 
 import {
+  FormComponent,
   ListComponent,
   MainComponent
-} from './pages';
-
-import {
-  FormComponent
-} from './components';
+} from "./pages";
 
 
 @NgModule({
   declarations: [
     MainComponent,
-    ListComponent,
-    FormComponent
+    FormComponent,
+    ListComponent
   ],
   imports: [
     CommonModule,
-    AlbumRoutingModule,
+    CooperationRoutingModule,
     SharedModule,
     ReactiveFormsModule
   ]
 })
-export class AlbumModule { }
+export class CooperationModule { }

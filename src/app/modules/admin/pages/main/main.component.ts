@@ -1,7 +1,7 @@
 import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {OverlayContainer} from '@angular/cdk/overlay';
-import {DashboardMenuList, MenuContext, NavItem, navItems, ProfileContext, UserRole} from '@app/core/models';
+import {NavItem, navItems, ProfileContext, UserRole} from '@app/core/models';
 import {CredentialsService} from '@app/core/authentication/credentials.service';
 import {ProfileService} from '@app/core/authentication/profile.service';
 import { NavService } from '@app/core/services';

@@ -172,6 +172,24 @@ export const navItems: NavItem[] = [
         link: '/admin/product'
       }
     ]
+  },
+  {
+    title: 'ارتباط با ما',
+    icon: 'how_to_reg',
+    items: [
+      {
+        title: 'همکاری با ما',
+        link: '/admin/contact/cooperation'
+      },
+      {
+        title: 'تماس با ما',
+        link: '/admin/contact/contactUs'
+      },
+      {
+        title: 'شکایات',
+        link: '/admin/contact/complain'
+      }
+    ]
   }
 ];
 
