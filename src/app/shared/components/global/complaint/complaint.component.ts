@@ -12,6 +12,7 @@ import {MatDialogRef} from "@angular/material/dialog";
 })
 export class ComplaintComponent implements OnInit {
   stFormGroup: FormGroup;
+  rating: number;
 
   constructor(
     private formBuilder:FormBuilder,
@@ -24,20 +25,26 @@ export class ComplaintComponent implements OnInit {
     this.stFormGroup = this.formBuilder.group({
       name: ['', Validators.required],
       phoneNumber: ['',Validators.required],
-      description: ['',Validators.required]
+      description: ['',Validators.required],
+      score: ['']
     })
   }
 
   onSubmit(){
     const form = this.stFormGroup.value
+    form.score = this.rating
     this.userRequestService.requestComplain(form).subscribe(
-      () => this.router.navigateByUrl('/complain')
+      () => this.onNoClick()
     );
   }
 
    onNoClick(){
     this.dialogRef.close();
   }
+
+  ratingComponentClick(clickObj: any): void {
+    this.rating = clickObj.rating
+    }
 
 }
 

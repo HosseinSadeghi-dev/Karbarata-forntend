@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AlbumRoutingModule } from './album-routing.module';
+import {ContactUsRoutingModule} from "./contact-us-routing.module";
 import {SharedModule} from '@app/shared/shared.module';
 import {ReactiveFormsModule} from '@angular/forms';
-
 import {
+  FormComponent,
   ListComponent,
   MainComponent
-} from './pages';
+} from "./pages";
 
-import {
-  FormComponent
-} from './components';
 
 
 @NgModule({
@@ -22,9 +19,9 @@ import {
   ],
   imports: [
     CommonModule,
-    AlbumRoutingModule,
+    ContactUsRoutingModule,
     SharedModule,
     ReactiveFormsModule
   ]
 })
-export class AlbumModule { }
+export class ContactUsModule { }

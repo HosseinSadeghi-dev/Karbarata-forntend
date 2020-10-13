@@ -5,6 +5,7 @@ import {MatCardModule} from "@angular/material/card";
 import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from '../../../shared.module';
 import {PipesModule} from "@app/shared/pipes/pipes.module";
+import {StarRatingModule} from "@app/shared/components/form-fields/star-rating/star-rating.module";
 
 @NgModule({
   declarations: [ComplaintComponent],
@@ -12,7 +13,8 @@ import {PipesModule} from "@app/shared/pipes/pipes.module";
     CommonModule,
     SharedModule,
     PipesModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StarRatingModule,
   ]
 })
 export class ComplaintModule { }
