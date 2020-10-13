@@ -6,6 +6,11 @@ import {HomeComponent, MainComponent, ShowComponent} from './pages';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '/blog',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
     component: MainComponent,
     children: [
       {
@@ -13,7 +18,7 @@ const routes: Routes = [
         component: HomeComponent
       },
       {
-        path: ':category/category',
+        path: 'category/:category',
         component: HomeComponent,
         data: {
           title: 'بلاگ',
@@ -41,8 +46,6 @@ const routes: Routes = [
         component: ShowComponent,
         data: {
           title: 'نمایش پست',
-          description:'رسانه و فروشگاه محصولات زنبور عسل',
-          ogUrl: '',
           breadcrumb: 'نمایش پست'
 
         }

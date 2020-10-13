@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {ArticleCategoryContext} from '@app/core/models';
 import {ArticleService} from '@app/core/services';
 import {Router} from "@angular/router";
-import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-main',
@@ -26,5 +25,9 @@ export class MainComponent implements OnInit {
 
   handleResCategoryList(res){
     this.categories = res;
+  }
+
+  onRouter(slug?){
+   slug? this.router.navigate(['blog',slug,'category']) : this.router.navigate(['blog'])
   }
 }

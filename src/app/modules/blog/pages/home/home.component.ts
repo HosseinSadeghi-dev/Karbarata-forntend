@@ -1,12 +1,17 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ArticleContext, ArticleStatus} from '../../../../core/models';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
-import {fromEvent, merge} from 'rxjs';
 import {ActivatedRoute, Params} from '@angular/router';
+import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
+import {fromEvent, merge} from 'rxjs';
 import {ArticleService} from '@app/core/services';
 import {Helpers} from '@app/shared/helpers';
-import {ArticlesDataSource} from "../../../admin/pages/article/services";
-import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
+import {ArticlesDataSource} from "@app/modules/admin/pages/article/services";
 
 @Component({
   selector: 'app-home',
@@ -78,5 +83,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.dataSource.loadArticles('', 'asc', 0, 5);
     }
   }
+
+
 
 }

@@ -10,7 +10,7 @@
 
     <a mat-tab-link
        *ngFor="let element of categories"
-       [routerLink]="['/blog/' + element.slug + '/category']"
+       [routerLink]="'../blog/category/' + element.slug"
        routerLinkActive #rla="routerLinkActive"
        [routerLinkActiveOptions]="{exact:true}"
        [active]="rla.isActive">
