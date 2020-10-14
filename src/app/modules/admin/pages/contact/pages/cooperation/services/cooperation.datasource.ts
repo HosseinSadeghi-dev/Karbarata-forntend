@@ -28,7 +28,7 @@ export class CooperationDatasource implements DataSource<RequestContact>{
     verb?:string,
     data?:string) {
     this.contactService
-      .findAllCooperation(filter, sortDirection, pageIndex, pageSize, verb, data)
+      .findAllCooperate(filter, sortDirection, pageIndex, pageSize, verb, data)
       .subscribe(value => this.handleRes(value));
   }
   handleRes(res){

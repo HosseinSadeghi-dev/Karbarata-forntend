@@ -80,7 +80,7 @@
 <!--                      <mat-icon>change_history</mat-icon>-->
 <!--                      <span>تغییر وضعیت</span>-->
 <!--                    </button>-->
-                    <button (click)="delete(element.request.id)" mat-menu-item>
+                    <button (click)="delete(element.request.id)" mat-menu-item disabled>
                       <mat-icon>delete</mat-icon>
                       <span>حذف</span>
                     </button>
@@ -95,7 +95,8 @@
           <mat-paginator [length]="dataSource.total"
                          [pageSize]="dataSource.pageTotal"
                          [pageSizeOptions]="[5, 10, 20]"
-                         showFirstLastButtons></mat-paginator>
+                         showFirstLastButtons>
+          </mat-paginator>
         </mat-card-content>
       </mat-card>
     </div>

@@ -44,7 +44,7 @@ export class FormComponent implements OnInit {
     }
 
     this.workForceService.findAllMasterCategory().subscribe(
-      res => this.handleResData(res)
+      res => this.handleResData(res.results)
     );
 
     this.stFormGroup = this.formBuilder.group({

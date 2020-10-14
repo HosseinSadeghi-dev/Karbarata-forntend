@@ -1,12 +1,12 @@
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
 import {BehaviorSubject, Observable} from 'rxjs';
-import { RequestContact} from "@app/core/models";
-import {ContactService} from "@app/core/services";
+import { RequestContext} from "@app/core/models";
+import { UserRequestService} from "@app/core/services";
 
 
-export class ComplainDatasource implements DataSource<RequestContact>{
+export class InboxDatasource implements DataSource<RequestContext>{
 
-  private userSubjects = new BehaviorSubject<RequestContact[]>([]);
+  private userSubjects = new BehaviorSubject<RequestContext[]>([]);
   private _pageTotal;
   private _total;
 
@@ -18,17 +18,17 @@ export class ComplainDatasource implements DataSource<RequestContact>{
     return this._total;
   }
 
-  constructor(private contactService: ContactService){}
+  constructor(private userRequestService: UserRequestService){}
 
-  loadComplain(
+  loadInbox(
     filter:string,
     sortDirection:string,
     pageIndex:number,
     pageSize:number,
     verb?:string,
     data?:string) {
-    this.contactService
-      .findAllComplain(filter, sortDirection, pageIndex, pageSize, verb, data)
+    this.userRequestService
+      .findAllRequest(filter, sortDirection, pageIndex, pageSize, verb, data)
       .subscribe(value => this.handleRes(value));
   }
   handleRes(res){
@@ -37,7 +37,7 @@ export class ComplainDatasource implements DataSource<RequestContact>{
     this._total = res.total;
   }
 
-  connect(collectionViewer?: CollectionViewer): Observable<RequestContact[]> {
+  connect(collectionViewer?: CollectionViewer): Observable<RequestContext[]> {
     return this.userSubjects.asObservable();
   }
 

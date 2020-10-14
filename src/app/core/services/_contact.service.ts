@@ -12,7 +12,7 @@ export class ContactService {
 
 
 /////////////////////////////////
-  findAllCooperation(
+  findAllCooperate(
     filter = '',
     sortOrder = 'asc',
     pageNumber?,
@@ -33,20 +33,20 @@ export class ContactService {
     if(verb)
       params = params.set(verb, data);
 
-    return this.httpClient.get(`/cooperation`,{params}).pipe(
+    return this.httpClient.get(`/contact/cooperate`,{params}).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );
   }
 
-  findOneCooperaation(id){
-    return this.httpClient.get(`/cooperation/${id}`).pipe(
+  findOneCooperaate(id){
+    return this.httpClient.get(`/contact/cooperate/${id}`).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );
   }
 ///////////////////////////////////////////////////
-  findAllContactUs(
+  findAllContact(
     filter = '',
     sortOrder = 'asc',
     pageNumber?,
@@ -67,14 +67,14 @@ export class ContactService {
     if(verb)
       params = params.set(verb, data);
 
-    return this.httpClient.get(`/contactUs`,{params}).pipe(
+    return this.httpClient.get(`/contact`,{params}).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );
   }
 
-  findOneContactUs(id){
-    return this.httpClient.get(`/contactUs/${id}`).pipe(
+  findOneContact(id){
+    return this.httpClient.get(`/contact/${id}`).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );

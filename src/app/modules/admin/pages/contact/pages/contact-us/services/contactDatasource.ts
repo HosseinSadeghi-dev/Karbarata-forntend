@@ -4,7 +4,7 @@ import { RequestContact} from "@app/core/models";
 import {ContactService} from "@app/core/services";
 
 
-export class ContactUsDatasource implements DataSource<RequestContact>{
+export class ContactDatasource implements DataSource<RequestContact>{
 
   private userSubjects = new BehaviorSubject<RequestContact[]>([]);
   private _pageTotal;
@@ -20,7 +20,7 @@ export class ContactUsDatasource implements DataSource<RequestContact>{
 ////
   constructor(private contactService: ContactService){}
 
-  loadContactUs(
+  loadContact(
     filter:string,
     sortDirection:string,
     pageIndex:number,
@@ -28,7 +28,7 @@ export class ContactUsDatasource implements DataSource<RequestContact>{
     verb?:string,
     data?:string) {
     this.contactService
-      .findAllContactUs(filter, sortDirection, pageIndex, pageSize, verb, data)
+      .findAllContact(filter, sortDirection, pageIndex, pageSize, verb, data)
       .subscribe(value => this.handleRes(value));
   }
   handleRes(res){

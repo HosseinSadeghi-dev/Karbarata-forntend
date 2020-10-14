@@ -5,7 +5,7 @@ import {ContactService} from "@app/core/services";
 import {Router} from "@angular/router";
 import {fromEvent, merge} from "rxjs";
 import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
-import {ContactUsDatasource} from "../../services/contactUs.datasource";
+import {ContactDatasource} from "../../services/contactDatasource";
 
 @Component({
   selector: 'app-list',
@@ -13,7 +13,7 @@ import {ContactUsDatasource} from "../../services/contactUs.datasource";
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  dataSource : ContactUsDatasource;
+  dataSource : ContactDatasource;
   displayedColumns: string[] = ['count','user','phoneNumber','description','id'];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -36,20 +36,20 @@ export class ListComponent implements OnInit {
         distinctUntilChanged(),
         tap(() => {
           this.paginator.pageIndex = 0;
-          this.loadContactUsPages();
+          this.loadContactPages();
         })
       )
       .subscribe();
 
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(
-        tap(() => this.loadContactUsPages())
+        tap(() => this.loadContactPages())
       )
       .subscribe();
   }
 
-  loadContactUsPages() {
-    this.dataSource.loadContactUs(
+  loadContactPages() {
+    this.dataSource.loadContact(
       this.input.nativeElement.value,
       this.sort.direction,
       this.paginator.pageIndex,
@@ -59,8 +59,8 @@ export class ListComponent implements OnInit {
 
   getList(){
     this.paginator.firstPage();
-    this.dataSource= new ContactUsDatasource(this.contactService);
-    this.dataSource.loadContactUs('', 'asc', 0, 5);
+    this.dataSource= new ContactDatasource(this.contactService);
+    this.dataSource.loadContact('', 'asc', 0, 5);
   }
 
 }
