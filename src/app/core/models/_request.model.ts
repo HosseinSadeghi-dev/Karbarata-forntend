@@ -171,11 +171,7 @@ export interface RequestContact {
 }
 
 export enum RequestStatusType {
-  PENDING = 'pending',
-  EXPERTAPPROVAL = 'expertApproval',
-  STATUSSTATEMENT = 'statusStatement',
-  SETTLEMENT = 'settlement',
-  DONE = 'done'
+
 }
 export enum RequestConstructType {
   DESIGNING = 'Designing',

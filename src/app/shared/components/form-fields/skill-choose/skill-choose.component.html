@@ -10,7 +10,7 @@
       <mat-list-option *ngFor="let skill of category?.skills"
                        [selected]="checkSelected(skill)"
                        [value]="skill"
-                       [disabled]="skill.name === data.selected[0].name"
+                       [disabled]="skill?.name === data.selected[0].name"
                        disableRipple
                        multiple color="primary">
         {{skill.name}}

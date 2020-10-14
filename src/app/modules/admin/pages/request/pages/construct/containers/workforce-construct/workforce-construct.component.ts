@@ -3,7 +3,7 @@ import {
   MasterSkillContext,
   ProfileContext, RequestConstructContext,
   RequestMasterContext,
-  RequestMasterWorkforceContext, UserRole
+  RequestMasterWorkforceContext, RequestSimpleContext, UserRole
 } from "../../../../../../../../core/models";
 import {UserDatasource} from "../../../../../user/services";
 import {SelectionModel} from "@angular/cdk/collections";
@@ -21,7 +21,9 @@ import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
 })
 export class WorkforceConstructComponent implements OnInit {
 
-  requestConstruct: RequestConstructContext
+  requestConstruct: RequestConstructContext;
+  masterWorkforces: RequestMasterContext;
+  simpleWorkforces: RequestSimpleContext
   selectedUsers: ProfileContext[] = [];
   isEdit: boolean = false;
   users: ProfileContext[] = [];
@@ -51,11 +53,11 @@ export class WorkforceConstructComponent implements OnInit {
 
   getWorkforcesByRequest(){
     if (this.params.id){
-      this.requestService.findOneConstructRequestWorkForce(this.params.id).subscribe(
-        res => {
-          this.requestConstruct = res;
-          console.log('res',res)
-        }
+      this.requestService.findOneMasterRequestWorkForce(this.params.id).subscribe(
+        res => this.simpleWorkforces.workforces = res
+      )
+      this.requestService.findOneSimpleRequestWorkForce(this.params.id).subscribe(
+        res => this.masterWorkforces = res
       )
     }
 
@@ -110,14 +112,10 @@ export class WorkforceConstructComponent implements OnInit {
 
     this.choosedUser = null;
 
-    // this.users = res;
-    //
-    // this.dataSource = new MatTableDataSource<ProfileContext>(this.users);
-
-    this.requestConstruct.masterWorkforces.skills.forEach(
+    this.masterWorkforces.skills.forEach(
       row => {
         if (row.slug === skill){
-          this.requestConstruct.masterWorkforces.workforces.forEach(
+          this.masterWorkforces.workforces.forEach(
             each => {
               if(each.skill.slug === row.slug)
               {

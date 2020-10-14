@@ -37,19 +37,21 @@ export class SkillChooseComponent implements OnInit {
       choosed: [[],Validators.required]
     })
 
-    this.stFormGroup.get('choosed').setValue(this.data.selected)
+    this.stFormGroup.get('choosed').setValue(this.data?.selected)
 
   }
 
   checkSelected(skill){
     let checked: boolean = false;
-    this.data.selected.forEach(
+
+    this.data?.selected?.forEach(
       row => {
         if (row.name === skill.name){
           checked = true;
         }
       }
     )
+
     return checked;
   }
 

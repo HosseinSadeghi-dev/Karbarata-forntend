@@ -11,8 +11,8 @@ export class PaymentService{
 
   constructor(private httpClient: HttpClient){}
 
-  savePayment(id, data){
-    return this.httpClient.get(`/request`).pipe(
+  savePayment(data){
+    return this.httpClient.post(`/payment/payoff`,data).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );

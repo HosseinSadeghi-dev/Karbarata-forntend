@@ -37,19 +37,12 @@
         </mat-list-item>
       </mat-list>
       <div>
-        <button mat-button [matMenuTriggerFor]="payMenu" (click)="$event.preventDefault()" *ngIf="invoice?.payment?.status !== Status.SUCCESS" color="primary">پرداخت</button>
+        <button mat-button (click)="$event.preventDefault(); onPay(invoice)"
+                *ngIf="invoice?.payment?.status !== Status.SUCCESS" color="primary">پرداخت</button>
         <button mat-button [routerLink]="[invoice.id]" [disabled]="invoice?.payment">ویرایش</button>
         <button mat-flat-button color="accent" *ngIf="invoice?.payment?.status === Status.SUCCESS" appRequestPaymentBottomSheet [data]="invoice?.payment">مشاهده فیش پرداخت</button>
       </div>
     </mat-action-row>
-    <mat-menu #payMenu="matMenu">
-      <button *ngFor="let payment of paymentMethods | enumToArray" (click)="onPay(payment,invoice.costTotal,invoice.id)" mat-menu-item>
-        <ng-container [ngSwitch]="payment">
-          <span *ngSwitchCase="Method.CHARGE">کسر از شارژ</span>
-          <span *ngSwitchCase="Method.GATEWAY">پرداخت اینترنتی</span>
-          <span *ngSwitchCase="Method.POS">کارت خوان</span>
-        </ng-container>
-      </button>
-    </mat-menu>
+
   </mat-expansion-panel>
 </mat-accordion>
