@@ -22,7 +22,7 @@ export class CategoryComponent implements OnInit {
   }
 
   getList(res){
-    this.data = res
+    this.data = res.results
   }
 
 

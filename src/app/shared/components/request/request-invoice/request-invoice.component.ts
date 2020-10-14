@@ -34,8 +34,7 @@ export class RequestInvoiceComponent implements OnInit {
     console.log('invoices',this.invoices)
   }
 
-  onPay(invoice: RequestInvoiceContext){
-
+  onPay(){
 
     if (this.params.id){
       this.requestService.findOneRequest(this.params.id).subscribe(
@@ -43,7 +42,7 @@ export class RequestInvoiceComponent implements OnInit {
           this.paymentService.savePayment(
             {
               user: res.user,
-              invoice
+              requestId: res.id
             }
           ).subscribe(
             res => console.log(res)

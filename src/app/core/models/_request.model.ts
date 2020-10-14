@@ -171,7 +171,12 @@ export interface RequestContact {
 }
 
 export enum RequestStatusType {
-
+  AWAITING_OP,
+  APPROVAL_OP,
+  AWAITING_EXP,
+  APPROVAL_EXP,
+  INVOICE,
+  DONE
 }
 export enum RequestConstructType {
   DESIGNING = 'Designing',

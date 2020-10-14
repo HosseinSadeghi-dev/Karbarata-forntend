@@ -13,7 +13,7 @@ export class WorkforceService {
 
   findOneMasterCategory(slug){
     return this.httpClient.get(`/workforce/master/category/${slug}`).pipe(
-      map((response: MasterCategoryContext) => response),
+      map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );
   }

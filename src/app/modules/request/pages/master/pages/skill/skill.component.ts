@@ -21,7 +21,7 @@ export class SkillComponent implements OnInit {
     const params = this.activatedRoute.snapshot.params
 
     this.workforceService.findOneMasterCategory(params.slug).subscribe(
-      res => this.getCategory(res)
+      res => this.getCategory(res.results)
     )
   }
 

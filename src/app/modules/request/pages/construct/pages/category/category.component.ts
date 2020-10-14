@@ -21,7 +21,7 @@ export class CategoryComponent implements OnInit {
 
   getList(){
     this.constructService.findAllConstructSkill().subscribe(
-      res => this.data = res
+      res => this.data = res.results
     )
   }
 
