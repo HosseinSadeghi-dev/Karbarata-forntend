@@ -67,7 +67,7 @@
                 <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="وضعیت:">
                   <mat-chip-list ngClass.lt-md="mr-4">
                     <ng-container [ngSwitch]="element.request.status[(element.request.status.length)-1].type">
-                      <mat-chip *ngSwitchCase="RequestStatus.AWAITING_OP" selected>در انتظار تایید اپراتور</mat-chip>
+                      <mat-chip *ngSwitchCase="RequestStatus.AWAITING_OP " selected>در انتظار تایید اپراتور</mat-chip>
                       <mat-chip *ngSwitchCase="RequestStatus.APPROVAL_OP" selected>تایید اپراتور</mat-chip>
                       <mat-chip *ngSwitchCase="RequestStatus.AWAITING_EXP" selected>در انتظار تایید کارشناس</mat-chip>
                       <mat-chip *ngSwitchCase="RequestStatus.APPROVAL_EXP" selected>تایید کارشناس</mat-chip>
