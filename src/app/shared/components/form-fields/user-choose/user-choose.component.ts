@@ -46,7 +46,7 @@ export class UserChooseComponent implements OnInit, AfterViewInit {
 
     this.paginator.firstPage();
     this.dataSource = new UserDatasource(this.userService);
-    this.dataSource.loadUsers('', 'asc', 1, 3,'role', this.data.roles);
+    this.dataSource.loadUsers('', 'asc', 0, 5,'role', this.data.roles);
     let selectedUsers: ProfileContext[] = [];
     this.data.selected.forEach(row => {
       selectedUsers.push(this.users.find(i => i.id === row.id));
@@ -102,7 +102,7 @@ export class UserChooseComponent implements OnInit, AfterViewInit {
   getList(){
     // this.paginator.firstPage();
     // this.dataSource = new UserDatasource(this.userService);
-    // this.dataSource.loadUsers('', 'asc', 1, 3,'role', this.data.roles);
+    // this.dataSource.loadUsers('', 'asc', 0, 5,'role', this.data.roles);
     // let selectedUsers: ProfileContext[] = [];
     // this.data.selected.forEach(row => {
     //   selectedUsers.push(this.users.find(i => i.id === row.id));

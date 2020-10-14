@@ -93,7 +93,7 @@ export class WorkforceMasterComponent implements OnInit {
   getList(data: string){
     this.paginator.firstPage();
     this.dataSource = new UserDatasource(this.userService);
-    this.dataSource.loadUsers('', 'asc', 1, 3, 'skill', data);
+    this.dataSource.loadUsers('', 'asc', 0, 5, 'skill', data);
     this.handleTable(data)
     console.log('data',this.dataSource)
   }

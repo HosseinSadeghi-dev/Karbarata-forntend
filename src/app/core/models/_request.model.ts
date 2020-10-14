@@ -4,7 +4,7 @@ import {
   GalleryPhotoContext,
   PaymentContext,
   WorkforceSimpleType,
-  MasterCategoryContext
+  MasterCategoryContext, AdviceCategoryContext
 } from './';
 
 export interface RequestContext {
@@ -26,12 +26,29 @@ export interface RequestContext {
   simple?: RequestSimpleContext,
   master?: RequestMasterContext,
   construct?: RequestConstructContext,
+  priceAdvice?: RequestPriceAdvice,
+  MunicipalService?: RequestMunicipalService
 
   expert?: RequestExpertContext,
   reports?: RequestReportContext[],
   contractors?: ProfileContext[],
   statusStatements?: RequestStatusStatementContext[],
 
+  created?: Date,
+  updated?: Date
+}
+
+export interface RequestPriceAdvice {
+  id?: number,
+  description?: string,
+  type?: AdviceCategoryContext,
+  created?: Date,
+  updated?: Date
+}
+
+export interface RequestMunicipalService {
+  id?: number,
+  description?: string,
   created?: Date,
   updated?: Date
 }
@@ -162,7 +179,6 @@ export enum RequestStatusType {
 }
 export enum RequestConstructType {
   DESIGNING = 'Designing',
-  IMPLEMENTATION = 'implementation',
   BOTH = 'both'
 }
 export enum RequestReportType {

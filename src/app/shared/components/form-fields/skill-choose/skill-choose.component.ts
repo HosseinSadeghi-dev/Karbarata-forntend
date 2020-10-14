@@ -30,7 +30,7 @@ export class SkillChooseComponent implements OnInit {
 
   ngOnInit(): void {
     this.workforceService.findAllMasterCategory().subscribe(
-      res => this.categories = res
+      res => this.categories = res.results
     )
 
     this.stFormGroup = this.formBuilder.group({
@@ -39,7 +39,6 @@ export class SkillChooseComponent implements OnInit {
 
     this.stFormGroup.get('choosed').setValue(this.data.selected)
 
-    console.log(this.stFormGroup.get('choosed').value)
   }
 
   checkSelected(skill){

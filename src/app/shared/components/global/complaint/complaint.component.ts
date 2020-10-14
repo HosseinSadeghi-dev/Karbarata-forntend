@@ -44,7 +44,7 @@ export class ComplaintComponent implements OnInit {
 
   ratingComponentClick(clickObj: any): void {
     this.rating = clickObj.rating
-    }
+  }
 
 }
 
