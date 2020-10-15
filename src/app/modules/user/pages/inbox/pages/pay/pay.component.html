@@ -1,0 +1,44 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let invoice of invoices;let i = index">
+
+    <mat-expansion-panel-header>
+      <mat-panel-title fxLayout="row" fxLayoutAlign="space-between center">
+        <span>{{i+1}}</span>
+        <span><small>شماره صورت حساب :</small> {{invoice.id}}</span>
+        <div></div>
+      </mat-panel-title>
+      <mat-panel-description>
+        <span><small>مجموع صورت حساب :</small> {{invoice.costTotal}} <small>تومان</small></span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div fxLayout="row wrap" fxLayoutGap="15px grid" dir="rtl">
+      <div fxFlex="50%" *ngFor="let row of invoice.statusStatements">
+        <app-request-status-statement-table [dataSource]="row.items"></app-request-status-statement-table>
+      </div>
+    </div>
+
+    <mat-list>
+      <mat-list-item>
+        <div mat-line>تاریخ صورت حساب</div>
+        <div mat-line> {{invoice?.created | persianDate }} </div>
+      </mat-list-item>
+    </mat-list>
+
+    <mat-action-row fxLayout="row" fxLayoutAlign="space-between center">
+      <mat-list>
+        <mat-list-item>
+          <div mat-line>مجموع صورت حساب</div>
+          <div mat-line> {{invoice.costTotal}} <small>تومان</small> </div>
+        </mat-list-item>
+      </mat-list>
+      <div>
+        <button mat-button (click)="$event.preventDefault(); onPay(invoice)"
+                *ngIf="invoice?.payment?.status !== Status.SUCCESS" color="primary">پرداخت</button>
+        <button mat-button [routerLink]="[invoice.id]" [disabled]="invoice?.payment">ویرایش</button>
+        <button mat-flat-button color="accent" *ngIf="invoice?.payment?.status === Status.SUCCESS" appRequestPaymentBottomSheet [data]="invoice?.payment">مشاهده فیش پرداخت</button>
+      </div>
+    </mat-action-row>
+
+  </mat-expansion-panel>
+</mat-accordion>
