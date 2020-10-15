@@ -55,6 +55,12 @@
                                 selected color="primary">تایید کارشناس</mat-chip>
                       <mat-chip *ngSwitchCase="RequestStatus.INVOICE"
                                 selected color="primary">پرداخت صورت حساب</mat-chip>
+                      <mat-chip *ngSwitchCase="RequestStatus.CANCEL_OP"
+                                selected color="primary">عدم تایید اپراتور</mat-chip>
+                      <mat-chip *ngSwitchCase="RequestStatus.CANCEL_EXP"
+                                selected color="primary">عدم تایید کارشناس</mat-chip>
+                      <mat-chip *ngSwitchCase="RequestStatus.WORKING"
+                                selected color="primary">در حال کار</mat-chip>
                       <mat-chip *ngSwitchCase="RequestStatus.DONE"
                                 selected color="primary">کامل</mat-chip>
                       <mat-chip *ngSwitchDefault selected color="primary">نامشخص</mat-chip>

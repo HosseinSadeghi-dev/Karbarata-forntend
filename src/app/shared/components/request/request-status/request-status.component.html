@@ -4,11 +4,22 @@
       <mat-list-item>
         <div mat-line [ngSwitch]="row.type">
           <mat-chip-list aria-label="Fish selection">
-            <mat-chip *ngSwitchCase="StatusType.AWAITING_OP " selected>در انتظار تایید اپراتور</mat-chip>
-            <mat-chip *ngSwitchCase="StatusType.APPROVAL_OP" selected>تایید اپراتور</mat-chip>
-            <mat-chip *ngSwitchCase="StatusType.AWAITING_EXP" selected>در انتظار تایید کارشناس</mat-chip>
-            <mat-chip *ngSwitchCase="StatusType.APPROVAL_EXP" selected>تایید کارشناس</mat-chip>
-            <mat-chip *ngSwitchCase="StatusType.INVOICE" selected>پرداخت صورت حساب</mat-chip>
+            <mat-chip *ngSwitchCase="StatusType.AWAITING_OP "
+                      selected color="primary">در انتظار تایید اپراتور</mat-chip>
+            <mat-chip *ngSwitchCase="StatusType.APPROVAL_OP"
+                      selected color="primary">تایید اپراتور</mat-chip>
+            <mat-chip *ngSwitchCase="StatusType.AWAITING_EXP"
+                      selected color="primary">در انتظار تایید کارشناس</mat-chip>
+            <mat-chip *ngSwitchCase="StatusType.APPROVAL_EXP"
+                      selected color="primary">تایید کارشناس</mat-chip>
+            <mat-chip *ngSwitchCase="StatusType.INVOICE"
+                      selected color="primary">پرداخت صورت حساب</mat-chip>
+            <mat-chip *ngSwitchCase="StatusType.CANCEL_OP"
+                      selected color="primary">عدم تایید اپراتور</mat-chip>
+            <mat-chip *ngSwitchCase="StatusType.CANCEL_EXP"
+                      selected color="primary">عدم تایید کارشناس</mat-chip>
+            <mat-chip *ngSwitchCase="StatusType.WORKING"
+                      selected color="primary">در حال کار</mat-chip>
             <mat-chip *ngSwitchCase="StatusType.DONE" selected>کامل</mat-chip>
             <mat-chip *ngSwitchDefault>نامشخص</mat-chip>
           </mat-chip-list>
