@@ -12,10 +12,6 @@ const routes: Routes = [
         path: '',
         component: ListComponent
       },
-      {
-        path: ':slug',
-        component: ListComponent
-      }
     ]
   }
 ];

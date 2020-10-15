@@ -19,7 +19,7 @@ export class WorkforceService {
   }
 
   findAllMasterCategory(filter = '',
-                        sortOrder = 'asc',
+                        sortOrder = 'desc',
                         pageNumber?,
                         pageSize?,
                         verb = '',
@@ -73,7 +73,7 @@ export class WorkforceService {
 
   findAllMasterSkill(
     filter = '',
-    sortOrder = 'asc',
+    sortOrder = 'desc',
     pageNumber?,
     pageSize?,
     verb = '',

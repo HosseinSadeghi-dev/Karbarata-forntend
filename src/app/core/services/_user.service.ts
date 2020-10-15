@@ -104,7 +104,7 @@ export class UserService {
 
   findAllUserMaster(
     filter = '',
-    sortOrder = 'asc',
+    sortOrder = 'desc',
     pageNumber?,
     pageSize?,
     verb?,
@@ -161,7 +161,7 @@ export class UserService {
 
   findAllUserSimple(
     filter = '',
-    sortOrder = 'asc',
+    sortOrder = 'desc',
     pageNumber?,
     pageSize?,
     verb?,
@@ -231,7 +231,7 @@ export class UserService {
 
   findAllAdminstrative(
     filter = '',
-    sortOrder = 'asc',
+    sortOrder = 'desc',
     pageNumber?,
     pageSize?,
     verb = '',

@@ -64,7 +64,7 @@ export class ListComponent implements OnInit, AfterViewInit {
   getList(){
     this.paginator.firstPage();
     this.dataSource = new AlbumsDataSource(this.galleryService);
-    this.dataSource.loadAlbums('', 'asc', 0, 5);
+    this.dataSource.loadAlbums('', 'desc', 0, 5);
   }
 
   onRouter(slug){

@@ -53,7 +53,7 @@ export class NewsService {
 
   findAllNews(
     filter = '',
-    sortOrder = 'asc',
+    sortOrder = 'desc',
     pageNumber?,
     pageSize?){
     let params = new HttpParams()

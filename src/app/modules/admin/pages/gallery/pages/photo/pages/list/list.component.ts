@@ -80,7 +80,7 @@ export class ListComponent implements OnInit, AfterViewInit {
         // this.galleryService.getGalleryPhotoFilter('album',routeParams.album).subscribe(res => this.handleResList(res))
       }else {
         this.isUpload = false;
-        this.dataSource.loadPhotos('', 'asc', 0, 5);
+        this.dataSource.loadPhotos('', 'desc', 0, 5);
         // this.galleryService.getGalleryPhotoList().subscribe(res => this.handleResList(res))
       }
     });

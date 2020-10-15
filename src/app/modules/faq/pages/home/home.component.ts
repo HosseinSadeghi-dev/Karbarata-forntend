@@ -81,7 +81,7 @@ export class HomeComponent implements OnInit {
       this.dataSource.loadFaqs('', 'asc', 0, 5,'category',this.category);
     }
     else{
-      this.dataSource.loadFaqs('', 'asc', 0, 5);
+      this.dataSource.loadFaqs('', 'desc', 0, 5);
     }
   }
 

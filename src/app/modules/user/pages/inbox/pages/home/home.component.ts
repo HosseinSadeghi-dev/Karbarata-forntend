@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
   getList(){
     this.paginator.firstPage();
     this.dataSource= new InboxDatasource(this.requestService);
-    this.dataSource.loadInbox('', 'asc', 0, 5);
+    this.dataSource.loadInbox('', 'desc', 0, 5);
   }
 
   public get RequestStatus() {

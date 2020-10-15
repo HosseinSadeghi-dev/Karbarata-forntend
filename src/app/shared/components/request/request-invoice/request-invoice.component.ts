@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {PaymentMethod, PaymentStatus, ProfileContext, RequestInvoiceContext} from "@app/core/models";
 import {PaymentService, RequestService} from "@app/core/services";
 
@@ -21,7 +21,8 @@ export class RequestInvoiceComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private requestService: RequestService,
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -36,6 +37,8 @@ export class RequestInvoiceComponent implements OnInit {
 
   onPay(invoice:RequestInvoiceContext){
 
+    const a: string = '/payment/transfer';
+
     if (this.params.id){
       this.requestService.findOneRequest(this.params.id).subscribe(
         res => {
@@ -44,7 +47,7 @@ export class RequestInvoiceComponent implements OnInit {
             amount: invoice.costTotal,
             userId: res.user.id
           }).subscribe(
-            res => console.log(res)
+            res => this.router.navigateByUrl(a)
           )
         }
       )

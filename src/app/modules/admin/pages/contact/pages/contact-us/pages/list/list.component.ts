@@ -60,7 +60,7 @@ export class ListComponent implements OnInit {
   getList(){
     this.paginator.firstPage();
     this.dataSource= new ContactDatasource(this.contactService);
-    this.dataSource.loadContact('', 'asc', 0, 5);
+    this.dataSource.loadContact('', 'desc', 0, 5);
   }
 
 }

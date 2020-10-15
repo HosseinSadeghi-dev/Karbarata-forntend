@@ -64,7 +64,7 @@ export class ListComponent implements OnInit, AfterViewInit {
   getList(){
     this.paginator.firstPage();
     this.dataSource = new ConstructDatasource(this.constructService);
-    this.dataSource.loadConstructs('', 'asc', 0, 5);
+    this.dataSource.loadConstructs('', 'desc', 0, 5);
   }
 
   openTagDialog(tags: string[]){

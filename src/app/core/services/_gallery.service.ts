@@ -24,7 +24,7 @@ export class GalleryService {
   }
   getGalleryAlbumList(
     filter = '',
-    sortOrder = 'asc',
+    sortOrder = 'desc',
     pageNumber?,
     pageSize?
   ){
@@ -73,7 +73,7 @@ export class GalleryService {
   }
 
   getGalleryPhotoList(filter = '',
-                      sortOrder = 'asc',
+                      sortOrder = 'desc',
                       pageNumber?,
                       pageSize?){
     let params = new HttpParams()

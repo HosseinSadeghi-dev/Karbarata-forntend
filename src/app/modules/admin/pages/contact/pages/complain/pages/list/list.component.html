@@ -31,14 +31,14 @@
               <ng-container matColumnDef="user">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> نام </th>
                 <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="نام و نام خانوادگی :">
-                  {{element.name ? element.name : '---'}}
+                 <b>{{element.name ? element.name : '---'}}</b>
                 </td>
               </ng-container>
 
               <ng-container matColumnDef="phoneNumber">
                 <th mat-header-cell *matHeaderCellDef> شماره تلفن </th>
                 <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="شماره تلفن :">
-                  {{element.phoneNumber ? element.phoneNumber : '---'}}
+                  <b>{{element.phoneNumber ? element.phoneNumber : '---'}}</b>
                 </td>
               </ng-container>
 
@@ -49,17 +49,17 @@
                 </td>
               </ng-container>
 
-              <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef> کنترل </th>
-                <td mat-cell *matCellDef="let element" data-label="کنترل">
-                  <button mat-icon-button [matMenuTriggerFor]="menu">
-                    <mat-icon>more_vert</mat-icon>
-                  </button>
-                  <mat-menu #menu="matMenu">
-                    <button [routerLink]="element.id" mat-menu-item disabled>
-                      <mat-icon>question_answer</mat-icon>
-                      <span>پاسخگویی</span>
-                    </button>
+<!--              <ng-container matColumnDef="id">-->
+<!--                <th mat-header-cell *matHeaderCellDef> کنترل </th>-->
+<!--                <td mat-cell *matCellDef="let element" data-label="کنترل">-->
+<!--                  <button mat-icon-button [matMenuTriggerFor]="menu">-->
+<!--                    <mat-icon>more_vert</mat-icon>-->
+<!--                  </button>-->
+<!--                  <mat-menu #menu="matMenu">-->
+<!--                    <button [routerLink]="element.id" mat-menu-item disabled>-->
+<!--                      <mat-icon>question_answer</mat-icon>-->
+<!--                      <span>پاسخگویی</span>-->
+<!--                    </button>-->
 <!--                    <button (click)="onChangeStatus(element.user.id, element.user.status)" mat-menu-item>-->
 <!--                      <mat-icon>change_history</mat-icon>-->
 <!--                      <span>تغییر وضعیت</span>-->
@@ -68,9 +68,9 @@
 <!--                      <mat-icon>delete</mat-icon>-->
 <!--                      <span>حذف</span>-->
 <!--                    </button>-->
-                  </mat-menu>
-                </td>
-              </ng-container>
+<!--                  </mat-menu>-->
+<!--                </td>-->
+<!--              </ng-container>-->
 
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>

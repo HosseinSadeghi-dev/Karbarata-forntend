@@ -14,7 +14,7 @@ export class FaqService {
 
   findAllFaqCategory(
     filter = '',
-    sortOrder = 'asc',
+    sortOrder = 'desc',
     pageNumber?,
     pageSize?,
     verb = '',
@@ -89,7 +89,7 @@ export class FaqService {
 
   findAllFaq(
     filter = '',
-    sortOrder = 'asc',
+    sortOrder = 'desc',
     pageNumber?,
     pageSize?,
     verb = '',

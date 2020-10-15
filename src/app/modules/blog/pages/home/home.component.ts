@@ -80,7 +80,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.dataSource.loadArticles('', 'asc', 0, 5, 'tag',this.routeParams.tag);
     }
     else{
-      this.dataSource.loadArticles('', 'asc', 0, 5);
+      this.dataSource.loadArticles('', 'desc', 0, 5);
     }
   }
 

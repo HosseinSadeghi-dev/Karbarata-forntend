@@ -14,7 +14,7 @@ export class ContactService {
 /////////////////////////////////
   findAllCooperation(
     filter = '',
-    sortOrder = 'asc',
+    sortOrder = 'desc',
     pageNumber?,
     pageSize?,
     verb?,
@@ -48,7 +48,7 @@ export class ContactService {
 ///////////////////////////////////////////////////
   findAllContact(
     filter = '',
-    sortOrder = 'asc',
+    sortOrder = 'desc',
     pageNumber?,
     pageSize?,
     verb?,
@@ -82,7 +82,7 @@ export class ContactService {
   ////////////////////////////
   findAllComplain(
     filter = '',
-    sortOrder = 'asc',
+    sortOrder = 'desc',
     pageNumber?,
     pageSize?,
     verb?,

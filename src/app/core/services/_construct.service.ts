@@ -20,7 +20,7 @@ export class ConstructService {
 
   findAllConstructSkill(
     filter = '',
-    sortOrder = 'asc',
+    sortOrder = 'desc',
     pageNumber?,
     pageSize?,
     verb?,

@@ -65,7 +65,7 @@ export class ListComponent implements OnInit, AfterViewInit {
     this.paginator.firstPage();
     this.dataSource = new WorkforceMasterDatasource(this.userService);
     console.log('datasource',this.dataSource)
-    this.dataSource.loadWorkforces('', 'asc', 0, 5);
+    this.dataSource.loadWorkforces('', 'desc', 0, 5);
   }
 
   onDelete(id: number){

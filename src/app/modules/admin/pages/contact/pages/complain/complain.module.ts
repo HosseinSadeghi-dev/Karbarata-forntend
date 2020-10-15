@@ -5,7 +5,6 @@ import {SharedModule} from '@app/shared/shared.module';
 import {ReactiveFormsModule} from '@angular/forms';
 
 import {
-  FormComponent,
   ListComponent,
   MainComponent
 } from "./pages";
@@ -15,7 +14,6 @@ import {
   declarations: [
     MainComponent,
     ListComponent,
-    FormComponent
   ],
   imports: [
     CommonModule,

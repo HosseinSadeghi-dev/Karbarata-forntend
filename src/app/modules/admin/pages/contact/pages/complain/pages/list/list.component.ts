@@ -14,7 +14,7 @@ import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
 })
 export class ListComponent implements OnInit {
   dataSource : ComplainDatasource;
-  displayedColumns: string[] = ['count','user','phoneNumber','description','id'];
+  displayedColumns: string[] = ['count','user','phoneNumber','description'];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('input') input: ElementRef;
@@ -60,7 +60,7 @@ export class ListComponent implements OnInit {
   getList(){
     this.paginator.firstPage();
     this.dataSource= new ComplainDatasource(this.contactService);
-    this.dataSource.loadComplain('', 'asc', 0, 5);
+    this.dataSource.loadComplain('', 'desc', 0, 5);
   }
 
 }

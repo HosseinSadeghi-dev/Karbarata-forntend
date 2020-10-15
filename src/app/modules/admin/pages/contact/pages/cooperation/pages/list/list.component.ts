@@ -61,7 +61,7 @@ export class ListComponent implements OnInit {
   getList(){
     this.paginator.firstPage();
     this.dataSource= new CooperationDatasource(this.contactService);
-    this.dataSource.loadCooperation('', 'asc', 0, 5);
+    this.dataSource.loadCooperation('', 'desc', 0, 5);
   }
 
 }

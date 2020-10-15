@@ -19,7 +19,7 @@ export class ArticleService {
 
   getArticleCategoryList(
     filter = '',
-    sortOrder = 'asc',
+    sortOrder = 'desc',
     pageNumber?,
     pageSize?){
     let params = new HttpParams()
@@ -67,7 +67,7 @@ export class ArticleService {
 
   getArticleList(
     filter = '',
-    sortOrder = 'asc',
+    sortOrder = 'desc',
     pageNumber?,
     pageSize?,
     verb = '',

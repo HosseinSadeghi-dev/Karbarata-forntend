@@ -12,7 +12,7 @@ export class RequestService {
 
   findAllRequest(
     filter = '',
-    sortOrder = 'asc',
+    sortOrder = 'desc',
     pageNumber?,
     pageSize?,
     verb?,
@@ -60,7 +60,7 @@ export class RequestService {
   //CONSTRUCT
   findAllConstruct(
     filter = '',
-    sortOrder = 'asc',
+    sortOrder = 'desc',
     pageNumber?,
     pageSize?,
     verb?,
@@ -109,7 +109,7 @@ export class RequestService {
   //SIMPLES
   findAllSimple(
     filter = '',
-    sortOrder = 'asc',
+    sortOrder = 'desc',
     pageNumber?,
     pageSize?,
     verb?,
@@ -157,7 +157,7 @@ export class RequestService {
   //MASTERS
   findAllMaster(
     filter = '',
-    sortOrder = 'asc',
+    sortOrder = 'desc',
     pageNumber?,
     pageSize?,
     verb?,

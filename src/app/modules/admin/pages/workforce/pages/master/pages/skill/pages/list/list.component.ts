@@ -61,7 +61,7 @@ export class ListComponent implements OnInit, AfterViewInit {
   getList(){
     this.paginator.firstPage();
     this.dataSource = new MasterWorkforceSkillsDatasource(this.workforceService);
-    this.dataSource.loadSkills('', 'asc', 0, 5);
+    this.dataSource.loadSkills('', 'desc', 0, 5);
   }
 
 }
