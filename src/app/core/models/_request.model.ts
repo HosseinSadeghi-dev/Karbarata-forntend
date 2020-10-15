@@ -171,16 +171,17 @@ export interface RequestContact {
 }
 
 export enum RequestStatusType {
-  AWAITING_OP,
-  CANCEL_OP,
-  APPROVAL_OP,
-  AWAITING_EXP,
-  CANCEL_EXP,
-  APPROVAL_EXP,
-  WORKING,
-  INVOICE,
-  DONE
+  AWAITING_OP = 'operatorAwaiting',
+  CANCEL_OP = 'operatorCanceled',
+  APPROVAL_OP = 'operatorApproved',
+  AWAITING_EXP = 'expertAwaiting',
+  CANCEL_EXP = 'expertCanceled',
+  APPROVAL_EXP = 'expertApproved',
+  WORKING = 'working',
+  INVOICE = 'invoice',
+  DONE= 'done'
 }
+
 export enum RequestConstructType {
   DESIGNING = 'Designing',
   BOTH = 'both'
