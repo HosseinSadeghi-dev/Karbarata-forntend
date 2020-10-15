@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {RequestService} from "@app/core/services";
+import {PaymentService, RequestService} from "@app/core/services";
 import {ActivatedRoute, Router} from "@angular/router";
-import {RequestContext, RequestInvoiceContext} from "@app/core/models";
+import {PaymentMethod, PaymentStatus, RequestInvoiceContext} from "@app/core/models";
 
 @Component({
   selector: 'app-pay',
@@ -15,7 +15,8 @@ export class PayComponent implements OnInit {
   constructor(
     private requestService: RequestService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private paymentService: PaymentService
   ) { }
 
   ngOnInit(): void {
@@ -26,4 +27,27 @@ export class PayComponent implements OnInit {
     )
   }
 
+  onPay(invoice:RequestInvoiceContext){
+
+    const params = this.activatedRoute.snapshot.params
+    const a: string = '/payment/transfer';
+
+    if (params.id){
+      this.requestService.findOneRequest(params.id).subscribe(
+        res => {
+          this.paymentService.savePayment(invoice.id,{
+            method: PaymentMethod.GATEWAY,
+            amount: invoice.costTotal,
+            userId: res.user.id
+          }).subscribe(
+            res => this.router.navigateByUrl(a)
+          )
+        }
+      )
+    }
+  }
+
+  public get Status(){
+    return PaymentStatus;
+  }
 }

@@ -34,8 +34,7 @@
       </mat-list>
       <div>
         <button mat-button (click)="$event.preventDefault(); onPay(invoice)"
-                *ngIf="invoice?.payment?.status !== Status.SUCCESS" color="primary">پرداخت</button>
-        <button mat-button [routerLink]="[invoice.id]" [disabled]="invoice?.payment">ویرایش</button>
+                *ngIf="invoice.payment?.status !== Status.SUCCESS" color="primary">پرداخت</button>
         <button mat-flat-button color="accent" *ngIf="invoice?.payment?.status === Status.SUCCESS" appRequestPaymentBottomSheet [data]="invoice?.payment">مشاهده فیش پرداخت</button>
       </div>
     </mat-action-row>
