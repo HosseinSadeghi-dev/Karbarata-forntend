@@ -39,7 +39,7 @@ export class SimpleComponent implements OnInit {
       confirmForm: this.formBuilder.group({
         description: [''],
         isForce: [false],
-        serviceDate: ['', Validators.required]
+        serviceDate: ['']
       })
 
     })

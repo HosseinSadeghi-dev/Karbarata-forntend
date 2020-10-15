@@ -11,6 +11,7 @@ import {
   HomeComponent,
   CooperationComponent
 } from "./pages";
+import {StarRatingModule} from "../../shared/components/form-fields/star-rating/star-rating.module";
 
 @NgModule({
   declarations: [
@@ -18,12 +19,13 @@ import {
     HomeComponent,
     CooperationComponent
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    PipesModule,
-    ReactiveFormsModule,
-    AboutRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        SharedModule,
+        PipesModule,
+        ReactiveFormsModule,
+        AboutRoutingModule,
+        StarRatingModule
+    ]
 })
 export class AboutModule { }

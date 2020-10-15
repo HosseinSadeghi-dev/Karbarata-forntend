@@ -34,18 +34,16 @@ export class RequestInvoiceComponent implements OnInit {
     console.log('invoices',this.invoices)
   }
 
-  onPay(invoice){
+  onPay(invoice:RequestInvoiceContext){
 
     if (this.params.id){
       this.requestService.findOneRequest(this.params.id).subscribe(
         res => {
-          this.paymentService.savePayment(
-            {
-              user: res.user,
-              requestId: res.id,
-              invoiceId: invoice.id
-            }
-          ).subscribe(
+          this.paymentService.savePayment(invoice.id,{
+            method: PaymentMethod.GATEWAY,
+            amount: invoice.costTotal,
+            userId: res.user.id
+          }).subscribe(
             res => console.log(res)
           )
         }

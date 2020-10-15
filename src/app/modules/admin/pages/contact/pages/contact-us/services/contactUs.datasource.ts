@@ -28,7 +28,7 @@ export class ContactUsDatasource implements DataSource<RequestContact>{
     verb?:string,
     data?:string) {
     this.contactService
-      .findAllContactUs(filter, sortDirection, pageIndex, pageSize, verb, data)
+      .findAllContact(filter, sortDirection, pageIndex, pageSize, verb, data)
       .subscribe(value => this.handleRes(value));
   }
   handleRes(res){

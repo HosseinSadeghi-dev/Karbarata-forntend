@@ -44,7 +44,7 @@ export class RequestComponent implements OnInit {
       confirmForm: this.formBuilder.group({
         description: [''],
         isForce: [false],
-        serviceDate: ['', Validators.required]
+        serviceDate: ['']
       })
 
     })

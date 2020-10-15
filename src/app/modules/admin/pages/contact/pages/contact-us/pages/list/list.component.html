@@ -21,24 +21,28 @@
                 <td mat-cell *matCellDef="let element;let i = index" data-label="ردیف"> {{i+1}} </td>
               </ng-container>
 
-              <!--              <ng-container matColumnDef="user">-->
-              <!--                <th mat-header-cell *matHeaderCellDef mat-sort-header> کاربر </th>-->
-              <!--                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="کاربر :">-->
-              <!--                  <app-user-button [user]="element.user"></app-user-button>-->
-              <!--                </td>-->
-              <!--              </ng-container>-->
-
               <ng-container matColumnDef="user">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> نام </th>
                 <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="نام و نام خانوادگی :">
-                  {{element.user ? element.user : '---'}}
+                  {{element.name ? element.name : '---'}}
                 </td>
               </ng-container>
 
               <ng-container matColumnDef="phoneNumber">
                 <th mat-header-cell *matHeaderCellDef> راه ارتباطی </th>
                 <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="راه ارتباطی :">
-                  {{element.user.phoneNumber ? element.user.phoneNumber : element.user.email}}
+                  {{element.phoneNumber ? element.phoneNumber : element.email}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="score">
+                <th mat-header-cell *matHeaderCellDef> امتیاز </th>
+                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="امتیاز :">
+                  <mat-chip-list>
+                    <mat-chip color="primary" selected>
+                      {{element.score>0? element.score : '---' }}
+                    </mat-chip>
+                  </mat-chip-list>
                 </td>
               </ng-container>
 

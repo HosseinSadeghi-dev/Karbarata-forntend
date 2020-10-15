@@ -17,11 +17,11 @@ import {
     ListComponent,
     FormComponent
   ],
-  imports: [
-    CommonModule,
-    ContactUsRoutingModule,
-    SharedModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        ContactUsRoutingModule,
+        SharedModule,
+        ReactiveFormsModule,
+    ]
 })
 export class ContactUsModule { }

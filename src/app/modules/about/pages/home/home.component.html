@@ -84,7 +84,7 @@
               <div>
                 <mat-form-field appearance="outline" fxFill>
                   <mat-label>نام شما</mat-label>
-                  <input matInput formControlName="fullName" required>
+                  <input matInput formControlName="name" required>
                 </mat-form-field>
               </div>
 
@@ -100,6 +100,11 @@
                   <mat-label>پیغام شما</mat-label>
                   <textarea matInput formControlName="description" rows="5" required ></textarea>
                 </mat-form-field>
+              </div>
+
+              <div>
+                <app-star-rating (ratingClick)="stFormGroup.get('score').setValue($event.rating)">
+                </app-star-rating>
               </div>
 
               <div fxLayoutAlign="center center">

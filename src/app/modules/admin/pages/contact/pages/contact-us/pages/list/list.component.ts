@@ -14,7 +14,7 @@ import {ContactUsDatasource} from "../../services/contactUs.datasource";
 })
 export class ListComponent implements OnInit {
   dataSource : ContactUsDatasource;
-  displayedColumns: string[] = ['count','user','phoneNumber','description','id'];
+  displayedColumns: string[] = ['count','user','phoneNumber','score','description','id'];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('input') input: ElementRef;
