@@ -10,6 +10,7 @@ import {
   HomeComponent
 } from './pages';
 import { FormComponent } from './pages/form/form.component';
+import {PipesModule} from "../../../../shared/pipes/pipes.module";
 
 
 @NgModule({
@@ -18,11 +19,12 @@ import { FormComponent } from './pages/form/form.component';
     HomeComponent,
     FormComponent
   ],
-  imports: [
-    CommonModule,
-    InboxRoutingModule,
-    SharedModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        InboxRoutingModule,
+        SharedModule,
+        ReactiveFormsModule,
+        PipesModule
+    ]
 })
 export class InboxModule { }
