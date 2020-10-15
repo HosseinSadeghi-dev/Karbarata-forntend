@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {SharedModule} from '@app/shared/shared.module';
 import {ReactiveFormsModule} from '@angular/forms';
+import {SharedModule} from '@app/shared/shared.module';
+import {PipesModule} from "@app/shared/pipes/pipes.module";
 
 import { InboxRoutingModule } from './inbox-routing.module';
 
 import {
   MainComponent,
-  HomeComponent
+  HomeComponent,
+  PayComponent
 } from './pages';
-import { FormComponent } from './pages/form/form.component';
-import {PipesModule} from "../../../../shared/pipes/pipes.module";
 
 
 @NgModule({
   declarations: [
     MainComponent,
     HomeComponent,
-    FormComponent
+    PayComponent,
   ],
     imports: [
         CommonModule,

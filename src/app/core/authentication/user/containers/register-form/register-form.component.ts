@@ -36,11 +36,11 @@ export class RegisterFormComponent implements OnInit {
       phoneNumber: ['',Validators.required],
     })
   }
+
   onSubmit(){
-
-
     this.authenticationService.onRegister(this.stFormGroup.value).subscribe(res => this.handleRes(res))
   }
+
   handleRes(res){
     this.credentialService.setCredentials(res.accessToken);
     this.router.navigate(['/auth/verify'],{

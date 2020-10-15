@@ -9,6 +9,7 @@
 
 <mat-accordion>
   <mat-expansion-panel *ngFor="let invoice of invoices;let i = index">
+
     <mat-expansion-panel-header>
       <mat-panel-title fxLayout="row" fxLayoutAlign="space-between center">
         <span>{{i+1}}</span>
@@ -19,17 +20,20 @@
         <span><small>مجموع صورت حساب :</small> {{invoice.costTotal}} <small>تومان</small></span>
       </mat-panel-description>
     </mat-expansion-panel-header>
+
     <div fxLayout="row wrap" fxLayoutGap="15px grid" dir="rtl">
       <div fxFlex="50%" *ngFor="let row of invoice.statusStatements">
         <app-request-status-statement-table [dataSource]="row.items"></app-request-status-statement-table>
       </div>
     </div>
+
     <mat-list>
       <mat-list-item>
         <div mat-line>تاریخ صورت حساب</div>
         <div mat-line> {{invoice?.created | persianDate }} </div>
       </mat-list-item>
     </mat-list>
+
     <mat-action-row fxLayout="row" fxLayoutAlign="space-between center">
       <mat-list>
         <mat-list-item>

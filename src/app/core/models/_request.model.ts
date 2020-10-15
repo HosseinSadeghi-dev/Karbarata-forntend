@@ -172,9 +172,12 @@ export interface RequestContact {
 
 export enum RequestStatusType {
   AWAITING_OP,
+  CANCEL_OP,
   APPROVAL_OP,
   AWAITING_EXP,
+  CANCEL_EXP,
   APPROVAL_EXP,
+  WORKING,
   INVOICE,
   DONE
 }

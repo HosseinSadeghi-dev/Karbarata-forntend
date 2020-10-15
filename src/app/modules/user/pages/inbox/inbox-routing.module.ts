@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {HomeComponent, MainComponent} from "./pages/index";
+import {HomeComponent, MainComponent, PayComponent} from "./pages";
 
 const routes: Routes = [
   {
@@ -9,11 +9,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomeComponent
+        component: HomeComponent,
       },
       {
-        path: ':slug',
-        component: HomeComponent
+        path: 'pay/:id',
+        component: PayComponent
       }
     ]
   }

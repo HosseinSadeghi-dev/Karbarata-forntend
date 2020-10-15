@@ -26,7 +26,6 @@ export class ComplaintComponent implements OnInit {
       name: ['', Validators.required],
       phoneNumber: ['',Validators.required],
       description: ['',Validators.required],
-      score: ['']
     })
   }
 
