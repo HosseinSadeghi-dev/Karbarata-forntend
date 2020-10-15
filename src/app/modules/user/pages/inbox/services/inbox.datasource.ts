@@ -1,12 +1,12 @@
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
 import {BehaviorSubject, Observable} from 'rxjs';
 import { RequestContext} from "@app/core/models";
-import { UserRequestService} from "@app/core/services";
+import {RequestService} from "@app/core/services";
 
 
 export class InboxDatasource implements DataSource<RequestContext>{
 
-  private userSubjects = new BehaviorSubject<RequestContext[]>([]);
+  private requestSubjects = new BehaviorSubject<RequestContext[]>([]);
   private _pageTotal;
   private _total;
 
@@ -18,7 +18,7 @@ export class InboxDatasource implements DataSource<RequestContext>{
     return this._total;
   }
 
-  constructor(private userRequestService: UserRequestService){}
+  constructor(private requestService: RequestService){}
 
   loadInbox(
     filter:string,
@@ -27,21 +27,21 @@ export class InboxDatasource implements DataSource<RequestContext>{
     pageSize:number,
     verb?:string,
     data?:string) {
-    this.userRequestService
+    this.requestService
       .findAllRequest(filter, sortDirection, pageIndex, pageSize, verb, data)
       .subscribe(value => this.handleRes(value));
   }
   handleRes(res){
-    this.userSubjects.next(res.results);
+    this.requestSubjects.next(res.results);
     // this._pageTotal = res.page_total;
     this._total = res.total;
   }
 
   connect(collectionViewer?: CollectionViewer): Observable<RequestContext[]> {
-    return this.userSubjects.asObservable();
+    return this.requestSubjects.asObservable();
   }
 
   disconnect(collectionViewer: CollectionViewer): void {
-    this.userSubjects.complete();
+    this.requestSubjects.complete();
   }
 }

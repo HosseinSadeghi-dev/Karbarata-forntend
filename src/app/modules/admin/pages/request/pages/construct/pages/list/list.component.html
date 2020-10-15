@@ -66,12 +66,13 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> وضعیت </th>
                 <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="وضعیت:">
                   <mat-chip-list ngClass.lt-md="mr-4">
-                    <ng-container [ngSwitch]="element.request.status[0].type">
-                      <mat-chip *ngSwitchCase="RequestStatus.PENDING" selected>منتطر تایید اپراتور</mat-chip>
+                    <ng-container [ngSwitch]="element.request.status[(element.request.status.length)-1].type">
+                      <mat-chip *ngSwitchCase="RequestStatus.AWAITING_OP " selected>در انتظار تایید اپراتور</mat-chip>
+                      <mat-chip *ngSwitchCase="RequestStatus.APPROVAL_OP" selected>تایید اپراتور</mat-chip>
+                      <mat-chip *ngSwitchCase="RequestStatus.AWAITING_EXP" selected>در انتظار تایید کارشناس</mat-chip>
+                      <mat-chip *ngSwitchCase="RequestStatus.APPROVAL_EXP" selected>تایید کارشناس</mat-chip>
+                      <mat-chip *ngSwitchCase="RequestStatus.INVOICE" selected>پرداخت صورت حساب</mat-chip>
                       <mat-chip *ngSwitchCase="RequestStatus.DONE" selected>کامل</mat-chip>
-                      <mat-chip *ngSwitchCase="RequestStatus.EXPERTAPPROVAL" selected>تایید کارشناس</mat-chip>
-                      <mat-chip *ngSwitchCase="RequestStatus.SETTLEMENT" selected>در دست بررسی</mat-chip>
-                      <mat-chip *ngSwitchCase="RequestStatus.STATUSSTATEMENT" selected>فعال</mat-chip>
                       <mat-chip *ngSwitchDefault>نامشخص</mat-chip>
                     </ng-container>
                   </mat-chip-list>

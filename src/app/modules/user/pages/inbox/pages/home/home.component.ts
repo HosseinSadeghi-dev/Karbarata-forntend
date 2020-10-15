@@ -1,10 +1,11 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
-import {ContactService, UserRequestService} from "@app/core/services";
+import {RequestService} from "@app/core/services";
 import {Router} from "@angular/router";
 import {fromEvent, merge} from "rxjs";
 import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
+import {RequestStatusType} from "@app/core/models";
 import {InboxDatasource} from "../../services";
 
 @Component({
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit {
   @ViewChild('input') input: ElementRef;
 
   constructor(
-    private userRequestService: UserRequestService,
+    private requestService: RequestService,
     private router: Router
   ) {}
 
@@ -59,8 +60,12 @@ export class HomeComponent implements OnInit {
 
   getList(){
     this.paginator.firstPage();
-    this.dataSource= new InboxDatasource(this.userRequestService);
+    this.dataSource= new InboxDatasource(this.requestService);
     this.dataSource.loadInbox('', 'asc', 0, 5);
+  }
+
+  public get RequestStatus() {
+    return RequestStatusType
   }
 
 }
