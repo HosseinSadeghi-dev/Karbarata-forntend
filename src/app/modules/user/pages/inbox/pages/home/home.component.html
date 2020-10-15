@@ -1,1 +1,116 @@
-<p>home works!</p>
+<div class="container-fluid my-4">
+  <div fxLayout="row">
+    <div fxFlex="100%">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>لیست درخواست ها</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div fxLayout="column" fxLayoutGap="15px">
+
+            <mat-form-field appearance="fill">
+              <mat-label>جست و جو</mat-label>
+              <input matInput #input>
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+
+            <table mat-table [dataSource]="dataSource" matSort matSortDisableClear>
+
+              <ng-container matColumnDef="count">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ردیف </th>
+                <td mat-cell *matCellDef="let element;let i = index" data-label="ردیف"> {{i+1}} </td>
+              </ng-container>
+
+              <!--              <ng-container matColumnDef="user">-->
+              <!--                <th mat-header-cell *matHeaderCellDef mat-sort-header> کاربر </th>-->
+              <!--                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="کاربر :">-->
+              <!--                  <app-user-button [user]="element.user"></app-user-button>-->
+              <!--                </td>-->
+              <!--              </ng-container>-->
+
+              <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> نوع درخواست </th>
+                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="نوع درخواست :">
+                  <b *ngIf="element.simple && !element.construct">نیرو ساده</b>
+                  <b *ngIf="element.master && !element.construct">نیرو متخصص</b>
+                  <b *ngIf="element.construct">طراحی ، ساخت و ساز</b>
+                  <b *ngIf="element.priceAdvice">مشاوره و استعلام قیمت</b>
+                  <b *ngIf="element.municipalService">خدمات شهرداری</b>
+
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="statusPerDay">
+                <th mat-header-cell *matHeaderCellDef> مدت زمان صورت وضعیت </th>
+                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="مدت زمان صورت وضعیت :">
+                  {{element.statusPerDay ? element.statusPerDay+ " روز" : '---'}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef > وضعیت درخواست </th>
+                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="وضعیت درخواست :">
+                  <mat-chip-list>
+                    <ng-container [ngSwitch]="element?.status[element?.status?.length-1]?.type">
+                      <mat-chip *ngSwitchCase="RequestStatus.AWAITING_OP "
+                                selected color="primary">در انتظار تایید اپراتور</mat-chip>
+                      <mat-chip *ngSwitchCase="RequestStatus.APPROVAL_OP"
+                                selected color="primary">تایید اپراتور</mat-chip>
+                      <mat-chip *ngSwitchCase="RequestStatus.AWAITING_EXP"
+                                selected color="primary">در انتظار تایید کارشناس</mat-chip>
+                      <mat-chip *ngSwitchCase="RequestStatus.APPROVAL_EXP"
+                                selected color="primary">تایید کارشناس</mat-chip>
+                      <mat-chip *ngSwitchCase="RequestStatus.INVOICE"
+                                selected color="primary">پرداخت صورت حساب</mat-chip>
+                      <mat-chip *ngSwitchCase="RequestStatus.DONE"
+                                selected color="primary">کامل</mat-chip>
+                      <mat-chip *ngSwitchDefault selected color="primary">نامشخص</mat-chip>
+                    </ng-container>
+                  </mat-chip-list>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="serviceDate">
+                <th mat-header-cell *matHeaderCellDef > تاریخ درخواست </th>
+                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="تاریخ درخواست :">
+                  {{element.created | persianDate: ''  }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> کنترل </th>
+                <td mat-cell *matCellDef="let element" data-label="کنترل">
+                  <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button [routerLink]="element.id" mat-menu-item disabled>
+                      <mat-icon>question_answer</mat-icon>
+                      <span>پاسخگویی</span>
+                    </button>
+                    <!--                    <button (click)="onChangeStatus(element.user.id, element.user.status)" mat-menu-item>-->
+                    <!--                      <mat-icon>change_history</mat-icon>-->
+                    <!--                      <span>تغییر وضعیت</span>-->
+                    <!--                    </button>-->
+                    <!--                    <button (click)="delete(element.user.id)" mat-menu-item disabled>-->
+                    <!--                      <mat-icon>delete</mat-icon>-->
+                    <!--                      <span>حذف</span>-->
+                    <!--                    </button>-->
+                  </mat-menu>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+          </div>
+          <mat-paginator [length]="dataSource.total"
+                         [pageSize]="dataSource.pageTotal"
+                         [pageSizeOptions]="[5, 10, 20]"
+                         showFirstLastButtons>
+          </mat-paginator>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

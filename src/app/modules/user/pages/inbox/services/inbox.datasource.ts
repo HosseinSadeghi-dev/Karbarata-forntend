@@ -1,12 +1,12 @@
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
 import {BehaviorSubject, Observable} from 'rxjs';
-import { RequestContact} from "@app/core/models";
-import {ContactService} from "@app/core/services";
+import { RequestContext} from "@app/core/models";
+import {RequestService} from "@app/core/services";
 
 
-export class ComplainDatasource implements DataSource<RequestContact>{
+export class InboxDatasource implements DataSource<RequestContext>{
 
-  private userSubjects = new BehaviorSubject<RequestContact[]>([]);
+  private requestSubjects = new BehaviorSubject<RequestContext[]>([]);
   private _pageTotal;
   private _total;
 
@@ -18,30 +18,30 @@ export class ComplainDatasource implements DataSource<RequestContact>{
     return this._total;
   }
 
-  constructor(private contactService: ContactService){}
+  constructor(private requestService: RequestService){}
 
-  loadComplain(
+  loadInbox(
     filter:string,
     sortDirection:string,
     pageIndex:number,
     pageSize:number,
     verb?:string,
     data?:string) {
-    this.contactService
-      .findAllComplain(filter, sortDirection, pageIndex, pageSize, verb, data)
+    this.requestService
+      .findAllRequest(filter, sortDirection, pageIndex, pageSize, verb, data)
       .subscribe(value => this.handleRes(value));
   }
   handleRes(res){
-    this.userSubjects.next(res.results);
+    this.requestSubjects.next(res.results);
     // this._pageTotal = res.page_total;
     this._total = res.total;
   }
 
-  connect(collectionViewer?: CollectionViewer): Observable<RequestContact[]> {
-    return this.userSubjects.asObservable();
+  connect(collectionViewer?: CollectionViewer): Observable<RequestContext[]> {
+    return this.requestSubjects.asObservable();
   }
 
   disconnect(collectionViewer: CollectionViewer): void {
-    this.userSubjects.complete();
+    this.requestSubjects.complete();
   }
 }
