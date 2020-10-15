@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserRequestService} from "../../../../core/services";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-municipality',
@@ -13,7 +14,8 @@ export class MunicipalityComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userRequestService: UserRequestService
+    private userRequestService: UserRequestService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -24,7 +26,7 @@ export class MunicipalityComponent implements OnInit {
 
   onSubmit(){
     this.userRequestService.requestMunicipalService(this.stFormGroup.value).subscribe(
-
+      () => this.router.navigateByUrl('user/inbox')
     )
   }
 

@@ -179,7 +179,7 @@ export enum RequestStatusType {
   APPROVAL_EXP = 'expertApproved',
   WORKING = 'working',
   INVOICE = 'invoice',
-  DONE= 'done'
+  DONE = 'done'
 }
 
 export enum RequestConstructType {

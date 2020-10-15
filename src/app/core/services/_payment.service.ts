@@ -12,7 +12,7 @@ export class PaymentService{
   constructor(private httpClient: HttpClient){}
 
   savePayment(id, data){
-    return this.httpClient.post(`/user/payment/${id}`,data).pipe(
+    return this.httpClient.post(`/payment/${id}`,data).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );

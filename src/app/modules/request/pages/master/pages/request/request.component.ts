@@ -75,7 +75,7 @@ export class RequestComponent implements OnInit {
     }
 
     this.userRequestService.requestMaster(form).subscribe(
-      () => this.router.navigateByUrl('/')
+      () => this.router.navigateByUrl('user/inbox')
     )
 
   }

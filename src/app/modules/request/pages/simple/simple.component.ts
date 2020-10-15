@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatStepper} from "@angular/material/stepper";
 import {RequestSimpleContext, WorkforceSimpleType} from "@app/core/models";
 import { UserRequestService} from "@app/core/services";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-simple',
@@ -17,7 +18,8 @@ export class SimpleComponent implements OnInit {
   simpleType = WorkforceSimpleType;
   constructor(
     private formBuilder: FormBuilder,
-    private userRequestService: UserRequestService
+    private userRequestService: UserRequestService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -62,6 +64,7 @@ export class SimpleComponent implements OnInit {
     }
 
     this.userRequestService.requestSimple(form).subscribe(
+      () => this.router.navigateByUrl('user/inbox')
     )
 
   }

@@ -99,4 +99,11 @@ export class UserRequestService {
     );
   }
 
+  userPayment(data, id){
+    return this.httpClient.post(`/user/payment/${id}`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
 }

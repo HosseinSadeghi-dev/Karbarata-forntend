@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {PaymentService, RequestService} from "@app/core/services";
+import {PaymentService, RequestService, UserRequestService} from "@app/core/services";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PaymentMethod, PaymentStatus, RequestInvoiceContext} from "@app/core/models";
 
@@ -16,7 +16,7 @@ export class PayComponent implements OnInit {
     private requestService: RequestService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private paymentService: PaymentService
+    private userRequestService: UserRequestService
   ) { }
 
   ngOnInit(): void {
@@ -33,16 +33,11 @@ export class PayComponent implements OnInit {
     const a: string = '/payment/transfer';
 
     if (params.id){
-      this.requestService.findOneRequest(params.id).subscribe(
-        res => {
-          this.paymentService.savePayment(invoice.id,{
-            method: PaymentMethod.GATEWAY,
-            amount: invoice.costTotal,
-            userId: res.user.id
-          }).subscribe(
-            res => this.router.navigateByUrl(a)
-          )
-        }
+      this.userRequestService.userPayment({
+        method: PaymentMethod.GATEWAY,
+        amount: invoice.costTotal,
+      },invoice.id).subscribe(
+        res => this.router.navigateByUrl(a)
       )
     }
   }

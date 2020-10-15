@@ -1,7 +1,7 @@
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
 import {BehaviorSubject, Observable} from 'rxjs';
 import { RequestContext} from "@app/core/models";
-import {RequestService} from "@app/core/services";
+import {UserRequestService} from "@app/core/services";
 
 
 export class InboxDatasource implements DataSource<RequestContext>{
@@ -18,7 +18,7 @@ export class InboxDatasource implements DataSource<RequestContext>{
     return this._total;
   }
 
-  constructor(private requestService: RequestService){}
+  constructor(private userRequestService: UserRequestService){}
 
   loadInbox(
     filter:string,
@@ -27,7 +27,7 @@ export class InboxDatasource implements DataSource<RequestContext>{
     pageSize:number,
     verb?:string,
     data?:string) {
-    this.requestService
+    this.userRequestService
       .findAllRequest(filter, sortDirection, pageIndex, pageSize, verb, data)
       .subscribe(value => this.handleRes(value));
   }

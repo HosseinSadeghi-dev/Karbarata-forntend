@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserRequestService} from "@app/core/services";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatStepper} from "@angular/material/stepper";
-import {RequestConstructContext} from "../../../../../../core/models";
+import {RequestConstructContext} from "@app/core/models";
 
 @Component({
   selector: 'app-request',
@@ -70,7 +70,7 @@ export class RequestComponent implements OnInit {
     }
 
     this.userRequestService.requestConstruct(form).subscribe(
-
+      () => this.router.navigateByUrl('user/inbox')
     )
 
   }
