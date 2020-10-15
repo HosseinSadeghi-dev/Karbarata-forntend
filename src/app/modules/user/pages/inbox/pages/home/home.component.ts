@@ -15,7 +15,7 @@ import {InboxDatasource} from "../../services";
 })
 export class HomeComponent implements OnInit {
   dataSource : InboxDatasource;
-  displayedColumns: string[] = ['count','type','statusPerDay','status','serviceDate'];
+  displayedColumns: string[] = ['count','type','statusPerDay','status','serviceDate', 'description'];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('input') input: ElementRef;
