@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {RequestContext, UserRole} from "../../../../../../../../core/models";
-import {RequestService} from "../../../../../../../../core/services";
+import {RequestContext, UserRole} from "@app/core/models";
+import {RequestService} from "@app/core/services";
+import {CredentialsService} from "@app/core/authentication/credentials.service";
 
 @Component({
   selector: 'app-main',
@@ -17,7 +18,8 @@ export class ShowComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private requestService:RequestService
+    private requestService: RequestService,
+    public credentialsService: CredentialsService
   ) { }
 
   ngOnInit(): void {
@@ -38,15 +40,47 @@ export class ShowComponent implements OnInit {
   }
 
   links = [
-    { path: '.', label: 'وضعیت'},
-    { path: 'expert', label: 'کارشناس'},
+    {
+      path: '.',
+      label: 'وضعیت',
+      allowedRoles: []
+    },
+    {
+      path: 'expert',
+      label: 'کارشناس',
+      allowedRoles: [UserRole.OPERATOR, UserRole.ADMIN]
+    },
     // { path: 'cost', label: 'هزینه'},
-    { path: 'statusPerDay', label: 'زمانبندی صورت وضعیت'},
-    { path: 'contractor', label: 'پیمانکار'},
-    { path: 'workforce', label: 'نیرو'},
-    { path: 'report', label: 'گزارش'},
-    { path: 'statusStatement', label: 'صورت وضعیت'},
-    { path: 'invoice', label: 'صورت حساب'}
+    {
+      path: 'statusPerDay',
+      label: 'زمانبندی صورت وضعیت',
+      allowedRoles: [UserRole.ADMIN, UserRole.EXPERT]
+    },
+    {
+      path: 'contractor',
+      label: 'پیمانکار',
+      allowedRoles: [UserRole.ADMIN, UserRole.EXPERT]
+    },
+    {
+      path: 'workforce',
+      label: 'نیرو',
+      allowedRoles: [UserRole.ADMIN, UserRole.EXPERT, UserRole.CONTRACTOR]
+    },
+    {
+      path: 'report',
+      label: 'گزارش',
+      allowedRoles: [UserRole.ADMIN, UserRole.EXPERT, UserRole.CONTRACTOR, UserRole.OPERATOR]
+    },
+    {
+      path: 'statusStatement',
+      label: 'صورت وضعیت',
+      allowedRoles: [UserRole.ADMIN, UserRole.EXPERT]
+    },
+    {
+      path: 'invoice',
+      label: 'صورت حساب',
+      allowedRoles: [UserRole.ADMIN, UserRole.ACCOUNTANT]
+    }
   ];
 
 }

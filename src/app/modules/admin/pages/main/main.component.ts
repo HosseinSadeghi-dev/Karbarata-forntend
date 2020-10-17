@@ -26,7 +26,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   constructor(changeDetectorRef: ChangeDetectorRef,
               media: MediaMatcher,
               overlayContainer: OverlayContainer,
-              private credentialService: CredentialsService,
+              public credentialService: CredentialsService,
               private profileService: ProfileService,
               private navService: NavService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');

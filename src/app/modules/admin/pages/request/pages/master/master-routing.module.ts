@@ -62,7 +62,7 @@ const routes: Routes = [
                     children: [
                       {
                         path: '',
-                        component: RequestStatusComponent
+                        component: RequestStatusComponent,
                       },
                       {
                         path: 'expert',

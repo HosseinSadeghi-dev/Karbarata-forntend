@@ -6,7 +6,7 @@
       <img src="assets/image/logo-light.png" alt="logo" class="img-fluid logo w-75">
     </button>
     <button *ngIf="loggedIn &&  userProfile" [matMenuTriggerFor]="appUserMenu" mat-button>
-      <img [src]="userProfile?.image | srcImage:'user'" class="img-fluid mr-2 rounded-circle" width="35px">
+      <img [src]="userProfile?.image | srcImage:'user'" [alt]="userProfile?.fullName" class="img-fluid mr-2 rounded-circle" width="35px">
       <span *ngIf="!mobileQuery.matches" class="mr-3">{{userProfile?.fullName}}</span>
     </button>
   </mat-toolbar>
@@ -23,7 +23,9 @@
   <mat-sidenav-container style="overflow: hidden">
     <mat-sidenav #appDrawer mode="over" opened="false">
       <mat-nav-list>
-        <app-menu-list-item *ngFor="let item of dashboardItems" [item]="item" ></app-menu-list-item>
+        <ng-container *ngFor="let item of dashboardItems">
+          <app-menu-list-item  *ngIf="credentialService.roleMatch(item.allowedRoles)" [item]="item" ></app-menu-list-item>
+        </ng-container>
       </mat-nav-list>
     </mat-sidenav>
     <router-outlet></router-outlet>

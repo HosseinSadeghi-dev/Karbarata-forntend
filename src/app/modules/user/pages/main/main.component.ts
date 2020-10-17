@@ -27,11 +27,11 @@ export class MainComponent implements OnInit {
         url: '/user',
         icon: 'account_box'
       },
-      {
-        title: 'مقالات مورد علاقه',
-        url: '/user/favorite/article',
-        icon: 'description'
-      },
+      // {
+      //   title: 'مقالات مورد علاقه',
+      //   url: '/user/favorite/article',
+      //   icon: 'description'
+      // },
       {
         title: 'لیست درخواست ها',
         url: '/user/inbox',

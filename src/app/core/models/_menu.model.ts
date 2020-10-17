@@ -23,6 +23,7 @@ export interface NavItem {
   disabled?: boolean;
   icon?: string;
   link?: string;
+  allowedRoles?: UserRole[];
   items?: NavItem[];
 }
 
@@ -43,6 +44,11 @@ export const navItems: NavItem[] = [
         title: 'لیست سوالات',
         link: '/admin/faq'
       }
+    ],
+    allowedRoles: [
+      UserRole.ADMIN,
+      UserRole.AUTHOR,
+      UserRole.OPERATOR
     ]
   },
   {
@@ -58,6 +64,10 @@ export const navItems: NavItem[] = [
         title: 'مهارت ها',
         link: '/admin/workforce/master/skill'
       }
+    ],
+    allowedRoles: [
+      UserRole.ADMIN,
+      UserRole.AUTHOR,
     ]
   },
   {
@@ -69,6 +79,10 @@ export const navItems: NavItem[] = [
         title: 'مهارت ها',
         link: '/admin/construct'
       }
+    ],
+    allowedRoles: [
+      UserRole.ADMIN,
+      UserRole.AUTHOR,
     ]
   },
   {
@@ -83,6 +97,10 @@ export const navItems: NavItem[] = [
         title: 'تصاویر',
         link: '/admin/gallery/photo'
       }
+    ],
+    allowedRoles: [
+      UserRole.ADMIN,
+      UserRole.AUTHOR,
     ]
   },
   {
@@ -105,6 +123,10 @@ export const navItems: NavItem[] = [
         title: 'نیرو اداری',
         link: '/admin/user/adminstrative'
       }
+    ],
+    allowedRoles: [
+      UserRole.ADMIN,
+      UserRole.OPERATOR,
     ]
   },
   {
@@ -127,6 +149,13 @@ export const navItems: NavItem[] = [
         title: 'طراحی ساخت و ساز',
         link: '/admin/request/construct'
       },
+    ],
+    allowedRoles: [
+      UserRole.ADMIN,
+      UserRole.OPERATOR,
+      UserRole.EXPERT,
+      UserRole.CONTRACTOR,
+      UserRole.ACCOUNTANT
     ]
   },
   {
@@ -149,30 +178,34 @@ export const navItems: NavItem[] = [
         title: 'نظرات',
         link: '/admin/article/comment'
       }
+    ],
+    allowedRoles: [
+      UserRole.ADMIN,
+      UserRole.AUTHOR,
     ]
   },
-  {
-    title: 'محصولات',
-    icon: 'local_grocery_store',
-    items: [
-      {
-        title: 'دسته بندی',
-        link: '/admin/product/category'
-      },
-      {
-        title: 'برند',
-        link: '/admin/product/brand'
-      },
-      {
-        title: 'محصول جدید',
-        link: '/admin/product/create'
-      },
-      {
-        title: 'محصولات',
-        link: '/admin/product'
-      }
-    ]
-  },
+  // {
+  //   title: 'محصولات',
+  //   icon: 'local_grocery_store',
+  //   items: [
+  //     {
+  //       title: 'دسته بندی',
+  //       link: '/admin/product/category'
+  //     },
+  //     {
+  //       title: 'برند',
+  //       link: '/admin/product/brand'
+  //     },
+  //     {
+  //       title: 'محصول جدید',
+  //       link: '/admin/product/create'
+  //     },
+  //     {
+  //       title: 'محصولات',
+  //       link: '/admin/product'
+  //     }
+  //   ]
+  // },
   {
     title: 'ارتباط با ما',
     icon: 'how_to_reg',
@@ -189,6 +222,10 @@ export const navItems: NavItem[] = [
         title: 'شکایات',
         link: '/admin/contact/complain'
       }
+    ],
+    allowedRoles: [
+      UserRole.ADMIN,
+      UserRole.OPERATOR,
     ]
   }
 ];
