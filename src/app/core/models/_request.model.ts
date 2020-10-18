@@ -29,7 +29,7 @@ export interface RequestContext {
   priceAdvice?: RequestPriceAdvice,
   MunicipalService?: RequestMunicipalService
 
-  expert?: RequestExpertContext,
+  expert?: ProfileContext,
   reports?: RequestReportContext[],
   contractors?: ProfileContext[],
   statusStatements?: RequestStatusStatementContext[],
@@ -101,13 +101,7 @@ export interface ConstructContext {
   image?: GalleryPhotoContext
   svg?: GalleryPhotoContext
 }
-export interface RequestExpertContext {
-  id?: number,
-  user?: ProfileContext,
-  request?: RequestContext,
-  created?: Date,
-  updated?: Date
-}
+
 export interface RequestReportContext {
   id?: number,
   title?: string,

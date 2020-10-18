@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="center center" class="my-5">
   <div fxFlex.gt-xs="75%">
-    <form [formGroup]="stFormGroup" (ngSubmit)="onSubmit()">
+    <form [formGroup]="stFormGroup">
 
       <div fxLayout="column">
         <div fxLayout="row" fxLayoutAlign="center center" >
@@ -103,11 +103,12 @@
             <mat-icon>create</mat-icon>
             <span class="mr-2">ویرایش</span>
           </button>
-          <button fxFlex.gt-xs="20%" color="warn" *ngIf="!isView" mat-flat-button>
+          <button fxFlex.gt-xs="20%" *ngIf="!isView" mat-flat-button>
             <mat-icon>cancel_presentation</mat-icon>
             <span class="mr-2">لغو</span>
           </button>
-          <button fxFlex.gt-xs="25%" color="primary" (click)="updateExpertApproval()" *ngIf="isView" [disabled]="statusStatement?.isExpertApproval" mat-raised-button>
+          <button fxFlex.gt-xs="25%" color="primary" (click)="updateExpertApproval()" *ngIf="isView"
+                  [disabled]="statusStatement?.isExpertApproval || statusStatement?.request?.expert.id != profile.id" mat-raised-button>
             <mat-icon>done</mat-icon>
             <span class="mr-2">تایید صورت وضعیت</span>
           </button>

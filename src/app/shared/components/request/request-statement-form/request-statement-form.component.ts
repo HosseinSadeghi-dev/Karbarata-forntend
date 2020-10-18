@@ -7,12 +7,14 @@ import {MatDialog} from "@angular/material/dialog";
 import {RequestService} from "@app/core/services";
 
 import {
+  ProfileContext,
   RequestStatusStatementContext,
   RequestStatusStatementItemContext,
   StatusStatementItemUnit,
   StatusStatementType
 } from "@app/core/models";
 import {RequestStatementDialogComponent} from "@app/shared/components/request/request-statement-dialog/request-statement-dialog.component";
+import {ProfileService} from "@app/core/authentication/profile.service";
 
 @Component({
   selector: 'app-request-statement-form',
@@ -28,12 +30,14 @@ export class RequestStatementFormComponent implements OnInit {
   @ViewChild(MatTable,{static:true}) table: MatTable<RequestStatusStatementItemContext>;
   stFormGroup: FormGroup;
   types = StatusStatementType;
+  profile: ProfileContext
 
   constructor(
     private requestService: RequestService,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
+    private profileService: ProfileService,
     private router: Router,
     private location: Location
   ) { }
@@ -49,6 +53,8 @@ export class RequestStatementFormComponent implements OnInit {
         res => this.handleRes(res),
       )
     }
+
+    this.getProfile()
   }
 
   handleRes(res){
@@ -81,6 +87,14 @@ export class RequestStatementFormComponent implements OnInit {
     this.requestService.updateRequestStatementExpertApproval(params.sid,{isExpertApproval: true}).subscribe(
       () => this.ngOnInit()
     );
+  }
+
+  getProfile(){
+    this.profileService.getProfile().subscribe((profile: ProfileContext) => {
+      if (profile) {
+        this.profile = profile
+      }
+    });
   }
 
 
