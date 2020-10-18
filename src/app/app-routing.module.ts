@@ -10,7 +10,8 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./core/authentication/user/user.module').then(m => m.UserModule),
-    canActivate: [BeforeLoginService]
+    canActivate: [BeforeLoginService],
+
   },
   {
     path: 'admin',

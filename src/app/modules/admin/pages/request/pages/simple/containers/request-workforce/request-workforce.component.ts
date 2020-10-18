@@ -43,22 +43,20 @@ export class RequestWorkforceComponent implements OnInit {
     this.workforces = res;
     const selectedUsers: string[] = [];
     this.workforces.forEach(row => selectedUsers.push(String(row.id)));
-    console.log('selected',selectedUsers);
+
     this.stFormGroup.get('workforces').setValue(selectedUsers);
   }
 
   onSubmit(){
-    const form = this.stFormGroup.value;
     const params = this.activatedRoute.snapshot.params;
     if (params.id){
-      this.requestService.saveSimpleRequestWorkForce(params.id,form).subscribe(
-        res => this.router.navigateByUrl(`/admin/request/simple/${params.id}`)
+      this.requestService.saveSimpleRequestWorkForce(params.id,this.stFormGroup.value).subscribe(
+        () => this.getWorkforces()
       )
     }
   }
 
   handleRes(res){
-    console.log('simple',res)
     res.length !== 0 && (this.isView = true);
     this.workforces = res;
     this.getWorkforce(this.workforces);

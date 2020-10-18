@@ -1,4 +1,5 @@
-<div class="example-container theme-alternate" [class.example-is-mobile]="mobileQuery.matches">
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches"
+     [ngClass]="{'theme-alternate':darkMode,'theme': !darkMode}">
   <app-toolbar
     class="w-100"
     [sidenav]="snav"
@@ -28,7 +29,7 @@
       dir="ltr"
       fxLayout="column">
       <app-preloader></app-preloader>
-      <!--      <app-loader-progress-bar></app-loader-progress-bar>-->
+<!--            <app-loader-progress-bar></app-loader-progress-bar>-->
       <!--      <app-breadcrumb fxHide.xs="true"></app-breadcrumb>-->
       <router-outlet></router-outlet>
       <app-footer class="mt-auto"></app-footer>

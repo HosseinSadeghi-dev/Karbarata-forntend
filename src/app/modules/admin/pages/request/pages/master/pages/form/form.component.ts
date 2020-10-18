@@ -56,7 +56,7 @@ export class FormComponent implements OnInit {
         houseNumber: ['', Validators.required],
         description: [''],
         isForce: [],
-        serviceDate: ['', Validators.required],
+        serviceDate: [''],
       }),
 
       user: ['',Validators.required],
@@ -99,7 +99,6 @@ export class FormComponent implements OnInit {
   }
 
   handleRes(res){
-    console.log('master log',res)
     this.stFormGroup.get('user').setValue(res.user);
     this.userPreview = res.user;
     const skills: string[] = [];

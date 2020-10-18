@@ -47,7 +47,6 @@ export class FormComponent implements OnInit {
       insuranceCode: ['',Validators.required],
 
     });
-    console.log('form',this.stFormGroup)
   }
 
 
@@ -56,7 +55,6 @@ export class FormComponent implements OnInit {
 
     form.user.status = form.user.status ? UserStatus.ACTIVATE : UserStatus.DEACTIVATE;
 
-    console.log(form);
 
     if (this.isEdit){
       const params = this.activatedRoute.snapshot.params;
@@ -70,7 +68,6 @@ export class FormComponent implements OnInit {
   }
 
   handleRes(res) {
-    console.log('res',res)
     this.stFormGroup.get('user').get('name').setValue(res.user.name);
     this.stFormGroup.get('user').get('lastName').setValue(res.user.lastName);
     this.stFormGroup.get('user').get('phoneNumber').setValue(res.user.phoneNumber);

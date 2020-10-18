@@ -35,7 +35,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.routeParams = this.activatedRoute.snapshot.params
-    console.log('params',this.routeParams)
     this.getList();
   }
 

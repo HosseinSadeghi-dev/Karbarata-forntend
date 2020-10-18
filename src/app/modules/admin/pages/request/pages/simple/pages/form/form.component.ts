@@ -28,7 +28,6 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
 
     const params = this.activatedRoute.snapshot.params;
-    console.log('params',params)
     if (params.id && isNumeric(params.id)) {
       this.isEdit = true;
       this.requestService.findOneRequest(params.id).subscribe(
@@ -59,7 +58,7 @@ export class FormComponent implements OnInit {
       confirmForm: this.formBuilder.group({
         description: [''],
         isForce: [false],
-        serviceDate: ['', Validators.required]
+        serviceDate: ['']
       })
 
     })
@@ -69,9 +68,9 @@ export class FormComponent implements OnInit {
   onSubmit(){
     const form = this.stFormGroup.value;
 
-    form.durationForm.duration > 6 ?
+    if(form.durationForm.duration > 6){
       form.typeForm.type = this.simpleType.CONTRACT
-      : form.typeForm.type = this.simpleType.DAILY;
+    }
 
     const simpleRequest: RequestSimpleContext = {
       request: {
@@ -87,8 +86,6 @@ export class FormComponent implements OnInit {
       duration: form.durationForm.duration,
       user: form.userForm.user,
     }
-
-    console.log('form',simpleRequest)
 
     if (this.isEdit){
       const params = this.activatedRoute.snapshot.params;
@@ -121,7 +118,7 @@ export class FormComponent implements OnInit {
     this.stFormGroup.controls['confirmForm'].get('description').setValue(res.description);
     this.stFormGroup.controls['confirmForm'].get('isForce').setValue(res.isForce);
     this.stFormGroup.controls['confirmForm'].get('serviceDate').setValue(res.serviceDate);
-    console.log('res',res)
+
   }
 
 }

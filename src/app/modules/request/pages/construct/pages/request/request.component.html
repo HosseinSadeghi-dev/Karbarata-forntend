@@ -195,7 +195,7 @@
                    [min]="minDate" (focus)="picker.open()"
                    [disabled]="stFormGroup.controls['confirmForm'].value.isForce"
                    formControlName="serviceDate"
-                   readonly required>
+                   readonly>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker touchUi #picker></mat-datepicker>
           </mat-form-field>

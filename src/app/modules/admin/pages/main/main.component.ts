@@ -4,7 +4,7 @@ import {OverlayContainer} from '@angular/cdk/overlay';
 import {NavItem, navItems, ProfileContext, UserRole} from '@app/core/models';
 import {CredentialsService} from '@app/core/authentication/credentials.service';
 import {ProfileService} from '@app/core/authentication/profile.service';
-import { NavService } from '@app/core/services';
+import {NavService, ThemeService} from '@app/core/services';
 
 @Component({
   selector: 'app-main',
@@ -20,11 +20,12 @@ export class MainComponent implements OnInit, AfterViewInit {
   mobileQuery: MediaQueryList;
   public loggedIn : boolean;
   public userProfile: ProfileContext;
-  darkMode: boolean = false;
+  darkMode: boolean;
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef,
               media: MediaMatcher,
+              private theme: ThemeService,
               overlayContainer: OverlayContainer,
               public credentialService: CredentialsService,
               private profileService: ProfileService,
@@ -32,9 +33,9 @@ export class MainComponent implements OnInit, AfterViewInit {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-    // theme.themeStatus.subscribe(res => {this.darkMode = res;
-    //   res ? overlayContainer.getContainerElement().classList.add('alternative') : overlayContainer.getContainerElement().classList.remove('alternative');
-    // });
+    theme.themeStatus.subscribe(res => {this.darkMode = res;
+      res ? overlayContainer.getContainerElement().classList.add('theme-alternate') : overlayContainer.getContainerElement().classList.remove('theme-alternate');
+    });
     this.loggedIn = credentialService.isAuthenticated();
     if (this.loggedIn) {
       this.profileService.getProfile().subscribe((profile: ProfileContext) => {
@@ -44,7 +45,9 @@ export class MainComponent implements OnInit, AfterViewInit {
       });
     }
   }
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.theme.checkTheme();
+  }
 
   ngAfterViewInit() {
     this.navService.appDrawer = this.appDrawer;
@@ -68,6 +71,10 @@ export class MainComponent implements OnInit, AfterViewInit {
   openSide(){
     this.nav ? this.navService.openNav() : this.navService.closeNav();
     this.nav = !this.nav;
+  }
+
+  changeTheme(){
+    this.theme.nextTheme(!this.darkMode);
   }
 
 

@@ -99,7 +99,6 @@ export class WorkforceConstructComponent implements OnInit {
     this.dataSource = new UserDatasource(this.userService);
     this.dataSource.loadUsers('', 'asc', 0, 5, 'skill', data);
     this.handleTable(data)
-    // console.log('data',this.dataSource)
   }
 
   // getList(data: string){
@@ -142,7 +141,6 @@ export class WorkforceConstructComponent implements OnInit {
     }
 
     if(this.isEdit){
-      console.log(this.prev)
       this.requestService.updateConstructRequestWorkForce(this.params.id, workforce, this.prev.id).subscribe(
         () => this.getWorkforcesByRequest()
       )
@@ -156,7 +154,6 @@ export class WorkforceConstructComponent implements OnInit {
   }
 
   onDelete(data){
-    console.log('delete',data)
     this.requestService.deleteConstructRequestWorkForce(this.params.id, data.id).subscribe(
       () => this.getWorkforcesByRequest()
     )

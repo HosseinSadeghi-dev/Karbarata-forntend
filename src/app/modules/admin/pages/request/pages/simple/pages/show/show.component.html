@@ -95,11 +95,14 @@
 
     <mat-card-actions>
       <nav mat-tab-nav-bar dir="rtl">
-        <a mat-tab-link *ngFor="let link of links"
-           [routerLink]="link.path"
-           routerLinkActive #rla="routerLinkActive"
-           [routerLinkActiveOptions]="{exact:true}"
-           [active]="rla.isActive"> {{link.label}} </a>
+        <ng-container *ngFor="let link of links">
+          <a mat-tab-link
+             *ngIf="credentialsService.roleMatch(link.allowedRoles)"
+             [routerLink]="link.path"
+             routerLinkActive #rla="routerLinkActive"
+             [routerLinkActiveOptions]="{exact:true}"
+             [active]="rla.isActive"> {{link.label}} </a>
+        </ng-container>
       </nav>
       <router-outlet></router-outlet>
     </mat-card-actions>

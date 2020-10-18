@@ -72,7 +72,6 @@ export class ListComponent implements OnInit {
     this.paginator.firstPage();
     this.dataSource= new AdminstrativeDataSource(this.userService);
     this.dataSource.loadUsers('', 'asc', 0, 3);
-    console.log('data',this.dataSource)
   }
 
   // getOne(id: number){

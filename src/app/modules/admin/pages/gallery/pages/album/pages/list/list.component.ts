@@ -69,7 +69,6 @@ export class ListComponent implements OnInit, AfterViewInit {
 
   onRouter(slug){
     // const params = this.activatedRoute.snapshot.params;
-    // console.log('params',params)
     // if (params.slug){
     //
     // }

@@ -42,7 +42,6 @@ export class FormComponent implements OnInit {
       status: [{value: '', disabled: false}],
       roles: [[], [Validators.required,Validators.minLength(1)]],
     });
-    console.log('form',this.stFormGroup)
   }
 
 
@@ -51,7 +50,6 @@ export class FormComponent implements OnInit {
 
     form.status = form.status ? UserStatus.ACTIVATE : UserStatus.DEACTIVATE;
 
-    console.log(form);
 
     if (this.isEdit){
       const params = this.activatedRoute.snapshot.params;

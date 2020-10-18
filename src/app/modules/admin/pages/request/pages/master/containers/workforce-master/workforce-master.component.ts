@@ -95,7 +95,6 @@ export class WorkforceMasterComponent implements OnInit {
     this.dataSource = new UserDatasource(this.userService);
     this.dataSource.loadUsers('', 'asc', 0, 5, 'skill', data);
     this.handleTable(data)
-    console.log('data',this.dataSource)
   }
 
   // getList(data: string){
@@ -142,7 +141,6 @@ export class WorkforceMasterComponent implements OnInit {
     }
 
     if(this.isEdit){
-      console.log(this.prev)
       this.requestService.updateMasterRequestWorkForce(this.params.id, workforce, this.prev.id).subscribe(
         () => this.getWorkforcesByRequest()
       )
@@ -156,7 +154,6 @@ export class WorkforceMasterComponent implements OnInit {
   }
 
   onDelete(data){
-    console.log('delete',data)
     this.requestService.deleteMasterRequestWorkForce(this.params.id, data.id).subscribe(
       () => this.getWorkforcesByRequest()
     )

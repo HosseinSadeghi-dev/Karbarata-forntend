@@ -46,7 +46,6 @@ export class ListComponent implements OnInit {
       data: data
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       if (result){
         this.getList();
       }

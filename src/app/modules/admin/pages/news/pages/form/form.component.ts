@@ -71,12 +71,10 @@ export class FormComponent implements OnInit {
     this.cats = res;
   }
   handleErrCategoryList(err){
-    console.log(err);
   }
   onSubmit(){
     const form = this.stFormGroup.value;
     form.status = form.status ? NewsStatus.PUBLISHED : NewsStatus.UNPUBLISHED;
-    console.log(form);
     if (this.isEdit){
       const params = this.activatedRoute.snapshot.params;
       this.newsService.updateNews(params.slug,form).subscribe(res => this.handleRes(res))

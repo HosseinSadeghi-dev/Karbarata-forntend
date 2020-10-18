@@ -1,23 +1,39 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches"
+     >
+
   <mat-toolbar class="example-toolbar primary-toolbar" fxLayout="row" fxLayoutAlign="space-between center">
     <!-- <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button> -->
-    <button mat-icon-button (click)="openSide()"><mat-icon>menu</mat-icon></button>
+    <button mat-icon-button (click)="openSide()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
     <button mat-button class="px-0" [routerLink]="'/'">
-      <img src="assets/image/logo-light.png" alt="logo" class="img-fluid logo w-75">
+      <img [src]="darkMode ? 'assets/image/logo-dark.png' : 'assets/image/logo-dark.png'" routerLink="/" alt="karbarata">
     </button>
-    <button *ngIf="loggedIn &&  userProfile" [matMenuTriggerFor]="appUserMenu" mat-button>
-      <img [src]="userProfile?.image | srcImage:'user'" [alt]="userProfile?.fullName" class="img-fluid mr-2 rounded-circle" width="35px">
-      <span *ngIf="!mobileQuery.matches" class="mr-3">{{userProfile?.fullName}}</span>
-    </button>
+
+    <div>
+      <button mat-icon-button (click)="changeTheme()">
+        <mat-icon>{{darkMode ? 'brightness_3' : 'brightness_low'}}</mat-icon>
+      </button>
+
+      <button *ngIf="loggedIn &&  userProfile" [matMenuTriggerFor]="appUserMenu" mat-button>
+        <img [src]="userProfile?.image | srcImage:'user'" [alt]="userProfile?.fullName" class="img-fluid mr-2 rounded-circle" width="35px">
+        <span *ngIf="!mobileQuery.matches" class="mr-3">{{userProfile?.fullName}}</span>
+      </button>
+    </div>
+
   </mat-toolbar>
+
   <mat-menu #appUserMenu="matMenu">
     <mat-list>
     </mat-list>
     <button [routerLink]="['/profile']" mat-menu-item>
       <mat-icon>account_circle</mat-icon>
       پروفایل</button>
+
     <button (click)="logout($event)" mat-menu-item><mat-icon>exit_to_app</mat-icon>
       خروج</button>
+
   </mat-menu>
 
   <mat-sidenav-container style="overflow: hidden">

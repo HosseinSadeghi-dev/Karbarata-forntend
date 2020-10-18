@@ -96,7 +96,6 @@ export class FormComponent implements OnInit {
   }
 
   handleRes(){
-    console.log('run');
     this.router.navigateByUrl('/admin/user/workforce/master')
   }
 

@@ -43,7 +43,7 @@ export class ShowComponent implements OnInit {
     {
       path: '.',
       label: 'وضعیت',
-      allowedRoles: []
+      allowedRoles: [UserRole.ADMIN, UserRole.EXPERT, UserRole.CONTRACTOR, UserRole.OPERATOR]
     },
     {
       path: 'expert',

@@ -63,7 +63,6 @@ export class FormComponent implements OnInit {
   onSubmit(){
     const form = this.stFormGroup.value;
     form.status = form.status ? ArticleStatus.PUBLISHED : ArticleStatus.UNPUBLISHED;
-    console.log(form);
     if (this.isEdit){
       const params = this.activatedRoute.snapshot.params;
       this.articleService.updateArticle(params.slug,form).subscribe(res => this.handleRes(res))

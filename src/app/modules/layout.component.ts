@@ -5,17 +5,20 @@ import {NavigationEnd, Router} from "@angular/router";
 import {MediaMatcher} from "@angular/cdk/layout";
 import {CredentialsService} from "../core/authentication/credentials.service";
 import {ProfileService} from "../core/authentication/profile.service";
+import {OverlayContainer} from "@angular/cdk/overlay";
+import {ThemeService} from "../core/services";
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
-export class LayoutComponent implements OnDestroy {
+export class LayoutComponent implements OnInit,OnDestroy {
   loggedIn : boolean;
   userProfile?: ProfileContext;
   mobileQuery: MediaQueryList;
   menuList: MenuContext[] = MenuList;
+  darkMode: boolean;
 
   private readonly _mobileQueryListener: () => void;
 
@@ -23,7 +26,12 @@ export class LayoutComponent implements OnDestroy {
               media: MediaMatcher,
               private router: Router,
               private credentialService: CredentialsService,
+              private theme: ThemeService,
+              overlayContainer: OverlayContainer,
               private profileService: ProfileService) {
+    theme.themeStatus.subscribe(res => {this.darkMode = res;
+      res ? overlayContainer.getContainerElement().classList.add('theme-alternate') : overlayContainer.getContainerElement().classList.remove('theme-alternate');
+    });
     this.loggedIn = credentialService.isAuthenticated();
     if (this.loggedIn) {
       this.profileService.getProfile().subscribe((profile: ProfileContext) => {
@@ -40,6 +48,10 @@ export class LayoutComponent implements OnDestroy {
     ).subscribe(() => {
       document.querySelector('.mat-sidenav-content').scrollTop = 0;
     });
+  }
+
+  ngOnInit() {
+    this.theme.checkTheme();
   }
 
   ngOnDestroy(): void {

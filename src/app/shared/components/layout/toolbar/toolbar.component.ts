@@ -5,9 +5,11 @@ import {ProfileService} from '@app/core/authentication/profile.service';
 import {MenuContext, ProfileContext, MenuList} from '@app/core/models';
 import {animate, style, transition, trigger} from '@angular/animations';
 import {Helpers} from '../../../helpers';
-import {AuthenticationService} from "../../../../core/authentication/authentication.service";
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {AuthenticationService} from "@app/core/authentication/authentication.service";
 import {ComplaintComponent} from "@app/shared/components/global/complaint/complaint.component";
+import {OverlayContainer} from "@angular/cdk/overlay";
+import {ThemeService} from "@app/core/services";
+import {MatDialog} from "@angular/material/dialog";
 
 const enterTransition = transition(':enter', [
   style({
@@ -46,6 +48,7 @@ const fadeOut = trigger('fadeOut', [
 export class ToolbarComponent implements OnInit {
   @Input() sidenav: any;
   @Input() mobileQuery: MediaQueryList;
+  darkMode: boolean = false;
   loggedIn : boolean;
   isScroll: boolean;
   userProfile: ProfileContext;
@@ -57,7 +60,12 @@ export class ToolbarComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private credentialService: CredentialsService,
     private profileService: ProfileService,
+    private theme: ThemeService,
+    overlayContainer: OverlayContainer,
     private router: Router) {
+    theme.themeStatus.subscribe(res => {this.darkMode = res;
+      res ? overlayContainer.getContainerElement().classList.add('theme-alternate') : overlayContainer.getContainerElement().classList.remove('theme-alternate');
+    });
     this.loggedIn = credentialService.isAuthenticated();
     if (this.loggedIn) {
       profileService.getProfile().subscribe((profile: ProfileContext) => {
@@ -66,6 +74,7 @@ export class ToolbarComponent implements OnInit {
         }
       });
     }
+
   }
 
   openDialog(): void {
@@ -77,7 +86,12 @@ export class ToolbarComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.theme.checkTheme();
+  }
+
+  changeTheme(){
+    this.theme.nextTheme(!this.darkMode);
   }
 
   logout(event: MouseEvent) {

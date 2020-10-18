@@ -34,7 +34,6 @@ export class ProfileComponent implements OnInit {
   //   this.user.nextUser(this.user.getUser());
   // }
   // handleErr(err){
-  //   console.log(err);
   //   this.app.nextLoading(false);
   //   // if (err.status === 401){
   //   //   this.logout();

@@ -82,7 +82,6 @@ export class ListComponent implements OnInit {
   getList(){
     this.paginator.firstPage();
     this.dataSource = new WorkforceSimpleDatasource(this.userService);
-    console.log('datasource',this.dataSource)
     this.dataSource.loadWorkforces('', 'desc', 0, 5);
   }
 
@@ -102,8 +101,7 @@ export class ListComponent implements OnInit {
   //   const request = { status: null };
   //   status === ArticleStatus.PUBLISHED ? request.status = ArticleStatus.UNPUBLISHED : request.status = ArticleStatus.PUBLISHED;
   //   this.api.updateArticleStatus(slug,request).subscribe(
-  //     res => this.handleResUpdate(res),
-  //     err => {console.log(err);this.app.nextLoading(false)},
+  //     res => this.handleResUpdate(res)
   //   )
   // }
 

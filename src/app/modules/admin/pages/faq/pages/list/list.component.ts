@@ -61,7 +61,6 @@ export class ListComponent implements OnInit, AfterViewInit {
     this.paginator.firstPage();
     this.dataSource = new FaqDatasource(this.faqService);
     this.dataSource.loadFaqs('', 'desc', 0, 5);
-    console.log('data',this.dataSource)
   }
 
   onDelete(slug){
