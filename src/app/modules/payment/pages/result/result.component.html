@@ -1,0 +1,9 @@
+<div *ngIf="result?.status === paymentStatus.CANCELED">
+  پرداخت شما لغو شد !!
+</div>
+<div *ngIf="result?.status === paymentStatus.SUCCESS">
+  پرداخت شما با موفقیت انجام شد !!!
+</div>
+<div *ngIf="result?.status === paymentStatus.PENDING">
+  وضعیت پرداخت نامشخص می باشد !!!
+</div>

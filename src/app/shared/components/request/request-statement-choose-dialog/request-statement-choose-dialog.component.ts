@@ -57,6 +57,7 @@ export class RequestStatementChooseDialogComponent implements OnInit {
     });
     this.dataSource = new MatTableDataSource<RequestStatusStatementContext>(this.statusStatements);
     this.selection = new SelectionModel<RequestStatusStatementContext>(this.data.multiple, selectedStatusStatements);
+    this.paginator = this.dataSource.paginator;
   }
 
   onNoClick(): void {

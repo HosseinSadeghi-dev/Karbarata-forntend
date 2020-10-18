@@ -5,18 +5,25 @@ import { PaymentRoutingModule } from './payment-routing.module';
 
 import {
   MainComponent,
-  TransferComponent
+  TransferComponent,
+  ResultComponent
 } from './pages';
+import {SharedModule} from "../../shared/shared.module";
+import {PreloaderModule} from "../../shared/components";
 
 
 @NgModule({
   declarations: [
     MainComponent,
-    TransferComponent
+    TransferComponent,
+    ResultComponent,
+
   ],
   imports: [
     CommonModule,
-    PaymentRoutingModule
+    PaymentRoutingModule,
+    SharedModule,
+    PreloaderModule
   ]
 })
 export class PaymentModule { }

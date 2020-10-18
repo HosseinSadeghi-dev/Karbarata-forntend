@@ -108,7 +108,7 @@
             <span class="mr-2">لغو</span>
           </button>
           <button fxFlex.gt-xs="25%" color="primary" (click)="updateExpertApproval()" *ngIf="isView"
-                  [disabled]="statusStatement?.isExpertApproval || statusStatement?.request?.expert.id != profile.id" mat-raised-button>
+                  [disabled]="statusStatement?.isExpertApproval || statusStatement?.request?.expert?.id != profile?.id || !statusStatement?.request?.expert" mat-raised-button>
             <mat-icon>done</mat-icon>
             <span class="mr-2">تایید صورت وضعیت</span>
           </button>

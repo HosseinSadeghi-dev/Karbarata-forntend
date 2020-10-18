@@ -17,4 +17,11 @@ export class PaymentService{
       catchError((error: HttpErrorResponse) => throwError(error))
     );
   }
+
+  findOnePayment(id){
+    return this.httpClient.get(`/user/payment/${id}`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
 }

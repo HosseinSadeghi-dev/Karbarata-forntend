@@ -37,7 +37,7 @@ export class RequestInvoiceComponent implements OnInit {
 
   onPay(invoice:RequestInvoiceContext){
 
-    const a: string = '/payment/transfer';
+    const a: string = '/payment/transfer/';
 
     if (this.params.id){
       this.requestService.findOneRequest(this.params.id).subscribe(
@@ -47,7 +47,7 @@ export class RequestInvoiceComponent implements OnInit {
             amount: invoice.costTotal,
             userId: res.user.id
           }).subscribe(
-            res => this.router.navigateByUrl(a)
+            res => this.router.navigateByUrl(a + res.message)
           )
         }
       )

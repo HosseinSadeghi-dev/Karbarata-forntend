@@ -30,14 +30,14 @@ export class PayComponent implements OnInit {
   onPay(invoice:RequestInvoiceContext){
 
     const params = this.activatedRoute.snapshot.params
-    const a: string = '/payment/transfer';
+    const a: string = '/payment/transfer/';
 
     if (params.id){
       this.userRequestService.userPayment({
         method: PaymentMethod.GATEWAY,
         amount: invoice.costTotal,
       },invoice.id).subscribe(
-        res => this.router.navigateByUrl(a)
+        res => this.router.navigateByUrl(a + res.message)
       )
     }
   }

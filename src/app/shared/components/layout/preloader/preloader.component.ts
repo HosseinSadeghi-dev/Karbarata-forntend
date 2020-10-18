@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
 import {AppService} from '../../../../core/services';
 
@@ -19,7 +19,7 @@ import {AppService} from '../../../../core/services';
   ]
 })
 export class PreloaderComponent implements OnInit {
-  isLoading: boolean;
+  @Input() isLoading: boolean;
 
   constructor(private appService: AppService,
               private cdr: ChangeDetectorRef) {

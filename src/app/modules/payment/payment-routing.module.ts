@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {MainComponent, TransferComponent} from "./pages";
+import {MainComponent, ResultComponent, TransferComponent} from "./pages";
 
 const routes: Routes = [
   {
     path: '',
     component: MainComponent,
-    children: [
-      {
-        path: 'transfer',
-        component: TransferComponent
-      }
-    ]
+  },
+  {
+    path: 'transfer/:refId',
+    component: TransferComponent
+  },
+  {
+    path: 'result/:paymentId',
+    component: ResultComponent
   }
 ];
 
