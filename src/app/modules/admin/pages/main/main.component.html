@@ -1,5 +1,5 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches"
-     >
+     [ngClass]="{'theme-alternate':darkMode,'theme': !darkMode}">
 
   <mat-toolbar class="example-toolbar primary-toolbar" fxLayout="row" fxLayoutAlign="space-between center">
     <!-- <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button> -->
