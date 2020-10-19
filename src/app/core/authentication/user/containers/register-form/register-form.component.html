@@ -1,55 +1,62 @@
 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="15px" fxLayoutAlign="space-between center">
   <div fxFlex >
     <mat-card class="unShadow">
+
       <mat-card-header fxLayoutAlign="center center">
         <mat-card-title>
           ثبت نام در کارباراتا
         </mat-card-title>
       </mat-card-header>
+
       <mat-card-content fxLayoutAlign="center center">
-        <form [formGroup]="stFormGroup" (ngSubmit)="onSubmit()">
-          <div fxLayout="column" fxLayoutGap="15px">
+
+          <form [formGroup]="stFormGroup" fxLayout="column" fxLayoutGap="15px">
+
             <mat-form-field appearance="fill">
               <mat-label>نام</mat-label>
-              <input matInput  formControlName="name" name="name" required>
+              <input matInput  formControlName="name" required>
               <mat-icon matPrefix>perm_contact_calendar</mat-icon>
-<!--              <mat-hint *ngIf="stFormGroup.controls.name <= 2">نام معتبر وارد کنید</mat-hint>-->
             </mat-form-field>
+
             <mat-form-field appearance="fill">
               <mat-label>نام خانوادگی</mat-label>
-              <input matInput  formControlName="lastName" name="lastName" required>
+              <input matInput  formControlName="lastName" required>
               <mat-icon matPrefix>perm_contact_calendar</mat-icon>
-<!--              <mat-hint *ngIf="stFormGroup.value.lastName <= 2">نام معتبر وارد کنید</mat-hint>-->
             </mat-form-field>
+
             <mat-form-field appearance="fill">
               <mat-label>شماره تلفن</mat-label>
               <span matSuffix>98+ &nbsp;</span>
-              <input matInput  formControlName="phoneNumber" name="phoneNumber" required>
+              <input matInput  formControlName="phoneNumber" required>
               <mat-icon matPrefix>phone</mat-icon>
             </mat-form-field>
+
             <mat-form-field appearance="fill">
               <mat-label>ایمیل</mat-label>
-              <input matInput  formControlName="email" name="email" required type="email">
+              <input matInput  formControlName="email" required>
               <mat-icon matPrefix>email</mat-icon>
             </mat-form-field>
+
             <mat-form-field appearance="fill">
               <mat-label>رمزعبور</mat-label>
-              <input matInput formControlName="password" name="password" required type="password">
+              <input matInput formControlName="password" required>
               <mat-icon matPrefix>vpn_key</mat-icon>
             </mat-form-field>
+
             <mat-hint>
-              پس از ثبت نام می توانید از امکانات فوق العاده راتابیت استفاده کنید!
+              پس از ثبت نام می توانید از امکانات فوق العاده کارباراتا استفاده کنید!
             </mat-hint>
-            <button mat-raised-button color="primary" >ثبت نام</button>
-          </div>
-        </form>
+
+            <button mat-raised-button (click)="onSubmit()"
+                    [disabled]="!stFormGroup.valid" color="primary" >ثبت نام</button>
+
+          </form>
       </mat-card-content>
+
       <mat-card-actions>
         <button mat-button [routerLink]="['/auth/login']">حساب کاربری دارم!</button>
       </mat-card-actions>
+
     </mat-card>
   </div>
-<!--  <div fxFlex.gt-xs="50%">-->
-<!--    <img src="assets/image/bit.png" class="img-fluid" alt="">-->
-<!--  </div>-->
 </div>

@@ -238,17 +238,17 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent-dark, $theme-warn);
   }
 }
 
-@mixin mat-tabs-theme($theme){
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent );
-  $warn: map-get($theme, warn);
-  $background: map-get($theme, background);
-  $foreground: map-get($theme, foreground);
-
-  .mat-ripple {
-    color: mat-color($accent);
-  }
-};
+//@mixin mat-tabs-theme($theme){
+//  $primary: map-get($theme, primary);
+//  $accent: map-get($theme, accent );
+//  $warn: map-get($theme, warn);
+//  $background: map-get($theme, background);
+//  $foreground: map-get($theme, foreground);
+//
+//  .mat-ripple {
+//    color: mat-color($accent);
+//  }
+//};
 
 
 @mixin landing-theme($theme){
@@ -405,7 +405,7 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent-dark, $theme-warn);
 @include stepper($theme);
 @include field($theme);
 @include category($theme);
-@include mat-tabs-theme($theme);
+//@include mat-tabs-theme($theme);
 @include theme-color-grabber($theme);
 @include landing-theme($theme);
 
@@ -414,7 +414,7 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent-dark, $theme-warn);
   @include stepper($altTheme);
   @include field($altTheme);
   @include category($altTheme);
-  @include mat-tabs-theme($altTheme);
+  //@include mat-tabs-theme($altTheme);
   @include theme-color-grabber($altTheme);
   @include landing-theme($altTheme);
 }
