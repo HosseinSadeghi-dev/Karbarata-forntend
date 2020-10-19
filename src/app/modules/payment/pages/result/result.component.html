@@ -1,4 +1,4 @@
-<div *ngIf="result?.status === paymentStatus.CANCELED">
+<!-- <div *ngIf="result?.status === paymentStatus.CANCELED">
   پرداخت شما لغو شد !!
 </div>
 <div *ngIf="result?.status === paymentStatus.SUCCESS">
@@ -6,4 +6,39 @@
 </div>
 <div *ngIf="result?.status === paymentStatus.PENDING">
   وضعیت پرداخت نامشخص می باشد !!!
+</div> -->
+
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="50px">
+  <div fxLayout="row" class="mt-5 w-100">
+    <div fxLayout="column" fxLayoutAlign="center center" fxFlex="60">
+      <div [ngSwitch]="result?.status">
+        <div *ngSwitchCase="paymentStatus.CANCELED">
+          <mat-icon class="text-larger">highlight_off</mat-icon>
+          <h2>پرداخت شما لغو شد !!</h2>
+        </div>
+        <div *ngSwitchCase="paymentStatus.SUCCESS">
+          <mat-icon class="text-larger">done</mat-icon>
+          <h2>پرداخت شما با موفقیت انجام شد !!!</h2>
+        </div>
+        <div *ngSwitchCase="paymentStatus.PENDING">
+          <mat-icon class="text-larger">error_outline</mat-icon>
+          <h2>وضعیت پرداخت نامشخص می باشد !!!</h2>
+        </div>
+        <div *ngSwitchDefault>درخواست یافت نشد</div>
+      </div>
+    </div>
+    <div fxLayout="column" fxFlex="40" class="py-4">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <div fxFlex="80">
+          <img
+            src="assets/image/payment-information-animate.svg"
+            alt=""
+            srcset=""
+            class="img-fluid"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start start"></div>
 </div>
