@@ -1,9 +1,9 @@
-<div class=" landing-section" dir="rtl">
+<div class="landing-section" dir="rtl">
   <div fxFill fxLayout="row" fxLayout.lt-md="column" class="vh-100">
     <!--ratagostar interduce section-->
     <div
-      fxFlex="70"
-      fxFlex.lt-md="100"
+      fxFlex="100"
+      fxFlex.gt-xs="70"
       fxLayout="row"
       fxLayoutAlign="center center"
     >
@@ -21,7 +21,7 @@
         <h3>راتا گستر کوهستان</h3>
       </div>
     </div>
-    <div fxFlex="30" fxHide.lt-md class="primary-bg" fxLayout="row">
+    <div fxFlex="30" fxHide fxShow.gt-xs class="primary-bg" fxLayout="row">
       <img
         src="assets/image/Blueprint.png"
         alt=""
@@ -44,41 +44,47 @@
   <div
     fxLayout="row wrap"
     class="ourteam vh-100"
-    style="background-image: url('assets/image/background.jpg');"
+    style="background-image: url('assets/image/background.jpg')"
     fxLayoutAlign="center center"
   >
     <!--co-worker interduce section-->
     <div fxFlex="90">
-      <div fxFlex="45" fxLayout="row" fxLayoutAlign="center center">
-          <div fxLayout="column" fxLayoutAlign="center start" class="mr-3">
-            <span class="mat-display-1 mb-2 backborder">راتاگستر</span>
-            <p class="backborderHide">
-              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
-              استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله
-              در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
-              نیاز، و کاربردهای متنوع با خلاقی، و فرهنگ پیشرو در زبان فارسی
-              ایجاد کرد، در این
-            </p>
-          </div>
+      <div fxFlex="100" fxFlex.gt-xs="45" fxLayout="row" fxLayoutAlign="center center">
+        <div fxLayout="column" fxLayoutAlign="center start" class="mr-3">
+          <span class="mat-display-1 mb-2 backborder">راتاگستر</span>
+          <p class="backborderHide">
+            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
+            استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
+            ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز،
+            و کاربردهای متنوع با خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد،
+            در این
+          </p>
+        </div>
       </div>
     </div>
   </div>
   <!--End co-worker interduce section-->
 
-  <div fxLayout="row" fxLayoutAlign="start stretch">
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutAlign.gt-xs="start stretch">
     <!--karbarata interduce section-->
-    <div fxFlex="5" class="blue-bg"></div>
-    <div fxFlex="90" fxFlex.lt-md="100" fxLayout.lt-md="column">
+    <div fxFlex="5" fxHide fxShow.gt-xs class="blue-bg"></div>
+    <div fxFlex="90" fxFlex.lt-md="100" fxLayout="column" fxLayout.gt-xs="row">
       <div
         fxFlex="70"
         fxFlex.lt-md="70"
         class="blue-bg"
         fxLayout="row"
-        fxLayoutAlign="start stretch"
+        fxLayoutAlign="center center"
+        fxLayoutAlign.gt-xs="start stretch"
       >
-
-        <div fxFlex="64" fxLayout="row" fxLayoutAlign="center center" class="white">
-          <div fxLayout="column" fxLayoutAlign="center start" class="mr-3">
+        <div
+          fxFlex="90"
+          fxFlex.gt-xs="65"
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          class="white"
+        >
+          <div fxLayout="column" fxLayoutAlign="center start" class="mr-3 py-5">
             <span class="mat-display-1 mb-2 backborder">راتاگستر</span>
             <p class="backborderHide">
               لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
@@ -89,20 +95,22 @@
             </p>
           </div>
         </div>
-
       </div>
-      <div
-        fxFlex="30"
-        fxLayout="row"
-        fxLayoutAlign="space-between stretch">
+      <div fxFlex="100" fxFlex.gt-xs="30" fxLayout="row" fxLayoutAlign="space-between stretch">
         <div fxFlex="60" fxLayout="column" fxLayoutAlign="center center">
           <img
-            src="assets/image/mobile.png" class="img-fluid p-5 mr-n10"
-            alt="" srcset=""/>
+            src="assets/image/mobile.png"
+            class="img-fluid p-5 mr-n10"
+            alt=""
+            srcset=""
+          />
         </div>
-        <div fxFlex="40" class="py-5"
-          fxLayout="column" fxLayoutAlign="space-between stretch">
-
+        <div
+          fxFlex="40"
+          class="py-5"
+          fxLayout="column"
+          fxLayoutAlign="space-between stretch"
+        >
           <div
             class="p-2 border-left"
             fxLayout="column"
