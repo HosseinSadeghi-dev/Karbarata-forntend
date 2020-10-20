@@ -13,6 +13,7 @@ import {RequestConstructContext} from "@app/core/models";
 export class RequestComponent implements OnInit {
 
   slug: string;
+  todayDate = new Date();
   minDate = new Date();
   stepIndex: number = 0;
   stFormGroup: FormGroup;
@@ -25,6 +26,7 @@ export class RequestComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.minDate = new Date(this.todayDate.setDate(this.todayDate.getDate() + 1));
 
     this.slug = this.activatedRoute.snapshot.params.slug;
 

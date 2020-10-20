@@ -4,6 +4,7 @@ import {MatStepper} from "@angular/material/stepper";
 import {RequestSimpleContext, WorkforceSimpleType} from "@app/core/models";
 import { UserRequestService} from "@app/core/services";
 import {Router} from "@angular/router";
+import DateTimeFormat = Intl.DateTimeFormat;
 
 @Component({
   selector: 'app-simple',
@@ -12,7 +13,9 @@ import {Router} from "@angular/router";
 })
 export class SimpleComponent implements OnInit {
 
+  todayDate = new Date();
   minDate = new Date();
+
   stepIndex: number = 0;
   stFormGroup: FormGroup;
   simpleType = WorkforceSimpleType;
@@ -23,6 +26,8 @@ export class SimpleComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
+    this.minDate = new Date(this.todayDate.setDate(this.todayDate.getDate() + 1));
 
     this.stFormGroup = this.formBuilder.group({
 

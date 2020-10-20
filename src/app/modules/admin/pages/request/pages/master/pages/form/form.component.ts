@@ -21,6 +21,7 @@ export class FormComponent implements OnInit {
 
   stFormGroup: FormGroup;
   data:MasterCategoryContext[] = [];
+  todayDate = new Date();
   minDate = new Date();
   userPreview: ProfileContext;
   isEdit: boolean = false;
@@ -35,6 +36,8 @@ export class FormComponent implements OnInit {
 
 
   ngOnInit() {
+    this.minDate = new Date(this.todayDate.setDate(this.todayDate.getDate() + 1));
+
     const params = this.activatedRoute.snapshot.params;
     if (params.id && isNumeric(params.id)) {
       this.isEdit = true;

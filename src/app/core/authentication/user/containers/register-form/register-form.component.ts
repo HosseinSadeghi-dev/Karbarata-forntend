@@ -11,13 +11,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class RegisterFormComponent implements OnInit {
 
-  // public form = {
-  //   name: null,
-  //   lastName: null,
-  //   email: null,
-  //   password: null,
-  //   phoneNumber:null
-  // };
   stFormGroup: FormGroup;
 
   constructor(
@@ -31,9 +24,8 @@ export class RegisterFormComponent implements OnInit {
     this.stFormGroup = this.formBuilder.group({
       name: ['',Validators.required],
       lastName: ['',Validators.required],
-      email: ['',Validators.required],
-      password: ['',Validators.required],
       phoneNumber: ['',Validators.required],
+      email: [''],
     })
   }
 

@@ -13,6 +13,7 @@ import {MasterSkillContext, RequestMasterContext} from "@app/core/models";
 export class RequestComponent implements OnInit {
 
   skills: MasterSkillContext[] =[];
+  todayDate = new Date();
   minDate = new Date();
   stepIndex: number = 0;
   stFormGroup: FormGroup;
@@ -26,6 +27,7 @@ export class RequestComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.minDate = new Date(this.todayDate.setDate(this.todayDate.getDate() + 1));
 
     const params = this.activatedRoute.snapshot.params
 

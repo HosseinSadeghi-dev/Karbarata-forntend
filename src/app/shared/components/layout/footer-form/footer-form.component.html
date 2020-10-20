@@ -9,14 +9,20 @@
           fxLayout="column"
           class="w-50"
           dir="rtl" >
+
       <h1 class="text-center">
         با ما در تماس باشید
       </h1>
+
+      <mat-hint class="text-center mb-2">
+        جهت اطلاع از آخرین خدمات، اخبار، قیمت ها و پیگیری سفارشات خود، با ما در ارتباط باشید.
+      </mat-hint>
 
       <mat-form-field appearance="outline">
         <mat-label class="white">نام و نام خانوادگی</mat-label>
         <input matInput formControlName="fullName" required>
       </mat-form-field>
+
       <mat-form-field appearance="outline">
         <mat-label class="white">شماره تلفن یا ایمیل</mat-label>
         <span matSuffix >98+ &nbsp;</span>
@@ -25,10 +31,11 @@
 
       <div fxFlex="40%"
            fxLayoutAlign="end center">
-        <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!stFormGroup.valid">
+        <button mat-raised-button color="primary" class="white" (click)="onSubmit()" [disabled]="!stFormGroup.valid">
           ارسال اطلاعات
         </button>
       </div>
+
     </form>
   </div>
 

@@ -865,4 +865,14 @@ input[type=number] {
 
 .white{
   color: white;
+
+  button{
+    span{
+      color: darkgrey;
+    }
+  }
+
+  mat-hint{
+    color: darkgrey;
+  }
 }
