@@ -84,7 +84,7 @@
           fxLayoutAlign="center center"
           class="white"
         >
-          <div fxLayout="column" fxLayoutAlign="center start" class="mr-3 p-5">
+          <div fxLayout="column" fxLayoutAlign="center start" Class="mr-3 py-5" ngClass.gt-xs="p-0">
             <span class="mat-display-1 mb-2 backborder">راتاگستر</span>
             <p class="backborderHide">
               مشاهده، درخواست و ثبت سفارشات ساختمانی اعم از بازسازی منزل، استعلامات و انجام خدمات شهرداری، سفت کاری و نازک کاری، دکوراسیون داخلی، طراحی و اجرای نما، تامین نیروی متخصص و ساده، نظارت و اجرای پروژه، اجرا و
@@ -93,25 +93,28 @@
           </div>
         </div>
       </div>
-      <div fxFlex="100" fxFlex.gt-xs="30" fxLayout="row" fxLayoutAlign="space-between stretch">
-        <div fxFlex="60" fxLayout="column" fxLayoutAlign="center center">
+      <div fxFlex="100" fxFlex.gt-xs="30" fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-between center" fxLayoutAlign.gt-xs="space-between stretch">
+          <div fxFlex="100" fxFlex.gt-xs="60" fxLayout="column" fxLayoutAlign="center center" class="w-50" ngClass.gt-xs="w-100">
           <img
             src="assets/image/mobile.png"
-            class="img-fluid p-5 mr-n10"
+            class="img-fluid p-5"
+            ngClass.gt-xs="mr-n10"
             alt=""
             srcset=""
           />
         </div>
         <div
-          fxFlex="40"
-          class="py-5"
+          fxFlex="100"
+          fxFlex.gt-xs="40"
+          ngClass.gt-xs="py-5"
           fxLayout="column"
           fxLayoutAlign="space-between stretch"
         >
           <div
-            class="p-2 border-left"
+            class="mb-4 p-2 border-right"
+            ngClass.gt-xs="p-2 mb-0"
             fxLayout="column"
-            fxLayoutAlign="center end"
+            fxLayoutAlign="center start"
           >
             <span>تست یک</span>
             <span>یک جمله دیگر بگو</span>
