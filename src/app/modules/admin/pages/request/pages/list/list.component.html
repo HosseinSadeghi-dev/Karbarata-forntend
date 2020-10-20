@@ -46,6 +46,8 @@
                       <mat-chip *ngIf="element.simple">نیرو ساده</mat-chip>
                       <mat-chip *ngIf="element.master">نیرو متخصص</mat-chip>
                       <mat-chip *ngIf="element.construct">نیرو ساخت و ساز</mat-chip>
+                      <mat-chip *ngIf="element.priceAdvice">مشاوره و استعلام قیمت</mat-chip>
+                      <mat-chip *ngIf="element.municipalService">خدمات شهرداری</mat-chip>
                     </ng-container>
                   </mat-chip-list>
                 </td>
@@ -55,7 +57,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> وضعیت </th>
                 <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="وضعیت:">
                   <mat-chip-list ngClass.lt-md="mr-4">
-                    <ng-container [ngSwitch]="element.status[(element.status.length)-1].type">
+                    <ng-container [ngSwitch]="element?.status[(element.status.length)-1]?.type">
                       <mat-chip *ngSwitchCase="RequestStatus.AWAITING_OP "
                                 selected color="primary">در انتظار تایید اپراتور</mat-chip>
                       <mat-chip *ngSwitchCase="RequestStatus.APPROVAL_OP"

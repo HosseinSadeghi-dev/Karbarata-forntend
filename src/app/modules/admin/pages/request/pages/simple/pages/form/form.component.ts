@@ -12,6 +12,7 @@ import {RequestService} from "@app/core/services";
 })
 export class FormComponent implements OnInit {
 
+  todayDate = new Date();
   minDate = new Date();
   stFormGroup: FormGroup;
   simpleType = WorkforceSimpleType;
@@ -26,6 +27,7 @@ export class FormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.minDate = new Date(this.todayDate.setDate(this.todayDate.getDate() + 1));
 
     const params = this.activatedRoute.snapshot.params;
     if (params.id && isNumeric(params.id)) {

@@ -72,7 +72,7 @@ export class FormComponent implements OnInit {
     this.isEdit = false;
     this.onReset();
     this.categoryUpdated.emit(true);
-    this.location.back();
+    // this.location.back();
   }
   onReset(){
     this.isEdit = false;

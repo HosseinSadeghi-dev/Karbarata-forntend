@@ -20,10 +20,12 @@ export class LoginFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+
   onSubmit(){
     this.form.phoneNumber = String(this.form.phoneNumber);
     this.authenticationService.onLogin(this.form).subscribe(res => this.handleRes())
   }
+
   handleRes(){
     this.router.navigate(['/auth/verify'],{
       queryParams: {

@@ -1,20 +1,26 @@
 <div fxLayout="column" fxLayoutGap="15px">
+
   <h1 class="mat-h2">
     ورود به کارباراتا
   </h1>
-  <form #loginForm=ngForm (ngSubmit)="onSubmit()">
-    <div fxLayout="column" fxLayoutGap="25px">
+
+  <mat-hint>
+    برای ورود به پنل کاربری خود و مشاهده وضعیت درخواست ها شماره خود را وارد کنید
+  </mat-hint>
+
+  <form #loginForm=ngForm fxLayout="column" fxLayoutGap="10px">
+
       <mat-form-field appearance="fill">
         <mat-label>شماره تلفن</mat-label>
         <span matSuffix>98+ &nbsp;</span>
         <input matInput [(ngModel)]="form.phoneNumber" name="phoneNumber" required type="number">
         <mat-icon matPrefix>phone</mat-icon>
       </mat-form-field>
-      <mat-hint>
-        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
-      </mat-hint>
-      <button mat-raised-button color="primary" [disabled]="!loginForm.valid">ورود</button>
-    </div>
+
+      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!loginForm.valid">ورود</button>
+
   </form>
-  <button mat-button [routerLink]="['/user/auth/register']">حساب کاربری ندارم!</button>
+
+  <button mat-button [routerLink]="['/auth/register']">حساب کاربری ندارم!</button>
+
 </div>

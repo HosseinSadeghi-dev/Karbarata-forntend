@@ -13,13 +13,15 @@
     <div fxFlex="100%" fxLayout="column">
       <h2>خدمات شهرداری</h2>
 
-      <h4>انجام انواع امور اعم از خلافی ، دریافت مجوز و ...</h4>
+      <h4>انجام کلیه امور مربوط به اخذ استعلامات و مجوز های شهرداری ؛ اعم از اخذ پروانه ، استعلام خلافی و کلیه امور در حوزه اختیار دفاتر پیشخوان</h4>
 
-      <form [formGroup]="stFormGroup" fxLayout="column" class="mt-5">
+      <h5></h5>
+
+      <form [formGroup]="stFormGroup" fxLayout="column" class="mt-3">
 
         <mat-form-field appearance="outline" dir="rtl">
           <mat-label>توضیحات</mat-label>
-          <textarea rows="5" matInput formControlName="description"></textarea>
+          <textarea rows="7" matInput formControlName="description"></textarea>
           <mat-hint>لطفا توضیحات درخواست خود را وارد کنید</mat-hint>
         </mat-form-field>
 
