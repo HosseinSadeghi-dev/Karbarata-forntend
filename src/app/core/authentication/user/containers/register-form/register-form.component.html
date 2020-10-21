@@ -32,12 +32,15 @@
             </mat-form-field>
 
             <mat-form-field appearance="fill">
-              <mat-label>
-                ایمیل
-                <mat-hint>(اختیاری)</mat-hint>
-              </mat-label>
-              <input matInput  formControlName="email">
+              <mat-label>ایمیل</mat-label>
+              <input matInput  formControlName="email" required>
               <mat-icon matPrefix>email</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>رمزعبور</mat-label>
+              <input matInput formControlName="password" required>
+              <mat-icon matPrefix>vpn_key</mat-icon>
             </mat-form-field>
 
             <mat-hint>
