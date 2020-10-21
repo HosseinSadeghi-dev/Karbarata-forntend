@@ -1,10 +1,12 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatStepper} from "@angular/material/stepper";
 import {RequestSimpleContext, WorkforceSimpleType} from "@app/core/models";
 import { UserRequestService} from "@app/core/services";
 import {Router} from "@angular/router";
-import DateTimeFormat = Intl.DateTimeFormat;
+import {CredentialsService} from "@app/core/authentication/credentials.service";
+import {MatDialog} from "@angular/material/dialog";
+import {ImmediateSignUpComponent} from "@app/shared/components/form-fields/immediate-sign-up/immediate-sign-up.component";
 
 @Component({
   selector: 'app-simple',
@@ -22,7 +24,9 @@ export class SimpleComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private userRequestService: UserRequestService,
-    private router: Router
+    private router: Router,
+    private credentialsService: CredentialsService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -54,24 +58,41 @@ export class SimpleComponent implements OnInit {
 
   onSubmit(){
 
-    const form :RequestSimpleContext = {
-      type: this.stFormGroup.controls['typeForm'].get('type').value,
-      quantity: this.stFormGroup.controls['typeForm'].get('quantity').value,
-      duration: this.stFormGroup.controls['typeForm'].get('duration').value,
-      request: {
-        approximateArea: this.stFormGroup.controls['locationForm'].get('approximateArea').value,
-        address: this.stFormGroup.controls['locationForm'].get('address').value,
-        houseNumber: this.stFormGroup.controls['locationForm'].get('houseNumber').value,
-        description: this.stFormGroup.controls['confirmForm'].get('description').value,
-        isForce: this.stFormGroup.controls['confirmForm'].get('isForce').value,
-        serviceDate: this.stFormGroup.controls['confirmForm'].get('serviceDate').value,
+    if( this.credentialsService.isAuthenticated())
+    {
+      const form :RequestSimpleContext = {
+        type: this.stFormGroup.controls['typeForm'].get('type').value,
+        quantity: this.stFormGroup.controls['typeForm'].get('quantity').value,
+        duration: this.stFormGroup.controls['typeForm'].get('duration').value,
+        request: {
+          approximateArea: this.stFormGroup.controls['locationForm'].get('approximateArea').value,
+          address: this.stFormGroup.controls['locationForm'].get('address').value,
+          houseNumber: this.stFormGroup.controls['locationForm'].get('houseNumber').value,
+          description: this.stFormGroup.controls['confirmForm'].get('description').value,
+          isForce: this.stFormGroup.controls['confirmForm'].get('isForce').value,
+          serviceDate: this.stFormGroup.controls['confirmForm'].get('serviceDate').value,
+        }
       }
+
+      this.userRequestService.requestSimple(form).subscribe(
+        () => this.router.navigateByUrl('user/inbox')
+      )
     }
 
-    this.userRequestService.requestSimple(form).subscribe(
-      () => this.router.navigateByUrl('user/inbox')
-    )
+    else {
+      this.openSignUpDialog();
+    }
 
+  }
+
+  openSignUpDialog(){
+    const dialogRef = this.dialog.open(ImmediateSignUpComponent,{
+      width: '300px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   nextStep(stepper: MatStepper){
@@ -82,6 +103,5 @@ export class SimpleComponent implements OnInit {
     stepper.previous();
     this.stepIndex = stepper.selectedIndex;
   }
-
 
 }

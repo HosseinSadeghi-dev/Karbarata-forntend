@@ -1,0 +1,71 @@
+<div fxLayout="column" *ngIf="first" fxLayoutAlign="space-evenly center" >
+
+  <h5>برای ثبت درخواست ابتدا باید ثبت نام کنید</h5>
+
+  <button mat-flat-button color="primary"
+          (click)="first = !first" class="w-50 text-center">ثبت نام</button>
+
+</div>
+
+<div fxLayout="column" *ngIf="!first && !login" fxLayoutAlign="center center">
+
+  <h4>ثبت نام در کارباراتا</h4>
+
+  <form [formGroup]="stFormGroup" fxLayout="column" fxLayoutGap="15px" class="w-100">
+
+    <mat-form-field appearance="outline">
+      <mat-label>نام</mat-label>
+      <input matInput  formControlName="name" required>
+      <mat-icon matPrefix>perm_contact_calendar</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>نام خانوادگی</mat-label>
+      <input matInput  formControlName="lastName" required>
+      <mat-icon matPrefix>perm_contact_calendar</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>شماره تلفن</mat-label>
+      <span matSuffix>98+ &nbsp;</span>
+      <input matInput  formControlName="phoneNumber" required>
+      <mat-icon matPrefix>phone</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>
+        ایمیل
+        <mat-hint>(اختیاری)</mat-hint>
+      </mat-label>
+      <input matInput  formControlName="email">
+      <mat-icon matPrefix>email</mat-icon>
+    </mat-form-field>
+
+    <button mat-raised-button (click)="onSubmit()"
+            [disabled]="!stFormGroup.valid" color="primary" >ثبت نام</button>
+
+  </form>
+
+</div>
+
+<div fxLayout="column" *ngIf="!first && login">
+  <div fxLayout="column" fxLayoutGap="15px">
+    <h1 class="mat-h2">
+      اهراز هویت
+    </h1>
+    <form #confirmForm=ngForm>
+      <div fxLayout="column" fxLayoutGap="15px">
+        <mat-form-field appearance="fill">
+          <mat-label>کد اهراز هویت</mat-label>
+          <input matInput [(ngModel)]="verify.password" name="password" (input)="onVerify()" required maxlength="4">
+          <mat-icon matPrefix>lock</mat-icon>
+        </mat-form-field>
+        <mat-hint class="text-center">
+          لطفا کد ارسالی را وارد کنید
+        </mat-hint>
+      </div>
+    </form>
+    <button mat-button (click)="onResend()">ارسال مجدد کد!</button>
+  </div>
+
+</div>

@@ -4,6 +4,13 @@ import {AuthenticationService} from '../../../authentication.service';
 import {CredentialsService} from '../../../credentials.service';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
+interface form{
+  name: string,
+  lastName: string,
+  phoneNumber: string,
+  email?: string
+}
+
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
@@ -30,7 +37,16 @@ export class RegisterFormComponent implements OnInit {
   }
 
   onSubmit(){
-    this.authenticationService.onRegister(this.stFormGroup.value).subscribe(
+    let form: form = {
+      name : this.stFormGroup.value.name,
+      lastName : this.stFormGroup.value.lastName,
+      phoneNumber : this.stFormGroup.value.phoneNumber,
+    };
+
+    if(this.stFormGroup.value.email)
+      form.email = this.stFormGroup.value.email
+
+    this.authenticationService.onRegister(form).subscribe(
       res => this.handleRes(res)
     )
   }
