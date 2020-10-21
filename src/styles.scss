@@ -382,7 +382,12 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent-dark, $theme-warn);
 
     img{
       //fill: red !important;
-      filter: invert(1) !important;
+      @if($theme == $altTheme){
+        filter: invert(1);
+      }
+      @else {
+        filter: invert(0);
+      }
     }
 
     input{

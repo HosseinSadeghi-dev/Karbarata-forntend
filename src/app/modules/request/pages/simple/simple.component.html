@@ -82,18 +82,18 @@
 
           <div fxLayoutAlign="space-around center" fxFlexOffset="2%" [formGroup]="stFormGroup.controls['typeForm']">
 
-            <mat-button-toggle-group fxLayoutGap="12px" formControlName="type" class="svgFill">
+            <mat-button-toggle-group fxLayoutGap="2%" formControlName="type" fxFlex="50%">
 
-              <mat-button-toggle value="daily">
-                <img src="assets/image/calendar.svg" class="img-fluid p-2" alt="daily">
-                <span class="top-border">
+              <mat-button-toggle value="daily" fxFlex="49%" fxLayout="column">
+                <img src="assets/image/calendar.svg" class="img-fluid p-2" alt="daily" fxFlex="80%">
+                <span class="top-border" fxFlex>
               روزمزد
             </span>
               </mat-button-toggle>
 
-              <mat-button-toggle value="contract">
-                <img  src="assets/image/contract.svg" class="img-fluid p-2" alt="contractor">
-                <span class="top-border">
+              <mat-button-toggle value="contract" fxFlex="49%" fxLayout="column">
+                <img  src="assets/image/contract.svg" class="img-fluid p-2" alt="contractor" fxFlex="80%">
+                <span class="top-border" fxFlex>
               قراردادی
             </span>
               </mat-button-toggle>
