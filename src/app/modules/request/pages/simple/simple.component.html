@@ -15,7 +15,6 @@
                      [stepControl]="stFormGroup.controls.typeForm">
             <mat-hint>
                 دسته بندی مورد نظر خود را انتخاب کنید
-                و نوع اجرا یا را انتخاب کنید
             </mat-hint>
 
           </mat-step>
@@ -25,8 +24,7 @@
                      [stepControl]="stFormGroup.controls.locationForm">
 
             <mat-hint>
-              دسته بندی مورد نظر خود را انتخاب کنید
-              و نوع اجرا یا را انتخاب کنید
+              آدرس محل پروژه خود را وارد کنید
             </mat-hint>
 
           </mat-step>
@@ -36,8 +34,7 @@
                      [stepControl]="stFormGroup.controls.confirmForm">
 
             <mat-hint>
-              دسته بندی مورد نظر خود را انتخاب کنید
-              و نوع اجرا یا را انتخاب کنید
+              برای تایید درخواست تاریخ مراجعه را وارد کنید و در صورت لزوم توضیحات تکمیلی را وارد کنید
             </mat-hint>
 
           </mat-step>
@@ -80,20 +77,22 @@
             </h2>
           </div>
 
-          <div fxLayoutAlign="space-around center" fxFlexOffset="2%" [formGroup]="stFormGroup.controls['typeForm']">
+          <div
+            fxLayoutAlign="space-around center"
+            fxFlexOffset="2%" [formGroup]="stFormGroup.controls['typeForm']">
 
-            <mat-button-toggle-group fxLayoutGap="2%" formControlName="type" fxFlex="50%">
+            <mat-button-toggle-group fxLayoutGap="12px" formControlName="type" fxFlex="50%">
 
               <mat-button-toggle value="daily" fxFlex="49%" fxLayout="column">
-                <img src="assets/image/calendar.svg" class="img-fluid p-2" alt="daily" fxFlex="80%">
-                <span class="top-border" fxFlex>
+                <img src="assets/image/daily.svg" class="img-fluid p-2" alt="daily">
+                <span class="top-border">
               روزمزد
             </span>
               </mat-button-toggle>
 
               <mat-button-toggle value="contract" fxFlex="49%" fxLayout="column">
-                <img  src="assets/image/contract.svg" class="img-fluid p-2" alt="contractor" fxFlex="80%">
-                <span class="top-border" fxFlex>
+                <img  src="assets/image/contract.svg" class="img-fluid p-2" alt="contractor">
+                <span class="top-border">
               قراردادی
             </span>
               </mat-button-toggle>

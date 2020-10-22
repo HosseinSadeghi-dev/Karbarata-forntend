@@ -4,6 +4,9 @@ import {UserRequestService, WorkforceService} from "@app/core/services";
 import {MatStepper} from "@angular/material/stepper";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MasterSkillContext, RequestMasterContext} from "@app/core/models";
+import {CredentialsService} from "../../../../../../core/authentication/credentials.service";
+import {MatDialog} from "@angular/material/dialog";
+import {ImmediateSignUpComponent} from "../../../../../../shared/components/form-fields/immediate-sign-up/immediate-sign-up.component";
 
 @Component({
   selector: 'app-request',
@@ -23,7 +26,9 @@ export class RequestComponent implements OnInit {
     private userRequestService: UserRequestService,
     private activatedRoute: ActivatedRoute,
     private workforceService: WorkforceService,
-    private router: Router
+    private router: Router,
+    private credentialsService: CredentialsService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -57,29 +62,45 @@ export class RequestComponent implements OnInit {
   }
 
   onSubmit(){
-   this.stFormGroup.controls['typeForm'].get('skills').setValue(this.skills)
-    let skills = [];
-    this.stFormGroup.controls['typeForm'].get('skills').value.forEach(
-      row => skills.push(row.slug)
-    )
 
-    const form: RequestMasterContext = {
-     skills : skills,
-      request: {
-       description: this.stFormGroup.controls['confirmForm'].get('description').value,
-       isForce: this.stFormGroup.controls['confirmForm'].get('isForce').value,
-       serviceDate: this.stFormGroup.controls['confirmForm'].get('serviceDate').value,
-        approximateArea: this.stFormGroup.controls['locationForm'].get('approximateArea').value,
-        address: this.stFormGroup.controls['locationForm'].get('address').value,
-        houseNumber: this.stFormGroup.controls['locationForm'].get('houseNumber').value,
+    if( this.credentialsService.isAuthenticated()){
+      this.stFormGroup.controls['typeForm'].get('skills').setValue(this.skills)
+      let skills = [];
+      this.stFormGroup.controls['typeForm'].get('skills').value.forEach(
+        row => skills.push(row.slug)
+      )
+
+      const form: RequestMasterContext = {
+        skills : skills,
+        request: {
+          description: this.stFormGroup.controls['confirmForm'].get('description').value,
+          isForce: this.stFormGroup.controls['confirmForm'].get('isForce').value,
+          serviceDate: this.stFormGroup.controls['confirmForm'].get('serviceDate').value,
+          approximateArea: this.stFormGroup.controls['locationForm'].get('approximateArea').value,
+          address: this.stFormGroup.controls['locationForm'].get('address').value,
+          houseNumber: this.stFormGroup.controls['locationForm'].get('houseNumber').value,
+        }
+
       }
 
+      this.userRequestService.requestMaster(form).subscribe(
+        () => this.router.navigateByUrl('user/inbox')
+      )
+    }
+    else {
+      this.openSignUpDialog();
     }
 
-    this.userRequestService.requestMaster(form).subscribe(
-      () => this.router.navigateByUrl('user/inbox')
-    )
+  }
 
+  openSignUpDialog(){
+    const dialogRef = this.dialog.open(ImmediateSignUpComponent,{
+      width: '300px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   handleResData(res){

@@ -4,6 +4,9 @@ import {UserRequestService} from "@app/core/services";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatStepper} from "@angular/material/stepper";
 import {RequestConstructContext} from "@app/core/models";
+import {MatDialog} from "@angular/material/dialog";
+import {CredentialsService} from "../../../../../../core/authentication/credentials.service";
+import {ImmediateSignUpComponent} from "../../../../../../shared/components/form-fields/immediate-sign-up/immediate-sign-up.component";
 
 @Component({
   selector: 'app-request',
@@ -22,7 +25,9 @@ export class RequestComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userRequestService: UserRequestService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private credentialsService: CredentialsService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -55,26 +60,42 @@ export class RequestComponent implements OnInit {
 
   onSubmit(){
 
-    this.stFormGroup.controls['typeForm'].get('construct').setValue(this.slug);
-    const temp = this.stFormGroup.value
+    if( this.credentialsService.isAuthenticated()){
+      this.stFormGroup.controls['typeForm'].get('construct').setValue(this.slug);
+      const temp = this.stFormGroup.value
 
-    const form: RequestConstructContext = {
-     construct: temp.typeForm.construct,
-      type: temp.typeForm.type,
-      request: {
-       approximateArea: temp.locationForm.approximateArea,
-       address: temp.locationForm.address,
-        houseNumber: temp.locationForm.houseNumber,
-        description: temp.confirmForm.description,
-        isForce: temp.confirmForm.isForce,
-        serviceDate: temp.confirmForm.serviceDate,
+      const form: RequestConstructContext = {
+        construct: temp.typeForm.construct,
+        type: temp.typeForm.type,
+        request: {
+          approximateArea: temp.locationForm.approximateArea,
+          address: temp.locationForm.address,
+          houseNumber: temp.locationForm.houseNumber,
+          description: temp.confirmForm.description,
+          isForce: temp.confirmForm.isForce,
+          serviceDate: temp.confirmForm.serviceDate,
+        }
       }
+
+      this.userRequestService.requestConstruct(form).subscribe(
+        () => this.router.navigateByUrl('user/inbox')
+      )
+    }
+    else {
+      this.openSignUpDialog();
     }
 
-    this.userRequestService.requestConstruct(form).subscribe(
-      () => this.router.navigateByUrl('user/inbox')
-    )
 
+  }
+
+  openSignUpDialog(){
+    const dialogRef = this.dialog.open(ImmediateSignUpComponent,{
+      width: '300px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   nextStep(stepper: MatStepper){
