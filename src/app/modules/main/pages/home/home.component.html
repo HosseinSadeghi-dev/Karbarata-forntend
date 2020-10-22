@@ -40,6 +40,17 @@
   </div>
   <!--End ratagostar interduce section-->
 
+  <div  fxFill fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center center" class="my-5">
+    <div fxFlex="90%" fxLayout="row" dir="rtl" fxLayoutAlign="space-around center">
+      <ng-container *ngFor="let work of works">
+        <app-skill-show [image]="work.imgSrc"
+                        [localImg]="true"
+                        [name]="work.name" fxFlex="17%"
+                        [slug]=" 'request/' + work.slug"></app-skill-show>
+      </ng-container>
+    </div>
+  </div>
+
   <div
     fxLayout="row wrap"
     class="ourteam vh-100"

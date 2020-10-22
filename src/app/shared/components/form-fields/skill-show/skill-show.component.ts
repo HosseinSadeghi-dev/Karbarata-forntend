@@ -14,6 +14,7 @@ export class SkillShowComponent implements OnInit {
   @Input() image: string;
   @Input() name: string;
   @Input() slug: string;
+  @Input() localImg: boolean = false;
 
   constructor(
     private srcImagePipe: SrcImagePipe
@@ -24,7 +25,13 @@ export class SkillShowComponent implements OnInit {
 
   getUrl()
   {
-    return "url(" + this.srcImagePipe.transform(this.image,'') +" ) ";
+    if(!this.localImg){
+      return "url(" + this.srcImagePipe.transform(this.image, '') +" ) ";
+    }
+    else{
+      return "url(" + this.image +" ) ";
+    }
+
   }
 
 }
