@@ -21,46 +21,63 @@
     </button>
 
     <div>
-      <button mat-icon-button (click)="changeTheme()">
-        <mat-icon>{{darkMode ? 'brightness_3' : 'brightness_low'}}</mat-icon>
+      <button mat-icon-button (click)="changeTheme()" class="ml-3">
+        <mat-icon>{{darkMode ? 'brightness_3' : 'wb_sunny'}}</mat-icon>
       </button>
-      <button mat-button color="warn" fxHide.xs="true"  class="mr-2">
-        جست و جو
-        <mat-icon>search</mat-icon>
-      </button>
+      <a [routerLink]="['/download']" routerLinkActive="active-list-item" mat-flat-button color="primary">دانلود</a>
+<!--      <button mat-button color="warn" fxHide.xs="true"  class="mr-2">-->
+<!--        جست و جو-->
+<!--        <mat-icon>search</mat-icon>-->
+<!--      </button>-->
     </div>
 
   </mat-toolbar-row>
-  <mat-toolbar-row fxLayout="row" fxLayoutAlign="center center" *ngIf="!isScroll && !mobileQuery.matches" @fadeIn @fadeOut>
-    <a routerLink="/" mat-button>صفحه اصلی</a>
-    <button [matMenuTriggerFor]="WorkmanMenu" mat-button>درخواست</button>
-<!--    <a routerLink="/comingSoon" mat-button>فروشگاه</a>-->
-    <a [routerLink]="['/blog']" routerLinkActive="active-list-item" mat-button>بلاگ</a>
-    <a [routerLink]="['/faq']" routerLinkActive="active-list-item" mat-button>سوالات متداول</a>
-    <a [routerLink]="['/about']" routerLinkActive="active-list-item" mat-button>درباره ما</a>
-    <button [matMenuTriggerFor]="contactMenu" mat-button>تماس با ما</button>
-    <a [routerLink]="['/download']" routerLinkActive="active-list-item" mat-button>دانلود</a>
+
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-around center"  *ngIf="!isScroll && !mobileQuery.matches" @fadeIn @fadeOut>
+
+    <div fxFlex fxLayoutAlign="center center">
+      <a routerLink="/" mat-button>صفحه اصلی</a>
+      <button [matMenuTriggerFor]="WorkmanMenu" mat-button color="primary">درخواست</button>
+      <button [matMenuTriggerFor]="ServiceMenu" mat-button color="primary">خدمات و استعلامات</button>
+      <!--    <a routerLink="/comingSoon" mat-button>فروشگاه</a>-->
+      <!--    <a [routerLink]="['/blog']" routerLinkActive="active-list-item" mat-button>بلاگ</a>-->
+      <!--    <a [routerLink]="['/faq']" routerLinkActive="active-list-item" mat-button>سوالات متداول</a>-->
+      <a [routerLink]="['/about']" routerLinkActive="active-list-item" mat-button>درباره ما</a>
+      <button [matMenuTriggerFor]="contactMenu" mat-button>تماس با ما</button>
+    </div>
+
   </mat-toolbar-row>
+
 </mat-toolbar>
+
 <mat-menu #contactMenu="matMenu">
-  <button [routerLink]="['/about/cooperation']" mat-menu-item>                            همکاری با ما
-  </button>
-  <button mat-menu-item (click)="openDialog()">ارسال شکایت
-  </button>
+  <button [routerLink]="['/about/cooperation']" mat-menu-item>همکاری با ما</button>
+  <button mat-menu-item (click)="openDialog()">ارسال شکایت</button>
 </mat-menu>
+
 <mat-menu #WorkmanMenu="matMenu">
   <button mat-menu-item [routerLink]="'/request/simple'">نیرو ساده</button>
   <button mat-menu-item [routerLink]="'/request/master'">نیرو متخصص</button>
   <button mat-menu-item [routerLink]="'/request/construct'">طراحی ، ساخت و ساز</button>
+</mat-menu>
+
+<mat-menu #ServiceMenu="matMenu">
   <button mat-menu-item [routerLink]="'/request/municipality'">خدمات شهرداری</button>
   <button mat-menu-item [routerLink]="'/request/price-advice'">مشاوره و استعلام قیمت</button>
 </mat-menu>
+
 <mat-menu #appUserMenu="matMenu">
   <mat-list>
   </mat-list>
+
   <button [routerLink]="['/user']" mat-menu-item>
     <mat-icon>account_circle</mat-icon>
-    پروفایل</button>
-  <button (click)="logout($event)" mat-menu-item><mat-icon>exit_to_app</mat-icon>
-    خروج</button>
+    پروفایل
+  </button>
+
+  <button (click)="logout($event)" mat-menu-item>
+    <mat-icon>exit_to_app</mat-icon>
+    خروج
+  </button>
+
 </mat-menu>
