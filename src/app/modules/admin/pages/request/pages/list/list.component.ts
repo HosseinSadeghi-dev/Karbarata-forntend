@@ -1,11 +1,13 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from "@angular/material/paginator";
-import {RequestContext, RequestStatusType} from "@app/core/models";
+import {RequestContext, RequestStatusType, WorkforceStatus} from "@app/core/models";
 import {RequestService} from "@app/core/services";
 import {RequestDatasource} from "../../services";
 import {MatSort} from "@angular/material/sort";
 import {fromEvent, merge} from "rxjs";
 import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
+import {MatBottomSheet} from "@angular/material/bottom-sheet";
+import {BottomSheetComponent} from "../../../../../../shared/components/global/bottom-sheet/bottom-sheet.component";
 
 @Component({
   selector: 'app-home',
@@ -23,7 +25,8 @@ export class ListComponent implements OnInit, AfterViewInit {
   @ViewChild('input') input: ElementRef;
 
   constructor(
-    private requestService:RequestService
+    private requestService:RequestService,
+    private bottomSheet: MatBottomSheet
   ) { }
 
   ngOnInit(): void {
@@ -62,6 +65,31 @@ export class ListComponent implements OnInit, AfterViewInit {
     this.paginator.firstPage();
     this.dataSource = new RequestDatasource(this.requestService);
     this.dataSource.loadRequests('', 'desc', 0, 5);
+  }
+
+  onChangeStatus(id:number){
+    const bottomSheetRef = this.bottomSheet.open(BottomSheetComponent, {
+      data: {
+        option: [
+          RequestStatusType.AWAITING_EXP,
+          RequestStatusType.APPROVAL_EXP,
+          RequestStatusType.CANCEL_EXP,
+          RequestStatusType.DONE,
+        ],
+        type: 'request',
+      },
+    });
+
+    bottomSheetRef
+      .afterDismissed()
+      .subscribe((res)=>{
+        res? this.onUpdateStatus(id, res): ''
+      })
+  }
+
+  onUpdateStatus(id, data){
+    this.requestService.updateRequestStatus(id, {status: data})
+      .subscribe( () => this.getList() )
   }
 
   delete(id: number){

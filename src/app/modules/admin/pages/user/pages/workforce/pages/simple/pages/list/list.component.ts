@@ -128,7 +128,7 @@ export class ListComponent implements OnInit {
     bottomSheetRef
     .afterDismissed()
     .subscribe((res)=>{
-      this.onUpdateStatus(id, res)
+      res? this.onUpdateStatus(id, res): ''
     })
   }
 }

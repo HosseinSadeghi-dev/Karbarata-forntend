@@ -1,7 +1,16 @@
 <mat-nav-list>
 
-  <div *ngFor="let item of data.option" mat-list-item (click)="openLink($event, item)" class="p-4 my-1 cell">
-    <span mat-line>{{ item | workforceStatus }}</span>
+  <div *ngFor="let item of data?.option" mat-list-item (click)="openLink($event, item)" class="p-4 my-1 cell">
+
+    <span mat-line *ngIf="data?.type !== 'request' ">{{ item | workforceStatus }}</span>
+
+    <ng-container *ngIf="data?.type === 'request' " [ngSwitch]="item">
+      <span mat-line *ngSwitchCase="RequestStatus.AWAITING_EXP">در انتظار تایید کارشناس</span>
+      <span mat-line *ngSwitchCase="RequestStatus.APPROVAL_EXP">تایید کارشناس</span>
+      <span mat-line *ngSwitchCase="RequestStatus.CANCEL_EXP">عدم تایید توسط کارشناس</span>
+      <span mat-line *ngSwitchCase="RequestStatus.DONE">اتمام پروژه</span>
+    </ng-container>
+
   </div>
 
 </mat-nav-list>
