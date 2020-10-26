@@ -3,10 +3,20 @@
   &::after{
     position: absolute;
     content: "";
-    border-left: 3px solid rgba(255, 255, 255, 0.3);
-    left: 0;
-    top: 10%;
-    bottom: 10%;
+    @media screen and (max-width: 600px) {
+      border-left: 3px solid rgba(255, 255, 255, 0.3);
+      left: 0;
+      bottom: 10%;
+      top: 10%;
+    }
+
+    @media screen and (min-width: 600px) {
+      border-left: 3px solid rgba(255, 255, 255, 0.3);
+      left: 0;
+      bottom: 10%;
+      top: 10%;
+    }
+
   }
 }
 

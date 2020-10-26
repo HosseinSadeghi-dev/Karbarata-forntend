@@ -1,13 +1,15 @@
 <div
-  fxLayout="row"
+  fxLayout="column-reverse"
+  fxLayout.gt-xs="row"
   fxLayoutAlign="center center"
   class="background-form white"
   style="background-image: url('assets/image/Group 2.png');">
 
-  <div fxLayout="column" fxFlex="50%" fxLayoutAlign="center center" class="py-4 divider">
+  <div fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxLayoutAlign="center center" class="py-4 divider">
     <form [formGroup]="stFormGroup"
           fxLayout="column"
-          class="w-50"
+          ngClass.lt-xs="w-100"
+          ngClass.gt-xs="w-50"
           dir="rtl" >
 
       <h1 class="text-center">
@@ -42,7 +44,8 @@
   <div fxLayout="column" fxFlex="50%" fxLayoutAlign="center center">
     <div
       fxLayout="column"
-      class="w-50 footer"
+      class="w-100 footer"
+      ngClass.gt-xs="w-50"
       dir="rtl">
       <div fxLayoutAlign="center center" class="w-100">
         <img src="assets/image/logo-dark.png" alt="KBR" >
