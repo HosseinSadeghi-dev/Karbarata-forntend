@@ -1,3 +1,5 @@
+
+
 //article
 export * from "./article/article-card/article-card.module";
 export * from "./article/article-favorite-button/article-favorite-button.module";
@@ -25,7 +27,8 @@ export * from "./form-fields/button-form/button-form.module";
 export * from "./form-fields/day-counter/day-counter.module";
 export * from "./form-fields/user-choose/user-choose.module";
 export * from "./form-fields/skill-choose/skill-choose.module";
-export * from "./form-fields/skill-show/skill-show.module"
+export * from "./form-fields/skill-show/skill-show.module";
+export * from "./form-fields/immediate-sign-up/immediate-sign-up.module"
 
 //global
 export * from "./global/image-lazy/image-lazy.module";

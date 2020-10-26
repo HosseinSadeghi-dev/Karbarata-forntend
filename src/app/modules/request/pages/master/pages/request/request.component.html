@@ -14,8 +14,7 @@
                        label="انتخاب مهارت"
                        [stepControl]="stFormGroup.controls.typeForm">
               <mat-hint>
-                دسته بندی مورد نظر خود را انتخاب کنید
-                و نوع اجرا یا را انتخاب کنید
+                مهارت مورد نظر خود را انتخاب کنید
               </mat-hint>
 
             </mat-step>
@@ -25,8 +24,7 @@
                        [stepControl]="stFormGroup.controls.locationForm">
 
               <mat-hint>
-                دسته بندی مورد نظر خود را انتخاب کنید
-                و نوع اجرا یا را انتخاب کنید
+                آدرس محل پروژه خود را وارد کنید
               </mat-hint>
 
             </mat-step>
@@ -36,8 +34,7 @@
                        [stepControl]="stFormGroup.controls.confirmForm">
 
               <mat-hint>
-                دسته بندی مورد نظر خود را انتخاب کنید
-                و نوع اجرا یا را انتخاب کنید
+                برای تایید درخواست تاریخ مراجعه را وارد کنید و در صورت لزوم توضیحات تکمیلی را وارد کنید
               </mat-hint>
 
             </mat-step>
@@ -226,7 +223,7 @@
 
               <button
                 mat-flat-button
-                [disabled]="!stFormGroup.controls['confirmForm'].valid"
+                [disabled]="!stFormGroup.valid"
                 (click)="onSubmit()"
                 color="primary">
                 ثبت درخواست

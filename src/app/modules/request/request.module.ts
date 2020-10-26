@@ -32,7 +32,7 @@ import {
     PipesModule,
     ReactiveFormsModule,
     DayCounterModule,
-    ImageLazyModule
+    ImageLazyModule,
   ]
 })
 export class RequestModule { }

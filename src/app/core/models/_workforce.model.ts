@@ -3,7 +3,7 @@ import {GalleryPhotoContext} from './_gallery.model';
 export interface MasterCategoryContext {
   id?: string,
   name?: string,
-  slug?: string
+  slug?: string,
   description?: string,
   image?: GalleryPhotoContext,
   svg?: GalleryPhotoContext,

@@ -35,6 +35,7 @@ export class VerifyFormComponent implements OnInit {
   }
   onSubmit(){
     if (this.form.password !== null && this.form.password.toString().length == 4){
+      console.log('ver',this.form)
       this.authenticationService.onVerify(this.form).
       subscribe(res => this.handleRes(res))
     }

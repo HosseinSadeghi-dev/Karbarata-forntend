@@ -85,7 +85,6 @@ export class ToolbarComponent implements OnInit {
     // dialogRef.afterClosed().subscribe(() => {} );
   }
 
-
   ngOnInit() {
     this.theme.checkTheme();
   }

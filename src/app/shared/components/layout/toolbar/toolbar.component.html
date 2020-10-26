@@ -16,14 +16,16 @@
       <span *ngIf="!mobileQuery.matches" class="mr-3">{{userProfile?.fullName}}</span>
     </button>
 
-    <button mat-button class="px-0" [routerLink]="'/'">
-      <img [src]="darkMode ? 'assets/image/logo-dark.png' : 'assets/image/logo-dark.png'" routerLink="/" alt="karbarata">
+    <button mat-button class="px-0" [routerLink]="'/'" fxFlex="9%">
+      <img [src]="!darkMode ? 'assets/image/logo-dark.png' : 'assets/image/logo-light.png'" class="img-fluid"
+           routerLink="/" alt="karbarata">
     </button>
 
     <div>
-      <button mat-icon-button (click)="changeTheme()">
-        <mat-icon>{{darkMode ? 'wb_sunny' : 'brightness_3'}}</mat-icon>
+      <button mat-icon-button (click)="changeTheme()" class="ml-3">
+        <mat-icon>{{darkMode ? 'brightness_3' : 'wb_sunny'}}</mat-icon>
       </button>
+      <a [routerLink]="['/download']" routerLinkActive="active-list-item" mat-flat-button color="primary">دانلود</a>
 <!--      <button mat-button color="warn" fxHide.xs="true"  class="mr-2">-->
 <!--        جست و جو-->
 <!--        <mat-icon>search</mat-icon>-->
@@ -31,36 +33,83 @@
     </div>
 
   </mat-toolbar-row>
-  <mat-toolbar-row fxLayout="row" fxLayoutAlign="center center" *ngIf="!isScroll && !mobileQuery.matches" @fadeIn @fadeOut>
-    <a routerLink="/" mat-button>صفحه اصلی</a>
-    <button [matMenuTriggerFor]="WorkmanMenu" mat-button>درخواست</button>
-<!--    <a routerLink="/comingSoon" mat-button>فروشگاه</a>-->
-    <a [routerLink]="['/blog']" routerLinkActive="active-list-item" mat-button>بلاگ</a>
-    <a [routerLink]="['/faq']" routerLinkActive="active-list-item" mat-button>سوالات متداول</a>
-    <a [routerLink]="['/about']" routerLinkActive="active-list-item" mat-button>درباره ما</a>
-    <button [matMenuTriggerFor]="contactMenu" mat-button>تماس با ما</button>
-    <a [routerLink]="['/download']" routerLinkActive="active-list-item" mat-button>دانلود</a>
+
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-around center"  *ngIf="!isScroll && !mobileQuery.matches" @fadeIn @fadeOut>
+
+    <div fxFlex fxLayoutAlign="center center">
+      <a routerLink="/" mat-button>صفحه اصلی</a>
+      <button [matMenuTriggerFor]="WorkmanMenu" mat-button color="primary">درخواست</button>
+      <button [matMenuTriggerFor]="ServiceMenu" mat-button color="primary">خدمات و استعلامات</button>
+      <!--    <a routerLink="/comingSoon" mat-button>فروشگاه</a>-->
+      <!--    <a [routerLink]="['/blog']" routerLinkActive="active-list-item" mat-button>بلاگ</a>-->
+      <!--    <a [routerLink]="['/faq']" routerLinkActive="active-list-item" mat-button>سوالات متداول</a>-->
+      <a [routerLink]="['/about']" routerLinkActive="active-list-item" mat-button>درباره ما</a>
+      <button [matMenuTriggerFor]="contactMenu" mat-button>تماس با ما</button>
+    </div>
+
   </mat-toolbar-row>
+
 </mat-toolbar>
+
 <mat-menu #contactMenu="matMenu">
-  <button [routerLink]="['/about/cooperation']" mat-menu-item>                            همکاری با ما
-  </button>
-  <button mat-menu-item (click)="openDialog()">ارسال شکایت
-  </button>
+  <button [routerLink]="['/about/cooperation']" mat-menu-item>همکاری با ما</button>
+  <button mat-menu-item (click)="openDialog()">ارسال شکایت</button>
 </mat-menu>
-<mat-menu #WorkmanMenu="matMenu">
+
+<mat-menu #WorkmanMenu="matMenu" fxLayout="row">
+
   <button mat-menu-item [routerLink]="'/request/simple'">نیرو ساده</button>
   <button mat-menu-item [routerLink]="'/request/master'">نیرو متخصص</button>
   <button mat-menu-item [routerLink]="'/request/construct'">طراحی ، ساخت و ساز</button>
+<!--  <button mat-menu-item>-->
+<!--    <img src="assets/image/andrew-neel-TTPMpLl_2lc-unsplash.jpg" alt="" class="img-fluid">-->
+
+<!--    <span>-->
+<!--      <mat-divider class="primary"></mat-divider>-->
+<!--    </span>-->
+
+<!--    <span>درخواست</span>-->
+<!--  </button>-->
+
+<!--  <div mat-menu-item>-->
+<!--    <img src="assets/image/andrew-neel-TTPMpLl_2lc-unsplash.jpg" alt="" class="img-fluid">-->
+
+<!--    <div>-->
+<!--      <mat-divider class="primary"></mat-divider>-->
+<!--    </div>-->
+
+<!--    <span>درخواست</span>-->
+<!--  </div>-->
+
+<!--  <div mat-menu-item>-->
+<!--    <img src="assets/image/andrew-neel-TTPMpLl_2lc-unsplash.jpg" alt="" class="img-fluid">-->
+
+<!--    <div>-->
+<!--      <mat-divider class="primary"></mat-divider>-->
+<!--    </div>-->
+
+<!--    <span>درخواست</span>-->
+<!--  </div>-->
+
+</mat-menu>
+
+<mat-menu #ServiceMenu="matMenu">
   <button mat-menu-item [routerLink]="'/request/municipality'">خدمات شهرداری</button>
   <button mat-menu-item [routerLink]="'/request/price-advice'">مشاوره و استعلام قیمت</button>
 </mat-menu>
+
 <mat-menu #appUserMenu="matMenu">
   <mat-list>
   </mat-list>
+
   <button [routerLink]="['/user']" mat-menu-item>
     <mat-icon>account_circle</mat-icon>
-    پروفایل</button>
-  <button (click)="logout($event)" mat-menu-item><mat-icon>exit_to_app</mat-icon>
-    خروج</button>
+    پروفایل
+  </button>
+
+  <button (click)="logout($event)" mat-menu-item>
+    <mat-icon>exit_to_app</mat-icon>
+    خروج
+  </button>
+
 </mat-menu>
