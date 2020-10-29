@@ -21,35 +21,34 @@ export class ListComponent implements OnInit, AfterViewInit {
   isUpload: boolean = false;
   photos: GalleryPhotoContext[] = [];
   album: string;
-  obs: Observable<any>;
+  routeParams: any;
 
   dataSource: PhotoDataSource;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  // @ViewChild(MatSort) sort: MatSort;
   @ViewChild('input') input: ElementRef;
 
-  constructor(private galleryService: GalleryService,
-              private activatedRoute: ActivatedRoute,
-              private changeDetectorRef: ChangeDetectorRef,
-              public dialog: MatDialog) { }
+  constructor(
+    private galleryService: GalleryService,
+    private activatedRoute: ActivatedRoute,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.getList();
   }
 
   ngAfterViewInit(): void {
-    // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-    fromEvent(this.input.nativeElement,'keyup')
-      .pipe(
-        debounceTime(150),
-        distinctUntilChanged(),
-        tap(() => {
-          this.paginator.pageIndex = 0;
-          this.loadPhotosPage();
-        })
-      )
-      .subscribe();
+    // fromEvent(this.input.nativeElement,'keyup')
+    //   .pipe(
+    //     debounceTime(150),
+    //     distinctUntilChanged(),
+    //     tap(() => {
+    //       this.paginator.pageIndex = 0;
+    //       this.loadPhotosPage();
+    //     })
+    //   )
+    //   .subscribe();
 
     merge(this.paginator.page)
       .pipe(
@@ -59,11 +58,23 @@ export class ListComponent implements OnInit, AfterViewInit {
   }
 
   loadPhotosPage() {
-    this.dataSource.loadPhotos(
-      this.input.nativeElement.value,
-      'asc',
-      this.paginator.pageIndex,
-      this.paginator.pageSize);
+    this.activatedRoute.params.subscribe(routeParams => {
+      if (routeParams.album){
+        this.dataSource.loadPhotos(
+          '',
+          'desc',
+          this.paginator.pageIndex,
+          this.paginator.pageSize,
+          'album',
+          routeParams.album);
+      }else {
+        this.dataSource.loadPhotos(
+          '',
+          'desc',
+          this.paginator.pageIndex,
+          this.paginator.pageSize,);
+      }
+    });
   }
 
 
@@ -76,7 +87,7 @@ export class ListComponent implements OnInit, AfterViewInit {
       if (routeParams.album){
         this.album = routeParams.album;
         this.isUpload = true;
-        this.dataSource.loadPhotos(routeParams.album, 'asc', 0, 5);
+        this.dataSource.loadPhotos('', 'asc', 0, 5, 'album', routeParams.album);
         // this.galleryService.getGalleryPhotoFilter('album',routeParams.album).subscribe(res => this.handleResList(res))
       }else {
         this.isUpload = false;
@@ -95,14 +106,13 @@ export class ListComponent implements OnInit, AfterViewInit {
 
   openPhoto(photo: GalleryPhotoContext){
     const dialogRef = this.dialog.open(ShowDialogComponent, {
-      // width: '100vw',
-      // height: '100vh',
       data: photo
     });
 
     dialogRef.afterClosed().subscribe(result => {
     });
   }
+
   editDialog(photo: GalleryPhotoContext){
     const dialogRef = this.dialog.open(FormDialogComponent, {
       width: '350px',
@@ -115,7 +125,11 @@ export class ListComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
   onDelete(id: number){
-    this.galleryService.deleteGalleryPhoto(id).subscribe(res => this.getList())
+    this.galleryService.deleteGalleryPhoto(id).subscribe(
+      () => this.getList()
+    )
   }
+
 }

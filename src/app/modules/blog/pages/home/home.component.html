@@ -59,9 +59,9 @@
   <!--  <h1 class="mat-h1">مقالات</h1>-->
 
   <mat-paginator [length]="dataSource.total"
-                 [pageSize]="dataSource.pageTotal"
-                  [pageSizeOptions]="[10, 20, 50, 100]"
-                 showFirstLastButtons></mat-paginator>
+                         [pageSize]="dataSource.pageTotal"
+                          [pageSizeOptions]="[5, 10, 25, 100]"
+                         showFirstLastButtons></mat-paginator>
   <!--  <div fxLayout="row wrap" fxLayout.xs="column" dir="rtl" fxLayoutGap="15px grid">-->
   <!--    <ng-container *ngFor="let article of obs | async">-->
   <!--      <app-article-card fxFlex.gt-xs="33%" [@fadeIn] [data]="article" (articleUpdated)="getArticleList()"></app-article-card>-->

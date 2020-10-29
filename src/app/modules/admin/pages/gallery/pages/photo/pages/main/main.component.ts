@@ -13,7 +13,9 @@ export class MainComponent implements OnInit {
   constructor(private galleryService: GalleryService) { }
 
   ngOnInit() {
-    this.galleryService.getGalleryAlbumList().subscribe(res=> this.handleRes(res))
+    this.galleryService.getGalleryAlbumList().subscribe(
+      res => this.handleRes(res)
+    )
   }
   handleRes(res){
     this.albums = res.results;

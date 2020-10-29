@@ -1,8 +1,8 @@
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
 import {BehaviorSubject, Observable, of} from 'rxjs';
 
-import {GalleryAlbumContext} from "../../../../../../../core/models";
-import {GalleryService} from "../../../../../../../core/services";
+import {GalleryAlbumContext} from "@app/core/models";
+import {GalleryService} from "@app/core/services";
 
 
 export class AlbumsDataSource implements DataSource<GalleryAlbumContext>{

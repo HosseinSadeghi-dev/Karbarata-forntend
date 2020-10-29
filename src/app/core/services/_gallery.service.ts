@@ -72,10 +72,13 @@ export class GalleryService {
     );
   }
 
-  getGalleryPhotoList(filter = '',
-                      sortOrder = 'desc',
-                      pageNumber?,
-                      pageSize?){
+  getGalleryPhotoList(
+    filter = '',
+    sortOrder = 'desc',
+    pageNumber?,
+    pageSize?,
+    verb?,
+    data?){
     let params = new HttpParams()
       .set('filter', filter)
       .set('sortOrder', sortOrder ? sortOrder : 'asc' );
@@ -85,6 +88,9 @@ export class GalleryService {
 
     if (pageSize)
       params = params.set('pageSize', pageSize.toString());
+
+    if(verb)
+      params = params.set(verb, data);
 
     return this.httpClient.get(`/gallery/photo`,{params}).pipe(
       map((response: any) => response),

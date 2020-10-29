@@ -21,12 +21,15 @@ export class PhotoDataSource implements DataSource<GalleryPhotoContext>{
 
   constructor(private galleryService: GalleryService){}
 
-  loadPhotos(filter:string,
-               sortDirection:string,
-               pageIndex:number,
-               pageSize:number) {
+  loadPhotos(
+    filter: string,
+    sortDirection: string,
+    pageIndex: number,
+    pageSize: number,
+    verb?: string,
+    data?: string) {
     this.galleryService
-      .getGalleryPhotoList(filter, sortDirection, pageIndex, pageSize)
+      .getGalleryPhotoList(filter, sortDirection, pageIndex, pageSize, verb, data)
       .subscribe(value => this.handleRes(value));
   }
   handleRes(res){

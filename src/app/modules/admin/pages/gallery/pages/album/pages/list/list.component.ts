@@ -68,19 +68,14 @@ export class ListComponent implements OnInit, AfterViewInit {
   }
 
   onRouter(slug){
-    // const params = this.activatedRoute.snapshot.params;
-    // if (params.slug){
-    //
-    // }
-    // else (){
-    //
-    // }
+
     this.router.navigateByUrl(`admin/gallery/album/${slug}`)
   }
 
   onDelete(slug){
-    this.galleryService.deleteGalleryAlbum(slug).subscribe(
-      () => this.router.navigateByUrl('admin/gallery/album')
-    )
+    console.log('slug',slug)
+    // this.galleryService.deleteGalleryAlbum(slug).subscribe(
+    //   () => this.router.navigateByUrl('admin/gallery/album')
+    // )
   }
 }
