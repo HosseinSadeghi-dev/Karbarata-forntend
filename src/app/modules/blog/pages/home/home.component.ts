@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   public readonly helper = new Helpers();
 
-  routeParams: Params;
   dataSource: ArticlesDataSource;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild('input') input: ElementRef;
@@ -34,7 +33,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    this.routeParams = this.activatedRoute.snapshot.params
     this.getList();
   }
 
@@ -58,25 +56,64 @@ export class HomeComponent implements OnInit, AfterViewInit {
       .subscribe();
   }
   loadArticlesPage() {
-    this.dataSource.loadArticles(
-      this.input.nativeElement.value,
-      'asc',
-      this.paginator.pageIndex,
-      this.paginator.pageSize);
+
+    const routeParams = this.activatedRoute.snapshot.params
+
+    if(routeParams.category){
+      this.dataSource.loadArticles(
+        this.input.nativeElement.value,
+        'desc',
+        this.paginator.pageIndex,
+        this.paginator.pageSize,
+        'category',
+        routeParams.category
+      );
+    }
+    else if(routeParams.tag){
+      this.dataSource.loadArticles(
+        this.input.nativeElement.value,
+        'desc',
+        this.paginator.pageIndex,
+        this.paginator.pageSize,
+        'author',
+        routeParams.tag
+      );
+    }
+    else if(routeParams.author){
+      this.dataSource.loadArticles(
+        this.input.nativeElement.value,
+        'desc',
+        this.paginator.pageIndex,
+        this.paginator.pageSize,
+        'tag',
+        routeParams.author
+      );
+    }
+    else{
+      this.dataSource.loadArticles(
+        this.input.nativeElement.value,
+        'desc',
+        this.paginator.pageIndex,
+        this.paginator.pageSize)
+      ;
+    }
   }
 
   getList(){
     this.paginator.firstPage();
     this.dataSource = new ArticlesDataSource(this.articleService);
 
-    if(this.routeParams.category){
-      this.dataSource.loadArticles('', 'asc', 0, 5, 'category',this.routeParams.category);
+
+    const routeParams = this.activatedRoute.snapshot.params
+
+    if(routeParams.category){
+      this.dataSource.loadArticles('', 'desc', 0, 5, 'category',routeParams.category);
     }
-    else if(this.routeParams.tag){
-      this.dataSource.loadArticles('', 'asc', 0, 5, 'author',this.routeParams.author);
+    else if(routeParams.tag){
+      this.dataSource.loadArticles('', 'desc', 0, 5, 'author',routeParams.tag);
     }
-    else if(this.routeParams.author){
-      this.dataSource.loadArticles('', 'asc', 0, 5, 'tag',this.routeParams.tag);
+    else if(routeParams.author){
+      this.dataSource.loadArticles('', 'desc', 0, 5, 'tag',routeParams.author);
     }
     else{
       this.dataSource.loadArticles('', 'desc', 0, 5);

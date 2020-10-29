@@ -18,8 +18,6 @@ export class HomeComponent implements OnInit {
   dataSource : FaqDatasource;
   displayedColumns: string[] = ['count','question','categories','created','id'];
 
-  faqs: FaqContext[] = [];
-  category: string;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   // @ViewChild(MatSort) sort: MatSort;
   @ViewChild('input') input: ElementRef;
@@ -30,7 +28,6 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.category = this.activatedRoute.snapshot.params.category;
     this.getList();
   }
 
@@ -55,14 +52,15 @@ export class HomeComponent implements OnInit {
   }
 
   loadFaqPages() {
-    if(this.category){
+    const category = this.activatedRoute.snapshot.params.category;
+    if(category){
       this.dataSource.loadFaqs(
         this.input.nativeElement.value,
         'asc',
         this.paginator.pageIndex,
         this.paginator.pageSize,
         'category',
-        this.category);
+        category);
     } else {
       this.dataSource.loadFaqs(
         this.input.nativeElement.value,
@@ -77,8 +75,9 @@ export class HomeComponent implements OnInit {
   getList(){
     this.paginator.firstPage();
     this.dataSource = new FaqDatasource(this.faqService);
-    if(this.category){
-      this.dataSource.loadFaqs('', 'asc', 0, 5,'category',this.category);
+    const category = this.activatedRoute.snapshot.params.category;
+    if(category){
+      this.dataSource.loadFaqs('', 'asc', 0, 5,'category',category);
     }
     else{
       this.dataSource.loadFaqs('', 'desc', 0, 5);

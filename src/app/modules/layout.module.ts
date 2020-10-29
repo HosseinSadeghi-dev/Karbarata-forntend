@@ -9,16 +9,18 @@ import {
   PreloaderModule,
   ToolbarModule
 } from '@app/shared/components';
+import {SupportButtonModule} from "../shared/components/layout/support-button/support-button.module";
 
 @NgModule({
   declarations: [LayoutComponent],
-  imports: [
-    CommonModule,
-    LayoutRoutingModule,
-    PreloaderModule,
-    ToolbarModule,
-    SharedModule,
-    FooterModule
-  ]
+    imports: [
+        CommonModule,
+        LayoutRoutingModule,
+        PreloaderModule,
+        ToolbarModule,
+        SharedModule,
+        FooterModule,
+        SupportButtonModule
+    ]
 })
 export class LayoutModule { }
