@@ -28,7 +28,8 @@ export * from "./form-fields/day-counter/day-counter.module";
 export * from "./form-fields/user-choose/user-choose.module";
 export * from "./form-fields/skill-choose/skill-choose.module";
 export * from "./form-fields/skill-show/skill-show.module";
-export * from "./form-fields/immediate-sign-up/immediate-sign-up.module"
+export * from "./form-fields/immediate-sign-up/immediate-sign-up.module";
+export * from "./form-fields/are-you-sure/are-you-sure.module";
 
 //global
 export * from "./global/image-lazy/image-lazy.module";

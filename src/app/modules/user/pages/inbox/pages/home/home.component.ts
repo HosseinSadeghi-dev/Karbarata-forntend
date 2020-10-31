@@ -7,6 +7,8 @@ import {fromEvent, merge} from "rxjs";
 import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
 import {RequestStatusType} from "@app/core/models";
 import {InboxDatasource} from "../../services";
+import {MatDialog} from "@angular/material/dialog";
+import {AreYouSureComponent} from "../../../../../../shared/components/form-fields/are-you-sure/are-you-sure.component";
 
 @Component({
   selector: 'app-list',
@@ -15,14 +17,15 @@ import {InboxDatasource} from "../../services";
 })
 export class HomeComponent implements OnInit {
   dataSource : InboxDatasource;
-  displayedColumns: string[] = ['count','type','statusPerDay','status','serviceDate', 'description'];
+  displayedColumns: string[] = ['count','type','statusPerDay','status','serviceDate', 'description', 'abort'];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('input') input: ElementRef;
 
   constructor(
     private userRequestService: UserRequestService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -62,6 +65,23 @@ export class HomeComponent implements OnInit {
     this.paginator.firstPage();
     this.dataSource= new InboxDatasource(this.userRequestService);
     this.dataSource.loadInbox('', 'desc', 0, 5);
+  }
+
+  onDelete(id){
+    const dialog = this.dialog.open(AreYouSureComponent,{
+      width: '300px',
+    })
+
+    dialog.afterClosed().subscribe(
+      res => {
+        if(res){
+          this.userRequestService.deleteRequest(id).subscribe(
+            () => this.getList()
+          )
+        }
+      }
+    )
+
   }
 
   public get RequestStatus() {

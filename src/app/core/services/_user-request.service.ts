@@ -106,4 +106,11 @@ export class UserRequestService {
     );
   }
 
+  deleteRequest(id){
+    return this.httpClient.delete(`/user/auth/request/${id}`).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
+
 }
