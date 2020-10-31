@@ -431,6 +431,12 @@ export class RequestService {
     );
   }
 
+  requestSupport(data){
+    return this.httpClient.post(`/support`,data).pipe(
+      map((response: any) => response),
+      catchError((error: HttpErrorResponse) => throwError(error))
+    );
+  }
 
 
 }
