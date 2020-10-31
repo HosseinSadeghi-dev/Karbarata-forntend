@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
+import {DialogSupportButtonComponent} from "../../global/dialog-support-button/dialog-support-button.component";
 
 @Component({
   selector: 'support-button',
@@ -15,8 +16,10 @@ export class SupportButtonComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openDialog(){
-
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogSupportButtonComponent, {
+      width: '360px',
+    });
   }
 
 }

@@ -1,0 +1,25 @@
+<div fxLayout="column">
+  <h3> استعلام و مشاوره رایگان</h3>
+
+  <form [formGroup]="stFormGroup" fxLayout="column">
+
+
+      <mat-form-field appearance="outline" fxFill>
+        <mat-label>شماره تماس</mat-label>
+        <span matSuffix>98+</span>
+        <input matInput formControlName="phoneNumber" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" fxFill>
+        <mat-label>پیغام شما</mat-label>
+        <textarea matInput formControlName="description" rows="5" required></textarea>
+      </mat-form-field>
+
+    <div fxLayoutGap="2px">
+      <button mat-button color="primary" (click)="onSubmit()" [disabled]="!stFormGroup.valid">ارسال</button>
+      <button mat-button color="warn" (click)="onNoClick()">لغو</button>
+    </div>
+
+  </form>
+
+</div>

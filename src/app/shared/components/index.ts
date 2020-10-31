@@ -17,7 +17,8 @@ export * from "./gallery/photo-upload-form/photo-upload-form.module";
 export * from "./layout/preloader/preloader.module";
 export * from "./layout/toolbar/toolbar.module";
 export * from "./layout/footer/footer.module";
-export * from "./layout/footer-form/footer-form.module"
+export * from "./layout/footer-form/footer-form.module";
+export * from "./layout/support-button/support-button.module";
 
 //form fields
 export * from "./form-fields/tag-input/tag-input.module"
@@ -28,7 +29,7 @@ export * from "./form-fields/day-counter/day-counter.module";
 export * from "./form-fields/user-choose/user-choose.module";
 export * from "./form-fields/skill-choose/skill-choose.module";
 export * from "./form-fields/skill-show/skill-show.module";
-export * from "./form-fields/immediate-sign-up/immediate-sign-up.module"
+export * from "./form-fields/immediate-sign-up/immediate-sign-up.module";
 
 //global
 export * from "./global/image-lazy/image-lazy.module";
@@ -40,7 +41,8 @@ export * from "./global/button-table/button-table.module";
 export * from "./global/button-card/button-card.module";
 export * from "./global/bottom-sheet/bottom-sheet.module";
 export * from "./global/404/not-found.module";
-export * from "./global/complaint/complaint.module"
+export * from "./global/complaint/complaint.module";
+export * from "./global/dialog-support-button/dialog-support-button.module";
 
 //request
 export * from './request/request-status/request-status.module'
