@@ -6,12 +6,13 @@
       <mat-icon>menu</mat-icon>
     </button>
 
-    <div *ngIf="!loggedIn">
+    <div *ngIf="!loggedIn" fxHide.lt-md>
       <button mat-raised-button color="warn" [routerLink]="'/auth/register'">ثبت نام</button>
       <button mat-button color="warn" class="mr-2" [routerLink]="'/auth/login'">ورود</button>
     </div>
 
-    <button *ngIf="loggedIn &&  userProfile" [matMenuTriggerFor]="appUserMenu" mat-button>
+    <button *ngIf="loggedIn &&  userProfile" fxHide.lt-md
+            [matMenuTriggerFor]="appUserMenu" mat-button>
       <img [src]="userProfile?.image | srcImage:'user'" class="img-fluid mr-2 rounded-circle" width="35px">
       <span *ngIf="!mobileQuery.matches" class="mr-3">{{userProfile?.fullName}}</span>
     </button>
@@ -22,10 +23,14 @@
     </button>
 
     <div>
-      <button mat-icon-button (click)="changeTheme()" class="ml-3">
+      <button mat-icon-button (click)="changeTheme()" class="ml-3" fxHide.lt-md>
         <mat-icon>{{darkMode ? 'brightness_3' : 'wb_sunny'}}</mat-icon>
       </button>
-      <a [routerLink]="['/download']" routerLinkActive="active-list-item" mat-flat-button color="primary">دانلود کارباراتا</a>
+      <a [routerLink]="['/download']" routerLinkActive="active-list-item" mat-flat-button color="primary">
+        <span class="white">
+          دانلود کارباراتا
+        </span>
+      </a>
 <!--      <button mat-button color="warn" fxHide.xs="true"  class="mr-2">-->
 <!--        جست و جو-->
 <!--        <mat-icon>search</mat-icon>-->

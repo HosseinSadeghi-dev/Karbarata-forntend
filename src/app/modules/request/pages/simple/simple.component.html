@@ -1,6 +1,6 @@
 <div fxLayout="row" class="stepper" ngClass.gt-sm="vh-100">
 
-  <div fxLayout="column" fxFlex="30%" style="background-color: #0D47A1" class="container">
+  <div fxLayout="column" fxHide.lt-md fxFlex="30%" style="background-color: #0D47A1" class="container">
 
     <div fxLayout="column" fxLayoutAlign="space-around center">
       <form [formGroup]="stFormGroup">
@@ -52,18 +52,18 @@
 
   </div>
 
-  <div fxLayout="column" fxFlex="70%" dir="rtl">
+  <div fxLayout="column" fxFlex="70%" fxFlex.lt-md="100%" dir="rtl">
 
 
       <div fxLayout="column" class="my-2 mx-5">
 
         <div fxLayout="column" *ngIf="stepIndex === 0">
+
           <div fxLayoutAlign="start center">
             <h2>
               درخواست انتخاب شده
             </h2>
           </div>
-
 
           <div fxLayoutAlign="start center" fxFlexOffset="1%">
             <h3 class="headline-text">
@@ -78,20 +78,24 @@
           </div>
 
           <div
+            fxLayout.lt-md="column"
+            fxLayoutAlign.lt-md=" stretch"
             fxLayoutAlign="space-around center"
             fxFlexOffset="2%" [formGroup]="stFormGroup.controls['typeForm']">
 
-            <mat-button-toggle-group class="no-border" fxLayoutAlign="space-around center" formControlName="type" fxFlex="50%">
+            <mat-button-toggle-group class="no-border" fxLayout.lt-md="column"
+                                     fxLayoutAlign.lt-md=" stretch"
+                                     fxLayoutAlign="space-around center" formControlName="type" fxFlex.gt-md="50%">
 
-              <mat-button-toggle value="daily" fxFlex="35%" fxLayout="column">
-                <img src="assets/image/daily.svg" class="img-fluid p-2" alt="daily">
+              <mat-button-toggle value="daily" fxFlex.lt-md="60%" fxFlex="35%" fxLayout="column">
+                <img src="assets/image/daily.svg" class="img-fluid p-2" alt="daily" fxHide.lt-md>
                 <span class="top-border">
               روزمزد
             </span>
               </mat-button-toggle>
 
-              <mat-button-toggle value="contract" fxFlex="35%" fxLayout="column">
-                <img  src="assets/image/daily.svg" class="img-fluid p-2" alt="contractor">
+              <mat-button-toggle value="contract" fxFlex.lt-md="60%" fxFlex="35%" fxLayout="column">
+                <img  src="assets/image/daily.svg" class="img-fluid p-2" alt="contractor" fxHide.lt-md>
                 <span class="top-border">
               قراردادی
                 </span>
@@ -119,7 +123,9 @@
 
           </div>
 
-          <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="2%" class="pt-4">
+          <div fxLayout="row" fxLayoutAlign="end center"
+               fxLayoutAlign.lt-md="space-around center"
+               fxLayoutGap="2%" class="pt-4">
 
             <button
               mat-flat-button
@@ -169,7 +175,9 @@
               </mat-form-field>
             </div>
 
-            <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="2%"  class="pt-4">
+            <div fxLayout="row" fxLayoutAlign="end center"
+                 fxLayoutAlign.lt-md="space-around center"
+                 fxLayoutGap="2%"  class="pt-4">
 
               <button
                 mat-flat-button
@@ -221,7 +229,9 @@
               <mat-hint>درخواست های فوری در همان روز کاری پاسخ داده خواهند شد.(در صورت ثبت درخواست شما مشمول مبلغ جزئی میشود)</mat-hint>
             </div>
 
-            <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="2%"  class="pt-4">
+            <div fxLayout="row" fxLayoutAlign="end center"
+                 fxLayoutAlign.lt-md="space-around center"
+                 fxLayoutGap="2%"  class="pt-4">
 
               <button
                 mat-flat-button

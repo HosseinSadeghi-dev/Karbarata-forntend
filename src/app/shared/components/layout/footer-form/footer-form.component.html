@@ -3,20 +3,22 @@
   fxLayout.gt-xs="row"
   fxLayoutAlign="center center"
   class="background-form white"
+  ngClass.lt-md="container"
   style="background-image: url('assets/image/Group 2.png');">
 
-  <div fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxLayoutAlign="center center" class="py-4 divider">
+  <div fxLayout="column" fxFlex.gt-xs="50%" ngClass.gt-sm="divider"
+       fxLayoutAlign="center center" class="py-4">
+
     <form [formGroup]="stFormGroup"
           fxLayout="column"
-          ngClass.lt-xs="w-100"
-          ngClass.gt-xs="w-50"
+          ngClass.gt-sm="w-50"
           dir="rtl" >
 
       <h1 class="text-center">
         با ما در تماس باشید
       </h1>
 
-      <mat-hint class="text-center mb-2">
+      <mat-hint class="text-center white mb-2">
         جهت اطلاع از آخرین خدمات، اخبار، قیمت ها و پیگیری سفارشات خود، با ما در ارتباط باشید.
       </mat-hint>
 
@@ -41,19 +43,27 @@
     </form>
   </div>
 
+  <div fxHide.gt-sm>
+    <mat-divider></mat-divider>
+  </div>
+
   <div fxLayout="column" fxFlex="50%" fxLayoutAlign="center center">
     <div
       fxLayout="column"
-      class="w-100 footer"
-      ngClass.gt-xs="w-50"
+      class="footer"
+      ngClass.lt-md="pt-3"
+      ngClass.gt-sm="w-50"
       dir="rtl">
+
       <div fxLayoutAlign="center center" class="w-100">
         <img src="assets/image/karbarata%20white%20new.png" alt="KBR" class="img-fluid">
       </div>
-      <h2 class="text-center my-1">کارباراتا</h2>
-      <span class="text-center">
+
+      <h2 class="text-center my-1" fxHide.lt-md>کارباراتا</h2>
+      <span class="text-center" fxHide.lt-md>
         سامانه جامع خدمات مهندسی
       </span>
+
     </div>
   </div>
 

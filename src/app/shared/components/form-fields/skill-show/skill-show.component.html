@@ -1,4 +1,12 @@
-<div class="square" [routerLink]="slug" [ngStyle]="{'background-image': getUrl()}" fxLayoutAlign="start start" >
+<div class="square" [routerLink]="slug" fxLayoutAlign="start start" >
+
+  <div class="bg">
+    <img
+      defaultImage='assets/image/image-loader.svg'
+      [lazyLoad]="!localImg? (image | srcImage) : image"
+      [alt]="name">
+  </div>
+
   <div class="overLayer"></div>
   <h3 class="text pr-3">
     {{name}}

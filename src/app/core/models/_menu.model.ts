@@ -380,29 +380,47 @@ export const MenuList: MenuContext[] = [
     title: 'صفحه اصلی',
     link: '/'
   },
+
   {
-    title: 'آموزش',
-    link: '/coming-soon'
+    title: 'درخواست',
+    items:[
+      {
+        title: 'نیرو ساده',
+        link: '/request/simple'
+      },
+      {
+        title: 'نیرو متخصص',
+        link: '/request/master'
+      },
+      {
+        title: 'طراحی ، ساخت و ساز',
+        link: '/request/construct'
+      },
+    ]
   },
+
   {
-    title: 'مقالات',
-    link: '/blog'
+    title: 'خدمات و استعلامات',
+    items:[
+      {
+        title: 'خدمات شهرداری',
+        link: '/request/municipality'
+      },
+      {
+        title: 'مشاوره و استعلام قیمت',
+        link: '/request/price-advice'
+      },
+    ]
   },
+
   {
-    title: 'اخبار',
-    link: '/news'
+    title: 'درباره ما',
+    link: '/about',
   },
+
   {
-    title: 'فروشگاه',
-    link: '/product'
-  },
-  {
-    title: 'سوالات متداول',
-    link: '/faq'
-  },
-  {
-    title: 'ارتباط با ما',
-    link: '/contact-us'
+    title: 'همکاری با ما',
+    link: '/about/cooperation'
   }
 ];
 

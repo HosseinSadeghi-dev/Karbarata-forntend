@@ -1,9 +1,10 @@
 <mat-divider></mat-divider>
 <div fxLayout="column" ngClass.lt-md="container">
 
-  <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="space-around center" class="py-4 footer">
+  <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign.lt-md=" center"
+       fxLayoutAlign.gt-sm="space-around center" class="py-4 footer">
 
-    <div fxLayout="column" fxLayoutAlign=" center" fxFlex="25%" fxFlexAlign="stretch">
+    <div fxLayout="column" fxLayoutAlign.gt-sm=" center" fxLayoutAlign.lt-md="space-between center" fxFlex="25%" fxFlexAlign="stretch">
 
       <div fxLayoutAlign="start start" fxLayoutAlign.lt-md="center center" class="w-100" fxFlex="25%">
         <button mat-button class="px-0" [routerLink]="'/'" fxFlex="40%">
@@ -12,7 +13,7 @@
         </button>
       </div>
 
-      <div fxFlex="40%" class="mt-1">
+      <div fxFlex="40%" class="mt-1" ngClass.lt-md="my-3">
                <span class="text-justify">
                  شرکت مهندسی کارباراتا فعالیت خود را در زمینه
       مهندسی ساختمان، در جهت بهبود کیفیت ، امنیت
@@ -23,25 +24,25 @@
 
       <div fxLayoutAlign="space-between center" class="w-100 not-opacity" fxFlex>
 
-        <a href="https://karbarata.com/" target="_blank" fxFlex="25%">
+        <a href="https://karbarata.com/" class="text-center" target="_blank" fxFlex="25%">
           <button mat-icon-button>
               <img class="img-fluid" src="assets/image/007-whatsapp.svg" alt="whatsapp">
           </button>
         </a>
 
-        <a href="https://t.me/karbarata" target="_blank" fxFlex="25%">
+        <a href="https://t.me/karbarata" class="text-center" target="_blank" fxFlex="25%">
           <button mat-icon-button>
               <img class="img-fluid" src="assets/image/telegram.svg" alt="telegram">
           </button>
         </a>
 
-        <a href="https://karbarata.com/" target="_blank" fxFlex="25%">
+        <a href="https://karbarata.com/" class="text-center" target="_blank" fxFlex="25%">
           <button mat-icon-button>
               <img class="img-fluid" src="assets/image/031-linkedin.svg" alt="LinkedIn">
           </button>
         </a>
 
-        <a href="https://www.instagram.com/karbarata/" target="_blank" fxFlex="25%">
+        <a href="https://www.instagram.com/karbarata/" class="text-center" target="_blank" fxFlex="25%">
           <button mat-icon-button>
               <img class="img-fluid" src="assets/image/034-instagram.svg" alt="instagram">
           </button>
@@ -51,9 +52,11 @@
 
     </div>
 
-    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="10%" fxFlexAlign="stretch">
+    <div fxLayout="column" fxLayoutAlign.gt-md="start start"
+         fxLayoutAlign.lt-md="center stretch"
+         fxFlex="10%" fxFlexAlign="stretch">
 
-      <div fxFlex="25%">
+      <div fxFlex="25%"  ngClass.lt-md="mt-3 text-center">
         <h2>لینک</h2>
       </div>
 
@@ -85,14 +88,14 @@
 
     </div>
 
-    <div fxLayout="column"
-         fxLayoutAlign="start start"
+    <div fxLayout="column" fxLayoutAlign.gt-md="start start"
+         fxLayoutAlign.lt-md="center stretch"
          class="not-opacity"
          fxFlex="15%"
          fxFlexAlign="stretch">
 
       <div fxFlex="25%">
-        <h2>آدرس</h2>
+        <h2 ngClass.lt-md="text-center">آدرس</h2>
       </div>
 
 <!--      <ul class="list p-0 pt-2 m-0">-->
@@ -134,7 +137,6 @@
       </mat-list>
 
     </div>
-
 
     <div fxLayout="column" fxLayoutAlign="start start" fxFlex="25%"  fxFlexAlign="stretch">
 

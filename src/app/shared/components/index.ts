@@ -1,5 +1,3 @@
-
-
 //article
 export * from "./article/article-card/article-card.module";
 export * from "./article/article-favorite-button/article-favorite-button.module";

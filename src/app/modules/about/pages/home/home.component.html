@@ -39,11 +39,11 @@
           </p>
         </mat-card-content>
         <mat-divider></mat-divider>
-        <div fxLayoutAlign="space-between center" class="mt-5">
-          <div>
+        <div fxLayoutAlign="space-between center" fxLayoutAlign.lt-md="center center" class="mt-5">
+          <div fxHide.lt-md>
             <b>رسانه ها</b>
           </div>
-          <div fxFlex="40%" fxLayoutAlign="space-evenly center">
+          <div fxFlex="40%" fxFlex.lt-md="100%" fxLayoutAlign="space-evenly center">
 
             <a href="https://t.me/karbarata">
               <button mat-flat-button fxFlex="20%">
@@ -66,11 +66,11 @@
       </mat-card>
       <div class="mt-4" fxLayoutAlign="space-around center">
 
-        <div fxLayout="column" fxFlex="17%" fxLayoutAlign="center center">
+        <div fxLayout="column" fxFlex="17%" fxLayoutAlign="center center" fxHide.lt-md>
           <img class="img-fluid" src="assets/image/logo%20rata.png" alt="logo-ratagostar">
         </div>
 
-        <form [formGroup]="stFormGroup" fxLayout="column" fxFlex="35%" fxLayoutAlign="center center">
+        <form [formGroup]="stFormGroup" fxLayout="column" fxFlex.gt-md="35%" fxLayoutAlign="center center">
           <mat-card fxFill>
 
             <mat-card-header>

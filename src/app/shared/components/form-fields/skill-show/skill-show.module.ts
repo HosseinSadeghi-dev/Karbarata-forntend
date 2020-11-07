@@ -4,6 +4,7 @@ import { SkillShowComponent } from './skill-show.component';
 import {SharedModule} from "../../../shared.module";
 import {PipesModule} from "../../../pipes/pipes.module";
 import {RouterModule} from "@angular/router";
+import {ImageLazyModule} from "src/app/shared/components";
 
 
 
@@ -14,11 +15,11 @@ import {RouterModule} from "@angular/router";
   exports: [
     SkillShowComponent
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    PipesModule,
-    RouterModule
-  ]
+    imports: [
+        CommonModule,
+        SharedModule,
+        PipesModule,
+        RouterModule,
+    ]
 })
 export class SkillShowModule { }

@@ -7,6 +7,7 @@ import {CredentialsService} from "../core/authentication/credentials.service";
 import {ProfileService} from "../core/authentication/profile.service";
 import {OverlayContainer} from "@angular/cdk/overlay";
 import {ThemeService} from "../core/services";
+import {AuthenticationService} from "../core/authentication/authentication.service";
 
 @Component({
   selector: 'app-layout',
@@ -27,6 +28,7 @@ export class LayoutComponent implements OnInit,OnDestroy {
               private router: Router,
               private credentialService: CredentialsService,
               private theme: ThemeService,
+              private authenticationService:AuthenticationService,
               overlayContainer: OverlayContainer,
               private profileService: ProfileService) {
     theme.themeStatus.subscribe(res => {this.darkMode = res;
@@ -56,5 +58,19 @@ export class LayoutComponent implements OnInit,OnDestroy {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  changeTheme(){
+    this.theme.nextTheme(!this.darkMode);
+  }
+
+  logout(event: MouseEvent) {
+    event.preventDefault();
+    // this.user.deleteData();
+    // this.token.remove();
+    // this.auth.changeAuthStatus(false);
+    this.authenticationService.logout();
+    // this.router.navigateByUrl('/');
+    window.location.reload();
   }
 }

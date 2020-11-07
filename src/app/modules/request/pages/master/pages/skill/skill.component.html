@@ -1,20 +1,20 @@
 <div fxLayout="column">
 
-  <div class="section" fxLayoutAlign="start end">
+  <div fxLayout.lt-md="column-reverse" class="section" fxLayoutAlign="start end" fxLayoutAlign.lt-md="start stretch">
 
     <div fxFlex="10%"></div>
 
-    <mat-card fxFlex="40%" class="xxx mb-n4 p-4">
-<!--      <h3>نیرو متخصص</h3>-->
-<!--      <span class="text-justify">طراحی و اجرای پروژه های کوچک و بزرگ خود را در زمینه های زیر میتوانید از قسمت طراحی ساخت و ساز سفارش دهید</span>-->
+    <mat-card fxFlex="40%" fxFlex.lt-md="35%" class="mb-n4 p-4">
       <h3>{{category?.name}}</h3>
-      <span class="text-justify">{{category?.description}}</span>
+      <span class="text-justify">
+        {{category?.description}}
+      </span>
     </mat-card>
 
   </div>
 
   <div class="mt-5" fxLayoutAlign="center center">
-    <div fxFlex="80%" fxLayout="row wrap" fxLayoutGap="2%" dir="rtl">
+    <div fxFlex="80%" fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap="2%" dir="rtl">
 
       <ng-container *ngFor="let skill of category?.skills">
 

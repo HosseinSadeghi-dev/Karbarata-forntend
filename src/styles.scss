@@ -528,6 +528,10 @@ td.mat-column-star {
 }
 
 @media screen and (max-width: 960px) {
+  .mat-chip{
+    font-size: 12px !important;
+  }
+
   .mat-elevation-z8 {
     background: transparent;
     box-shadow: none;
@@ -568,7 +572,7 @@ td.mat-column-star {
       width: 100%;
       -ms-flex-align: center !important;
       align-items: center !important;
-      padding: 0 16px;
+      padding: 0 16px !important;
       margin: 16px 0;
       border: 0 none;
       &:first-child {
@@ -882,6 +886,6 @@ input[type=number] {
   }
 
   mat-hint{
-    color: darkgrey;
+    color: lightgrey !important;
   }
 }

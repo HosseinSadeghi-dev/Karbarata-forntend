@@ -78,7 +78,7 @@
 
               <ng-container matColumnDef="description">
                 <th mat-header-cell *matHeaderCellDef > صورت حساب </th>
-                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="صورت حساب :">
+                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="صورت حساب">
                   <button mat-icon-button color="primary" [disabled]="element?.status[element?.status?.length-1]?.type !== RequestStatus.INVOICE"
                           [routerLink]=" 'pay/' + element.id ">
                     <mat-icon>description</mat-icon>
@@ -86,9 +86,9 @@
                 </td>
               </ng-container>
 
-              <ng-container matColumnDef="abort">
+              <ng-container matColumnDef="abort" dir="rtl">
                 <th mat-header-cell *matHeaderCellDef > لغو درخواست </th>
-                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="لغو درخواست :">
+                <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="لغو درخواست">
                   <button mat-icon-button color="warn" [disabled]="element?.status[element?.status?.length-1]?.type === RequestStatus.DONE"
                           (click)="onDelete(element.id)">
                     <mat-icon>close</mat-icon>
