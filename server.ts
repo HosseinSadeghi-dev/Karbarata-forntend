@@ -4,6 +4,26 @@ import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
 import { join } from 'path';
 
+///Handle Error local storage & document & window not defined
+import 'localstorage-polyfill';
+const MockBrowser = require('mock-browser').mocks.MockBrowser;
+const mock = new MockBrowser();
+
+global['localStorage'] = localStorage;
+global['document'] = mock.getDocument();
+global['window'] = mock.getWindow();
+
+Object.defineProperty(document.body.style, 'transform', {
+  value: () => {
+    return {
+      enumerable: true,
+      configurable: true
+    };
+  },
+});
+
+///////////////////////////////////////
+
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
@@ -58,3 +78,4 @@ if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
 }
 
 export * from './src/main.server';
+

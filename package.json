@@ -31,6 +31,8 @@
     "@tinymce/tinymce-angular": "^4.1.0",
     "express": "^4.15.2",
     "jalali-moment": "^3.3.8",
+    "localstorage-polyfill": "^1.0.1",
+    "mock-browser": "^0.92.14",
     "ng-lazyload-image": "^9.0.0",
     "rxjs": "~6.6.2",
     "tslib": "^2.0.0",

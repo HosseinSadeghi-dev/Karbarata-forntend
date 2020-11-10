@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserRoutingModule } from './user-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {PreloaderModule} from '@app/shared/components';
 import {SharedModule} from '@app/shared/shared.module';
 
 import {
@@ -28,7 +27,6 @@ import {
         UserRoutingModule,
         FormsModule,
         SharedModule,
-        PreloaderModule,
         ReactiveFormsModule
     ]
 })

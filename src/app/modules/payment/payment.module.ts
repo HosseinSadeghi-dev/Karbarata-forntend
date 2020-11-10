@@ -9,7 +9,6 @@ import {
   ResultComponent
 } from './pages';
 import {SharedModule} from "../../shared/shared.module";
-import {PreloaderModule} from "../../shared/components";
 
 
 @NgModule({
@@ -23,7 +22,6 @@ import {PreloaderModule} from "../../shared/components";
     CommonModule,
     PaymentRoutingModule,
     SharedModule,
-    PreloaderModule
   ]
 })
 export class PaymentModule { }

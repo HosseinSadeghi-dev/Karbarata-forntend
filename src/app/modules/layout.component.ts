@@ -48,7 +48,7 @@ export class LayoutComponent implements OnInit,OnDestroy {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
-      document.querySelector('.mat-sidenav-content').scrollTop = 0;
+      // document.querySelector('mat-sidenav-content').scrollTop = 0;
     });
   }
 

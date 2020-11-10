@@ -13,4 +13,4 @@ import {ArticleFavoriteButtonComponent} from './article-favorite-button.componen
   ],
   exports: [ArticleFavoriteButtonComponent]
 })
-export class ArticleFavoriteButtonModule { }
+export class ArticleFavoriteButtonModule {}
