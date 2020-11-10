@@ -10,7 +10,7 @@
     >
       <div fxLayout="column" fxLayoutAlign="center center"  class="mb-6 mt-n5">
         <h1 class="mat-h2 text-center">
-          اولین سرویس جامع خدمات مهندسی و ساختمانی در مشهد
+          اولین سرویس جامع خدمات مهندسی و ساختمانی
         </h1>
         <div fxFlex="5%" fxLayoutAlign="center center">
           <img
@@ -32,10 +32,14 @@
         srcset=""
         class="background"
       />
-      <div fxFlex="50">
+      <div fxFlex="50" class="mobile mr-n10 my-5">
+        <video [muted]="true" autoplay loop class="img-fluid">
+          <source src="assets/video/logo_motion.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
         <img
           src="assets/image/phone.png"
-          class="img-fluid p-5 mr-n10"
+          class="img-fluid w-100"
           alt=""
           srcset=""
         />

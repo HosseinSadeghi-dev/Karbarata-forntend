@@ -42,6 +42,24 @@ $marginline: 1rem;
   border-right: #fe8c00 solid 2px;
 }
 
+.mobile{
+
+  position: relative;
+  video{
+    transform: translate(9%,131%);
+    width: 86%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    position: absolute;
+  }
+  img {
+    left: 0;
+    top: 0;
+    position: absolute;
+  }
+}
+
 
 
 
