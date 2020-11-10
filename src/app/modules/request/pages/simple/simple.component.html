@@ -81,27 +81,42 @@
             fxLayout.lt-md="column"
             fxLayoutAlign.lt-md=" stretch"
             fxLayoutAlign="space-around center"
-            fxFlexOffset="2%" [formGroup]="stFormGroup.controls['typeForm']">
+            fxFlexOffset.gt-sm="2%" [formGroup]="stFormGroup.controls['typeForm']">
 
-            <mat-button-toggle-group class="no-border" fxLayout.lt-md="column"
-                                     fxLayoutAlign.lt-md=" stretch"
+            <mat-button-toggle-group class="no-border"  fxHide.lt-md
                                      fxLayoutAlign="space-around center" formControlName="type" fxFlex.gt-md="50%">
 
               <mat-button-toggle value="daily" fxFlex.lt-md="60%" fxFlex="35%" fxLayout="column">
-                <img src="assets/image/daily.svg" class="img-fluid p-2" alt="daily" fxHide.lt-md>
+                <img src="assets/image/daily.svg" class="img-fluid p-2" alt="daily" >
                 <span class="top-border">
               روزمزد
-            </span>
+                </span>
               </mat-button-toggle>
 
               <mat-button-toggle value="contract" fxFlex.lt-md="60%" fxFlex="35%" fxLayout="column">
-                <img  src="assets/image/daily.svg" class="img-fluid p-2" alt="contractor" fxHide.lt-md>
+                <img  src="assets/image/daily.svg" class="img-fluid p-2" alt="contractor" >
                 <span class="top-border">
               قراردادی
                 </span>
               </mat-button-toggle>
 
             </mat-button-toggle-group>
+
+            <mat-radio-group class="no-border mb-2" fxFlex="35%" fxLayout.lt-md="column" fxHide.gt-md
+                             fxLayoutAlign="space-around start" formControlName="type">
+
+              <mat-radio-button value="daily" color="primary"
+                                fxLayout="column" >
+                روزمزد
+              </mat-radio-button>
+
+              <mat-radio-button value="contract"
+                                fxLayout="column" color="primary">
+                قراردادی
+              </mat-radio-button>
+
+            </mat-radio-group>
+
 
             <div fxLayout="column" class="py-1 px-2 text-center" fxFlex="35%" fxFill fxLayoutAlign="space-between ">
 
