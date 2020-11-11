@@ -22,7 +22,7 @@ Object.defineProperty(document.body.style, 'transform', {
   },
 });
 
-///////////////////////////////////////
+//////////////////////////////////////
 
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
