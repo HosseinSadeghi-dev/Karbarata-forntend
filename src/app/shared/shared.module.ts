@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FlexLayoutModule, LayoutGapStyleBuilder} from '@angular/flex-layout';
+// import {FlexLayoutServerModule} from "@angular/flex-layout/server";
 import {LazyLoadImageModule} from 'ng-lazyload-image';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS} from './material.persian-date.adapter';
@@ -41,12 +42,14 @@ const directives = [
   imports: [
     CommonModule,
     FlexLayoutModule,
+    // FlexLayoutServerModule,
     LazyLoadImageModule,
     MaterialModule,
     PipesModule
   ],
   exports: [
     FlexLayoutModule,
+    // FlexLayoutServerModule,
     LazyLoadImageModule,
     MaterialModule,
     directives,
