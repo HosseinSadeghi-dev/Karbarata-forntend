@@ -32,13 +32,13 @@ import {PipesModule} from "../../shared/pipes/pipes.module";
     CommonModule,
     BlogRoutingModule,
     SharedModule,
-    ArticleFavoriteButtonModule,
     UserListItemModule,
     FormsModule,
     ReactiveFormsModule,
     UserRoleChipModule,
     ImageLazyModule,
     ContentPreviewModule,
+    ArticleFavoriteButtonModule,
     PipesModule
   ]
 })

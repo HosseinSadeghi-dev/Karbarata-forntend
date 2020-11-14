@@ -6,11 +6,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import {
   AccessorEditorModule,
-  ArticleFavoriteButtonModule,
   PhotoChooseModule,
   TagInputModule,
   UserButtonModule,
-  UserListItemModule
+  UserListItemModule,
+  ArticleFavoriteButtonModule,
 } from '@app/shared/components';
 
 import {
@@ -39,14 +39,14 @@ import {PipesModule} from "../../../../shared/pipes/pipes.module";
         CommonModule,
         ArticleRoutingModule,
         SharedModule,
-        ArticleFavoriteButtonModule,
         UserButtonModule,
         ReactiveFormsModule,
         PhotoChooseModule,
         UserListItemModule,
         TagInputModule,
         AccessorEditorModule,
-        PipesModule
+        PipesModule,
+        ArticleFavoriteButtonModule,
     ]
 })
 export class ArticleModule { }

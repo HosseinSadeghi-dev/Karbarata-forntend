@@ -13,12 +13,13 @@ import {
 } from "./pages";
 
 import {
-    AccessorEditorModule,
-    ArticleFavoriteButtonModule, ButtonCardModule,
-    PhotoChooseModule,
-    TagInputModule,
-    UserButtonModule,
-    UserListItemModule
+  AccessorEditorModule,
+  ButtonCardModule,
+  PhotoChooseModule,
+  TagInputModule,
+  UserButtonModule,
+  UserListItemModule,
+  ArticleFavoriteButtonModule,
 } from '@app/shared/components';
 
 @NgModule({
@@ -31,7 +32,6 @@ import {
     imports: [
         CommonModule,
         SharedModule,
-        ArticleFavoriteButtonModule,
         UserButtonModule,
         ReactiveFormsModule,
         PhotoChooseModule,
@@ -41,6 +41,7 @@ import {
         AccessorEditorModule,
         RouterModule,
         PipesModule,
+        ArticleFavoriteButtonModule,
         ButtonCardModule
     ]
 })
