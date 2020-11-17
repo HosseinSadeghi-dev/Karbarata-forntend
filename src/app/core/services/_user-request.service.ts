@@ -106,8 +106,8 @@ export class UserRequestService {
     );
   }
 
-  deleteRequest(id){
-    return this.httpClient.delete(`/user/auth/request/${id}`).pipe(
+  deleteRequest(id, type){
+    return this.httpClient.delete(`/user/auth/request/${id}/${type}`).pipe(
       map((response: any) => response),
       catchError((error: HttpErrorResponse) => throwError(error))
     );

@@ -89,7 +89,7 @@
               <ng-container matColumnDef="abort" dir="rtl">
                 <th mat-header-cell *matHeaderCellDef > لغو درخواست </th>
                 <td mat-cell *matCellDef="let element" class="has_label_on_mobile" data-label="لغو درخواست">
-                  <button mat-icon-button color="warn" [disabled]="element?.status[element?.status?.length-1]?.type === RequestStatus.DONE"
+                  <button mat-icon-button color="warn" [disabled]="element?.status[element?.status?.length-1]?.type === RequestStatus.APPROVAL_OP"
                           (click)="onDelete(element.id)">
                     <mat-icon>close</mat-icon>
                   </button>

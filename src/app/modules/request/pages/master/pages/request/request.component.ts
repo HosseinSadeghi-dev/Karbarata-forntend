@@ -15,7 +15,7 @@ import {ImmediateSignUpComponent} from "../../../../../../shared/components/form
 })
 export class RequestComponent implements OnInit {
 
-  skills: MasterSkillContext[] =[];
+  skills: MasterSkillContext[] = [];
   todayDate = new Date();
   minDate = new Date();
   stepIndex: number = 0;

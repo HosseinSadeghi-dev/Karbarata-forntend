@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
     dialog.afterClosed().subscribe(
       res => {
         if(res){
-          this.userRequestService.deleteRequest(id).subscribe(
+          this.userRequestService.deleteRequest(id, "cancelType").subscribe(
             () => this.getList()
           )
         }
