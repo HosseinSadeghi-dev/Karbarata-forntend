@@ -1,27 +1,13 @@
-# Client
+# Karbarata
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.9.
 
-## Development server
+This is a construction and renovation request website written in Angular 10. It is designed to help people find the right contractor for their project.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+<sup>The website also provides a form for users to submit their project details. This includes information such as the type of project, budget, timeline, and any special requirements. Once submitted, the form will be sent to contractors who match the user’s criteria. The contractors can then contact the user directly with an estimate and further details about their services.</sup>
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Demo Pictures
+![demo1](/src/assets/demo/light_mode.png)
+![demo2](/src/assets/demo/dark_mode.png)
+![demo3](/src/assets/demo/municipality_page.png)
+![demo4](/src/assets/demo/request_simple_page.png)
